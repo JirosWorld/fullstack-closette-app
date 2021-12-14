@@ -14,7 +14,7 @@ Conclusie: aan alle voorwaarden gesteld in de opdracht, `Integrale eindopdracht 
 
 Zie `funct.pdf` in deze directory.
 
-## Tecnhisch Ontwerp
+## Technisch Ontwerp
 
 Zie `funct.pdf` in deze directory.
 

@@ -2,7 +2,7 @@
 
 door Jiro Ghianni
 
-## Inhoud n installatie
+## Inhoud en installatie
 
 Welkom bij de _Closette ~ genderneutrale toiletten zoek-app_. Deze applicatie kun je zelf installeren via de installatie handleiding. Alle toelichtingen en uitleg over hoe deze app inelkaar zit, kun je hier vinden:
 
@@ -13,13 +13,13 @@ Welkom bij de _Closette ~ genderneutrale toiletten zoek-app_. Deze applicatie ku
     * Link naar de GIT repository waarnaar het project geüpload
 is: [Jiro's Github Fullstack Closette App](https://github.com/JirosWorld/fullstack-closette-app).
 
-* in de 'LEESMIJ' map: Installatiehandleiding (in .pdf of markdown) [link naar installatiehandleiding in markdown](leesmij/installatiehandleiding.md)
+* in de 'LEESMIJ' map staat de Installatiehandleiding:  [link naar installatiehandleiding in markdown](leesmij/installatiehandleiding.md)
 
-* in de 'LEESMIJ' map: Functioneel ontwerp + * Technisch ontwerp: [link naar ontwerpen in markdown](leesmij/functioneel-technisch.md)
+* in de 'LEESMIJ' map staat het Functioneel ontwerp + het Technisch ontwerp **samen** in 1 PDF; er is ook een 'text-only' markdown versie: [link naar ontwerpen in markdown](leesmij/functioneel-technisch.md)
 
-* Broncode van beide projecten (Let op: dus niet alleen de link naar het Github-project)
+* Broncode van beide projecten staat in de ZIP en het online Github-project.
 
-* in de 'LEESMIJ' map: Verantwoordingsdocument: [link naar Verantwoordingsdocument in markdown](leesmij/verantwoordingsdocument.md)
+* in de 'LEESMIJ' map staat ook het Verantwoordingsdocument: [link naar Verantwoordingsdocument in markdown](leesmij/verantwoordingsdocument.md)
 
 ### Leuke extra’s
 
