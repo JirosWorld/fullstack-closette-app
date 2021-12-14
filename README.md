@@ -2,6 +2,8 @@
 
 door Jiro Ghianni
 
+![Closette logo](leesmij/assets/closette-logo.png)
+
 ## Inhoud en installatie
 
 Welkom bij de _Closette ~ genderneutrale toiletten zoek-app_. Deze applicatie kun je zelf installeren via de installatie handleiding. Alle toelichtingen en uitleg over hoe deze app inelkaar zit, kun je hier vinden:
