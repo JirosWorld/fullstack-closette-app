@@ -2,21 +2,35 @@
 
 door Jiro Ghianni
 
-## Inhoud
+## Inhoud n installatie
 
-● Deze Readme
+Welkom bij de _Closette ~ genderneutrale toiletten zoek-app_. Deze applicatie kun je zelf installeren via de installatie handleiding. Alle toelichtingen en uitleg over hoe deze app inelkaar zit, kun je hier vinden:
 
- ○ Beschrijft waar alle documenten en applicaties te vinden zijn
+* Deze Readme
 
- ○ Bevat een link naar de GIT repository waarnaar het project (of projecten) geüpload
-is.
+    * Beschrijft waar alle documenten en applicaties te vinden zijn
 
-● Installatiehandleiding (in .pdf of markdown)
+    * Link naar de GIT repository waarnaar het project geüpload
+is: [Jiro's Github Fullstack Closette App](https://github.com/JirosWorld/fullstack-closette-app).
 
-● Functioneel ontwerp (in .pdf of markdown)
+* in de 'LEESMIJ' map: Installatiehandleiding (in .pdf of markdown) [link naar installatiehandleiding in markdown](leesmij/installatiehandleiding.md)
 
-● Technisch ontwerp (in .pdf of markdown)
+* in de 'LEESMIJ' map: Functioneel ontwerp + * Technisch ontwerp: [link naar ontwerpen in markdown](leesmij/functioneel-technisch.md)
 
-● Broncode van beide projecten (Let op: dus niet alleen de link naar het Github-project)
+* Broncode van beide projecten (Let op: dus niet alleen de link naar het Github-project)
 
-● Verantwoordingsdocument (in .pdf of markdown)
+* in de 'LEESMIJ' map: Verantwoordingsdocument: [link naar Verantwoordingsdocument in markdown](leesmij/verantwoordingsdocument.md)
+
+### Leuke extra’s
+
+Ik hoop dat nieuwe programmeurs gevoeliger gaan zijn voor diversiteit en nooit meer databases ontwerpen waarin gender slechts een boolean is. 
+Lees mijn stuk over diversiteit in code hier:
+https://codepen.io/jirosworld/post/how-to-build-diversity-into-your-code
+
+
+Veel plezier met nakijken!
+
+Saluut,
+
+Jiro Ghianni
+2021 / 2022
