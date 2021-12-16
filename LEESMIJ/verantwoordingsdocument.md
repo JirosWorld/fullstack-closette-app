@@ -4,8 +4,8 @@ door Jiro Ghianni
 
 ## Inleiding
 
-Hier wordt een antwoord gegeven op de vragen
-* Welke technieken, producten en bibliotheken zijn er gebruikt?
+Hier een antwoord op de vragen:
+* Welke technieken, producten en bibliotheken zijn er gebruikt en waarom?
 * Is aan alle voorwaarden uit de opdracht voldaan?
 
 Conclusie: aan alle voorwaarden gesteld in de opdracht, `Integrale eindopdracht Backend 1.02.pdf` is voldaan. Er zijn alleen ingredienten gebruikt, die werden gevraagd.
@@ -28,20 +28,17 @@ De back-end server draait op http://localhost:8080
 
 ## Database
 
-Voor de database is gekozen voor PostgreSQL.
+De database is PostgreSQL.
 
 Door de ingebouwde ondersteuning van Spring Boot voor vele database producten via JDBC drivers, is het niet moeilijk om aan criterium
 "De backend en de database zijn gescheiden en kunnen los van elkaar op verschillende systemen draaien" te voldoen.
-Daarom zijn er in de directory/folder `src/main/resources` drie verschillende `application.properties` meegeleverd:
+Daarom zijn er in de directory/folder `src/main/resources` verschillende `application.properties` meegeleverd:
 
-. default, zonder profiel naam: `application.properties`, waarin de configuratie voor het gebruik met docker-compose
-en daarmee met een Docker-container met PostgreSQL beschiklbaar is
-. `application-local.properties` waarin de configuratie voor een H2 database die als bestand in de project folder wordt opgeslagen
-. `application-postgresql.properties` waarin een lokale, eerder geinstalleerde óf een extern gehoste PostgreSQL instantie
-geconfigureerd kan worden.
+* JPA
+* Hibernate
+* Tables droppen bij elke Run.
 
-Overigens zou in principe iedere Relationele Database Management System (RDBMS) gebruikt kunnen worden, maar er is alleen met
-H2 en PostgreSQL getest.
+In principe zou ieder Relationele Database Management System (RDBMS) gebruikt kunnen worden, maar er is alleen met PostgreSQL getest.
 
 Deze alternatieve configuratie bestanden kunnen geactiveerd worden door de applicatie als volgt te starten:
 
@@ -51,11 +48,11 @@ of
 
 `./mvnw spring-boot:run -Dspring-boot.run.profiles=postgresql`.
 
-Vergeet niet om bij deze laatste optie ook de instellingen voor de database aan te passen aan de aanwezige situatie in het bestand `application-postgresql.properties`.
+
 
 ## Java en Spring Boot
 
-Alle source code is standaard Java 14, met gebruik van de laatste versie van Spring Boot en Maven.
+Alle source code is standaard Java 14, omdat dit waarschijnlijk ded volgendde "long term supported" versie gaat worden, met gebruik van de laatste versie van Spring Boot en Maven.
 
 ### Spring Boot
 
@@ -99,13 +96,17 @@ Middels de door NOVI aangeleverde code voor het implementeren van authenticatie 
 
 ## Wat is er niet gedaan
 
-. Geen performance tests. Het is dus niet zeker wat er gebeurt als er grotere aantallen gebruikers grote hoeveelheden data gaan invoeren. Meer data heeft impact op het schijfruimtegebruik van de database en op de snelheid waarmee tabellen bevraagd worden.
+• geen https SSL certificaat omdat dit bij nakeijken efrificati probleemen kan geven maar in het het echte bedrijfs leven moet dit wel
 
-. Niet veel @MockBean gebruikt. Tijdens het ontwikkelen merkte ik dat ik een mock database, H2 in-memory, genoeg mock vindt en dat tests, met name complexe, met @MockBean er niet overzichtelijker op worden.
+• geen CORS URL gekozne dus in plaats van port 3000 heb ik een * operator gekozen zodat alle veerzoeke naar de  back-end door kunnen komen; 
 
-. De gestelde kwaliteitseis van een test-coverage van 80% is ... gehaald.
+• Geen performance tests. Het is dus niet zeker wat er gebeurt als er grotere aantallen gebruikers grote hoeveelheden data gaan invoeren. Meer data heeft impact op het schijfruimtegebruik van de database en op de snelheid waarmee tabellen bevraagd worden.
+
+• Niet veel @MockBean gebruikt. Tijdens het ontwikkelen merkte ik dat ik een mock database, H2 in-memory, genoeg mock vindt en dat tests, met name complexe, met @MockBean er niet overzichtelijker op worden.
+
+• De gestelde kwaliteitseis van een test-coverage van 80% is ... gehaald.
 
 
 ## Opmerkingen
 
-. Deze app is nog niet af. Ik heb nog plannen voor het koppelen van een Map API die toont op welke locatie op de kaart de gebruiker staat.
+• Deze app is het begin van een idealistisch idee voor de toekomst. Ik heb nog plannen voor het koppelen van een Map API die toont op welke locatie op de kaart de gebruiker daadwerkelijk staat.
