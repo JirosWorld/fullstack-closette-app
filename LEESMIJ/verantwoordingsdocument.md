@@ -52,7 +52,7 @@ of
 
 ## Java en Spring Boot
 
-Alle source code is standaard Java 14, omdat dit waarschijnlijk ded volgendde "long term supported" versie gaat worden, met gebruik van de laatste versie van Spring Boot en Maven.
+Alle source code is standaard Java 17, omdat dit de nieuwste long-term support (LTS) release versie is, met gebruik van de laatste versie van Spring Boot en Maven.
 
 ### Spring Boot
 
