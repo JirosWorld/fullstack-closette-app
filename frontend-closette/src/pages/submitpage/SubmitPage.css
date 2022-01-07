@@ -1,0 +1,21 @@
+.toilet__page {
+    padding: 1em;
+    background-color: var(--softgreen);
+    border-radius: 25px;
+}
+
+.toilet__card {
+    padding: 1.5em;
+    margin: 0 0 1em 0;
+    border-radius: 25px;
+    border: 5px var(--hardpink) solid;
+    background-color: white;
+}
+
+.toilet__heading {
+    color: maroon;
+}
+
+.toilet__title a {
+    color: crimson;
+}

@@ -1,0 +1,7 @@
+.login__page #data {
+    width: 700px;
+    display: inline-block;
+    word-break: break-all;
+    background-color: ivory;
+    letter-spacing: 0.1em;
+}

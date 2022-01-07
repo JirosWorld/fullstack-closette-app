@@ -1,0 +1,14 @@
+.loader {
+    width: 25px;
+    height: 25px;
+    animation: loading-spin 2s linear infinite;
+}
+
+@keyframes loading-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

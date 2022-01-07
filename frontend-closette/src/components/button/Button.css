@@ -1,0 +1,31 @@
+svg.backnav {
+    width: 12px;
+    height: 20px;
+    fill: var(--hardpink);
+    stroke: var(--hardpink);
+    margin-right: 1.5em;
+}
+
+button {
+    font-family: 'Roboto Condensed', Arial, sans-serif;
+}
+
+button.backnav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 0.5em;
+    border: 0;
+    border-radius: 25px;
+    background-color: #000;
+    color: #FFF;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+button:hover svg.backnav,
+button:hover.backnav {
+    fill: aqua;
+    stroke: aqua;
+    color: aqua;
+}

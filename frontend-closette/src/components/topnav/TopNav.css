@@ -1,0 +1,96 @@
+:root {
+    --menu-bar-width: 60px;
+    --menu-bar-height: 10px;
+}
+
+#menu {
+    background-color: #D84282;
+    position: relative;
+    width: var(--menu-bar-width);
+    height: var(--menu-bar-height);
+    transition: all 0.15s ease-in-out;
+}
+
+#menu::before,
+#menu::after {
+    background-color: #D84282;
+    display: block;
+    content: "";
+    width: var(--menu-bar-width);
+    height: var(--menu-bar-height);
+    position: absolute;
+    transition: all 0.35s ease-in-out;
+}
+
+#menu::before {
+    left: 0;
+    top: -20px;
+}
+
+#menu::after {
+    left: 0;
+    /*top: 20px mag ook! Komt op hetzelfde neer, want het is telkens 20px vanaf de boven of onderkant*/
+    bottom: -20px;
+}
+
+#container {
+    /*border: 1px solid red;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+
+    /* shorthand voor:
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 0;
+    padding-right: 0;
+     */
+    padding: 20px 0;
+}
+
+#container:hover #menu {
+    background-color: transparent;
+}
+
+#container:hover #menu::before {
+    transform: rotate(45deg);
+    /*Het is belangrijk om hier dezelfde property te bewerken als op #menu::before (dus allebei top, of allebei bottom) anders draait het kruisje niet goed vanuit het midden! */
+    top: 0;
+}
+
+#container:hover #menu::after {
+    transform: rotate(-45deg);
+    /*Het is belangrijk om hier dezelfde property te bewerken als op #menu::before (dus allebei top, of allebei bottom) anders draait het kruisje niet goed vanuit het midden! */
+    bottom: 0;
+}
+
+/* end animated cross */
+.nav-container ul {
+    background-color: white;
+    padding: 1.5em;
+    border-radius: 25px;
+    border: 5px var(--hardpink) solid;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.nav-container a {
+    color: var(--hardpink);
+    font-weight: bold;
+}
+
+.active-link {
+    padding: 1em;
+    border-radius: 10px;
+    background-color: var(--softgreen);
+}
+
+.nav-container a.active-link {
+    text-decoration: none;
+}
+
+nav ul li > ul li {
+    margin: 0 0.5em 0 0.5em;
+}
