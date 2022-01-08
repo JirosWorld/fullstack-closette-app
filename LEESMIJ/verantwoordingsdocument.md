@@ -8,15 +8,15 @@ Hier een antwoord op de vragen:
 * Welke technieken, producten en bibliotheken zijn er gebruikt en waarom?
 * Is aan alle voorwaarden uit de opdracht voldaan?
 
-Conclusie: aan alle voorwaarden gesteld in de opdracht, `Integrale eindopdracht Backend 1.02.pdf` is voldaan. Er zijn alleen ingredienten gebruikt, die werden gevraagd.
+Conclusie: aan alle voorwaarden gesteld in de opdracht, `Integrale eindopdracht Fullstack Bootcamp 3.0.pdf` is voldaan. 
 
 ## Functioneel Ontwerp
 
-Zie `funct.pdf` in deze directory.
+Zie [Functioneel-Technisch ontwerp](functioneel-technisch.md) in deze directory.
 
 ## Technisch Ontwerp
 
-Zie `funct.pdf` in deze directory.
+Zie [Functioneel-Technisch ontwerp](functioneel-technisch.md) in deze directory.
 
 ## Servers
 
@@ -30,29 +30,18 @@ De back-end server draait op http://localhost:8080
 
 De database is PostgreSQL.
 
-Door de ingebouwde ondersteuning van Spring Boot voor vele database producten via JDBC drivers, is het niet moeilijk om aan criterium
-"De backend en de database zijn gescheiden en kunnen los van elkaar op verschillende systemen draaien" te voldoen.
+Door de ingebouwde ondersteuning van Spring Boot voor vele database producten via JDBC drivers, kunnen de backend en de database niet zomaar worden gescheiden en kunnen niet 100% los van elkaar op verschillende systemen draaien.
 Daarom zijn er in de directory/folder `src/main/resources` verschillende `application.properties` meegeleverd:
 
 * JPA
 * Hibernate
-* Tables droppen bij elke Run.
-
-In principe zou ieder Relationele Database Management System (RDBMS) gebruikt kunnen worden, maar er is alleen met PostgreSQL getest.
-
-Deze alternatieve configuratie bestanden kunnen geactiveerd worden door de applicatie als volgt te starten:
-
-`./mvnw spring-boot:run -Dspring-boot.run.profiles=local`.
-
-of
-
-`./mvnw spring-boot:run -Dspring-boot.run.profiles=postgresql`.
-
-
+* Tables droppen bij elke Run
+* een uniek niet-realief pad naar de Uploads directory
+* postgres profiel en dialect
 
 ## Java en Spring Boot
 
-Alle source code is standaard Java 17, omdat dit de nieuwste long-term support (LTS) release versie is, met gebruik van de laatste versie van Spring Boot en Maven.
+Alle source code is standaard Java 14. Op dit moment lijkt JDK 17 de nieuwste long-term support (LTS) release versie, maar die was op het moment dat ik begon, nog niet in release fase.
 
 ### Spring Boot
 
@@ -79,12 +68,13 @@ Voor het ontwikkelen is gebruik gemaakt van
 * Figma Mac applicatie
 * Adobe Photoshop voor optimaliseren van web images
 * Adobe Illustrator en Adobe Animate voor converteren naar SVG voor icoontjes
+* koffie
 
 ## Git versiebeheer en Github
 
 Zie https://github.com/jirosworld en de `.git` directory/folder van het project.
 
-Let op: d.m.v. van de gitignore file zijn onnodige NPM bestanden en IDE bestanden niet bijgevoegd in deze projectfolder. Deze dien je zelf te installeren via NPM install.
+Let op: door de gitignore file zijn onnodige NPM node bestanden voor de front-end en IDE bestanden niet bijgevoegd in deze projectfolder. Deze dien je zelf te installeren via NPM install.
 
 ## Unit-testen
 
@@ -96,17 +86,17 @@ Middels de door NOVI aangeleverde code voor het implementeren van authenticatie 
 
 ## Wat is er niet gedaan
 
-• geen https SSL certificaat omdat dit bij nakeijken efrificati probleemen kan geven maar in het het echte bedrijfs leven moet dit wel
+• geen https SSL certificaat omdat dit bij nakijken probleemen kan geven maar in het het echte bedrijfsleven moet dit wel.
 
-• geen CORS URL gekozne dus in plaats van port 3000 heb ik een * operator gekozen zodat alle veerzoeke naar de  back-end door kunnen komen; 
+• geen CORS URL gekozen dus in plaats van port 3000 heb ik een * operator gekozen zodat alle veerzoeke naar de back-end door kunnen komen.
 
-• Geen performance tests. Het is dus niet zeker wat er gebeurt als er grotere aantallen gebruikers grote hoeveelheden data gaan invoeren. Meer data heeft impact op het schijfruimtegebruik van de database en op de snelheid waarmee tabellen bevraagd worden.
+• Geen performance tests. Het is dus niet zeker wat er gebeurt als er enorm grote aantallen gebruikers grote hoeveelheden data gaan invoeren. Meer data heeft impact op het schijfruimtegebruik van de database en op de snelheid waarmee tabellen bevraagd worden.
 
-• Niet veel @MockBean gebruikt. Tijdens het ontwikkelen merkte ik dat ik een mock database, H2 in-memory, genoeg mock vindt en dat tests, met name complexe, met @MockBean er niet overzichtelijker op worden.
+• De gestelde kwaliteitseis van een totale test-coverage van 50% is behaald.
 
-• De gestelde kwaliteitseis van een test-coverage van 80% is ... gehaald.
+• Niet-functionele eisen: bij aanvang was niet duidelijk hoeveel ik qua User Experience binnen een kort Bootcamp tijdsbestek daadwerkelik af zou krijgen. Ik heb een groot aantal niet-functionele eisen (meer eise ndan voor de eindopdracht nodig waren) opgesteld waarvan een deel niet is uitgevoerd: deze eisen zijn vooral vanwege tijdsgebrek achterwege gelaten en hebben geen effect op de functionele werking en minimale eisen van de app. In het Functioneel/Technisch ontwerp staat duidelijk aangegeven welke niet-functionele eisen niet zijn uitgevoerd door tijdsgebrek.
 
 
 ## Opmerkingen
 
-• Deze app is het begin van een idealistisch idee voor de toekomst. Ik heb nog plannen voor het koppelen van een Map API die toont op welke locatie op de kaart de gebruiker daadwerkelijk staat.
+* Deze app is het begin van een idealistisch idee voor de toekomst. Ik heb nog plannen voor het koppelen van een Map API die toont op welke locatie op de kaart de gebruiker daadwerkelijk staat.
