@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import jwt_decode from 'jwt-decode';
-import "./SearchPage.css"
+import "./SearchPage.css";
+import MapIcon from "../../assets/icons/icon-map.png";
 import Header from "../../components/header/Header";
-import Button from "../../components/button/Button";
+import BackButton from "../../components/buttons/BackButton";
 import Loader from "../../components/loader/Loader";
 import TopNav from "../../components/topnav/TopNav";
 import {NavLink} from "react-router-dom";
@@ -13,12 +13,6 @@ function SearchPage() {
     const [toiletEntry, setToiletEntry] = useState([]);
     const [loading, toggleLoading] = useState(false);
     const [error, setError] = useState('');
-    // Webtoken: verander dit getal wanneer deze verlopen is
-    const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0MjI1MjEzMCwiaWF0IjoxNjQxMzg4MTMwfQ.yauYw0EQTXpV4Nq0U5qf5gwxpPbVrefKAsaTqHQ-Cuo";
-
-    const decoded = jwt_decode(token);
-
-    localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0MjI1MjEzMCwiaWF0IjoxNjQxMzg4MTMwfQ.yauYw0EQTXpV4Nq0U5qf5gwxpPbVrefKAsaTqHQ-Cuo');
 
     //mounting fase
     useEffect(() => {
@@ -62,25 +56,25 @@ function SearchPage() {
     return (
         <div className="searchpage">
             <TopNav/>
-            <Button/>
+            <BackButton/>
             <Header
                 title="Zoeken"
             />
             {error && <p className="error-message">{error}</p>}
             <div className="posts">
-                    <h5>id: {toiletEntry.data && toiletEntry.data[0].id}</h5>
+                    <h4>Toilet van de week: {toiletEntry.data && toiletEntry.data[6].id}</h4>
                     <ul>
-                        <li>title: {toiletEntry.data && toiletEntry.data[0].title}</li>
-                        <li>author: {toiletEntry.data && toiletEntry.data[0].author}</li>
-                        <li>stad: {toiletEntry.data && toiletEntry.data[0].city}</li>
-                        <li>land: {toiletEntry.data && toiletEntry.data[0].country}</li>
-                        <li>genderneutraal?: {toiletEntry.data && toiletEntry.data[0].genderneutral}</li>
-                        <li>openingstijden: {toiletEntry.data && toiletEntry.data[0].openingHours}</li>
-                        <li>informatie: {toiletEntry.data && toiletEntry.data[0].infoText}</li>
-                        <li>breedtegraad: {toiletEntry.data && toiletEntry.data[0].latitude}</li>
-                        <li>breedtegraad: {toiletEntry.data && toiletEntry.data[0].latitude}</li>
-                        <li>lengtegraad: {toiletEntry.data && toiletEntry.data[0].longitude}</li>
-                        <li>Link naar kaart! <a href={toiletEntry.data && `https://www.openstreetmap.org/?mlat=${toiletEntry.data[0].latitude}&mlon=${toiletEntry.data[0].longitude}&zoom=12`}  rel="noreferrer" target="_blank">MAP</a></li>
+                        <li>title: {toiletEntry.data && toiletEntry.data[6].title}</li>
+                        <li>author: {toiletEntry.data && toiletEntry.data[6].author}</li>
+                        <li>stad: {toiletEntry.data && toiletEntry.data[6].city}</li>
+                        <li>land: {toiletEntry.data && toiletEntry.data[6].country}</li>
+                        <li>genderneutraal?: {toiletEntry.data && toiletEntry.data[6].genderneutral}</li>
+                        <li>openingstijden: {toiletEntry.data && toiletEntry.data[6].openingHours}</li>
+                        <li>informatie: {toiletEntry.data && toiletEntry.data[6].infoText}</li>
+                        <li>breedtegraad: {toiletEntry.data && toiletEntry.data[6].latitude}</li>
+                        <li>breedtegraad: {toiletEntry.data && toiletEntry.data[6].latitude}</li>
+                        <li>lengtegraad: {toiletEntry.data && toiletEntry.data[6].longitude}</li>
+                        <li>Locatie op kaart: <a href={toiletEntry.data && `https://www.openstreetmap.org/?mlat=${toiletEntry.data[6].latitude}&mlon=${toiletEntry.data[6].longitude}&zoom=15#map=15/${toiletEntry.data[6].latitude}/${toiletEntry.data[6].longitude}`}  rel="noreferrer" target="_blank"><img src={MapIcon} alt="map" width="25"/></a> (externe link)</li>
                         <li>owner id: {toiletEntry.data && toiletEntry.data[0].owner.id}</li>
                         <li>geplaatst door user: {toiletEntry.data && toiletEntry.data[0].owner.name}</li>
                     </ul>
@@ -114,7 +108,7 @@ function SearchPage() {
                 </ul>
 
             </div>
-            <Button/>
+            <BackButton/>
         </div>
     );
 }

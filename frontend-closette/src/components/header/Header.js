@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from "../../logo.svg";
+import {ReactComponent as Logo} from "../../logo.svg";
 import "./Header.css"
 
 function Header({title}) {
@@ -7,9 +7,7 @@ function Header({title}) {
         <>
             <header>
                 <div className="title-container">
-                    <img src={logo} className="App-logo" alt={title}
-                         height="100"
-                         width="100" />
+                    <Logo className="logo" alt="toiletroll logo"/>
                     <h1>{title}</h1>
                 </div>
             </header>

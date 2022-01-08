@@ -1,7 +1,5 @@
-.toilet__page {
+.submit__page {
     padding: 1em;
-    background-color: var(--softgreen);
-    border-radius: 25px;
 }
 
 .toilet__card {

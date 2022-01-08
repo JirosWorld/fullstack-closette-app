@@ -3,15 +3,15 @@ import {
     useHistory
 } from "react-router-dom";
 import {ReactComponent as BackArrow} from "../../assets/icons/back.svg";
-import "./Button.css"
+import "./BackButton.css"
 
-function Button() {
+function BackButton() {
 
     const history = useHistory();
 
     return (
-        <button onClick={history.goBack} className="backnav"><BackArrow className="backnav" alt="backarrow"/>Back to previous page</button>
+        <button onClick={history.goBack} className="backnav"><BackArrow className="backnav" alt="backarrow"/></button>
     );
 }
 
-export default Button;
+export default BackButton;

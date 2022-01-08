@@ -1,18 +1,40 @@
-import React, {useEffect} from 'react';
-import {useForm} from 'react-hook-form';
+import React, {useEffect, useState, useContext} from 'react';
+import { useForm } from 'react-hook-form';
+import { Link } from "react-router-dom";
+import axios from "axios";
 import TopNav from "../../components/topnav/TopNav";
 import Header from "../../components/header/Header";
-import loadData from "../../helpers/loadData";
 import "./LoginPage.css";
 import InputField from "../../components/form-elements/inputfield/InputField";
+import Loader from "../../components/loader/Loader";
+import {AuthContext} from "../../context/AuthContext";
+import BackButton from "../../components/buttons/BackButton";
 
 function LoginPage() {
-
+    const { login } = useContext(AuthContext);
     const {register, handleSubmit, formState: {errors}} = useForm();
+    const [loginSuccess, toggleLoginSuccess] = useState(false);
 
-    function onFormSubmit(data) {
+    async function onFormSubmit(data) {
         console.log("Login data (secret):");
         console.log(data);
+        try {
+            const result = await axios.post('http://localhost:3000/login', data);
+            // let op: ander endpoint
+            // je hoeft geen array/JSON uit te typen omdat de inputveld dezelfde namen heeft als de database
+
+            console.log("Result data:");
+            console.log(result);
+            // console.log("Result JWT token:");
+            // console.log(result.data.accessToken);
+            login(result.data.accessToken);
+
+            toggleLoginSuccess(true);
+
+
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     console.log(errors);
@@ -27,6 +49,12 @@ function LoginPage() {
             <Header
                 title="Inloggen"/>
 
+            {loginSuccess === true &&
+            <div className="confirmation__container">
+                <Loader/>
+                <h3>Inloggen gelukt!<br/>Je wordt nu
+                    automatisch doorgestuurd naar de pagina waar je nieuwe locaties kunt toevegen.</h3>
+            </div>}
 
             <form className="form-container" onSubmit={handleSubmit(onFormSubmit)}>
                 <InputField
@@ -66,30 +94,11 @@ function LoginPage() {
                 />
 
                 <button type="submit">
-                    Registreren
+                    Inloggen
                 </button>
+                <p>Heb je nog geen account? Maak er dan <Link to="/signup"> hier een aan</Link>.</p>
             </form>
-
-
-
-            <h2>AJAX post:</h2>
-            <p>
-                <label>URL</label>
-                <input type="text" id="url" name="url" defaultValue="http://localhost:8080/toilets" /><br />
-                    <label>Http Basic Authentication:</label>
-                    <input type="text" id="username" name="username" defaultValue="admin" />
-                        <input type="text" id="password" name="password" defaultValue="password" /><br />
-                            <input type="button" value="Get data"
-                                   onClick={loadData("http://localhost:8080/toilets", "admin", "password")} />
-            </p>
-            <p>
-                <label>Status Code</label>
-                <pre id="status"></pre>
-            </p>
-            <p>
-                <label>Body</label>
-                <span id="data"></span>
-            </p>
+            <BackButton/>
         </section>
     );
 }

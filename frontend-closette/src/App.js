@@ -3,7 +3,6 @@ import {
     Switch,
     Route
 } from "react-router-dom";
-import jwt_decode from 'jwt-decode';
 import './App.css';
 import HomePage from "./pages/homepage/HomePage";
 import SearchPage from "./pages/searchpage/SearchPage";
@@ -18,13 +17,8 @@ function App() {
 
     // Title veranderen bij mounting
     useEffect(() => {
-        document.title = "Closette :: genderneutrale toiletten zoeken"
+        document.title = "De Closette App :: genderneutrale toiletten zoeken bij hoge nood"
     }, []);
-
-    // Webtoken: verander dit getal wanneer deze verlopen is
-    const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0MjI1MjEzMCwiaWF0IjoxNjQxMzg4MTMwfQ.yauYw0EQTXpV4Nq0U5qf5gwxpPbVrefKAsaTqHQ-Cuo";
-
-    const decoded = jwt_decode(token);
 
     return (
         <div className="main container">

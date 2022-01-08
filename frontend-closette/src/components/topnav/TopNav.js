@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useContext} from 'react';
 import {
     NavLink
 } from "react-router-dom";
+import {AuthContext} from "../../context/AuthContext";
 import "./TopNav.css";
 
 function TopNav({subredditView, children}) {
 
+    const {user} = useContext(AuthContext);
+    const { logout } = useContext(AuthContext);
+
     return (
 
         <nav>
-            <div id="container">
-                <div id="menu"></div>
-            </div>
             <div className="nav-container">
                 <ul>
                     <li>
@@ -20,27 +21,40 @@ function TopNav({subredditView, children}) {
                     <li>
                         <NavLink to="/search" activeClassName="active-link">Zoeken</NavLink>
                     </li>
-                    <li>
+                    {user && <li>
                         <NavLink to="/submit" activeClassName="active-link">Toevoegen</NavLink>
-                    </li>
+                    </li>}
                     <li>
                         <NavLink to="/news" activeClassName="active-link">Nieuws</NavLink>
                     </li>
                     <li>
                         <NavLink to="/contact" activeClassName="active-link">Contact</NavLink>
-                        <ul><li><strong>☰</strong></li>
+                        <ul>
+                            <li><strong>☰</strong></li>
+                            {user ?
+                                <li>
+                                    <NavLink to="/dashboard" onClick={logout} activeClassName="active-link">Uitloggen</NavLink>
+                                </li>
+                                : <li>
+                                <NavLink to="/login"
+                                         activeClassName="active-link">Inloggen</NavLink>
+                            </li>}
                             <li>
-                                <NavLink to="/login" activeClassName="active-link">Inloggen</NavLink>
+                                <NavLink to="/signup"
+                                         activeClassName="active-link">Registreren</NavLink>
                             </li>
-                            <li>
-                                <NavLink to="/signup" activeClassName="active-link">Registreren</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/dashboard" activeClassName="active-link">Dashboard</NavLink>
-                            </li></ul>
+                            {user && <li>
+                                <NavLink to="/dashboard"
+                                         activeClassName="active-link">Dashboard</NavLink>
+                            </li>}
+                        </ul>
                     </li>
                     {children}
-                    <li><strong>☰</strong></li>
+                    <li>
+                        <div id="hamburgermenu">
+                            <div id="menu"></div>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </nav>

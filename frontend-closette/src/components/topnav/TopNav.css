@@ -33,39 +33,29 @@
     bottom: -20px;
 }
 
-#container {
-    /*border: 1px solid red;*/
+#hamburgermenu {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 60px;
-
-    /* shorthand voor:
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 0;
-    padding-right: 0;
-     */
     padding: 20px 0;
 }
 
-#container:hover #menu {
+#hamburgermenu:hover #menu {
     background-color: transparent;
 }
 
-#container:hover #menu::before {
+#hamburgermenu:hover #menu::before {
     transform: rotate(45deg);
-    /*Het is belangrijk om hier dezelfde property te bewerken als op #menu::before (dus allebei top, of allebei bottom) anders draait het kruisje niet goed vanuit het midden! */
     top: 0;
 }
 
-#container:hover #menu::after {
+#hamburgermenu:hover #menu::after {
     transform: rotate(-45deg);
-    /*Het is belangrijk om hier dezelfde property te bewerken als op #menu::before (dus allebei top, of allebei bottom) anders draait het kruisje niet goed vanuit het midden! */
     bottom: 0;
 }
-
 /* end animated cross */
+
 .nav-container ul {
     background-color: white;
     padding: 1.5em;

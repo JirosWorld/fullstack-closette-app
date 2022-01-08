@@ -17,15 +17,15 @@ button.backnav {
     padding: 0.5em;
     border: 0;
     border-radius: 25px;
-    background-color: #000;
-    color: #FFF;
+    background-color: #fff;
+    color: var(--hardpink);
     font-size: 1.2em;
     cursor: pointer;
 }
 
 button:hover svg.backnav,
 button:hover.backnav {
-    fill: aqua;
-    stroke: aqua;
-    color: aqua;
+    fill: var(--hardgreen);
+    stroke: var(--hardgreen);
+    color: var(--hardgreen);
 }

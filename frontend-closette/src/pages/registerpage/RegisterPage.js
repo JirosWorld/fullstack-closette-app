@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import {Link, useHistory} from "react-router-dom";
+import axios from "axios";
 import TopNav from "../../components/topnav/TopNav";
 import Header from "../../components/header/Header";
 import InputField from "../../components/form-elements/inputfield/InputField";
-import axios from "axios";
+import Loader from "../../components/loader/Loader";
 
 function RegisterPage() {
 
     const [registerSuccess, toggleRegisterSuccess] = useState(false);
     const history = useHistory();
-    const {register, handleSubmit, formState: {errors}} = useForm();
+    const { register, handleSubmit, formState: { errors }, watch } = useForm();
 
     async function onFormSubmit(data) {
         console.log("Registration data:");
@@ -47,6 +48,7 @@ function RegisterPage() {
                 title="Nieuwe account aanmaken"/>
             <form className="form-container" onSubmit={handleSubmit(onFormSubmit)}>
                 <InputField
+                    inputType="email"
                     errors={errors}
                     register={register}
                     labelText="E-mail"
@@ -69,6 +71,7 @@ function RegisterPage() {
                 />
 
                 <InputField
+                    inputType="text"
                     errors={errors}
                     register={register}
                     labelText="Gebruikersnaam"
@@ -99,7 +102,12 @@ function RegisterPage() {
                 <button type="submit">
                     Registreren
                 </button>
-                {registerSuccess === true && <h3>Registreren gelukt!<br />Log nu meteen in via de inlogpagina (je wordt automatisch doorgestuurd).</h3>}
+                {registerSuccess === true &&
+                <div className="confirmation__container">
+                    <Loader/>
+                    <h3>Registreren gelukt!<br/>Log nu meteen in via de inlogpagina (je wordt
+                    automatisch doorgestuurd).</h3>
+                </div>}
             </form>
             <p>Heb je al een account? Ga dan hier <Link to="/login"> naar de inlog pagina</Link>.</p>
         </section>
