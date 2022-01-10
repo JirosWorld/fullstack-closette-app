@@ -47,8 +47,7 @@ function HomePage() {
         <div className="homepage">
             <TopNav/>
             <Header
-                icon={logo}
-                title="Toilet van de week"/>
+                title="Home"/>
             <LandingSection />
 
             {error && <p className="error-message">{error}</p>}
@@ -67,21 +66,19 @@ function HomePage() {
                                 to={"/" + post.data.subreddit}>
                             <span className="thumbnail-container">
                                 {/*check om te kijken of de thumbnail bestaat (mag niet "self" of "spoiler" zijn,
-                                anders default image + linkt naar Subreddit */}
+                                anders default image + link */}
 
                                 {post.data.thumbnail.length > 7 ?
                                     <img src={`${post.data.thumbnail}`} alt="thumbnail" className="thumbnail"
                                          width="150"/> :
                                     <span className="no-image">
-                                        <img src={logo} alt="thumbnail" className="thumbnail" height="150" width="150"/><p>NO IMAGE</p></span>
+                                        <img src={logo} alt="thumbnail" className="thumbnail transparent" height="150" width="150"/><p>NO IMAGE</p></span>
                                 }
                             </span>
                             </NavLink>
 
                             <div className="content-wrapper">
                             <h2 className="mapped__post__title">
-                                {/* dit is vast een ontzettend flauwe manier om externe links te maken?
-                                of kan het niet anders? */}
                                 (External link:)
                                 <a href={`https://www.reddit.com${Object.keys(post.data.permalink).length > 0 && 
                                 post.data.permalink}`}
@@ -91,7 +88,6 @@ function HomePage() {
                                 |<span className="mapped__post__author">by: {post.data.author}</span>|
                                 <br/>
 
-                                {/* ik wil dat de submitpage link het navmenu door activeClass van kleur verandert maar dit lukt niet? */}
                                 |<span className="mapped__post__subreddit">internal link to: <NavLink
                                     activeClassName="active-link"
                                     to={"/" + post.data.subreddit}> &#x23E9; "{post.data.subreddit_name_prefixed}"

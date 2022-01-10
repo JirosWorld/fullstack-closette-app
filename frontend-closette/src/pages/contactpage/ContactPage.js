@@ -1,10 +1,12 @@
 import React, {useEffect} from 'react';
+import {Link} from "react-router-dom";
 import {useForm} from 'react-hook-form';
 import "./ContactPage.css"
 import Header from "../../components/header/Header";
 import TopNav from "../../components/topnav/TopNav";
 import InputField from "../../components/form-elements/inputfield/InputField";
 import Slider from "../../components/form-elements/slider/Slider";
+import BackButton from "../../components/buttons/BackButton";
 
 function ContactPage() {
     // we declareren het formulier altijd op de pagina, niet in de InputComponenten
@@ -58,12 +60,21 @@ function ContactPage() {
                         }
                     }}
                 />
-                <Slider />
+                <Slider
+                    errors={errors}
+                    register={register}
+                    labelId="privacy-check"
+                    inputName="privacy"
+                    filterAttribute="Akkoord met privacy"
+                >
+                    Link <Link to="/dashboard">naar privacy pagina</Link>.
+                </Slider>
 
                 <button type="submit">
                     Verzenden
                 </button>
             </form>
+            <BackButton />
         </section>
     );
 }

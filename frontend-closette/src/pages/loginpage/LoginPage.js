@@ -52,8 +52,7 @@ function LoginPage() {
             {loginSuccess === true &&
             <div className="confirmation__container">
                 <Loader/>
-                <h3>Inloggen gelukt!<br/>Je wordt nu
-                    automatisch doorgestuurd naar de pagina waar je nieuwe locaties kunt toevegen.</h3>
+                <h3>Inloggen gelukt!<br/>Je wordt nu automatisch doorgestuurd naar de home pagina.</h3>
             </div>}
 
             <form className="form-container" onSubmit={handleSubmit(onFormSubmit)}>
@@ -96,9 +95,9 @@ function LoginPage() {
                 <button type="submit">
                     Inloggen
                 </button>
-                <p>Heb je nog geen account? Maak er dan <Link to="/signup"> hier een aan</Link>.</p>
+                <p>Heb je nog geen account? Maak er dan <Link to="/signup"> hier eentje aan</Link>.</p>
             </form>
-            <BackButton/>
+            <BackButton />
         </section>
     );
 }

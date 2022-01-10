@@ -3,22 +3,27 @@
 
 .slider-container {
 	background-color: white;
-	padding: 8px 16px;
-	border-radius: 0 0 2px 2px;
-	box-shadow: .25rem .5rem 1rem 0 rgba(0, 0, 0, 0.1);
-	font-size: 12px;
-	font-weight: 600;
-	color: grey;
+	padding: 8px 15px;
 	display: flex;
 	flex-direction: row;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.slider-container span:first-child {
+	margin-right: 1em;
+	margin-left: 0;
 }
 
 .switch-wrapper {
 	position: relative;
 }
 
-.switch-label {
-	padding: 0 8px
+.switch-label, .extra-label-info {
+	font-size: 12px;
+	font-weight: bold;
+	color: #666;
+	padding: 0 8px;
 }
 
 .switch {
@@ -26,8 +31,8 @@
 	top: 0;
 	left: 0;
 	width: 60px;
-	height: 60px;
-	z-index: 10;
+	height: 20px;
+	z-index: 1;
 	opacity: 0;
 }
 
@@ -39,7 +44,7 @@
 	height: 1.1rem;
 	display: block;
 	cursor: pointer;
-	background: var(--hardgreen);
+	background: var(--hardpink);
 	border-radius: 2rem;
 	padding: 3px;
 	transition: all .4s ease;
@@ -58,10 +63,9 @@
 }
 
 .switch:checked + .switch-btn {
-	background: var(--hardpink);
+	background: var(--hardgreen);
 }
 
 .switch:checked + .switch-btn::after {
 	left: 50%;
 }
-													

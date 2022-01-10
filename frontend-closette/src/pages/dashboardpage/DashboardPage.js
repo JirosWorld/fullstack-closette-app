@@ -36,12 +36,21 @@ function DashboardPage(props) {
             {user &&
             <section className="dashboard__content">
                 <h3>Veel gestelde vragen</h3>
-                <h4>Closette; Hoe werkt het?</h4>
+                <h4>Closette: Hoe werkt het?</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias cum debitis
                     dolor dolore fuga id molestias qui quo unde?</p>
+                <ul>
+                    <li>Alle gebruikers, ook die niet ingelogd zijn, kunnen zoeken naar toiletten.</li>
+                    <li>De zoekresultaten kunnen getrechterd worden via de verschillende filtereigenschappen van toiletten (stad, land, gratis/niet-gratis, wel/niet genderneutraal, toegankelijk voor minder validen, half-openbaar, vies of schoon, heeft wel/geen foto, openingstijden, waardering).</li>
+                    <li>Alle ingelogde gebruikers kunnen een sterrenwaardering per toilet geven.</li>
+                    <li>Ingelogde gebruikers kunnen nieuwe toiletten plaatsen met daarbij het adres, een beschrijving en kunnen eventueel een foto uploaden.</li>
+
+                    <li>Moderators hebben de mogelijkheid om posts te censureren of verwijderen</li>
+                </ul>
                 <BackButton/>
             </section>
             }
+            {/*einde afgeschermde content*/}
 
         </>
     );

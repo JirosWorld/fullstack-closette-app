@@ -1,0 +1,14 @@
+.scroll {
+    position: fixed;
+    bottom: 20px;
+    right: 5px;
+    background-color: var(--softpink);
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    color: var(--hardpink);
+    text-align: center;
+    font-size: 2em;
+    z-index: 40;
+}

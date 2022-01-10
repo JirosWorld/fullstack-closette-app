@@ -1,0 +1,87 @@
+.specific__post {
+    padding: 1.5em;
+    border-radius: 25px;
+    border: 2px lightskyblue solid;
+    background-color: white;
+}
+
+.specific__post a {
+    color: crimson;
+}
+
+.thumbnail {
+    width: 150px;
+    margin-right: 16px;
+}
+
+.thumbnail-container {
+    display: flex;
+    margin: 0 0 15px 0;
+}
+
+.posts {
+    padding: 1em;
+}
+
+.no-image {
+    position: relative;
+}
+
+.no-image p {
+    position: absolute;
+    top: 25px;
+    left: 10px;
+    background-color: RGBA(255,255,255,0.6);
+    font-size: 1.5em;
+    font-weight: bold;
+    color: cadetblue;
+}
+
+.mapped__posts {
+    padding: 1em;
+    background-color: var(--softgreen);
+    border-radius: 25px;
+}
+
+.mapped__posts span {
+    margin: 0 1em;
+}
+.mapped__posts span.no-image {
+    margin: 0;
+}
+
+.mapped__posts li {
+    display: flex;
+    padding: 1em;
+    margin: 5px 0 10px 0;
+    border-radius: 25px;
+    border: 5px var(--hardgreen) solid;
+    background-color: white;
+}
+
+.mapped__post__title {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.mapped__post__title a {
+    color: var(--hardpink);
+    text-decoration: none;
+}
+
+.mapped__post__author {
+    font-size: 1em;
+    font-style: italic;
+}
+
+.mapped__post__subreddit,
+.mapped__post__subreddit a {
+    color: var(--hardpink);
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.mapped__post__votes {
+    font-size: 1.1em;
+    font-weight: bold;
+}

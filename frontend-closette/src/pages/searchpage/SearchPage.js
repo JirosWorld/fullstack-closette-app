@@ -1,115 +1,193 @@
-import React, {useEffect, useState} from 'react';
-import axios from "axios";
-import "./SearchPage.css";
-import MapIcon from "../../assets/icons/icon-map.png";
+import React, {useEffect} from 'react';
+import {Link} from "react-router-dom";
+import {useForm} from 'react-hook-form';
+import "./SearchPage.css"
 import Header from "../../components/header/Header";
-import BackButton from "../../components/buttons/BackButton";
-import Loader from "../../components/loader/Loader";
 import TopNav from "../../components/topnav/TopNav";
-import {NavLink} from "react-router-dom";
+import InputField from "../../components/form-elements/inputfield/InputField";
+import Slider from "../../components/form-elements/slider/Slider";
+import BackButton from "../../components/buttons/BackButton";
 
 function SearchPage() {
+    // we declareren het formulier altijd op de pagina, niet in de InputComponenten
+    const {register, handleSubmit, formState: {errors}} = useForm();
 
-    const [toiletEntry, setToiletEntry] = useState([]);
-    const [loading, toggleLoading] = useState(false);
-    const [error, setError] = useState('');
-
-    //mounting fase
     useEffect(() => {
-        console.log("komt u hier?");
         document.title = "Zoeken :: Closette"
-        //de functie om data op te halen
-        async function fetchToilets() {
-            //zet de error steeds op leeg, iedere keer bij laden van data
-            setError('');
-            //zet de loader animatie aan zolang data wordt geladen
-            toggleLoading(true);
-            console.log("komt u hier 2?");
-            try {
-                // await request:
-                console.log("komt u hier 3?");
-                const result = await axios.get('http://localhost:8080/toilets', {
-                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0MjI1MjEzMCwiaWF0IjoxNjQxMzg4MTMwfQ.yauYw0EQTXpV4Nq0U5qf5gwxpPbVrefKAsaTqHQ-Cuo"
-                });
-                // toon alle entries
-                setToiletEntry(result);
-                console.log("alle result inhoud:");
-                console.log(result);
-                console.log("alle result.data:");
-                console.log(result.data);
-                console.log("de 4e result.data:");
-                console.log(result.data[3]);
-                console.log("de eigenaar van de 4e entry:");
-                console.log(result.data[3].owner.name);
-            } catch (error) {
-                console.log("komt u hier 4?");
-                setError("Er is iets misgegaan bij het ophalen van de data");
-                console.error(error);
-            }
-            toggleLoading(false);
-        }
-
-        fetchToilets();
-
     }, []);
 
+    function onFormSubmit(data) {
+        console.log("Zoek data:");
+        console.log(data);
+    }
+
+    console.log(errors);
+
     return (
-        <div className="searchpage">
+        <section className="search__page">
             <TopNav/>
-            <BackButton/>
             <Header
-                title="Zoeken"
-            />
-            {error && <p className="error-message">{error}</p>}
-            <div className="posts">
-                    <h4>Toilet van de week: {toiletEntry.data && toiletEntry.data[6].id}</h4>
-                    <ul>
-                        <li>title: {toiletEntry.data && toiletEntry.data[6].title}</li>
-                        <li>author: {toiletEntry.data && toiletEntry.data[6].author}</li>
-                        <li>stad: {toiletEntry.data && toiletEntry.data[6].city}</li>
-                        <li>land: {toiletEntry.data && toiletEntry.data[6].country}</li>
-                        <li>genderneutraal?: {toiletEntry.data && toiletEntry.data[6].genderneutral}</li>
-                        <li>openingstijden: {toiletEntry.data && toiletEntry.data[6].openingHours}</li>
-                        <li>informatie: {toiletEntry.data && toiletEntry.data[6].infoText}</li>
-                        <li>breedtegraad: {toiletEntry.data && toiletEntry.data[6].latitude}</li>
-                        <li>breedtegraad: {toiletEntry.data && toiletEntry.data[6].latitude}</li>
-                        <li>lengtegraad: {toiletEntry.data && toiletEntry.data[6].longitude}</li>
-                        <li>Locatie op kaart: <a href={toiletEntry.data && `https://www.openstreetmap.org/?mlat=${toiletEntry.data[6].latitude}&mlon=${toiletEntry.data[6].longitude}&zoom=15#map=15/${toiletEntry.data[6].latitude}/${toiletEntry.data[6].longitude}`}  rel="noreferrer" target="_blank"><img src={MapIcon} alt="map" width="25"/></a> (externe link)</li>
-                        <li>owner id: {toiletEntry.data && toiletEntry.data[0].owner.id}</li>
-                        <li>geplaatst door user: {toiletEntry.data && toiletEntry.data[0].owner.name}</li>
-                    </ul>
+                title="Zoeken"/>
+            <form className="form-container" onSubmit={handleSubmit(onFormSubmit)}>
+                <InputField
+                    errors={errors}
+                    register={register}
+                    labelText="Stad"
+                    labelId="city-field"
+                    inputName="city"
+                    validationRules={{
+                        required: {
+                            value: true,
+                            message: "Stad invullen is verplicht. Vul aub iets in",
+                        },
+                        minLength: {
+                            value: 1,
+                            message: "Je moet meer invullen"
+                        }
+                    }}
+                />
 
-                <ul className="mapped__posts">
-                    {loading && <Loader/>}
-                    {toiletEntry.data &&  toiletEntry.data.map((post) => {
-                            console.log("post.data:");
-                            console.log(post);
-                        return <li key={post.title}>
-                            <div className="content-wrapper">
-                                <h2 className="mapped__post__title">
-                                    <span>{Object.keys(post.title).length > 0 && post.title}</span>
-                                </h2>
-                                |<span className="mapped__post__author">by: {post.author}</span>|
-                                <br/>
-                                | <span className="mapped__post__subreddit">
-                                internal link to:
-                                <NavLink
-                                activeClassName="active-link"
-                                to={"/" + post.id}> &#x23E9; "{post.city}"
-                                </NavLink></span>|
-                                <br/>
-                                |<span className="mapped__post__votes">Vote: {post.latitude}</span>.
-                            </div>
-                            {/* <!-- end content wrapper --> */}
-                        </li>
+                <InputField
+                    errors={errors}
+                    register={register}
+                    labelText="Land"
+                    labelId="country-field"
+                    inputName="country"
+                    validationRules={{
+                        maxLength: {
+                            value: 50,
+                            message: "Te lang"
+                        }
+                    }}
+                />
 
-                    }
-                    )}
-                </ul>
+                <section className="checkbox-filters">
+                <Slider
+                    errors={errors}
+                    register={register}
+                    labelId="genderneutraal-check"
+                    inputName="genderneutraal"
+                    filterAttribute="Genderneutraal"
+                    yes="wel"
+                    no="niet"
+                >
 
-            </div>
-            <BackButton/>
-        </div>
+                </Slider>
+
+                <Slider
+                    errors={errors}
+                    register={register}
+                    labelId="free-check"
+                    inputName="free"
+                    filterAttribute="Gratis"
+                    yes="wel"
+                    no="niet"
+                >
+
+                </Slider>
+
+                <Slider
+                    errors={errors}
+                    register={register}
+                    labelId="accessible-check"
+                    inputName="accessible"
+                    filterAttribute="Invalidentoilet"
+                    yes="wel"
+                    no="niet"
+                >
+
+                </Slider>
+
+                <Slider
+                    errors={errors}
+                    register={register}
+                    labelId="cleanliness-check"
+                    inputName="cleanliness"
+                    filterAttribute="Schoon"
+                    yes="wel"
+                    no="vies"
+                >
+
+                </Slider>
+
+                <Slider
+                    errors={errors}
+                    register={register}
+                    labelId="public-check"
+                    inputName="public"
+                    filterAttribute="Openbaar"
+                    yes="wel"
+                    no="niet"
+                >
+
+                </Slider>
+
+                <Slider
+                    errors={errors}
+                    register={register}
+                    labelId="has_photo-check"
+                    inputName="has_photo"
+                    filterAttribute="Met foto"
+                    yes="wel"
+                    no="zonder"
+                />
+
+                <Slider
+                    errors={errors}
+                    register={register}
+                    labelId="latitude-check"
+                    inputName="latitude"
+                    filterAttribute="Breedtegraad (latitude)"
+                >
+                    Link <Link to="/dashboard">naar f.a.q.</Link>
+                </Slider>
+
+                <Slider
+                    errors={errors}
+                    register={register}
+                    labelId="longitude-check"
+                    inputName="longitude"
+                    filterAttribute="Lengtegraad (longitude)"
+                >
+                    Link <Link to="/dashboard">naar f.a.q.</Link>
+                </Slider>
+
+                    <Slider
+                        errors={errors}
+                        register={register}
+                        labelId="has_rating-check"
+                        inputName="has_rating"
+                        filterAttribute="Met sterren"
+                    />
+
+                    <Slider
+                        errors={errors}
+                        register={register}
+                        labelId="has_description-check"
+                        inputName="has_description"
+                        filterAttribute="Heeft beschrijving"
+                    />
+
+                    <Slider
+                        errors={errors}
+                        register={register}
+                        labelId="has_opening_hours-check"
+                        inputName="has_opening_hours"
+                        filterAttribute="Openingstijden"
+                    />
+
+
+                </section>
+
+                <button type="submit">
+                    Zoeken
+                </button>
+            </form>
+            <BackButton />
+            <p>
+                Link <Link to="/searchresults">naar Zoekresultaten Pagina</Link>
+            </p>
+        </section>
     );
 }
 

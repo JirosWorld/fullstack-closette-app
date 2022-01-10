@@ -6,6 +6,7 @@ import TopNav from "../../components/topnav/TopNav";
 import Header from "../../components/header/Header";
 import InputField from "../../components/form-elements/inputfield/InputField";
 import Loader from "../../components/loader/Loader";
+import BackButton from "../../components/buttons/BackButton";
 
 function RegisterPage() {
 
@@ -108,8 +109,10 @@ function RegisterPage() {
                     <h3>Registreren gelukt!<br/>Log nu meteen in via de inlogpagina (je wordt
                     automatisch doorgestuurd).</h3>
                 </div>}
+                <p>Heb je al een account? Ga dan hier <Link to="/login"> naar de inlog pagina</Link>.</p>
             </form>
-            <p>Heb je al een account? Ga dan hier <Link to="/login"> naar de inlog pagina</Link>.</p>
+
+            <BackButton />
         </section>
     );
 }

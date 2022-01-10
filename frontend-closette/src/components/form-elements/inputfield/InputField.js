@@ -8,9 +8,12 @@ function InputField({ errors, register, labelText, labelId, inputType = "text", 
       <label htmlFor={labelId}>
         {labelText}
       </label>
-      <input type={inputType} id={labelId}
-             className={errors[inputName] && "error"}  {...register(inputName, validationRules)} />
-      {errors[inputName] && <p className="error-message">{errors[inputName].message}</p>}
+      <input type={inputType}
+             id={labelId}
+             className={errors[inputName] && "error"}
+             {...register(inputName, validationRules)}
+      />
+        {errors[inputName] && <p className="error-message">{errors[inputName].message}</p>}
     </>
   );
 }

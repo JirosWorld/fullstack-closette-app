@@ -51,7 +51,7 @@ function AuthContextProvider({children}) {
             });
 
             setTimeout(() => {
-                history.push("/dashboard");
+                history.push("/");
             }, 3000);
 
         } catch (e) {

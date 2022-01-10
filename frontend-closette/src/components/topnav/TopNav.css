@@ -1,86 +1,109 @@
-:root {
-    --menu-bar-width: 60px;
-    --menu-bar-height: 10px;
+.closette-logo {
+    margin-right: 3em;
 }
 
-#menu {
-    background-color: #D84282;
-    position: relative;
-    width: var(--menu-bar-width);
-    height: var(--menu-bar-height);
-    transition: all 0.15s ease-in-out;
-}
-
-#menu::before,
-#menu::after {
-    background-color: #D84282;
-    display: block;
-    content: "";
-    width: var(--menu-bar-width);
-    height: var(--menu-bar-height);
-    position: absolute;
-    transition: all 0.35s ease-in-out;
-}
-
-#menu::before {
-    left: 0;
-    top: -20px;
-}
-
-#menu::after {
-    left: 0;
-    /*top: 20px mag ook! Komt op hetzelfde neer, want het is telkens 20px vanaf de boven of onderkant*/
-    bottom: -20px;
-}
-
-#hamburgermenu {
+.top-nav__navigation {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 60px;
-    padding: 20px 0;
+    justify-content: space-between;
+    height: 50px;
 }
 
-#hamburgermenu:hover #menu {
-    background-color: transparent;
-}
-
-#hamburgermenu:hover #menu::before {
-    transform: rotate(45deg);
-    top: 0;
-}
-
-#hamburgermenu:hover #menu::after {
-    transform: rotate(-45deg);
-    bottom: 0;
-}
-/* end animated cross */
-
-.nav-container ul {
-    background-color: white;
-    padding: 1.5em;
-    border-radius: 25px;
-    border: 5px var(--hardpink) solid;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-}
-
-.nav-container a {
+.top-nav__navigation a {
     color: var(--hardpink);
-    font-weight: bold;
+    font-weight: 900;
 }
 
-.active-link {
-    padding: 1em;
-    border-radius: 10px;
-    background-color: var(--softgreen);
+.top-nav__navigation ul {
+    list-style: none;
+    display:flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
-.nav-container a.active-link {
-    text-decoration: none;
+.top-nav__navigation ul li {
+    list-style-type: none;
+    padding-right: 15px;
 }
 
-nav ul li > ul li {
-    margin: 0 0.5em 0 0.5em;
+.top-nav__hamburger {
+    position: fixed;
+    top: 0;
+    z-index: 30;
+}
+
+.hamburger {
+    display: none;
+    visibility: hidden;
+}
+
+svg.svg-lookingglass-icon.mobile, svg.svg-plus-icon.mobile {
+    display: none;
+    visibility: hidden;
+}
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 870px) {
+
+    .hamburger {
+        display: inline-block;
+        visibility: initial;
+        position: fixed;
+        padding-top: 20px;
+        margin: 5px;
+        z-index: 30;
+        right: 5px;
+    }
+    .open .hamburger {
+        position: fixed;
+        margin: 5px;
+        z-index: 30;
+        right: 5px;
+    }
+
+    .top-nav__navigation.open ul {
+        animation: 0.4s ease-out 0s 1 slideInFromRight;
+        display: inline;
+        line-height: 2;
+        font-size: 150%;
+        background-color: #fff;
+        border-left: 3px solid var(--softbrown);
+        height: 100vh;
+        width: 50vw;
+        padding: 2em;
+        margin-top: 0;
+        position: fixed;
+        right: 5px;
+        top: -5px;
+        z-index: 20;
+    }
+
+    .top-nav__navigation ul {
+        display: none;
+    }
+
+    svg.svg-lookingglass-icon.mobile, svg.svg-plus-icon.mobile {
+        background-color: #fff;
+        border-radius: 5px;
+        display: inline-block;
+        visibility: initial;
+        position: fixed;
+        top: 5px;
+    }
+    svg.svg-plus-icon.mobile {
+        right: 50px;
+    }
+    svg.svg-lookingglass-icon.mobile {
+        right: 100px;
+    }
 }

@@ -1,0 +1,9 @@
+footer {
+    width: 100%;
+    color: #bb9890;
+    text-align: right;
+}
+
+.footer__content {
+    padding: 0 4em 0 0;
+}

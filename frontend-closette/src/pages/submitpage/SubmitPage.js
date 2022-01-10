@@ -1,4 +1,4 @@
-import {NavLink, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import React, {useEffect, useState, useContext} from "react";
 import axios from "axios";
 import {AuthContext} from "../../context/AuthContext";
@@ -14,7 +14,7 @@ function SubmitPage() {
     const [subInfo, setSubInfo] = useState();
     const [loading, toggleLoading] = useState(false);
     const [error, setError] = useState('');
-    const {toilet: toiletName} = useParams();
+    // const {toilet: toiletName} = useParams();
 
     const {user} = useContext(AuthContext);
     console.log(user);
@@ -53,7 +53,6 @@ function SubmitPage() {
         <section className="submit__page">
             <TopNav/>
             <Header
-                icon={logo}
                 title="Toevoegen / Inzenden"
             />
             {error && <p className="error-message">{error}</p>}
