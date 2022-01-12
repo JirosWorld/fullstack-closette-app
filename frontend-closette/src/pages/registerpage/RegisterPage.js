@@ -12,7 +12,7 @@ function RegisterPage() {
 
     const [registerSuccess, toggleRegisterSuccess] = useState(false);
     const history = useHistory();
-    const { register, handleSubmit, formState: { errors }, watch } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
     async function onFormSubmit(data) {
         console.log("Registration data:");
@@ -59,15 +59,11 @@ function RegisterPage() {
                         required: {
                             value: true,
                             message: "Email invullen is verplicht. Vul aub iets in",
-                            // validate: {
-                            //     value: (value) => value.includes('@'),
-                            //     message: "Email moet een @ bevatten",
-                            // },
                         },
                         minLength: {
                             value: 6,
-                            message: "Te kort mailadres. Gebruik een apestaartje."
-                        }
+                            message: "Te kort mailadres. Gebruik een apestaartje.",
+                        },
                     }}
                 />
 
@@ -80,9 +76,13 @@ function RegisterPage() {
                     inputName="username"
                     validationRules={{
                         minLength: {
-                            value: 6,
-                            message: "Te korte gebruikersnaam, gebruik minstens 6 tekens"
-                        }
+                            value: 4,
+                            message: "Te korte gebruikersnaam, gebruik minstens 4 tekens.",
+                        },
+                        maxLength: {
+                            value: 15,
+                            message: "Te lange gebruikersnaam, gebruik maximaal 15 tekens.",
+                        },
                     }}
                 />
 
@@ -94,8 +94,8 @@ function RegisterPage() {
                     inputName="password"
                     validationRules={{
                         minLength: {
-                            value: 10,
-                            message: "Te kort wachtwoord, gebruik minstens 10 tekens"
+                            value: 4,
+                            message: "Te kort wachtwoord, gebruik minstens 4 tekens"
                         }
                     }}
                 />

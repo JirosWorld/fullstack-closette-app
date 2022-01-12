@@ -19,7 +19,7 @@ function App() {
 
     // Title veranderen bij mounting
     useEffect(() => {
-        document.title = "Closette :: genderneutrale toiletten zoeken bij hoge nood"
+        document.title = "~ Closette ::: de genderneutrale toiletzoeker app ~"
     }, []);
 
     return (

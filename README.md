@@ -2,7 +2,7 @@
 
 door Jiro Ghianni
 
-![Closette logo](LEESMIJ/assets/closette-logo.png)
+![Closette logo](LEESMIJ/assets/screenshot-closette.png)
 
 ## Inhoud en installatie
 
@@ -36,3 +36,5 @@ Saluut,
 
 Jiro Ghianni
 2021 / 2022
+
+![Closette logo](LEESMIJ/assets/closette-logo.png)

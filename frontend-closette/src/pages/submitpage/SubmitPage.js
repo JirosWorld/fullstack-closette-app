@@ -1,4 +1,3 @@
-import {useParams} from "react-router-dom";
 import React, {useEffect, useState, useContext} from "react";
 import axios from "axios";
 import {AuthContext} from "../../context/AuthContext";
@@ -7,8 +6,11 @@ import BackButton from "../../components/buttons/BackButton";
 import Loader from "../../components/loader/Loader";
 import "./SubmitPage.css";
 import logo from "../../logo.svg";
+import GPS from "../../assets/img/MapsViewGPSCoordinates-iPhone.jpg";
 import TopNav from "../../components/topnav/TopNav";
 import parseToDots from "../../helpers/parseToDots";
+import Accordeon from "../../components/accordeon/Accordeon";
+import {Link} from "react-router-dom";
 
 function SubmitPage() {
     const [subInfo, setSubInfo] = useState();
@@ -57,7 +59,47 @@ function SubmitPage() {
             />
             {error && <p className="error-message">{error}</p>}
 
-            {user ? <h3>Toilet gevonden? Voeg hier een nieuwe toe!</h3> : <h3>Je bent niet ingelogd</h3>}
+            {user ?
+                <><h3>Toilet gevonden? Voeg hier een nieuwe toe!</h3>
+                    <section>
+                        <h1>Toevoegen - nieuw toilet posten</h1>
+                        <div className="wrapper">
+                            <Accordeon title="Wat betekenen die locatie getallen?">
+                                <p>Alle plekken op de wereld zijn te beschrijven met GPS co&ouml;rdinaten: de breedtegraad en lengtegraad. Ezelsbruggetje: breedtegraad (latitude) komt altijd v&oacute;&oacute;r
+                                    lengtegraad (longitude) - dus op alfabetische volgorde. Ook in het
+                                    Engels zijn ze toevallig in alfabetische volgorde: [latitude, longitude].</p>
+                            </Accordeon>
+                            <Accordeon title="Hoe vind ik mijn GPS locatie? (ENG)">
+                                <p>Open Maps on your iPhone or iPad and then follow these steps to get your
+                                    current location’s GPS coordinates.</p>
+                                <ol>
+                                    <li>Tap the <strong>current location</strong> button on the top right.
+                                    </li>
+                                    <li>When the blue circle for your spot appears on the
+                                        map, <strong>tap</strong> it.
+                                    </li>
+                                    <li><strong>Swipe up</strong> from the bottom to view full details for
+                                        your
+                                        location and you’ll see the Latitude and Longitude.
+                                    </li>
+                                </ol>
+                            </Accordeon>
+                            <Accordeon title="GPS locatie op je iPhone vinden">
+                                <figure aria-describedby="caption-attachmen"
+                                        className="gps">
+                                    <img src={GPS} width="400" alt="gps explanation"
+                                         className="Maps My GPS Coordinates-iPhone"/>
+                                    <figcaption id="caption" className="gps">Your
+                                        location&#8217;s GPS coordinates on iOS
+                                    </figcaption>
+                                </figure>
+                            </Accordeon>
+                        </div>
+                    </section>
+                </>
+                :
+                <h3>Je bent niet ingelogd - <Link to="/signup">Maak eerst een account</Link> om te kunnen reageren
+                    of <Link to="/login"> log in</Link>.</h3>}
             {loading && <Loader/>}
             {subInfo &&
             <div className="toilet__card">
@@ -85,13 +127,6 @@ function SubmitPage() {
                     {/* data omzetten naar puntjes met mijn helper functie  */}
                     <p className="toilet__subscribers">{parseToDots(subInfo.data[4].latitude)}1.000</p>
                 </section>
-                <section>
-                    <h1>Toevoegen - nieuw toilet posten</h1>
-                    <p>Handy tip: when giving a co-ordinate, latitude (north or south) always
-                        precedes longitude (east or west). Latitude comes first in alphabetical
-                        order and it also is the first coordinate in a set.</p>
-                </section>
-
             </div>
             }
             <BackButton/>

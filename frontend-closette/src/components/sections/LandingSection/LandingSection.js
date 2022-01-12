@@ -18,7 +18,7 @@ function LandingSection() {
                             <RollSmiley className="svg-search" alt="lachende toiletrol"/>
                         </div>
                     </Link>
-                    <h2>TOILET ZOEKEN</h2>
+                    <h2 className="hardgreen">TOILET ZOEKEN</h2>
                     <p><Link to="/search">Zoek hier</Link> naar genderneutrale toiletten bij jou in
                         de buurt!</p>
                 </article>
@@ -30,7 +30,7 @@ function LandingSection() {
                             <ToiletSeat className="svg-submit" alt="lachende toiletpot"/>
                         </div>
                     </Link>
-                    <h2>TOILET PLAATSEN</h2>
+                    <h2 className="hardpink">TOILET PLAATSEN</h2>
                     <p>Nieuw toilet gevonden? <Link to="/submit">Plaats</Link> haar/hem/hun op de
                         site!</p>
                 </article>

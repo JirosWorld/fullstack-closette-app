@@ -21,7 +21,7 @@ function LoginPage() {
         try {
             const result = await axios.post('http://localhost:3000/login', data);
             // let op: ander endpoint
-            // je hoeft geen array/JSON uit te typen omdat de inputveld dezelfde namen heeft als de database
+            // je hoeft geen array/JSON uit te typen wanneer het inputveld dezelfde namen heeft als in de database
 
             console.log("Result data:");
             console.log(result);
@@ -65,11 +65,7 @@ function LoginPage() {
                     validationRules={{
                         required: {
                             value: true,
-                            message: "Email invullen is verplicht. Vul aub iets in",
-                            // validate: {
-                            //     value: (value) => value.includes('@'),
-                            //     message: "Email moet een @ bevatten",
-                            // },
+                            message: "Email invullen is verplicht. Vul aub iets in"
                         },
                         minLength: {
                             value: 6,
@@ -86,8 +82,8 @@ function LoginPage() {
                     inputName="password"
                     validationRules={{
                         minLength: {
-                            value: 10,
-                            message: "Te kort wachtwoord, gebruik minstens 10 tekens"
+                            value: 4,
+                            message: "Te kort wachtwoord, gebruik minstens 4 tekens"
                         }
                     }}
                 />

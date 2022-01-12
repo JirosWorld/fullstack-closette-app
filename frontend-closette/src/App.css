@@ -20,7 +20,7 @@
 
 body {
   font-family: 'tensoregular', Arial, sans-serif;
-  background-color: white;
+  background-color: slategrey;
   padding: 0;
   margin: 0;
   display: flex;
@@ -35,12 +35,12 @@ body {
 #root {
   background-color: var(--softbrown);
   background: var(--softbrown);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff), color-stop(100%,#EEE5E3));
-  background: -webkit-linear-gradient(top,  #fff 0%, #EEE5E3 100%);
-  background:    -moz-linear-gradient(top,  #fff 0%, #EEE5E3 100%);
-  background:     -ms-linear-gradient(top,  #fff 0%, #EEE5E3 100%);
-  background:      -o-linear-gradient(top,  #fff 0%, #EEE5E3 100%);
-  background:         linear-gradient(to bottom, #fff 0%, #EEE5E3 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff), color-stop(100%,var(--softbrown)));
+  background: -webkit-linear-gradient(top,  #fff 0%, var(--softbrown) 100%);
+  background:    -moz-linear-gradient(top,  #fff 0%, var(--softbrown) 100%);
+  background:     -ms-linear-gradient(top,  #fff 0%, var(--softbrown) 100%);
+  background:      -o-linear-gradient(top,  #fff 0%, var(--softbrown) 100%);
+  background:         linear-gradient(to bottom, #fff 0%, var(--softbrown) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#EEE5E3',GradientType=0 );
   background-attachment: fixed;
   padding: 0;
@@ -62,6 +62,13 @@ body {
   z-index: 30;
 }
 
+.wrapper {
+  line-height: 1.4;
+  padding: 30px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Fredoka One', Verdana, cursive;
 }
@@ -69,8 +76,12 @@ h1 {
   font-size: 2em;
 }
 
-a {
+.hardpink, a {
   color: var(--hardpink);
+}
+
+.hardgreen, a:hover {
+  color: var(--hardgreen);
 }
 
 button {

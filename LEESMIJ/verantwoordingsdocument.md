@@ -8,7 +8,7 @@ Hier een antwoord op de vragen:
 * Welke technieken, producten en bibliotheken zijn er gebruikt en waarom?
 * Is aan alle voorwaarden uit de opdracht voldaan?
 
-Conclusie: aan alle voorwaarden gesteld in de opdracht, `Integrale eindopdracht Fullstack Bootcamp 3.0.pdf` is voldaan. 
+Conclusie: aan alle voorwaarden gesteld in de opdracht, `Integrale eindopdracht Bootcamp v3.0.pdf` is voldaan. 
 
 ## Functioneel Ontwerp
 

@@ -6,36 +6,56 @@ import Loader from "../components/loader/Loader";
 
 export const AuthContext = createContext({});
 
-function AuthContextProvider({children}) {
+function AuthContextProvider({ children }) {
     const history = useHistory();
-    const [authState, setAuthState] = useState({
+    const [ authState, setAuthState ] = useState({
         user: null,
         status: 'pending',
-    })
+    });
 
-    // 'closing'
+    function isTokenValid(jwtToken) {
+        const decodedToken = jwt_decode(jwtToken);
+        const expirationUnix = decodedToken.exp; // UNIX timestamp
+
+        const now = new Date().getTime(); // javascript timestamp
+        const currentUnix = Math.round(now / 1000); // nu ook een UNIX timestamp
+
+        const isTokenStillValid = expirationUnix - currentUnix > 0;
+
+        return isTokenStillValid;
+    }
+
     useEffect(() => {
+        const token = localStorage.getItem('closetteToken');
 
-        setAuthState({
-            user: null,
-            status: 'done',
-        })
+        if(!authState.user && token && isTokenValid(token)) {
+            const decodedToken = jwt_decode(token);
+
+            fetchUserData(token, decodedToken.sub);
+        } else {
+            setAuthState({
+                user: null,
+                status: 'done',
+            });
+        }
     }, []);
 
-    async function loginFunction(jwtToken) {
-        console.log("Resultaat JWT token, daarna de Decoded:");
+    function loginFunction(jwtToken) {
         console.log(jwtToken);
-        const decoded = jwt_decode(jwtToken);
-        const userId = decoded.sub;
-        console.log(decoded);
         localStorage.setItem('closetteToken', jwtToken);
+        const decodedToken = jwt_decode(jwtToken);
+        console.log(decodedToken);
+        const userId = decodedToken.sub;
 
+        fetchUserData(jwtToken, userId);
+    }
 
+    async function fetchUserData(token, id) {
         try {
-            const result = await axios.get(`http://localhost:3000/600/users/${userId}`, {
+            const result = await axios.get(`http://localhost:3000/600/users/${id}`, {
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${jwtToken}`,
+                    Authorization: `Bearer ${token}`,
                 }
             });
             console.log(result);
@@ -46,6 +66,7 @@ function AuthContextProvider({children}) {
                     email: result.data.email,
                     id: result.data.id,
                     avatar: result.data.avatar,
+                    // als je ook rollen hebt, plaats je die er ook bij!
                 },
                 status: 'done',
             });
@@ -54,10 +75,9 @@ function AuthContextProvider({children}) {
                 history.push("/");
             }, 3000);
 
-        } catch (e) {
+        } catch(e) {
             console.error(e);
         }
-
     }
 
     function logoutFunction() {
@@ -76,10 +96,14 @@ function AuthContextProvider({children}) {
 
     return (
         <AuthContext.Provider value={data}>
-            {authState.status === 'done'
-                ? children
-                : <Loader />
+            {authState.status === 'pending'
+                ? <Loader />
+                : children
             }
+            {/*{authState.status === 'done'*/}
+            {/*    ? children*/}
+            {/*    : <Loader />*/}
+            {/*}*/}
         </AuthContext.Provider>
     );
 }
