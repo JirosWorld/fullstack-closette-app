@@ -2,27 +2,36 @@
 
 door Jiro Ghianni
 
-## Opstarten
+## Introductie
 
-Houd deze repository binnen 1 directory. Dat wil zeggen: sleep de front-end map _niet_ naar een andere plek ten opzichte van de back-end. Dit in verband met de relatieve paden van een aantal standaard-afbeeldingen die als voorbeeld zijn gebruikt om de database te vullen.
+Houd deze repository bijelkaar binnen 1 directory. Dat wil zeggen: sleep de front-end map _niet_ naar een andere plek ten opzichte van de back-end. Dit in verband met de relatieve paden van een aantal standaard-afbeeldingen die als voorbeeld zijn gebruikt om de database te vullen.
+
+Let op: wanneer je dit project in 1 keer binnen een IDE importeert van Github, dan moet je er rekening mee houden dat de start scripts in de ***sub directories*** staan, dus 1 map lager dan deze Readme. Dit heeft invloed op het opstarten van zowel de back- als de front-end. Het is daarom eenvoudiger om dit project te DOWNLOADEN als ZIP, deze uit te pakken, en daarna de individuele mappen als 'root' te openen in een IDE naar keuze. 
+
+Zie voor verdere uitleg hieronder.
 
 ## Back-end Applicatie starten
 
-Als je het project gecloned hebt naar jouw locale machine, installeer je eerst de back-end. Liefst via een IDE zoals IntelliJ maar het kan ook door de _backend-closette_ folder te openen in elke terminal van jouw keuze.
+Als je het project gedownload hebt naar jouw locale machine, installeer je eerst de back-end. Liefst via een Java-ready/Maven-ready IDE zoals IntelliJ maar het kan ook door de `backend-closette` folder te openen in elke terminal van jouw keuze.
 
-In de meeste gevallen volstaat het om de _backend-closette_ map te openen in een IDE en het pom-bestand van Maven te laten installeren, waarna de Main klasse `ClosetteApplicatie` gedraaid (run) kan worden. Maar instalatie en runnen vanuit de back-end directory kan ook in 1 keer via een terminal naar keuze met:
+In de meeste gevallen volstaat het om de _backend-closette_ map te openen in een IDE, die Java kan complieren, en het pom-bestand van Maven te laten installeren, waarna de Main klasse `ClosetteApplicatie` gedraaid (run) kan worden. (Het back-end startscript staat in `bckend-closette/pom.xml`). Maar installatie en runnen vanuit de `backend-closette` directory kan ook in 1 keer via een terminal naar keuze met het commando:
 
 `$ mvn spring-boot:run`.
 
 In de terminal kan de back-end app gestopt worden met de toetscombinatie `ctrl` + `'C'`.
 
-De back-end wordt aangesproken door de front-end, maar als je alleen via Postman requests wil doen, dan kan dat ook: Open http://localhost:8080 voor requests.
+### JAVA versie
 
-### Extra Back-end aanpassingen
+Dit project werkt alleen wanner je JDK versie 17 of hoger hebt geïnstalleerd op je computer. Wanneer je deze niet hebt, kun je deze downloaden via https://jdk.java.net
 
-Back-End Datasource settings in `application.properties`
+### Standaard users
 
-### BELAMGRIJK: verander eerst deze lokale instellingen!
+* admin - password
+* user - password
+
+### Back-end aanpassingen database
+
+Belangrijk: verander eerst deze lokale instellingen!
 
 De database settings, in (bijvoorbeeld) pgAdmin:
 * postgresql database op localhost:5432 (port 5432)
@@ -32,18 +41,18 @@ De database settings, in (bijvoorbeeld) pgAdmin:
 
 Maak dus eerst een user aan met naam/wachtwoord `springboot`. En daarna een lege database met de naam `closette`, gekoppeld aan deze user.
 
-**BELANGRIJK**: 
+### Back-end aanpassingen voor uploads
 
-Pas ook in de `application.properties` het Upload-pad voor afbeeldingen aan: voor Mac gebruikers zal dit vlekkeloos verlopen omdat daar nooit Backslashes gebruikt orden, maar Windowsgebruikers moeten opletten dat er soms een Backslash in hun code nodig is waar een Slash moet staan:
+Pas ook in de `main/resources/application.properties` het Upload-pad voor afbeeldingen aan: voor Mac gebruikers zal dit vlekkeloos verlopen omdat daar nooit Backslashes gebruikt worden, maar Windowsgebruikers moeten opletten dat er soms een Backslash in hun code nodig is daar waar een Slash moet staan. Het lokale pad hier dien je aan te passen vanaf het 'Users' path naar de locatie op jouw eigen machine:
 
 `my.upload_location= /Users/jolarti/IdeaProjects/NOVI/Springboot-huiswerk/uploads`
 
-#### Standaard users
 
-* admin - password
-* user - password
+#### Server requests
 
-#### Een Postman export staat ook in de ['back-end documentation'](../backend-closette/documentation/Jiro_Closette_data.postman_collection.json) map: deze kun je importeren in Postman en daarin uitvoeren.
+De back-end wordt aangesproken door de front-end, maar als je alleen via Postman requests wil doen, dan kan dat ook: Open http://localhost:8080 voor requests.
+
+Een Postman export staat ook in de ['back-end documentation'](../backend-closette/documentation/Jiro_Closette_data.postman_collection.json) map: deze kun je importeren in Postman en daarin uitvoeren.
 
 Bij back-end problemen:
 * reload `pom.xml`
@@ -54,22 +63,31 @@ Bij back-end problemen:
 
 ## Front-end Applicatie starten
 
-Als je het project gecloned hebt naar jouw locale machine, installeer je (binnen in de front-end folder) eerst de node_modules door, vanuit de front-end map, het volgende commando in een terminal te runnen:
+Als je het project gedownload hebt naar jouw locale machine, en je de back-end hebt opgestart, installeer je (vanuit de `frontend-closette` map) eerst de node_modules door het volgende commando in een terminal te runnen:
 
 `$ npm install`
 
-Wanneer dit klaar is, kun je de applicatie starten met behulp van:
+NB: Het opstart script voor de front-end staat dus 1 directory lager dan deze readme. Dit betekent dat je, wanneer je dit project importeert vanuit Github (version control) je het start-script dan niet meteen kunt runnen (het front-end startscript staat in `frontend-closette/package.json`). Wanneer je een IDE als Webstorm wilt gebruiken, open het project dan _niet_ als 'version-control' project maar: ga in een browser naar Github, download de repository als ZIP, pak dit uit waar je maar wilt, en open dan alleen de `frontend-closette` map in een IDE naar keuze (bijvoorbeeld Webstorm, of Visual Studio met een React plug-in). 
+
+Wanneer dit klaar is, kun je (wederom vanuit de `frontend-closette` map) de applicatie starten met behulp van:
 
 `$ npm start`
 
 Als je dit project opent in Webstorm kun je hiervoor ook het NPM START afspeelknopje gebruiken.
 
-Open http://localhost:3000 om de pagina in een browser te bekijken. 
+Open http://localhost:3000 om de web-app in een browser te bekijken en te bedienen. 
 
-NB: Gebruik bij voorkeur **Firefox** of **Chrome**. Natuurlijk werkt alles ook in Safari en Edge maar sommige fonts worden niet mooi 'bold' gerendered.
-
-Axios, React Router 5.2, React-Hook-Form, JWT-decoder,emailJS etc. zijn reeds gesaved in JSON builder en worden automatisch geïnstalleerd.
+Axios, React Router 5.2, React-Hook-Form, JWT-decoder,emailJS etc. zijn reeds gesaved in JSON builder en worden automatisch mee geïnstalleerd.
 
 In de terminal kan de front-end app gestopt worden met `ctrl` + `'C'`.
+
+### Nodejs / npm versie
+
+Dit project werkt alleen wanneer je Nodejs versie Node.js 15.4.0 of hoger hebt geïnstalleerd op je computer. Wanneer je deze niet hebt, kun je deze downloaden via https://nodejs.org/en/download/releases/
+
+### Voorkeur browsers
+
+NB: Gebruik bij voorkeur **Chrome** of **Firefox** of **Opera**. Natuurlijk werkt alles ook in Safari en Edge maar sommige fonts worden daarin niet mooi 'bold' gerendered.
+
 
 
