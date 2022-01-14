@@ -10,6 +10,10 @@ De database settings, in (bijvoorbeeld) pgAdmin:
 
 Maak dus eerst een user aan met naam/wachtwoord springboot. En daarna een lege database met de naam closette, gekoppeld aan deze user.
 
+Zodra de upload-functie wekt: pas het upload-pad aan naar joiw eigen lokale pad.
+
+Accepteer installatie van de JPA Buddy plug-in.
+
 #### Standaard users
 
 * admin - password
@@ -18,24 +22,53 @@ Maak dus eerst een user aan met naam/wachtwoord springboot. En daarna een lege d
 ### Endpoints
 
 #### toilets
-* GET /api/v1/toilets
-* POST /api/v1/toilets
-* DELETE /api/v1/toilets/{id}
-* GET /api/v1/toilets/{id}
-* GET /api/v1/toilets/{id}/copies
-* PATCH /api/v1/toilets/{id}/copies
-* PATCH /api/v1/toilets/{id}/description
+* {GET [/toilets]}
+* {GET [/toilets/{id}]}
+* {PATCH [/toilets/{id}]}
+* {POST [/toilets]}
+* {PUT [/toilets/{id}]}
+* {POST [/users/{username}/authorities]}
+* {DELETE [/toilets/{id}]}
+
 
 #### users
-* GET /api/v1/users
-* POST /api/v1/users
-* DELETE /api/v1/users/{username}
-* GET /api/v1/users/{username}
-* PUT /api/v1/users/{username}
-* GET /api/v1/users/{username}/authorities
-* POST /api/v1/users/{username}/authorities
-* DELETE /api/v1/users/{username}/authorities/{authority}
-* PATCH /api/v1/users/{username}/password
+* {POST [/authenticate]}
+* {DELETE [/users/{username}/authorities/{authority}]}
+* {GET [/users/{username}/authorities]}
+* {GET [/users/{username}]}
+* {GET [/users/id/{id}]}
+* {PATCH [/users/{username}/password]}
+* {GET [/users]}
+* {PUT [/users/{username}]}
+* {DELETE [/users/{username}]}
+
+
+#### ratings (sterrenwaarderingen)
+
+* {GET [/ratings]}
+* {POST [/ratings]}
+* {POST [/ratings/{id}/toilets]}
+* {GET [/ratings/{id}/toilets]}
+* {DELETE [/ratings/{id}]} 
+* {GET [/ratings/{id}]}
+
+
+#### newsposts (blog)
+
+* {POST [/news]}
+* {PATCH [/news/{id}]}
+* {GET [/news]}
+* {GET [/news/{id}]}
+* {PUT [/news/{id}]}
+* {DELETE [/news/{id}]}
+
+
+#### overige
+
+{ [/error]}
+
+{ [/error], produces [text/html]}
+
 
 #### Een Postman export staat hier ook in de 'documentation' map: deze kun je importeren in Postman en daarin uitvoeren.
 

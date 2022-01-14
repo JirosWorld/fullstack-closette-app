@@ -1,12 +1,17 @@
 package nl.novi.closette.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
 public class User {
+
+//        @Column(nullable = true, unique = true)
+//        private int id;
 
         @Id
         @Column(nullable = false, unique = true)
@@ -28,6 +33,9 @@ public class User {
                 fetch = FetchType.EAGER)
         private Set<Authority> authorities = new HashSet<>();
 
+        @OneToMany(mappedBy = "newsauthor", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+        private List<NewsPost> newsposts = new ArrayList<>();
+
         // getters and setters
 
         public String getUsername() {
@@ -36,6 +44,22 @@ public class User {
 
         public void setUsername(String username) {
                 this.username = username;
+        }
+
+//        public int getId() {
+//                return id;
+//        }
+//
+//        public void setId(int id) {
+//                this.id = id;
+//        }
+
+        public List<NewsPost> getNewsposts() {
+                return newsposts;
+        }
+
+        public void setNewsposts(List<NewsPost> newsposts) {
+                this.newsposts = newsposts;
         }
 
         public String getPassword() {

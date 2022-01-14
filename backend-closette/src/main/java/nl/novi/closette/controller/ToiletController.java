@@ -11,6 +11,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class ToiletController {
@@ -19,8 +21,19 @@ public class ToiletController {
     private ToiletService toiletService;
 
     @GetMapping(value = "/toilets")
-    public ResponseEntity<Object> getToilets(@RequestParam(name="title", defaultValue="") String title) {
-        return ResponseEntity.ok(toiletService.getToilets(title));   // Jackson  object => json
+    public ResponseEntity<Object> getToilets(@RequestParam(value="title", required = false) String title, @RequestParam(value="city", required = false ) String city) {
+
+
+        List<Toilet> toilets;
+        if(title == null && city!= null){
+            toilets = toiletService.getToiletsByCity(city);
+        } else if(title != null && city== null){
+            toilets = toiletService.getToiletsByTitle(title);
+        } else {
+            toilets = toiletService.getToilets();
+        }
+
+        return ResponseEntity.ok(toilets);   // Jackson  object => json
     }
 
     @GetMapping(value = "/toilets/{id}")

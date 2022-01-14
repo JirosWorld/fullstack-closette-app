@@ -22,9 +22,9 @@ function SearchPage() {
         document.title = "Zoeken :: Closette"
     }, []);
 
-    async function onFormSubmit(input) {
-        console.log("Zoek input:");
-        console.log(input);
+    async function onFormSubmit(data) {
+        console.log("Zoek data input:");
+        console.log(data);
         //zet de error steeds op leeg, iedere keer bij laden van data
         setError('');
         //zet de loader animatie aan zolang data wordt geladen
@@ -39,6 +39,8 @@ function SearchPage() {
             console.log(result);
             console.log("alle result.data:");
             console.log(result.data);
+            console.log("alle result.data:");
+            console.log(result.input);
         } catch (error) {
             console.log("komt u hier 4?");
             setError("Er is iets misgegaan bij het ophalen van de data");
@@ -248,7 +250,7 @@ function SearchPage() {
 
                                     |<span className="mapped__post__author">Stad: {post.city}</span>|
                                     <br/>
-                                    | <span className="mapped__post__subreddit">
+                                    | <span className="mapped__post__detail">
                                 Land
                                 <NavLink
                                     activeClassName="active-link"
@@ -275,7 +277,7 @@ function SearchPage() {
                                             `https://www.openstreetmap.org/?mlat=${post.latitude}&mlon=${post.longitude}&zoom=15}`}
                                             rel="noreferrer" target="_blank"><img src={MapIcon}
                                                                                   alt="map"
-                                                                                  width="25"/></a> (externe
+                                                                                  width="25" className="map-icon"/></a> (externe
                                             link)<br/>
                                             heeft foto?: {post.hasPhoto
                                             ? <span>Ja</span> : <span>Nee</span>}<br/>

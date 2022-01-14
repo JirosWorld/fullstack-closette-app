@@ -9,7 +9,7 @@ import TopNav from "../../components/topnav/TopNav";
 import {NavLink} from "react-router-dom";
 import noImage from "../../assets/icons/icon-lines-toilet-jiro.svg";
 
-function SearchResults() {
+function SearchResults(input) {
 
     const [toiletEntry, setToiletEntry] = useState([]);
     const [loading, toggleLoading] = useState(false);
@@ -40,7 +40,6 @@ function SearchResults() {
                 console.log("de eigenaar van de 4e entry:");
                 console.log(result.data[3].owner.name);
             } catch (error) {
-                console.log("komt u hier 4?");
                 setError("Er is iets misgegaan bij het ophalen van de data");
                 console.error(error);
             }
@@ -78,7 +77,7 @@ function SearchResults() {
                     <li>Locatie op kaart: <a
                         href={toiletEntry.data && `https://www.openstreetmap.org/?mlat=${toiletEntry.data[6].latitude}&mlon=${toiletEntry.data[6].longitude}&zoom=15`}
                         rel="noreferrer" target="_blank"><img src={MapIcon} alt="map"
-                                                              width="25"/></a> (externe link)
+                                                              width="25" className="map-icon"/></a> (externe link)
                     </li>
                     <li>heeft
                         foto?: {toiletEntry.data && toString(toiletEntry.data[6].hasPhoto)}</li>
@@ -119,7 +118,7 @@ function SearchResults() {
 
                                     |<span className="mapped__post__author">Stad: {post.city}</span>|
                                     <br/>
-                                    | <span className="mapped__post__subreddit">
+                                    | <span className="mapped__post__detail">
                                 Land
                                 <NavLink
                                     activeClassName="active-link"
@@ -145,7 +144,7 @@ function SearchResults() {
                                                 `https://www.openstreetmap.org/?mlat=${post.latitude}&mlon=${post.longitude}&zoom=15}`}
                                                 rel="noreferrer" target="_blank"><img src={MapIcon}
                                                                                       alt="map"
-                                                                                      width="25"/></a> (externe
+                                                                                      width="25" className="map-icon"/></a> (externe
                                             link)<br/>
                                             heeft foto?: {post.hasPhoto
                                             ? <span>Ja</span> : <span>Nee</span>}<br/>

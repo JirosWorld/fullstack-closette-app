@@ -5,7 +5,7 @@ door Jiro Ghianni
 ## Inleiding
 
 Hier een antwoord op de vragen:
-* Welke technieken, producten en bibliotheken zijn er gebruikt en waarom?
+* Welke technische ontwerpbeslissingen heb ik gemaakt en waarom?
 * Is aan alle voorwaarden uit de opdracht voldaan?
 
 Conclusie: aan alle voorwaarden gesteld in de opdracht, `Integrale eindopdracht Bootcamp v3.0.pdf` is voldaan. 
@@ -55,6 +55,8 @@ Er is van het Spring Boot Framework gebruik gemaakt, en daarvan zijn de volgende
 * Jackson
 * Hibernate
 
+Door middel van een listener heb ik alle `Rest endpoints` verzameld in een lijst die in de documentatie van de back-end map staat, daari nstaan ook alle Postman request als importeerbaar `JSON file Collection v2.1` bestand (inclusief JSON-voorbeelden).
+
 ### Gebruikte hulpmiddelen
 
 Voor het ontwikkelen is gebruik gemaakt van
@@ -87,7 +89,11 @@ De beveiliging is niet production-ready doordat er  natuurlijk te eenvoudige wac
 
 Via authenticatie met JSON Web Token (JWT) was het mogelijk om de endpoints te beveiligen met authenticate en authorisaties. Het verwijderen van een bestaande gebruiker is beveiligd, zodat alleen gebruikers met de ADMIN rol deze acties kunnen uitvoeren.
 
-## Wat is er niet gedaan
+## Wat is er niet gedaan + disclaimers
+
+_(limitaties van de applicatie en beargumentatie van mogelijke doorontwikkelingen)_
+
+• deze opdracht levert géén deployment-ready product op en zal niet werken op de gemiddelde FTP server, maar dat was ook geen eis.
 
 • geen https SSL certificaat omdat dit bij nakijken probleemen kan geven maar in het het echte bedrijfsleven moet dit wel.
 
@@ -99,6 +105,17 @@ Via authenticatie met JSON Web Token (JWT) was het mogelijk om de endpoints te b
 
 • Niet-functionele eisen: bij aanvang was niet duidelijk hoeveel ik qua User Experience binnen een kort Bootcamp tijdsbestek daadwerkelik af zou krijgen. Ik heb een groot aantal niet-functionele eisen (meer eisen dan voor de eindopdracht nodig waren) opgesteld waarvan een deel niet is uitgevoerd: deze eisen zijn vooral vanwege tijdsgebrek achterwege gelaten en hebben geen effect op de functionele werking en minimale eisen van de app/examenopdracht. In het Functioneel/Technisch ontwerp staat duidelijk aangegeven welke niet-functionele eisen niet zijn uitgevoerd door tijdsgebrek.
 
+• De front-end website is niet geoptimaliseerd voor Explorer. Bij meer tijd zou ik echt wel ook zeer verouderde browsers willen supporten, vooral omwille van de toegankelijkheid.
+
+## Leerpunten
+
+• ik ben altijd goed geweest in de miniemste details; ik ben geen project-manager met helicoptervisie, dus het was niet onverwacht dat ik moeite had met het vastleggen/structureren van de ontwerpfase, maar daarentegen geen enkele moeite had met het uitpuzzelen van code details
+
+• deze Bootcamp is slechts een eerste begin; als ik 4 jaar de tijd had gehad dan zou ik heel blij geworden zijn van meer SASS of LESS aan de front-end en een 'env' folder e.a. intelligente manieren voor centraal management
+
+• ik heb ervaring als front-end developer en dat ga ik blijven doen
+
+• het leren van back-end is echt enorm verhelderend, dat zouden alle front-enders eens moeten proberen
 
 ## Opmerkingen
 

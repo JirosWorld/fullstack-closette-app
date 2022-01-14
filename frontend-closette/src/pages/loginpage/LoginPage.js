@@ -74,6 +74,7 @@ function LoginPage() {
                 />
 
                 <InputField
+                    inputType="password"
                     errors={errors}
                     register={register}
                     labelText="Wachtwoord"

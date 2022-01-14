@@ -17,14 +17,42 @@ public class ToiletService {
     @Autowired
     private ToiletRepository toiletRepository;
 
-    public Iterable<Toilet> getToilets(String title) {
-        if (title.isEmpty()) {
+//    origineel
+    public List<Toilet> getToilets() {
+
             return toiletRepository.findAll();
-        }
-        else {
-            return toiletRepository.findAllByTitleContainingIgnoreCase(title);
-        }
+
     }
+
+    public List<Toilet> getToiletsByTitle(String title){
+        return toiletRepository.findAllByTitleContainingIgnoreCase(title);
+    }
+
+    public List<Toilet> getToiletsByCity(String city){
+        return toiletRepository.findAllByCityContainingIgnoreCase(city);
+    }
+
+//    public List<Toilet> getToilets(String title, String city, String country) {
+//        int numberOfSpecifiedArguments = 0;
+//        if (!(title == null || title.isBlank())) numberOfSpecifiedArguments++;
+//        if (!(city == null || city.isBlank())) numberOfSpecifiedArguments++;
+//        if (!(country == null || country.isBlank())) numberOfSpecifiedArguments++;
+//        if (numberOfSpecifiedArguments > 1) {
+//            throw new BadRequestException("Too many search fields specified. Only one is allowed.");
+//        }
+//
+//        if (!(title == null || title.isBlank())) {
+//            return bookRepository.findAllByTitleContainingIgnoreCase(title);
+//        } else if (!(author == null || author.isBlank())) {
+//            return bookRepository.findAllByAuthorContainingIgnoreCase(author);
+//        } else if (!(publisher == null || publisher.isBlank())) {
+//            return bookRepository.findAllByPublisherContainingIgnoreCase(publisher);
+//        } else if (!(isbn == null || isbn.isBlank())) {
+//            return bookRepository.findAllByIsbn(isbn);
+//        } else {
+//            return bookRepository.findAll();
+//        }
+//    }
 
     public Toilet getToilet(int id) {
         Optional<Toilet> optionalToilet = toiletRepository.findById(id);

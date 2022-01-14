@@ -22,7 +22,6 @@ public class Toilet {
     private String latitude;
     private String longitude;
     private String postTime;
-
     private boolean genderneutral;
     private boolean free;
     private boolean accessible;

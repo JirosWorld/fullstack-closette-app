@@ -25,18 +25,30 @@ function SubmitPage() {
     useEffect(() => {
         document.title = "Toilet toevoegen :: Closette";
 
-        async function getResults() {
+        async function getResults(data) {
             //zet de error steeds op leeg, iedere keer bij laden van data
             setError('');
             //zet de loader animatie aan zolang data wordt geladen
             toggleLoading(true);
 
             try {
-                const result = await axios.get('http://localhost:8080/toilets', {
-                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0MzgxNTYzNCwiaWF0IjoxNjQyMDg3NjM0fQ.qN3fFcBPc1Qn00-KVEDwG6Hmsx71llqzQXzJ4RP4C6Q",
+                const result = await axios.post('http://localhost:8080/toilets',{
+                    accessible: data.accessible,
+                    city: data.city,
+                    cleanliness: data.cleanliness,
+                    country: data.country,
+                    free: data.free,
+                    genderneutral: data.genderneutral,
+                    hasPhoto: data.hasPhoto,
+                    infoText: data.infoText,
+                    latitude: data.latitude,
+                    longitude: data.longitude,
+                    openingHours: data.openingHours,
+                    ratingAverage: data.ratingAverage,
+                    title: data.title,
                 });
                 setSubInfo(result);
-                console.log("Alle data van 1 submitpage:");
+                console.log("Alle data van 1 submitrequest:");
                 console.log(result);
                 console.log("data loggen:");
                 console.log(result.data[4].title);
@@ -68,31 +80,6 @@ function SubmitPage() {
                                 <p>Alle plekken op de wereld zijn te beschrijven met GPS co&ouml;rdinaten: de breedtegraad en lengtegraad. Ezelsbruggetje: breedtegraad (latitude) komt altijd v&oacute;&oacute;r
                                     lengtegraad (longitude) - dus op alfabetische volgorde. Ook in het
                                     Engels zijn ze toevallig in alfabetische volgorde: [latitude, longitude].</p>
-                            </Accordeon>
-                            <Accordeon title="Hoe vind ik mijn GPS locatie? (ENG)">
-                                <p>Open Maps on your iPhone or iPad and then follow these steps to get your
-                                    current location’s GPS coordinates.</p>
-                                <ol>
-                                    <li>Tap the <strong>current location</strong> button on the top right.
-                                    </li>
-                                    <li>When the blue circle for your spot appears on the
-                                        map, <strong>tap</strong> it.
-                                    </li>
-                                    <li><strong>Swipe up</strong> from the bottom to view full details for
-                                        your
-                                        location and you’ll see the Latitude and Longitude.
-                                    </li>
-                                </ol>
-                            </Accordeon>
-                            <Accordeon title="GPS locatie op je iPhone vinden">
-                                <figure aria-describedby="caption-attachmen"
-                                        className="gps">
-                                    <img src={GPS} width="400" alt="gps explanation"
-                                         className="Maps My GPS Coordinates-iPhone"/>
-                                    <figcaption id="caption" className="gps">Your
-                                        location&#8217;s GPS coordinates on iOS
-                                    </figcaption>
-                                </figure>
                             </Accordeon>
                         </div>
                     </section>

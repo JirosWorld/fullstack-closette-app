@@ -7,7 +7,7 @@ import "./TopNav.css";
 import LogoNav from "../../assets/img/logo-toilet-nav.png";
 import Hamburger from "./Hamburger";
 
-function TopNav({subredditView, children}) {
+function TopNav({children}) {
 
     const {user} = useContext(AuthContext);
     const {logout} = useContext(AuthContext);

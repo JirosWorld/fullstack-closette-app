@@ -14,6 +14,11 @@
     margin-right: 16px;
 }
 
+.map-icon:hover {
+    width: 30px;
+    height: 25px;
+}
+
 .thumbnail-container {
     display: flex;
     margin: 0 0 15px 0;
@@ -74,8 +79,8 @@
     font-style: italic;
 }
 
-.mapped__post__subreddit,
-.mapped__post__subreddit a {
+.mapped__post__detail,
+.mapped__post__detail a {
     color: var(--hardpink);
     font-size: 1.1em;
     font-weight: bold;

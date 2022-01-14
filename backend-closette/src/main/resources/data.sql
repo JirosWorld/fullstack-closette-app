@@ -15,6 +15,11 @@ VALUES
 ('Moderator'),
 ('nieuwe user');
 
+INSERT INTO newsposts (title, description, paragraph, post_time, newsauthor_id)
+VALUES
+    ('Nieuwsartikel titel', 'Beschrijving paragraaf met wat dummy tekst.', 'Voor iedereen, die niet achter een boom kan plassen, is  het vaak erg lastig om een gratis openbaar toilet te vinden. Daarnaast is het voor non-binaire en transgender personen nog veel lastiger om een (veilig) genderneutraal toilet te vinden.', '2020-03-04', 'user'),
+    ('Titel van bericht', 'Dummy tekst voor een korte introductie paragraaf die de post beschrijft.', 'Een extra bij-effect van deze ‘Closette’ app is dat ook niet-trans personen zo makkelijker een veilig of toegankelijk toilet kunnen vinden. Voor vrouwen zijn er immers ook al jaren veel te weinig gratis toiletten beschikbaar.', '2021-02-06', 'user');
+
 INSERT INTO toilets (title, venue, author, latitude, longitude, post_time,rating_id, accessible, city, country,cleanliness, free, genderneutral, has_photo, info_text, opening_hours, rating_average)
 VALUES
 ('Het Amsterdam Museum', 'Het Amsterdam Museum', 'de stadsbewoners', '52.3700', '4.8900', '2019-05-05', 1, TRUE, 'Amsterdam', 'NL', 'schoon', FALSE, TRUE, FALSE, 'Dit toilet kun je alleen bezoeken na toegang te betalen tot het museum', '10h tot 17h tijdens de pandemie', '4'),

@@ -64,7 +64,6 @@ function AuthContextProvider({ children }) {
                 user: {
                     username: result.data.username,
                     email: result.data.email,
-                    id: result.data.id,
                     userActive: result.data.enabled,
                     // userRole: result.data.authority.authority,
                 },

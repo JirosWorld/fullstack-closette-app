@@ -10,68 +10,7 @@
 			"name": "Closette requests",
 			"item": [
 				{
-					"name": "GET 1 toilet",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0MjI1MjEzMCwiaWF0IjoxNjQxMzg4MTMwfQ.yauYw0EQTXpV4Nq0U5qf5gwxpPbVrefKAsaTqHQ-Cuo",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/toilets/2",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"toilets",
-								"2"
-							]
-						},
-						"description": "Haal de data op over 1 entry, met id = 2."
-					},
-					"response": []
-				},
-				{
-					"name": "GET all Toilets with auth",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0MjI1MjEzMCwiaWF0IjoxNjQxMzg4MTMwfQ.yauYw0EQTXpV4Nq0U5qf5gwxpPbVrefKAsaTqHQ-Cuo",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/toilets",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"toilets"
-							]
-						},
-						"description": "Haal in een keer de totale database binnen."
-					},
-					"response": []
-				},
-				{
-					"name": "POST authorisatie",
+					"name": "authorisatie",
 					"request": {
 						"auth": {
 							"type": "noauth"
@@ -103,18 +42,8 @@
 					"response": []
 				},
 				{
-					"name": "GET users",
+					"name": "GET all users",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0MjI1MjEzMCwiaWF0IjoxNjQxMzg4MTMwfQ.yauYw0EQTXpV4Nq0U5qf5gwxpPbVrefKAsaTqHQ-Cuo",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -133,7 +62,224 @@
 					"response": []
 				},
 				{
-					"name": "POST add 1 toilet",
+					"name": "GET 1 user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"admin"
+							]
+						},
+						"description": "Haal de data op over 1 entry, met id = 2."
+					},
+					"response": []
+				},
+				{
+					"name": "POST een nieuwe user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"username\": \"gebruikerette\",\n        \"password\": \"1234\",\n        \"email\": \"mail@mail.com\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						},
+						"description": "Haal de data op over 1 entry, met id = 2."
+					},
+					"response": []
+				},
+				{
+					"name": "POST nóg een nieuwe user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"username\": \"priscilla\",\n        \"password\": \"queenofthedesert\",\n        \"email\": \"emaille@maille.com\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						},
+						"description": "Haal de data op over 1 entry, met id = 2."
+					},
+					"response": []
+				},
+				{
+					"name": "POST add nog 1 toilet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"title\": \"Toiletje gebouw locatie naam\",\n        \"author\": \"Gebouw eigenaar\",\n        \"latitude\": \"50.0000\",\n        \"cleanliness\": \"schoon\",\n        \"openingHours\": \"8-20\",\n        \"infoText\": \"random random\",\n        \"city\": \"Berlijn\",\n        \"country\": \"DE\",\n        \"genderneutral\": true,\n        \"free\": false,\n        \"accessible\": true\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/toilets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"toilets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET all Ratings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ratings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ratings"
+							]
+						},
+						"description": "Laat zien wie er lid is er waar ze precies 'eigenaar' van zijn."
+					},
+					"response": []
+				},
+				{
+					"name": "GET all news posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/news",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"news"
+							]
+						},
+						"description": "Haal in een keer de totale database binnen."
+					},
+					"response": []
+				},
+				{
+					"name": "GET 1 newspost",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/news/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"news",
+								"1"
+							]
+						},
+						"description": "Haal de data op over 1 entry, met id = 2."
+					},
+					"response": []
+				},
+				{
+					"name": "POST add 1 newspost",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"title\": \"Nieuwe nieuwe nieuw nieuws\",\n        \"description\": \"beschrijvingen beschrjvingstekst\",\n        \"username\": \"admin\",\n        \"paragraph\": \"Hebban olla vogala nestas hagunnan, hinase hic enda tu.\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/news",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"news"
+							]
+						},
+						"description": "Post/voeg 1 nieuwe entry toe, in de body staat al ingevuld wat er in de database gaat komen."
+					},
+					"response": []
+				},
+				{
+					"name": "GET all Toilets with auth",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/toilets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"toilets"
+							]
+						},
+						"description": "Haal in een keer de totale database binnen."
+					},
+					"response": []
+				},
+				{
+					"name": "Querie zoeker op Titel/Venue",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -145,11 +291,127 @@
 								}
 							]
 						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/toilets?title=palace",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"toilets"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "palace"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Querie zoeker op City",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0MjI1MjEzMCwiaWF0IjoxNjQxMzg4MTMwfQ.yauYw0EQTXpV4Nq0U5qf5gwxpPbVrefKAsaTqHQ-Cuo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/toilets?city=berli",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"toilets"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "berli"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Querie zoeker op Country",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0MjI1MjEzMCwiaWF0IjoxNjQxMzg4MTMwfQ.yauYw0EQTXpV4Nq0U5qf5gwxpPbVrefKAsaTqHQ-Cuo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/toilets?country=usa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"toilets"
+							],
+							"query": [
+								{
+									"key": "country",
+									"value": "usa"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET 1 toilet",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/toilets/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"toilets",
+								"7"
+							]
+						},
+						"description": "Haal de data op over 1 entry, met id = 2."
+					},
+					"response": []
+				},
+				{
+					"name": "POST add 1 toilet",
+					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\n        \"title\": \"Toilet venue locatie naam\",\n        \"author\": \"Locatie eigenaar\",\n        \"latitude\": \"0000000\",\n        \"rating_id\": \"1\"\n    }",
+							"raw": "{\n        \"title\": \"Toilet venue locatie naam\",\n        \"author\": \"Locatie eigenaar\",\n        \"latitude\": \"11.1111\",\n        \"longitude\": \"11.1111\",\n        \"cleanliness\": \"bah\",\n        \"opening_hours\": \"8h-20h\",\n        \"info_text\": \"random random\",\n        \"city\": \"Addis\",\n        \"country\": \"Abeba\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -172,119 +434,21 @@
 					"response": []
 				},
 				{
-					"name": "POST boek",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": " {\n        \"title\": \"Duiven knuffelen\",\n        \"author\": \"Pommetje Horlepiep\",\n        \"isbn\": \"212121211321\"\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/books",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"books"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "POST new user",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0MjI1MjEzMCwiaWF0IjoxNjQxMzg4MTMwfQ.yauYw0EQTXpV4Nq0U5qf5gwxpPbVrefKAsaTqHQ-Cuo",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": " {\n        \"username\": \"tester\", \n        \"password\": \"www\", \n        \"enabled\": \"TRUE\", \n        \"email\": \"tester@test.nl\"\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/users",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"users"
-							]
-						},
-						"description": "Post/voeg 1 nieuwe entry toe, in de body staat al ingevuld wat er in de database gaat komen."
-					},
-					"response": []
-				},
-				{
-					"name": "GET all Ratings",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0MjI1MjEzMCwiaWF0IjoxNjQxMzg4MTMwfQ.yauYw0EQTXpV4Nq0U5qf5gwxpPbVrefKAsaTqHQ-Cuo",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/ratings",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"ratings"
-							]
-						},
-						"description": "Laat zien wie er lid is er waar ze precies 'eigenaar' van zijn."
-					},
-					"response": []
-				},
-				{
 					"name": "DELete 1 toilet",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0MjI1MjEzMCwiaWF0IjoxNjQxMzg4MTMwfQ.yauYw0EQTXpV4Nq0U5qf5gwxpPbVrefKAsaTqHQ-Cuo",
-									"type": "string"
-								}
-							]
-						},
 						"method": "DELETE",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8080/toilets/1",
+							"raw": "http://localhost:8080/toilets/7",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -292,7 +456,7 @@
 							"port": "8080",
 							"path": [
 								"toilets",
-								"1"
+								"7"
 							]
 						}
 					},
@@ -301,61 +465,11 @@
 				{
 					"name": "PUT 1 new toilet",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0MjI1MjEzMCwiaWF0IjoxNjQxMzg4MTMwfQ.yauYw0EQTXpV4Nq0U5qf5gwxpPbVrefKAsaTqHQ-Cuo",
-									"type": "string"
-								}
-							]
-						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
 							"raw": " {\n        \"title\": \"Saaie locatie\",\n        \"author\": \"Viezerd\",\n        \"latitude\": \"212121211321\"\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/toilets/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"toilets",
-								"1"
-							]
-						},
-						"description": "Vervang 1 entry in zijn/haar/hun geheel."
-					},
-					"response": []
-				},
-				{
-					"name": "PATCH 1 deel toilet",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0MjI1MjEzMCwiaWF0IjoxNjQxMzg4MTMwfQ.yauYw0EQTXpV4Nq0U5qf5gwxpPbVrefKAsaTqHQ-Cuo",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"author\":\"Aapje\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -374,6 +488,66 @@
 								"2"
 							]
 						},
+						"description": "Vervang 1 entry in zijn/haar/hun geheel."
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH 1 deel toilet",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"author\":\"Aapje\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/toilets/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"toilets",
+								"3"
+							]
+						},
+						"description": "Vervang/bewerk een klein deel van een entry."
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH 1 foreignkey toilet",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"owner\": {\n            \"id\": 2\n        }\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/toilets/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"toilets",
+								"9"
+							]
+						},
 						"description": "Vervang/bewerk een klein deel van een entry."
 					},
 					"response": []
@@ -381,16 +555,6 @@
 				{
 					"name": "PATCH 1 user partly",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0MjI1MjEzMCwiaWF0IjoxNjQxMzg4MTMwfQ.yauYw0EQTXpV4Nq0U5qf5gwxpPbVrefKAsaTqHQ-Cuo",
-									"type": "string"
-								}
-							]
-						},
 						"method": "PATCH",
 						"header": [],
 						"body": {
@@ -403,7 +567,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/users/0",
+							"raw": "http://localhost:8080/users/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -411,45 +575,10 @@
 							"port": "8080",
 							"path": [
 								"users",
-								"0"
+								"1"
 							]
 						},
 						"description": "Vervang/bewerk een klein deel van een entry."
-					},
-					"response": []
-				},
-				{
-					"name": "Querie zoeker",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0MjI1MjEzMCwiaWF0IjoxNjQxMzg4MTMwfQ.yauYw0EQTXpV4Nq0U5qf5gwxpPbVrefKAsaTqHQ-Cuo",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/toilets?title=ams",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"toilets"
-							],
-							"query": [
-								{
-									"key": "title",
-									"value": "ams"
-								}
-							]
-						}
 					},
 					"response": []
 				}
@@ -460,7 +589,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0MjI1MjEzMCwiaWF0IjoxNjQxMzg4MTMwfQ.yauYw0EQTXpV4Nq0U5qf5gwxpPbVrefKAsaTqHQ-Cuo",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0Mzg5MzIxMywiaWF0IjoxNjQyMTY1MjEzfQ.cYKCIqMk2JmD2QeYKIIqTJrSvvHMEt_9GWw1-zrJNgU",
 						"type": "string"
 					}
 				]

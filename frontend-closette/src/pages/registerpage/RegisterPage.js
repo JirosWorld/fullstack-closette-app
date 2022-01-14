@@ -11,10 +11,12 @@ import BackButton from "../../components/buttons/BackButton";
 function RegisterPage() {
 
     const [registerSuccess, toggleRegisterSuccess] = useState(false);
+    const [error, setError] = useState('');
     const history = useHistory();
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     async function onFormSubmit(data) {
+        setError('');
         console.log("Registration data:");
         console.log(data);
         try {
@@ -34,6 +36,7 @@ function RegisterPage() {
 
         } catch (e) {
             console.error(e);
+            setError(`Het registeren is mislukt. Probeer het opnieuw (${e.message})`);
         }
     }
 
@@ -88,6 +91,7 @@ function RegisterPage() {
                 />
 
                 <InputField
+                    inputType="password"
                     errors={errors}
                     register={register}
                     labelText="Wachtwoord"
@@ -104,6 +108,7 @@ function RegisterPage() {
                 <button type="submit">
                     Registreren
                 </button>
+                {error && <p className="error-message">{error}</p>}
                 {registerSuccess === true &&
                 <div className="confirmation__container">
                     <Loader/>

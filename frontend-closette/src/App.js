@@ -24,41 +24,43 @@ function App() {
 
     return (
         <>
-            <div className="main container">
-                <Switch>
-                    <Route exact path="/">
-                        <HomePage/>
-                    </Route>
-                    <Route exact path="/search">
-                        <SearchPage/>
-                    </Route>
-                    <Route exact path="/searchresults">
-                        <SearchResults/>
-                    </Route>
-                    <Route path="/submit">
-                        <SubmitPage/>
-                    </Route>
-                    <Route path="/news">
-                        <NewsFeedPage/>
-                    </Route>
-                    <Route path="/contact">
-                        <ContactPage/>
-                    </Route>
-                    <Route path="/login">
-                        <LoginPage/>
-                    </Route>
-                    <Route path="/signup">
-                        <RegisterPage/>
-                    </Route>
-                    <Route path="/dashboard">
-                        <DashboardPage/>
-                    </Route>
-                    <Route path="/login">
-                        <LoginPage/>
-                    </Route>
-                </Switch>
-            </div>
-            <Footer/></>
+            <div className="body__wrapper">
+                <div className="main container">
+                    <Switch>
+                        <Route exact path="/">
+                            <HomePage/>
+                        </Route>
+                        <Route exact path="/search">
+                            <SearchPage/>
+                        </Route>
+                        <Route exact path="/searchresults">
+                            <SearchResults/>
+                        </Route>
+                        <Route path="/submit">
+                            <SubmitPage/>
+                        </Route>
+                        <Route path="/news">
+                            <NewsFeedPage/>
+                        </Route>
+                        <Route path="/contact">
+                            <ContactPage/>
+                        </Route>
+                        <Route path="/login">
+                            <LoginPage/>
+                        </Route>
+                        <Route path="/signup">
+                            <RegisterPage/>
+                        </Route>
+                        <Route path="/dashboard">
+                            <DashboardPage/>
+                        </Route>
+                        <Route path="/login">
+                            <LoginPage/>
+                        </Route>
+                    </Switch>
+                </div>
+                <Footer/></div>
+        </>
     );
 
 }
