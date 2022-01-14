@@ -14,6 +14,8 @@ Zie voor verdere uitleg hieronder.
 
 Als je het project gedownload hebt naar jouw locale machine, installeer je eerst de back-end. Liefst via een Java-ready/Maven-ready IDE zoals IntelliJ maar het kan ook door de `backend-closette` folder te openen in elke terminal van jouw keuze.
 
+Je IDE kan als notieficatie de vraag stellen of Maven dit project mag vertrouwen, ze gdan 'yes' op de rust vraag. En installeer JPA buddy en de andere plugins wanneer daar akkoord op wordt gevraagd.
+
 In de meeste gevallen volstaat het om de _backend-closette_ map te openen in een IDE, die Java kan complieren, en het pom-bestand van Maven te laten installeren, waarna de Main klasse `ClosetteApplicatie` gedraaid (run) kan worden. (Het back-end startscript staat in `bckend-closette/pom.xml`). Maar installatie en runnen vanuit de `backend-closette` directory kan ook in 1 keer via een terminal naar keuze met het commando:
 
 `$ mvn spring-boot:run`.
@@ -22,12 +24,8 @@ In de terminal kan de back-end app gestopt worden met de toetscombinatie `ctrl` 
 
 ### JAVA versie
 
-Dit project werkt alleen wanner je JDK versie 17 of hoger hebt geïnstalleerd op je computer. Wanneer je deze niet hebt, kun je deze downloaden via https://jdk.java.net
+Dit project werkt alleen wanneer je JDK versie 17 of hoger hebt geïnstalleerd op je computer. Wanneer je deze niet hebt, kun je deze downloaden via https://jdk.java.net
 
-### Standaard users
-
-* admin - password
-* user - password
 
 ### Back-end aanpassingen database
 
@@ -37,9 +35,14 @@ De database settings, in (bijvoorbeeld) pgAdmin:
 * postgresql database op localhost:5432 (port 5432)
 * databasenaam: closette
 * user/owner: springboot
-* password: springboot
+* password: springboot 
 
 Maak dus eerst een user aan met naam/wachtwoord `springboot`. En daarna een lege database met de naam `closette`, gekoppeld aan deze user.
+
+### Standaard users
+
+* admin - password
+* user - password
 
 ### Back-end aanpassingen voor uploads
 
@@ -87,7 +90,4 @@ Dit project werkt alleen wanneer je Nodejs versie Node.js 15.4.0 of hoger hebt g
 
 ### Voorkeur browsers
 
-NB: Gebruik bij voorkeur **Chrome** of **Firefox** of **Opera**. Natuurlijk werkt alles ook in Safari en Edge maar sommige fonts worden daarin niet mooi 'bold' gerendered.
-
-
-
+NB: Gebruik bij voorkeur **Chrome**, **Edge** of **Opera**. Natuurlijk werkt alles ook in Firefox en Safari maar sommige fonts worden daarin niet mooi 'bold' gerendered.

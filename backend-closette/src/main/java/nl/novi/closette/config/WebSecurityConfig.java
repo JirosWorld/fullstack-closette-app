@@ -1,7 +1,6 @@
 package nl.novi.closette.config;
 
 import nl.novi.closette.security.JwtRequestFilter;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,9 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 import javax.sql.DataSource;
-
 import static org.springframework.http.HttpMethod.PATCH;
 
 @Configuration
@@ -65,11 +62,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(PATCH,"/users/{^[\\w]$}/password").authenticated()
-                .antMatchers("/users/**").hasRole("ADMIN")
-                .antMatchers("/toilets/**").hasRole("USER")
-                .antMatchers("/persons/**").hasAnyRole("USER")
+//                .antMatchers("/users/**").hasRole("ADMIN")
+//                    ===> kan open gezet worden tijdens development
+//                .antMatchers("/toilets/**").hasRole("USER")
+//                    ===> IEDEREEN mag kunnen zoeken, ook niet-ingelogde gebruikers
+                .antMatchers("/ratings/**").hasAnyRole("USER")
                 .antMatchers(HttpMethod.GET, "closette").authenticated()
-                .antMatchers(HttpMethod.GET, "goodbye").permitAll()
                 .anyRequest().permitAll()
                 .and()
                 .cors()

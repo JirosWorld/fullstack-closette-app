@@ -7,6 +7,7 @@ public class UserPostRequestDto {
     private String username;
     private String password;
     private String email;
+
     private Set<String> authorities;
 
     public String getUsername() {

@@ -3,6 +3,9 @@ package nl.novi.closette.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 @Entity
 @Table(name = "toilets")
@@ -18,6 +21,7 @@ public class Toilet {
     private String author;
     private String latitude;
     private String longitude;
+    private String postTime;
 
     private boolean genderneutral;
     private boolean free;
@@ -26,7 +30,7 @@ public class Toilet {
     private boolean hasPhoto;
     private String openingHours;
     private String infoText;
-    private double rating;
+    private double ratingAverage;
     private String city;
     private String country;
     private String venue;
@@ -35,24 +39,22 @@ public class Toilet {
 
     @JsonIgnoreProperties("toilets")
     @ManyToOne
-    @JoinColumn(name = "person_id", referencedColumnName = "id")
-    private Person owner;
+    @JoinColumn(name = "rating_id", referencedColumnName = "id")
+    private Rating owner;
 
-    // voor Spring Boot (JPA) is een constructor niet nodig
-
-    // default constructor
     public Toilet() {}
 
-    public Toilet(String title, String author, String city, String country) {
+    public Toilet(String title, String author, String city, String country, String postTime) {
         this.title = title;
         this.author = author;
         this.city = city;
         this.country = country;
+        this.postTime = postTime;
     }
 
     // full constructor
 
-    public Toilet(int id, String title, String author, String latitude, String longitude, boolean genderneutral, boolean free, boolean accessible, String cleanliness, boolean hasPhoto, String openingHours, String infoText, double rating, String city, String venue, Person owner) {
+    public Toilet(int id, String title, String author, String latitude, String longitude, boolean genderneutral, boolean free, boolean accessible, String cleanliness, boolean hasPhoto, String openingHours, String infoText, double ratingAverage, String city, String venue, Rating owner) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -65,7 +67,7 @@ public class Toilet {
         this.hasPhoto = hasPhoto;
         this.openingHours = openingHours;
         this.infoText = infoText;
-        this.rating = rating;
+        this.ratingAverage = ratingAverage;
         this.city = city;
         this.country = country;
         this.venue = venue;
@@ -73,7 +75,7 @@ public class Toilet {
     }
 
 
-    // setters and getters
+    // getters and setters
 
     public int getId() {
         return id;
@@ -171,12 +173,12 @@ public class Toilet {
         this.infoText = infoText;
     }
 
-    public double getRating() {
-        return rating;
+    public double getRatingAverage() {
+        return ratingAverage;
     }
 
-    public void setRating(double rating) {
-        this.rating = rating;
+    public void setRatingAverage(double ratingAverage) {
+        this.ratingAverage = ratingAverage;
     }
 
     public String getCity() {
@@ -203,13 +205,48 @@ public class Toilet {
         this.venue = venue;
     }
 
+    public String getPostTime() {
+        return postTime;
+    }
+
+    public void setPostTime(String postTime) {
+        LocalDate localDate = LocalDate.now();
+        postTime = localDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG));
+        this.postTime = postTime;
+    }
+
     // getters and setters of relation tables
 
-    public Person getOwner() {
+    public Rating getOwner() {
         return owner;
     }
 
-    public void setOwner(Person owner) {
+    public void setOwner(Rating owner) {
         this.owner = owner;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Toilet{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", latitude='" + latitude + '\'' +
+                ", longitude='" + longitude + '\'' +
+                ", postTime='" + postTime + '\'' +
+                ", genderneutral=" + genderneutral +
+                ", free=" + free +
+                ", accessible=" + accessible +
+                ", cleanliness='" + cleanliness + '\'' +
+                ", hasPhoto=" + hasPhoto +
+                ", openingHours='" + openingHours + '\'' +
+                ", infoText='" + infoText + '\'' +
+                ", ratingAverage=" + ratingAverage +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", venue='" + venue + '\'' +
+                ", owner=" + owner +
+                '}';
     }
 }

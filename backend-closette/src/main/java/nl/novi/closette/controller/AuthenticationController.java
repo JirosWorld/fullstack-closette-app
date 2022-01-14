@@ -3,7 +3,6 @@ package nl.novi.closette.controller;
 import nl.novi.closette.dto.AuthenticationRequestDto;
 import nl.novi.closette.dto.AuthenticationResponseDto;
 import nl.novi.closette.service.UserAuthenticateService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

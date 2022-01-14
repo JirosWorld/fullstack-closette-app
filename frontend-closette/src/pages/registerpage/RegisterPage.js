@@ -18,15 +18,16 @@ function RegisterPage() {
         console.log("Registration data:");
         console.log(data);
         try {
-            const result = await axios.post('http://localhost:3000/register', {
+            const result = await axios.post('http://localhost:8080/users', {
                 email: data.email,
                 password: data.password,
-                avatar: "pikachu",
                 username: data.username,
             });
 
+            console.log("Resultaat data:");
             console.log(result);
             toggleRegisterSuccess(true);
+
             setTimeout( () => {
                 history.push("/login");
             }, 5000);

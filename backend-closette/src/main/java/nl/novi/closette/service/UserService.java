@@ -57,21 +57,12 @@ public class UserService {
             user.setEmail(userPostRequest.getEmail());
             user.setEnabled(true);
             user.addAuthority("ROLE_USER");
-            for (String s : userPostRequest.getAuthorities()) {
-                if (!s.startsWith("ROLE_")) {
-                    s = "ROLE_" + s;
-                }
-                s = s.toUpperCase();
-                if (!s.equals("ROLE_USER")) {
-                    user.addAuthority(s);
-                }
-            }
 
             User newUser = userRepository.save(user);
             return newUser.getUsername();
         }
         catch (Exception ex) {
-            throw new BadRequestException("Cannot create user.");
+            throw new BadRequestException("BadRequest: Cannot create user.");
         }
 
     }
@@ -135,7 +126,7 @@ public class UserService {
     }
 
     private boolean isValidPassword(String password) {
-        final int MIN_LENGTH = 8;
+        final int MIN_LENGTH = 4;
         final int MIN_DIGITS = 1;
         final int MIN_LOWER = 1;
         final int MIN_UPPER = 1;

@@ -33,6 +33,11 @@ public class UserController {
         return ResponseEntity.ok().body(userService.getUser(username));
     }
 
+    @GetMapping(value = "/id/{id}")
+    public ResponseEntity<Object> getUserById(@PathVariable("id") String id) {
+        return ResponseEntity.ok().body(userService.getUser(id));
+    }
+
     @PostMapping(value = "")
     public ResponseEntity<Object> createUser(@RequestBody UserPostRequestDto user) {
         String newUsername = userService.createUser(user);

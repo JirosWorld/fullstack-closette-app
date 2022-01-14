@@ -33,7 +33,7 @@ public class ToiletService {
             return optionalToilet.get();
         }
         else {
-            throw new RecordNotFoundException("ID does not exist!!!");
+            throw new RecordNotFoundException("ID does not exist!");
         }
 
     }
@@ -43,7 +43,7 @@ public class ToiletService {
             toiletRepository.deleteById(id);
         }
         else {
-            throw new RecordNotFoundException("ID does not exist!!!");
+            throw new RecordNotFoundException("ID does not exist!");
         }
 }
 
@@ -59,6 +59,19 @@ public class ToiletService {
         toilet.setAuthor(toiletRequestDto.getAuthor());
         toilet.setTitle(toiletRequestDto.getTitle());
         toilet.setLatitude(toiletRequestDto.getLatitude());
+        toilet.setLongitude(toiletRequestDto.getLongitude());
+        toilet.setPostTime(toiletRequestDto.getPostTime());
+        toilet.setGenderneutral(toiletRequestDto.isGenderneutral());
+        toilet.setFree(toiletRequestDto.isFree());
+        toilet.setAccessible(toiletRequestDto.isAccessible());
+        toilet.setCleanliness(toiletRequestDto.getCleanliness());
+        toilet.setHasPhoto(toiletRequestDto.isHasPhoto());
+        toilet.setOpeningHours(toiletRequestDto.getOpeningHours());
+        toilet.setInfoText(toiletRequestDto.getInfoText());
+        toilet.setRatingAverage(toiletRequestDto.getRatingAverage());
+        toilet.setCity(toiletRequestDto.getCity());
+        toilet.setCountry(toiletRequestDto.getCountry());
+        toilet.setVenue(toiletRequestDto.getVenue());
 
         Toilet newToilet = toiletRepository.save(toilet);
         return newToilet.getId();

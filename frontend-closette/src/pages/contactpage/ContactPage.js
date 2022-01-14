@@ -4,7 +4,6 @@ import Header from "../../components/header/Header";
 import TopNav from "../../components/topnav/TopNav";
 import BackButton from "../../components/buttons/BackButton";
 import {ContactUs} from "./ContactUs";
-import emailjs from '@emailjs/browser';
 
 function ContactPage() {
 

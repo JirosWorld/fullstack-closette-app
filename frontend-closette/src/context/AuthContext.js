@@ -50,9 +50,9 @@ function AuthContextProvider({ children }) {
         fetchUserData(jwtToken, userId);
     }
 
-    async function fetchUserData(token, id) {
+    async function fetchUserData(token, username) {
         try {
-            const result = await axios.get(`http://localhost:3000/600/users/${id}`, {
+            const result = await axios.get(`http://localhost:8080/users/${username}`, {
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
@@ -65,8 +65,8 @@ function AuthContextProvider({ children }) {
                     username: result.data.username,
                     email: result.data.email,
                     id: result.data.id,
-                    avatar: result.data.avatar,
-                    // als je ook rollen hebt, plaats je die er ook bij!
+                    userActive: result.data.enabled,
+                    // userRole: result.data.authority.authority,
                 },
                 status: 'done',
             });

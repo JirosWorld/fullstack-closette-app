@@ -78,4 +78,5 @@ public class User {
                 this.authorities.removeIf(authority -> authority.getAuthority().equalsIgnoreCase(authorityString));
         }
 
+
 }

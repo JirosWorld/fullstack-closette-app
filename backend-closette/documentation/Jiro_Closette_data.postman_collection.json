@@ -149,7 +149,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\n        \"title\": \"Toilet venue locatie naam\",\n        \"author\": \"Locatie eigenaar\",\n        \"latitude\": \"0000000\",\n        \"person_id\": \"1\"\n    }",
+							"raw": " {\n        \"title\": \"Toilet venue locatie naam\",\n        \"author\": \"Locatie eigenaar\",\n        \"latitude\": \"0000000\",\n        \"rating_id\": \"1\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -239,7 +239,7 @@
 					"response": []
 				},
 				{
-					"name": "GET all Persons",
+					"name": "GET all Ratings",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -254,14 +254,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/persons",
+							"raw": "http://localhost:8080/ratings",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"persons"
+								"ratings"
 							]
 						},
 						"description": "Laat zien wie er lid is er waar ze precies 'eigenaar' van zijn."

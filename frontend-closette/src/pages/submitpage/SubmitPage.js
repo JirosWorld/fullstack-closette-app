@@ -33,7 +33,7 @@ function SubmitPage() {
 
             try {
                 const result = await axios.get('http://localhost:8080/toilets', {
-                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0MjI1MjEzMCwiaWF0IjoxNjQxMzg4MTMwfQ.yauYw0EQTXpV4Nq0U5qf5gwxpPbVrefKAsaTqHQ-Cuo",
+                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0MzgxNTYzNCwiaWF0IjoxNjQyMDg3NjM0fQ.qN3fFcBPc1Qn00-KVEDwG6Hmsx71llqzQXzJ4RP4C6Q",
                 });
                 setSubInfo(result);
                 console.log("Alle data van 1 submitpage:");

@@ -19,15 +19,14 @@ function LoginPage() {
         console.log("Login data (secret):");
         console.log(data);
         try {
-            const result = await axios.post('http://localhost:3000/login', data);
-            // let op: ander endpoint
+            const result = await axios.post('http://localhost:8080/authenticate', data);
             // je hoeft geen array/JSON uit te typen wanneer het inputveld dezelfde namen heeft als in de database
 
             console.log("Result data:");
             console.log(result);
             // console.log("Result JWT token:");
             // console.log(result.data.accessToken);
-            login(result.data.accessToken);
+            login(result.data.jwt);
 
             toggleLoginSuccess(true);
 
@@ -59,17 +58,17 @@ function LoginPage() {
                 <InputField
                     errors={errors}
                     register={register}
-                    labelText="E-mail"
-                    labelId="email-field"
-                    inputName="email"
+                    labelText="Gebruikersnaam"
+                    labelId="username-field"
+                    inputName="username"
                     validationRules={{
                         required: {
                             value: true,
-                            message: "Email invullen is verplicht. Vul aub iets in"
+                            message: "Gebruikersnaam invullen is verplicht. Vul aub iets in"
                         },
                         minLength: {
-                            value: 6,
-                            message: "Te kort mailadres."
+                            value: 3,
+                            message: "Te korte gebruikersnaam."
                         }
                     }}
                 />

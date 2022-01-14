@@ -46,16 +46,6 @@ function DashboardPage(props) {
             <Header
                 title="Mijn Dashboard + F.A.Q."/>
             <section className="dashboard__user-data">
-                {privateContent &&
-                <section>
-                    <h2>Afgeschermde content voor ingelogde gebruikers</h2>
-                    <h4>{privateContent.title}</h4>
-                    <p>{privateContent.content}</p>
-                </section>
-                }
-
-                <br/>
-
                 {user ? <h2>Gegevens</h2> :
                     <>
                         <h2>Je bent niet ingelogd</h2>
