@@ -61,7 +61,6 @@ public class ToiletService {
         }
 
         Toilet toilet = new Toilet();
-        toilet.setAuthor(toiletRequestDto.getAuthor());
         toilet.setTitle(toiletRequestDto.getTitle());
         toilet.setLatitude(toiletRequestDto.getLatitude());
         toilet.setLongitude(toiletRequestDto.getLongitude());
@@ -76,7 +75,7 @@ public class ToiletService {
         toilet.setRatingAverage(toiletRequestDto.getRatingAverage());
         toilet.setCity(toiletRequestDto.getCity());
         toilet.setCountry(toiletRequestDto.getCountry());
-        toilet.setVenue(toiletRequestDto.getVenue());
+        toilet.setAddress(toiletRequestDto.getAddress());
 
         Toilet newToilet = toiletRepository.save(toilet);
         return newToilet.getId();
@@ -104,11 +103,14 @@ public class ToiletService {
             if (toilet.getTitle() != null && !toilet.getTitle().isEmpty()) {
                 storedToilet.setTitle(toilet.getTitle());
             }
-            if (toilet.getAuthor() != null && !toilet.getAuthor().isEmpty()) {
-                storedToilet.setAuthor(toilet.getAuthor());
+            if (toilet.getCity() != null && !toilet.getCity().isEmpty()) {
+                storedToilet.setCity(toilet.getCity());
             }
             if (toilet.getLatitude() != null && !toilet.getLatitude().isEmpty()) {
                 storedToilet.setLatitude(toilet.getLatitude());
+            }
+            if (toilet.getLongitude() != null && !toilet.getLongitude().isEmpty()) {
+                storedToilet.setLongitude(toilet.getLongitude());
             }
             toiletRepository.save(storedToilet);
 

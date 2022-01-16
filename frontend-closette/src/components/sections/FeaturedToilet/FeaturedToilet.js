@@ -39,15 +39,14 @@ function FeaturedToilet() {
             <div className="featured-post">
                 <h4>Toilet van de week: {toiletEntry.data && toiletEntry.data[6].id}</h4>
                 <div className="featured-post--content">
-                    <NavLink
-                        activeClassName="active-link"
+                    <Link
                         to={`/${toiletEntry.data && toiletEntry.data[6].title}`}>
                             <span className="thumbnail-container">
                                     <img src={FeaturedToiletImg} alt="thumbnail"
                                          className="thumbnail"
                                          width="150"/>
                             </span>
-                    </NavLink>
+                    </Link>
 
                 <ul>
                     <li>naam: <Link

@@ -47,7 +47,7 @@ function NewsFeedPage() {
             <Header
                 title="Nieuwsoverzicht"
             />
-            <div className="Newsfeed__page content-wrapper">
+            <div className="Newsfeed__page content-wide">
                 <BackButton/>
                 {error && <p className="error-message">{error}</p>}
                 <section className="news posts">
@@ -77,16 +77,12 @@ function NewsFeedPage() {
                                             to={`news/${post.id}`}> "{post.title}"
                                 </Link></span>
                                         </h2>
-
-                                        |<span className="mapped__post__author">
+                                        <span className="mapped__post__author">
                                     Auteur: {post.newsauthor.username}
-                                    </span>|
-                                        <br/>
-                                        | <span className="mapped__post__detail">
-                                Datum
-                                <Link
-                                    activeClassName="active-link"
-                                    to={`/news/${post.id}`}> {post.postTime}
+                                    </span><span className="mapped__post__detail">
+                                Datum <Link
+                                        activeClassName="active-link"
+                                        to={`/news/${post.id}`}> {post.postTime}
                                 </Link></span>
 
                                         <div className="mapped__post__details">

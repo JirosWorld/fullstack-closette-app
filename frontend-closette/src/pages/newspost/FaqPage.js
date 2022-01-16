@@ -24,12 +24,13 @@ function FaqPage() {
                         <h3>Handleiding</h3>
                         <p>bij het plaatsen van een nieuwe toilet-locatie kun je allerlei opties per toilet aangeven. De enige die echt verplicht zijn om in te vullen, zijn: naam, stad en land.</p>
                         <p>Als je de GPS coördinaten weet van de plek die je hebt gevonden, zorg er dan voor dat je superstrak deze notatie aanhoudt: start met een positief of negatief cijfer van 1 to 2 cijfers en <strong>typ
-                            dan een punt</strong> - vooral die punt is belangrijk. De cijfers na de punt geven de precisi aan.</p>
+                            dan een punt</strong> - vooral die punt is belangrijk. De cijfers na de punt geven de precisie aan.</p>
                         <p>Geldige coördinaten zijn bijvoorbeeld deze:
                         <br/>50.12345
                         <br/>-50.12345
                         <br/>4.54321
                         <br/>-4.54321</p>
+                        <p>Wanneer je een 400 error ziet, dan heb je een naam ingevoerd die al bestaat of je hebt een GPS coordinaat gebruikt dat al eerder is ingevoerd - zorg dat titel en locatie UNIEK zijn. Alle andere velden hoeven niet uniek te zijn (zoals stad en land).</p>
                         <h3>F.A.Q. ~ veelgestelde vragen</h3>
                         <div className="wrapper">
                             <Accordeon title="Wat betekenen die locatie getallen?">
@@ -76,6 +77,12 @@ function FaqPage() {
                     </article>
                     <div>
                         <Link to="/">Terug naar Home</Link>
+                        <p>
+                            Link <Link to="/searchresults">naar Zoekresultaten Pagina</Link>
+                        </p>
+                        <p>
+                            Link <Link to="/searchqueries">naar Zoek queries op eigenschappen Pagina</Link>
+                        </p>
                     </div>
                 </section>
                 <BackButton/>

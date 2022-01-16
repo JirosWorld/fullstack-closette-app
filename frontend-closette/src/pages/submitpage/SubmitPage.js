@@ -6,7 +6,6 @@ import BackButton from "../../components/buttons/BackButton";
 import Loader from "../../components/loader/Loader";
 import "./SubmitPage.css";
 import TopNav from "../../components/topnav/TopNav";
-import Accordeon from "../../components/accordeon/Accordeon";
 import {Link, useHistory} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import InputField from "../../components/form-elements/inputfield/InputField";
@@ -29,6 +28,8 @@ function SubmitPage() {
 
         try {
             const result = await axios.post('http://localhost:8080/toilets', {
+                title: data.title,
+                address: data.address,
                 city: data.city,
                 country: data.country,
                 genderneutral: data.genderneutral,
@@ -36,7 +37,9 @@ function SubmitPage() {
                 latitude: data.latitude,
                 longitude: data.longitude,
                 openingHours: data.openingHours,
-                title: data.title,
+                free: data.free,
+                accessible: data.accessible,
+                // public: data.public, = toilet wel/niet openbaar
             });
             setSubmitInfo(result);
             console.log("Alle data van 1 submitrequest:");
@@ -54,6 +57,7 @@ function SubmitPage() {
             history.push("/search");
         }, 5000);
     }
+
     console.log(errors);
 
     useEffect(() => {
@@ -68,125 +72,136 @@ function SubmitPage() {
             />
             <div className="submit__page content-wrapper">
                 <h2>Toilet gevonden? Voeg hier een nieuwe toe!</h2>
+                <p>Lees meer <Link to="/info/faq-handleiding">in de f.a.q.</Link></p>
 
                 {user ?
                     <>
                         <form className="form-container"
                               onSubmit={handleSubmit(onFormSubmitToilet)}
                         >
-                            <InputField
-                                inputType="text"
-                                placeholderText="Bijvoorbeeld: Museum bar..."
-                                errors={errors}
-                                register={register}
-                                labelText="Titel/Naam van locatie"
-                                labelId="title-field"
-                                inputName="title"
-                                validationRules={{
-                                    required: {
-                                        value: true,
-                                        message: "Titel invullen is verplicht. Vul aub iets in",
-                                    },
-                                    minLength: {
-                                        value: 6,
-                                        message: "Te korte titel.",
-                                    },
-                                }}
-                            />
+                            <fieldset className="checkbox-filters">
+                                <InputField
+                                    inputType="text"
+                                    placeholderText="Bijvoorbeeld: Museum bar..."
+                                    errors={errors}
+                                    register={register}
+                                    labelText="Titel/Naam van locatie"
+                                    labelId="title-field"
+                                    inputName="title"
+                                    validationRules={{
+                                        required: {
+                                            value: true,
+                                            message: "Titel invullen is verplicht. Vul aub iets in",
+                                        },
+                                        minLength: {
+                                            value: 6,
+                                            message: "Te korte titel.",
+                                        },
+                                    }}
+                                />
 
-                            <InputField
-                                inputType="text"
-                                placeholderText="Bijvoorbeeld: Barcelona..."
-                                errors={errors}
-                                register={register}
-                                labelText="Stad/Plaats"
-                                labelId="city-field"
-                                inputName="city"
-                                validationRules={{
-                                    required: {
-                                        value: true,
-                                        message: "Plaatsnaam invullen is verplicht. Vul aub iets in",
-                                    },
-                                    minLength: {
-                                        value: 1,
-                                        message: "Te korte naam, gebruik minstens 2 tekens.",
-                                    },
-                                    maxLength: {
-                                        value: 85,
-                                        message: "Te lange plaatsnaam, gebruik maximaal 85 tekens. Er is slechts 1 stad in de wereld met een plaatsnaam van 85 tekens: Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu, in Nieuw-Zeeland.",
+                                <InputField
+                                    inputType="text"
+                                    placeholderText="Bijvoorbeeld: Barcelona..."
+                                    errors={errors}
+                                    register={register}
+                                    labelText="Stad/Plaats"
+                                    labelId="city-field"
+                                    inputName="city"
+                                    validationRules={{
+                                        required: {
+                                            value: true,
+                                            message: "Plaatsnaam invullen is verplicht. Vul aub iets in",
+                                        },
+                                        minLength: {
+                                            value: 1,
+                                            message: "Te korte naam, gebruik minstens 2 tekens.",
+                                        },
+                                        maxLength: {
+                                            value: 85,
+                                            message: "Te lange plaatsnaam, gebruik maximaal 85 tekens. Er is slechts 1 stad in de wereld met een plaatsnaam van 85 tekens: Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu, in Nieuw-Zeeland.",
 
-                                    },
-                                }}
-                            />
+                                        },
+                                    }}
+                                />
 
-                            <InputField
-                                inputType="text"
-                                placeholderText="Bijvoorbeeld: Kenia..."
-                                errors={errors}
-                                register={register}
-                                labelText="Land"
-                                labelId="country-field"
-                                inputName="country"
-                                validationRules={{
-                                    required: {
-                                        value: true,
-                                        message: "Land invullen is verplicht. Vul aub iets in",
-                                    },
-                                    minLength: {
-                                        value: 1,
-                                        message: "Te korte naam, gebruik minstens 2 tekens.",
-                                    },
-                                    maxLength: {
-                                        value: 85,
-                                        message: "Te lange regionaam, gebruik maximaal 85 tekens.",
+                                <InputField
+                                    inputType="text"
+                                    placeholderText="Bijvoorbeeld: Kalverstraat 92, 1012 PH Amsterdam..."
+                                    errors={errors}
+                                    register={register}
+                                    labelText="Adres"
+                                    labelId="address-field"
+                                    inputName="address"
+                                />
 
-                                    },
-                                }}
-                            />
+                                <InputField
+                                    inputType="text"
+                                    placeholderText="Bijvoorbeeld: Kenia..."
+                                    errors={errors}
+                                    register={register}
+                                    labelText="Land"
+                                    labelId="country-field"
+                                    inputName="country"
+                                    validationRules={{
+                                        required: {
+                                            value: true,
+                                            message: "Land invullen is verplicht. Vul aub iets in",
+                                        },
+                                        minLength: {
+                                            value: 1,
+                                            message: "Te korte naam, gebruik minstens 2 tekens.",
+                                        },
+                                        maxLength: {
+                                            value: 85,
+                                            message: "Te lange regionaam, gebruik maximaal 85 tekens.",
 
-                            <InputField
-                                inputType="text"
-                                placeholderText="Bijvoorbeeld: 52.3700"
-                                errors={errors}
-                                register={register}
-                                labelText="Breedtegraad (latitude)"
-                                labelId="latitude-field"
-                                inputName="latitude"
-                                validationRules={{
-                                    minLength: {
-                                        value: 5,
-                                        message: "Te kort coördinaat, gebruik minstens 5 tekens.",
-                                    },
-                                    maxLength: {
-                                        value: 12,
-                                        message: "Te lang coördinaat, gebruik maximaal 12 tekens.",
+                                        },
+                                    }}
+                                />
 
-                                    },
-                                }}
-                            />
+                                <InputField
+                                    inputType="text"
+                                    placeholderText="Bijvoorbeeld: 52.3700"
+                                    errors={errors}
+                                    register={register}
+                                    labelText="Breedtegraad (latitude)"
+                                    labelId="latitude-field"
+                                    inputName="latitude"
+                                    validationRules={{
+                                        minLength: {
+                                            value: 5,
+                                            message: "Te kort coördinaat, gebruik minstens 5 tekens.",
+                                        },
+                                        maxLength: {
+                                            value: 12,
+                                            message: "Te lang coördinaat, gebruik maximaal 12 tekens.",
 
-                            <InputField
-                                inputType="text"
-                                placeholderText="Bijvoorbeeld: 4.8900"
-                                errors={errors}
-                                register={register}
-                                labelText="Lengtegraad (longitude)"
-                                labelId="longitude-field"
-                                inputName="longitude"
-                                validationRules={{
-                                    minLength: {
-                                        value: 4,
-                                        message: "Te kort coördinaat, gebruik minstens 5 tekens.",
-                                    },
-                                    maxLength: {
-                                        value: 12,
-                                        message: "Te lang coördinaat, gebruik maximaal 12 tekens.",
+                                        },
+                                    }}
+                                />
 
-                                    },
-                                }}
-                            />
+                                <InputField
+                                    inputType="text"
+                                    placeholderText="Bijvoorbeeld: 4.8900"
+                                    errors={errors}
+                                    register={register}
+                                    labelText="Lengtegraad (longitude)"
+                                    labelId="longitude-field"
+                                    inputName="longitude"
+                                    validationRules={{
+                                        minLength: {
+                                            value: 4,
+                                            message: "Te kort coördinaat, gebruik minstens 5 tekens.",
+                                        },
+                                        maxLength: {
+                                            value: 12,
+                                            message: "Te lang coördinaat, gebruik maximaal 12 tekens.",
 
-                            <section className="checkbox-filters">
+                                        },
+                                    }}
+                                />
+
                                 <Slider
                                     errors={errors}
                                     register={register}
@@ -223,9 +238,8 @@ function SubmitPage() {
 
                                 </Slider>
 
-                                <InputTextarea
-                                    rowNr={3}
-                                    columnNr={10}
+                                <InputField
+                                    inputType="text"
                                     placeholderText="Bijvoorbeeld: zeer schoon op doordeweekse dagen..."
                                     errors={errors}
                                     register={register}
@@ -264,7 +278,7 @@ function SubmitPage() {
                                     placeholderText="Bijvoorbeeld: 9h - 17h..."
                                     errors={errors}
                                     register={register}
-                                    labelText="Openingstijden:"
+                                    labelText="Openingstijden"
                                     labelId="openingHours-field"
                                     inputName="openingHours"
                                     validationRules={{
@@ -326,7 +340,7 @@ function SubmitPage() {
                                     filterAttribute="Openingstijden"
                                 />
 
-                            </section>
+                            </fieldset>
 
                             <button
                                 type="submit"
@@ -337,29 +351,14 @@ function SubmitPage() {
                             {submitSuccess === true &&
                             <div className="confirmation__container">
                                 <Loader/>
-                                <h3>Toevoegen gelukt!<br/>Zoek je nieuwe toilet nu meteen op in de
-                                    database (je wordt automatisch doorgestuurd).</h3>
+                                <h3>Toevoegen gelukt!</h3>
+                                <p>Wanneer je een 400 error ziet, dan heb je een naam ingevoerd die al bestaat of je hebt een GPS coordinaat gebruikt dat ook al is ingevoerd - zorg dat titel en locatie UNIEK zijn.</p>
+                                    <h2>Zoek je nieuwe toilet nu meteen op in de
+                                    database (je wordt automatisch doorgestuurd).</h2>
                             </div>}
 
                         </form>
 
-                        <section>
-                            <div className="wrapper">
-                                <Accordeon title="Wat betekenen die locatie getallen?">
-                                    <p>Alle plekken op de wereld zijn te beschrijven met GPS
-                                        co&ouml;rdinaten: de breedtegraad en lengtegraad.
-                                        Ezelsbruggetje: breedtegraad (latitude) komt altijd
-                                        v&oacute;&oacute;r
-                                        lengtegraad (longitude) - dus op alfabetische volgorde. Ook
-                                        in
-                                        het
-                                        Engels zijn ze toevallig in alfabetische volgorde:
-                                        [latitude,
-                                        longitude].</p>
-                                </Accordeon>
-                            </div>
-                        </section>
-                        <p>Lees meer <Link to="/info/faq-handleiding">in de f.a.q.</Link></p>
                     </>
                     :
                     <>

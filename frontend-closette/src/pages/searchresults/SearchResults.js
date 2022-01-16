@@ -79,7 +79,7 @@ function SearchResults() {
                             </span>
                                     </Link>
 
-                                    <div className="content-wrapper">
+                                    <div className="content-wide">
                                         <h2 className="mapped__post__title">
                                             <Link
                                                 to={`toilets/${post.id}`}>{Object.keys(post.title).length > 0

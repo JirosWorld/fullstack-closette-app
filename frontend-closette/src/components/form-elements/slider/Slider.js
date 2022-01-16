@@ -5,15 +5,15 @@ import styles from './Slider.module.css';
 //  Alle andere checkboxes mogen in default stijl
 
 function Slider({register, labelId, yes, no, filterAttribute, inputName, children}) {
-    const [checked, toggleChecked] = useState();
+    const [checkedState, toggleCheckedState] = useState(false);
     const [firstMount, toggleFirstMount] = useState(false);
 
 
     function toggleCheckbox() {
-        if (checked === false) {
-            toggleChecked(true);
+        if (checkedState === false) {
+            toggleCheckedState(true);
         } else {
-            toggleChecked(false);
+            toggleCheckedState(false);
         }
     }
 
@@ -25,7 +25,7 @@ function Slider({register, labelId, yes, no, filterAttribute, inputName, childre
         if(firstMount) {
             toggleCheckbox();
         }
-    }, [checked]);
+    }, [checkedState]);
 
     return (
         <div className={styles["slider-container"]}>
@@ -41,8 +41,8 @@ function Slider({register, labelId, yes, no, filterAttribute, inputName, childre
             type="checkbox"
             className={styles.switch}
             id={labelId}
-            value={checked}
-            onChange={() => toggleChecked(!checked)}
+            value={checkedState}
+            onChange={() => toggleCheckedState(!checkedState)}
             {...register(inputName)}
         />
 

@@ -14,10 +14,10 @@ import RegisterPage from "./pages/registerpage/RegisterPage";
 import DashboardPage from "./pages/dashboardpage/DashboardPage";
 import SearchResults from "./pages/searchresults/SearchResults";
 import Footer from "./components/footer/Footer";
-import {AuthContext} from "./context/AuthContext";
 import NewsPost from "./pages/newspost/NewsPost";
 import ToiletPost from "./pages/toiletpost/ToiletPost";
 import FaqPage from "./pages/newspost/FaqPage";
+import SearchByQueriesPage from "./pages/searchpage/SearchByQueriesPage";
 
 function PrivateRoute({children, isAuth, ...rest}) {
     return (
@@ -46,6 +46,9 @@ function App() {
                         </Route>
                         <Route exact path="/searchresults">
                             <SearchResults/>
+                        </Route>
+                        <Route exact path="/searchqueries">
+                            <SearchByQueriesPage/>
                         </Route>
                         <Route exact path="/toilets/:id">
                             <ToiletPost/>

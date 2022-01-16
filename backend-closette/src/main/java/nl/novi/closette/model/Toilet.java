@@ -16,9 +16,9 @@ public class Toilet {
     private int id;
 
     private String title;
-    private String author;
     private String latitude;
     private String longitude;
+    //    latitude (north or south) always precedes longitude (east or west).
     private String postTime;
     private boolean genderneutral;
     private boolean free;
@@ -30,9 +30,8 @@ public class Toilet {
     private double ratingAverage;
     private String city;
     private String country;
-    private String venue;
-
-//    latitude (north or south) always precedes longitude (east or west).
+    private String address;
+//    private boolean public; <= is the location publicly accessible
 
     @JsonIgnoreProperties("toilets")
     @ManyToOne
@@ -41,9 +40,8 @@ public class Toilet {
 
     public Toilet() {}
 
-    public Toilet(String title, String author, String city, String country, String postTime) {
+    public Toilet(String title, String city, String country, String postTime) {
         this.title = title;
-        this.author = author;
         this.city = city;
         this.country = country;
         this.postTime = postTime;
@@ -51,12 +49,12 @@ public class Toilet {
 
     // full constructor
 
-    public Toilet(int id, String title, String author, String latitude, String longitude, boolean genderneutral, boolean free, boolean accessible, String cleanliness, boolean hasPhoto, String openingHours, String infoText, double ratingAverage, String city, String venue, Rating owner) {
+    public Toilet(int id, String title, String latitude, String longitude, String postTime, boolean genderneutral, boolean free, boolean accessible, String cleanliness, boolean hasPhoto, String openingHours, String infoText, double ratingAverage, String city, String country, String address, Rating owner) {
         this.id = id;
         this.title = title;
-        this.author = author;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.postTime = postTime;
         this.genderneutral = genderneutral;
         this.free = free;
         this.accessible = accessible;
@@ -67,7 +65,7 @@ public class Toilet {
         this.ratingAverage = ratingAverage;
         this.city = city;
         this.country = country;
-        this.venue = venue;
+        this.address = address;
         this.owner = owner;
     }
 
@@ -89,13 +87,9 @@ public class Toilet {
         this.title = title;
     }
 
-    public String getAuthor() {
-        return author;
-    }
+    public String getAddress() { return address; }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
+    public void setAddress(String address) { this.address = address; }
 
     public String getLatitude() {
         return latitude;
@@ -193,14 +187,6 @@ public class Toilet {
         this.country = country;
     }
 
-    public String getVenue() {
-        return venue;
-    }
-
-    public void setVenue(String venue) {
-        this.venue = venue;
-    }
-
     public String getPostTime() {
         return postTime;
     }
@@ -226,7 +212,6 @@ public class Toilet {
         return "Toilet{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", author='" + author + '\'' +
                 ", latitude='" + latitude + '\'' +
                 ", longitude='" + longitude + '\'' +
                 ", postTime='" + postTime + '\'' +
@@ -240,7 +225,6 @@ public class Toilet {
                 ", ratingAverage=" + ratingAverage +
                 ", city='" + city + '\'' +
                 ", country='" + country + '\'' +
-                ", venue='" + venue + '\'' +
                 ", owner=" + owner +
                 '}';
     }

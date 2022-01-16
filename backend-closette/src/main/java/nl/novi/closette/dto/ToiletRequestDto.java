@@ -12,10 +12,6 @@ public class ToiletRequestDto {
         @Size(min=1, max=100)
         private String title;
 
-        @NotBlank
-        @Size(min=1, max=100)
-        private String author;
-
         @Size(min=2, max=20, message="latitude is too long or too short, please use a dot.")
         private String latitude;
 
@@ -31,7 +27,7 @@ public class ToiletRequestDto {
         private String openingHours;
         private String infoText;
         private double ratingAverage;
-        private String venue;
+        private String address;
 
         @NotBlank
         private String city;
@@ -47,14 +43,6 @@ public class ToiletRequestDto {
 
         public void setTitle(String title) {
                 this.title = title;
-        }
-
-        public String getAuthor() {
-                return author;
-        }
-
-        public void setAuthor(String author) {
-                this.author = author;
         }
 
         public String getLatitude() {
@@ -145,13 +133,9 @@ public class ToiletRequestDto {
                 this.ratingAverage = ratingAverage;
         }
 
-        public String getVenue() {
-                return venue;
-        }
+        public String getAddress() { return address; }
 
-        public void setVenue(String venue) {
-                this.venue = venue;
-        }
+        public void setAddress(String address) { this.address = address;  }
 
         public String getCity() {
                 return city;

@@ -32,7 +32,7 @@ body {
   box-sizing: border-box;
 }
 
-#root {
+.body__wrapper {
   background-color: var(--softbrown);
   background: var(--softbrown);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff), color-stop(100%,var(--softbrown)));
@@ -80,6 +80,11 @@ body {
   /*margin: 0 auto;*/
 }
 
+fieldset {
+  border: 1px solid var(--softpink);
+  border-radius: 15px;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Fredoka One', Verdana, cursive;
 }
@@ -110,6 +115,7 @@ button[type=button] {
   background-color: var(--softpink);
   border: 1px solid var(--hardpink);
 }
+
 button[type=button]:hover {
   border-radius: 5px;
   color: var(--softpink);
@@ -132,4 +138,14 @@ button[type=button]:hover {
   zoom: 1;
   filter: alpha(opacity=40);
   opacity: 0.4;
+}
+
+/*// app-wide mobile styles*/
+
+@media (max-width: 700px) {
+  .content-wrapper, body, .main, .body__wrapper {
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+  }
 }

@@ -2,3 +2,10 @@
     display: flex;
     flex-direction: row;
 }
+
+@media (max-width: 600px) {
+    .featured-post {
+        visibility: hidden;
+        display: none;
+    }
+}

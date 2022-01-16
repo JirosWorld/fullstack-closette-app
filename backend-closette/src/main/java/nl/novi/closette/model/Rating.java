@@ -8,14 +8,13 @@ import java.util.List;
 @Table(name = "ratings")
 public class Rating {
 
-    // attributen
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private double ratingToilet;
+
     private String name;
-//    private int ratingToilet;
 //    private String ratingUser;
 //    private List<Integer> ratingsList = new ArrayList<>();
 
@@ -38,6 +37,14 @@ public class Rating {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public double getRatingToilet() {
+        return ratingToilet;
+    }
+
+    public void setRatingToilet(double ratingToilet) {
+        this.ratingToilet = ratingToilet;
     }
 
     public List<Toilet> getToilets() {

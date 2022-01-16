@@ -210,14 +210,17 @@ function SearchPage() {
                 <p>
                     Link <Link to="/searchresults">naar Zoekresultaten Pagina</Link>
                 </p>
+                <p>
+                    Link <Link to="/searchqueries">naar Zoek queries op eigenschappen Pagina</Link>
+                </p>
             </div>
             {error && <p className="error-message">{error}</p>}
             <section className="results">
                 <ul className="mapped__posts">
                     {loading && <Loader/>}
                     {toiletEntry.data && toiletEntry.data.map((post) => {
-                            console.log("post.data:");
-                            console.log(post);
+                            // console.log("post.data:");
+                            // console.log(post);
                             return <li key={post.title && post.title}>
                                 <Link
                                     to={`toilets/${post.id}`}>
@@ -240,23 +243,21 @@ function SearchPage() {
 
                                 <div className="content-wrapper">
                                     <h2 className="mapped__post__title">
-                                        <span>{Object.keys(post.title).length > 0
-                                        && post.title}</span>
+                                        <Link
+                                            activeClassName="active-link"
+                                            to={`toilets/${post.id}`}><span>{Object.keys(post.title).length > 0
+                                            && post.title}</span>
+                                        </Link>
                                     </h2>
-
-                                    |<span className="mapped__post__author">Stad: {post.city}</span>|
-                                    <br/>
-                                    | <span className="mapped__post__detail">
-                                Land
-                                <Link
-                                    activeClassName="active-link"
-                                    to={`toilets/${post.id}`}> &#x23E9; "{post.country}"
-                                </Link></span>|
-                                    <br/>
-                                    |<span
-                                    className="mapped__post__votes">Rating: {post.ratingAverage}</span>.
-
-
+                                    <span className="mapped__post__author">
+                                        Stad: {post.city} |</span>
+                                    <span className="mapped__post__detail">
+                                        Land <Link
+                                        activeClassName="active-link"
+                                        to={`toilets/${post.id}`}> "{post.country}"
+                                        </Link>
+                                    </span>
+                                    <span className="mapped__post__votes">Rating: {post.ratingAverage}</span>
                                     <div className="mapped__post__details">
                                         <p>
                                             genderneutraal?: {post.genderneutral
