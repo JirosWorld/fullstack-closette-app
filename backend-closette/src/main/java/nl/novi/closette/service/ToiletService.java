@@ -17,63 +17,40 @@ public class ToiletService {
     @Autowired
     private ToiletRepository toiletRepository;
 
-//    origineel
+    //    find all
     public List<Toilet> getToilets() {
-
-            return toiletRepository.findAll();
-
+        return toiletRepository.findAll();
     }
 
-    public List<Toilet> getToiletsByTitle(String title){
+    public List<Toilet> getToiletsByTitle(String title) {
         return toiletRepository.findAllByTitleContainingIgnoreCase(title);
     }
 
-    public List<Toilet> getToiletsByCity(String city){
+    public List<Toilet> getToiletsByCity(String city) {
         return toiletRepository.findAllByCityContainingIgnoreCase(city);
     }
 
-//    public List<Toilet> getToilets(String title, String city, String country) {
-//        int numberOfSpecifiedArguments = 0;
-//        if (!(title == null || title.isBlank())) numberOfSpecifiedArguments++;
-//        if (!(city == null || city.isBlank())) numberOfSpecifiedArguments++;
-//        if (!(country == null || country.isBlank())) numberOfSpecifiedArguments++;
-//        if (numberOfSpecifiedArguments > 1) {
-//            throw new BadRequestException("Too many search fields specified. Only one is allowed.");
-//        }
-//
-//        if (!(title == null || title.isBlank())) {
-//            return bookRepository.findAllByTitleContainingIgnoreCase(title);
-//        } else if (!(author == null || author.isBlank())) {
-//            return bookRepository.findAllByAuthorContainingIgnoreCase(author);
-//        } else if (!(publisher == null || publisher.isBlank())) {
-//            return bookRepository.findAllByPublisherContainingIgnoreCase(publisher);
-//        } else if (!(isbn == null || isbn.isBlank())) {
-//            return bookRepository.findAllByIsbn(isbn);
-//        } else {
-//            return bookRepository.findAll();
-//        }
-//    }
+    public List<Toilet> getToiletsByCountry(String country){
+        return toiletRepository.findAllByCountryContainingIgnoreCase(country);
+    }
 
     public Toilet getToilet(int id) {
         Optional<Toilet> optionalToilet = toiletRepository.findById(id);
 
         if (optionalToilet.isPresent()) {
             return optionalToilet.get();
-        }
-        else {
+        } else {
             throw new RecordNotFoundException("ID does not exist!");
         }
-
     }
 
     public void deleteToilet(int id) {
         if (toiletRepository.existsById(id)) {
             toiletRepository.deleteById(id);
-        }
-        else {
+        } else {
             throw new RecordNotFoundException("ID does not exist!");
         }
-}
+    }
 
     public int addToilet(ToiletRequestDto toiletRequestDto) {
 
@@ -113,8 +90,7 @@ public class ToiletService {
 
             toilet.setId(storedToilet.getId());
             toiletRepository.save(toilet);
-        }
-        else {
+        } else {
             throw new RecordNotFoundException("ID does not exist!!!");
         }
     }
@@ -125,19 +101,18 @@ public class ToiletService {
         if (optionalToilet.isPresent()) {
             Toilet storedToilet = toiletRepository.findById(id).orElse(null);
 
-            if (toilet.getTitle()!=null && !toilet.getTitle().isEmpty()) {
+            if (toilet.getTitle() != null && !toilet.getTitle().isEmpty()) {
                 storedToilet.setTitle(toilet.getTitle());
             }
-            if (toilet.getAuthor()!=null && !toilet.getAuthor().isEmpty()) {
+            if (toilet.getAuthor() != null && !toilet.getAuthor().isEmpty()) {
                 storedToilet.setAuthor(toilet.getAuthor());
             }
-            if (toilet.getLatitude()!=null && !toilet.getLatitude().isEmpty()) {
+            if (toilet.getLatitude() != null && !toilet.getLatitude().isEmpty()) {
                 storedToilet.setLatitude(toilet.getLatitude());
             }
             toiletRepository.save(storedToilet);
 
-        }
-        else {
+        } else {
             throw new RecordNotFoundException("ID does not exist!!!");
         }
     }

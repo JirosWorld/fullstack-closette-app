@@ -12,7 +12,7 @@ function ContactPage() {
     }, []);
 
     return (
-        <section className="contact__page">
+        <section className="contact__page  content-wrapper">
             <TopNav/>
             <Header
                 title="Contactpagina"/>

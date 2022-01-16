@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {
     Switch,
-    Route
+    Route, Redirect
 } from "react-router-dom";
 import './App.css';
 import HomePage from "./pages/homepage/HomePage";
@@ -14,10 +14,21 @@ import RegisterPage from "./pages/registerpage/RegisterPage";
 import DashboardPage from "./pages/dashboardpage/DashboardPage";
 import SearchResults from "./pages/searchresults/SearchResults";
 import Footer from "./components/footer/Footer";
+import {AuthContext} from "./context/AuthContext";
+import NewsPost from "./pages/newspost/NewsPost";
+import ToiletPost from "./pages/toiletpost/ToiletPost";
+import FaqPage from "./pages/newspost/FaqPage";
+
+function PrivateRoute({children, isAuth, ...rest}) {
+    return (
+        <Route {...rest}>
+            {isAuth ? children : <Redirect to="/login"/>}
+        </Route>
+    )
+}
 
 function App() {
 
-    // Title veranderen bij mounting
     useEffect(() => {
         document.title = "~ Closette ::: de genderneutrale toiletzoeker app ~"
     }, []);
@@ -36,11 +47,20 @@ function App() {
                         <Route exact path="/searchresults">
                             <SearchResults/>
                         </Route>
+                        <Route exact path="/toilets/:id">
+                            <ToiletPost/>
+                        </Route>
                         <Route path="/submit">
                             <SubmitPage/>
                         </Route>
-                        <Route path="/news">
+                        <Route exact path="/news">
                             <NewsFeedPage/>
+                        </Route>
+                        <Route exact path="/news/:id">
+                            <NewsPost/>
+                        </Route>
+                        <Route exact path="/info/faq-handleiding">
+                            <FaqPage/>
                         </Route>
                         <Route path="/contact">
                             <ContactPage/>
@@ -54,6 +74,9 @@ function App() {
                         <Route path="/dashboard">
                             <DashboardPage/>
                         </Route>
+                        {/*<PrivateRoute path="/dashboard" isAuth={AuthContext}>*/}
+                        {/*    <DashboardPage />*/}
+                        {/*</PrivateRoute>*/}
                         <Route path="/login">
                             <LoginPage/>
                         </Route>

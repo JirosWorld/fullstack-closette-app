@@ -69,6 +69,17 @@ body {
   margin: 0 auto;
 }
 
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.4;
+  padding: 100px;
+  max-width: 800px;
+  /*margin: 0 auto;*/
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Fredoka One', Verdana, cursive;
 }
@@ -86,6 +97,29 @@ h1 {
 
 button {
   cursor: pointer;
+}
+
+button[type=button] {
+  border-radius: 5px;
+  color: var(--hardpink);
+  font-size: 20px;
+  font-weight: bold;
+  margin: 1em 0 10px 0;
+  padding: 10px 16px;
+  width: 420px;
+  background-color: var(--softpink);
+  border: 1px solid var(--hardpink);
+}
+button[type=button]:hover {
+  border-radius: 5px;
+  color: var(--softpink);
+  font-size: 20px;
+  font-weight: bold;
+  margin: 1em 0 10px 0;
+  padding: 10px 16px;
+  width: 420px;
+  background-color: #000;
+  border: 1px solid #000;
 }
 
 .error-message {

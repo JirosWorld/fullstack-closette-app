@@ -85,3 +85,12 @@ svg.svg-avatar-black {
     align-items: center;
     justify-content: center;
 }
+
+.column__icon-box.logged-out {
+    display: flex;
+    background-color: #eee;
+}
+
+.column__icon-box:hover {
+    background-color: var(--softpink);
+}

@@ -40,7 +40,7 @@ function LandingSection() {
                     :
                     <article className="landing__page__column">
                         <Link to="/login">
-                            <div className="column__icon-box">
+                            <div className="column__icon-box logged-out">
                                 <Avatar className="svg-avatar-black" alt="user icon"/>
                             </div>
                         </Link>

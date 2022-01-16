@@ -5,3 +5,7 @@
     background-color: ivory;
     letter-spacing: 0.1em;
 }
+
+.confirmation__container {
+    max-width: 400px;
+}

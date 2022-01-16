@@ -11,8 +11,6 @@ import java.time.format.FormatStyle;
 @Table(name = "toilets")
 public class Toilet {
 
-    // attributen
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -34,7 +32,7 @@ public class Toilet {
     private String country;
     private String venue;
 
-//    Handy tip: when giving a co-ordinate, latitude (north or south) always precedes longitude (east or west). Latitude comes first in alphabetical order and it also is the first coordinate in a set.
+//    latitude (north or south) always precedes longitude (east or west).
 
     @JsonIgnoreProperties("toilets")
     @ManyToOne
@@ -72,7 +70,6 @@ public class Toilet {
         this.venue = venue;
         this.owner = owner;
     }
-
 
     // getters and setters
 
@@ -223,7 +220,6 @@ public class Toilet {
     public void setOwner(Rating owner) {
         this.owner = owner;
     }
-
 
     @Override
     public String toString() {

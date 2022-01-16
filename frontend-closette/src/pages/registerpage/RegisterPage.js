@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import React, {useEffect, useState} from 'react';
+import {useForm} from 'react-hook-form';
 import {Link, useHistory} from "react-router-dom";
 import axios from "axios";
 import TopNav from "../../components/topnav/TopNav";
@@ -13,14 +13,14 @@ function RegisterPage() {
     const [registerSuccess, toggleRegisterSuccess] = useState(false);
     const [error, setError] = useState('');
     const history = useHistory();
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm();
 
     async function onFormSubmit(data) {
         setError('');
         console.log("Registration data:");
         console.log(data);
         try {
-            const result = await axios.post('http://localhost:8080/users', {
+            const result = await axios.post('http://localhost:8080/users/register', {
                 email: data.email,
                 password: data.password,
                 username: data.username,
@@ -30,7 +30,7 @@ function RegisterPage() {
             console.log(result);
             toggleRegisterSuccess(true);
 
-            setTimeout( () => {
+            setTimeout(() => {
                 history.push("/login");
             }, 5000);
 
@@ -47,79 +47,82 @@ function RegisterPage() {
     }, []);
 
     return (
-        <section className="register__page">
+        <>
             <TopNav/>
             <Header
                 title="Nieuwe account aanmaken"/>
-            <form className="form-container" onSubmit={handleSubmit(onFormSubmit)}>
-                <InputField
-                    inputType="email"
-                    errors={errors}
-                    register={register}
-                    labelText="E-mail"
-                    labelId="email-field"
-                    inputName="email"
-                    validationRules={{
-                        required: {
-                            value: true,
-                            message: "Email invullen is verplicht. Vul aub iets in",
-                        },
-                        minLength: {
-                            value: 6,
-                            message: "Te kort mailadres. Gebruik een apestaartje.",
-                        },
-                    }}
-                />
+            <div className="register__page content-wrapper">
+                <form className="form-container" onSubmit={handleSubmit(onFormSubmit)}>
+                    <InputField
+                        inputType="email"
+                        errors={errors}
+                        register={register}
+                        labelText="E-mail"
+                        labelId="email-field"
+                        inputName="email"
+                        validationRules={{
+                            required: {
+                                value: true,
+                                message: "Email invullen is verplicht. Vul aub iets in",
+                            },
+                            minLength: {
+                                value: 6,
+                                message: "Te kort mailadres. Gebruik een apestaartje.",
+                            },
+                        }}
+                    />
 
-                <InputField
-                    inputType="text"
-                    errors={errors}
-                    register={register}
-                    labelText="Gebruikersnaam"
-                    labelId="username-field"
-                    inputName="username"
-                    validationRules={{
-                        minLength: {
-                            value: 4,
-                            message: "Te korte gebruikersnaam, gebruik minstens 4 tekens.",
-                        },
-                        maxLength: {
-                            value: 15,
-                            message: "Te lange gebruikersnaam, gebruik maximaal 15 tekens.",
-                        },
-                    }}
-                />
+                    <InputField
+                        inputType="text"
+                        errors={errors}
+                        register={register}
+                        labelText="Gebruikersnaam"
+                        labelId="username-field"
+                        inputName="username"
+                        validationRules={{
+                            minLength: {
+                                value: 4,
+                                message: "Te korte gebruikersnaam, gebruik minstens 4 tekens.",
+                            },
+                            maxLength: {
+                                value: 15,
+                                message: "Te lange gebruikersnaam, gebruik maximaal 15 tekens.",
+                            },
+                        }}
+                    />
 
-                <InputField
-                    inputType="password"
-                    errors={errors}
-                    register={register}
-                    labelText="Wachtwoord"
-                    labelId="password-field"
-                    inputName="password"
-                    validationRules={{
-                        minLength: {
-                            value: 4,
-                            message: "Te kort wachtwoord, gebruik minstens 4 tekens"
-                        }
-                    }}
-                />
+                    <InputField
+                        inputType="password"
+                        errors={errors}
+                        register={register}
+                        labelText="Wachtwoord"
+                        labelId="password-field"
+                        inputName="password"
+                        validationRules={{
+                            minLength: {
+                                value: 4,
+                                message: "Te kort wachtwoord, gebruik minstens 4 tekens"
+                            }
+                        }}
+                    />
+                    <p>Link <Link to="/info/faq-handleiding">naar privacy pagina</Link>.</p>
+                    <button type="submit">
+                        Registreren
+                    </button>
+                    {error && <p className="error-message">{error}</p>}
+                    {registerSuccess === true &&
+                    <div className="confirmation__container">
+                        <Loader/>
+                        <h3>Registreren gelukt!<br/>Log nu meteen in via de inlogpagina (je wordt
+                            automatisch doorgestuurd).</h3>
+                    </div>}
+                    <p>Heb je al een account? Ga dan hier <Link to="/login"> naar de inlog
+                        pagina</Link>.</p>
+                </form>
 
-                <button type="submit">
-                    Registreren
-                </button>
-                {error && <p className="error-message">{error}</p>}
-                {registerSuccess === true &&
-                <div className="confirmation__container">
-                    <Loader/>
-                    <h3>Registreren gelukt!<br/>Log nu meteen in via de inlogpagina (je wordt
-                    automatisch doorgestuurd).</h3>
-                </div>}
-                <p>Heb je al een account? Ga dan hier <Link to="/login"> naar de inlog pagina</Link>.</p>
-            </form>
-
-            <BackButton />
-        </section>
+                <BackButton/>
+            </div>
+        </>
     );
 }
 

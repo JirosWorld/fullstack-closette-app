@@ -62,11 +62,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(PATCH,"/users/{^[\\w]$}/password").authenticated()
-//                .antMatchers("/users/**").hasRole("ADMIN")
+                .antMatchers("/users").hasRole("ADMIN")
 //                    ===> kan open gezet worden tijdens development
 //                .antMatchers("/toilets/**").hasRole("USER")
 //                    ===> IEDEREEN mag kunnen zoeken, ook niet-ingelogde gebruikers
                 .antMatchers("/ratings/**").hasAnyRole("USER")
+//                .antMatchers("/news/**").hasAnyRole("USER")
                 .antMatchers(HttpMethod.GET, "closette").authenticated()
                 .anyRequest().permitAll()
                 .and()

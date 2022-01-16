@@ -85,9 +85,8 @@ Zie de directories/folders onder `src/test/java`.
 
 ## Beveiliging
 
-De beveiliging is niet production-ready doordat er  natuurlijk te eenvoudige wachtwoorden ('password') en een te simpele secret key is gebruikt ('secret'). In de werkelijkheid kan er beter worden gewerkt met cookies i.p.v. alleen een JWT token.
-
-Via authenticatie met JSON Web Token (JWT) was het mogelijk om de endpoints te beveiligen met authenticate en authorisaties. Het verwijderen van een bestaande gebruiker is beveiligd, zodat alleen gebruikers met de ADMIN rol deze acties kunnen uitvoeren.
+* De beveiliging is niet production-ready doordat er  natuurlijk te eenvoudige wachtwoorden ('password') en een te simpele secret key is gebruikt ('secret'). In de werkelijkheid kan er beter worden gewerkt met cookies i.p.v. alleen een JWT token. 
+* Via authenticatie met JSON Web Token (JWT) was het mogelijk om de endpoints te beveiligen met authenticate en authorisaties. Het verwijderen van een bestaande gebruiker is beveiligd, zodat alleen gebruikers met de ADMIN rol deze acties kunnen uitvoeren.
 
 ## Wat is er niet gedaan + disclaimers
 
@@ -95,7 +94,7 @@ _(limitaties van de applicatie en beargumentatie van mogelijke doorontwikkelinge
 
 • deze opdracht levert géén deployment-ready product op en zal niet werken op de gemiddelde FTP server, maar dat was ook geen eis.
 
-• geen https SSL certificaat omdat dit bij nakijken probleemen kan geven maar in het het echte bedrijfsleven moet dit wel.
+• geen https SSL certificaat omdat dit bij nakijken problemen kan geven maar in het het echte bedrijfsleven moet dit wel.
 
 • geen CORS URL gekozen dus in plaats van port 3000 heb ik een * operator gekozen zodat alle verzoeken naar de back-end door kunnen komen.
 
@@ -107,6 +106,8 @@ _(limitaties van de applicatie en beargumentatie van mogelijke doorontwikkelinge
 
 • De front-end website is niet geoptimaliseerd voor Explorer. Bij meer tijd zou ik echt wel ook zeer verouderde browsers willen supporten, vooral omwille van de toegankelijkheid.
 
+• Ik heb aan de back-end zijde geen mailserver functie gebouwd, dus heb ik het contactformulier functioneel gemaakt via de EmailJS cloudfunctie. Dit is vast niet zoals het bij een professioneel beddrijf er aan toe zou gaan, maar het heeft goed bruikbare templates.
+
 ## Leerpunten
 
 • ik ben altijd goed geweest in de miniemste details; ik ben geen project-manager met helicoptervisie, dus het was niet onverwacht dat ik moeite had met het vastleggen/structureren van de ontwerpfase, maar daarentegen geen enkele moeite had met het uitpuzzelen van code details
@@ -117,6 +118,4 @@ _(limitaties van de applicatie en beargumentatie van mogelijke doorontwikkelinge
 
 • het leren van back-end is echt enorm verhelderend, dat zouden alle front-enders eens moeten proberen
 
-## Opmerkingen
-
-* Deze app is het begin van een idealistisch idee voor de toekomst. Ik heb nog plannen voor het koppelen van een Map API die toont op welke locatie op de kaart de gebruiker daadwerkelijk staat.
+• Deze app is het begin van een idealistisch idee voor de toekomst. Ik heb nog plannen voor het koppelen van een Map API die toont op welke locatie op de kaart de gebruiker daadwerkelijk staat.

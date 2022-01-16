@@ -90,12 +90,12 @@ export const ContactUs = () => {
                 />
 
                 <input type="submit" value="Send"/>
-                <p>Link <Link to="/dashboard">naar privacy pagina</Link>.</p>
+                <p>Link <Link to="/info/faq-handleiding">naar privacy pagina</Link>.</p>
             </form>
             {submitSuccess === true &&
             <div className="confirmation__container">
                 <h3>Versturen gelukt!</h3>
-                <p>Als je een geldig mailadres hebt ingevuld, ontvang je nu automatisch een e-mail.</p>
+                <p>Als je een geldig mailadres hebt ingevuld, ontvang je nu automatisch een &eacute;chte e-mail.</p>
             </div>}
 
         </>

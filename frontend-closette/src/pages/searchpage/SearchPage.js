@@ -25,22 +25,17 @@ function SearchPage() {
     async function onFormSubmit(data) {
         console.log("Zoek data input:");
         console.log(data);
-        //zet de error steeds op leeg, iedere keer bij laden van data
         setError('');
-        //zet de loader animatie aan zolang data wordt geladen
         toggleLoading(true);
 
         try {
-            // await request
             const result = await axios.get('http://localhost:8080/toilets');
-            // toon alle entries
             setToiletEntry(result);
             console.log("alle result inhoud:");
             console.log(result);
             console.log("alle result.data:");
             console.log(result.data);
-            console.log("alle result.data:");
-            console.log(result.input);
+
         } catch (error) {
             console.log("komt u hier 4?");
             setError("Er is iets misgegaan bij het ophalen van de data");
@@ -53,10 +48,10 @@ function SearchPage() {
 
     return (
         <>
-            <section className="search__page">
-                <TopNav/>
-                <Header
-                    title="Zoeken"/>
+            <TopNav/>
+            <Header
+                title="Zoeken"/>
+            <div className="search__page content-wrapper">
                 <form className="form-container" onSubmit={handleSubmit(onFormSubmit)}>
                     <InputField
                         errors={errors}
@@ -90,7 +85,7 @@ function SearchPage() {
                         }}
                     />
 
-                    <section className="checkbox-filters">
+                    <section className="nofilters">
                         <Slider
                             errors={errors}
                             register={register}
@@ -168,7 +163,7 @@ function SearchPage() {
                             inputName="latitude"
                             filterAttribute="Breedtegraad (latitude)"
                         >
-                            Link <Link to="/dashboard">naar f.a.q.</Link>
+                            Link <Link to="/info/faq-handleiding">naar f.a.q.</Link>
                         </Slider>
 
                         <Slider
@@ -178,7 +173,7 @@ function SearchPage() {
                             inputName="longitude"
                             filterAttribute="Lengtegraad (longitude)"
                         >
-                            Link <Link to="/dashboard">naar f.a.q.</Link>
+                            Link <Link to="/info/faq-handleiding">naar f.a.q.</Link>
                         </Slider>
 
                         <Slider
@@ -205,7 +200,6 @@ function SearchPage() {
                             filterAttribute="Openingstijden"
                         />
 
-
                     </section>
 
                     <button type="submit">
@@ -216,7 +210,7 @@ function SearchPage() {
                 <p>
                     Link <Link to="/searchresults">naar Zoekresultaten Pagina</Link>
                 </p>
-            </section>
+            </div>
             {error && <p className="error-message">{error}</p>}
             <section className="results">
                 <ul className="mapped__posts">
@@ -225,11 +219,12 @@ function SearchPage() {
                             console.log("post.data:");
                             console.log(post);
                             return <li key={post.title && post.title}>
-                                <NavLink
-                                    activeClassName="active-link"
-                                    to={"/" + post.id}>
+                                <Link
+                                    to={`toilets/${post.id}`}>
                             <span className="thumbnail-container">
-                                {/*check om te kijken of de thumbnail bestaat (URL mag niet kleiner dan (http://).length zijn, anders default image + link */}
+                                {/*check om te kijken of de thumbnail bestaat
+                                (URL mag niet kleiner dan (http://).length zijn,
+                                anders default image + link */}
 
                                 {post.hasPhoto.length > 7 ?
                                     <img src={`${post.hasPhoto}`} alt="thumbnail"
@@ -241,21 +236,22 @@ function SearchPage() {
                                              width="150"/><p>NO IMAGE</p></span>
                                 }
                             </span>
-                                </NavLink>
+                                </Link>
 
                                 <div className="content-wrapper">
                                     <h2 className="mapped__post__title">
-                                        <span>{Object.keys(post.title).length > 0 && post.title}</span>
+                                        <span>{Object.keys(post.title).length > 0
+                                        && post.title}</span>
                                     </h2>
 
                                     |<span className="mapped__post__author">Stad: {post.city}</span>|
                                     <br/>
                                     | <span className="mapped__post__detail">
                                 Land
-                                <NavLink
+                                <Link
                                     activeClassName="active-link"
-                                    to={"/" + post.id}> &#x23E9; "{post.country}"
-                                </NavLink></span>|
+                                    to={`toilets/${post.id}`}> &#x23E9; "{post.country}"
+                                </Link></span>|
                                     <br/>
                                     |<span
                                     className="mapped__post__votes">Rating: {post.ratingAverage}</span>.
@@ -270,14 +266,19 @@ function SearchPage() {
                                             geplaatst op: {post.postTime}<br/>
                                             openingstijden: {post.openingHours}<br/>
                                             informatie: {post.infoText}<br/>
+                                            rolstoeltoegankelijk: {post.accessible ? <span>Ja</span> :
+                                            <span>Nee</span>}<br/>
+                                            hygi&euml;ne: {post.cleanliness}<br/>
                                             breedtegraad: {post.latitude}<br/>
                                             lengtegraad: {post.longitude}<br/>
                                             Locatie op kaart: <a
-                                            href={toiletEntry.data &&
+                                            href={post.latitude &&
                                             `https://www.openstreetmap.org/?mlat=${post.latitude}&mlon=${post.longitude}&zoom=15}`}
-                                            rel="noreferrer" target="_blank"><img src={MapIcon}
-                                                                                  alt="map"
-                                                                                  width="25" className="map-icon"/></a> (externe
+                                            rel="noreferrer" target="_blank">
+                                            <img src={MapIcon}
+                                                 alt="map"
+                                                 width="25"
+                                                 className="map-icon"/></a> (externe
                                             link)<br/>
                                             heeft foto?: {post.hasPhoto
                                             ? <span>Ja</span> : <span>Nee</span>}<br/>
@@ -289,7 +290,6 @@ function SearchPage() {
                                 </div>
                                 {/* <!-- end content wrapper --> */}
                             </li>
-
                         }
                     )}
                 </ul>

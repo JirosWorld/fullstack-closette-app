@@ -5,119 +5,373 @@ import Header from "../../components/header/Header";
 import BackButton from "../../components/buttons/BackButton";
 import Loader from "../../components/loader/Loader";
 import "./SubmitPage.css";
-import logo from "../../logo.svg";
-import GPS from "../../assets/img/MapsViewGPSCoordinates-iPhone.jpg";
 import TopNav from "../../components/topnav/TopNav";
-import parseToDots from "../../helpers/parseToDots";
 import Accordeon from "../../components/accordeon/Accordeon";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
+import {useForm} from "react-hook-form";
+import InputField from "../../components/form-elements/inputfield/InputField";
+import Slider from "../../components/form-elements/slider/Slider";
+import InputTextarea from "../../components/form-elements/inputfield/InputTextarea";
 
 function SubmitPage() {
-    const [subInfo, setSubInfo] = useState();
-    const [loading, toggleLoading] = useState(false);
-    const [error, setError] = useState('');
-    // const {toilet: toiletName} = useParams();
-
     const {user} = useContext(AuthContext);
+    // alleen ingelogde users mogen nieuwe entries toevoegen
     console.log(user);
 
-    //mounting fase
-    useEffect(() => {
-        document.title = "Toilet toevoegen :: Closette";
+    const [submitInfo, setSubmitInfo] = useState();
+    const [submitSuccess, toggleSubmitSuccess] = useState(false);
+    const [error, setError] = useState('');
+    const history = useHistory();
+    const {register, handleSubmit, formState: {errors}} = useForm();
 
-        async function getResults(data) {
-            //zet de error steeds op leeg, iedere keer bij laden van data
-            setError('');
-            //zet de loader animatie aan zolang data wordt geladen
-            toggleLoading(true);
+    async function onFormSubmitToilet(data) {
+        setError('');
 
-            try {
-                const result = await axios.post('http://localhost:8080/toilets',{
-                    accessible: data.accessible,
-                    city: data.city,
-                    cleanliness: data.cleanliness,
-                    country: data.country,
-                    free: data.free,
-                    genderneutral: data.genderneutral,
-                    hasPhoto: data.hasPhoto,
-                    infoText: data.infoText,
-                    latitude: data.latitude,
-                    longitude: data.longitude,
-                    openingHours: data.openingHours,
-                    ratingAverage: data.ratingAverage,
-                    title: data.title,
-                });
-                setSubInfo(result);
-                console.log("Alle data van 1 submitrequest:");
-                console.log(result);
-                console.log("data loggen:");
-                console.log(result.data[4].title);
-            } catch (error) {
-                setError("Er is iets misgegaan bij het ophalen van de data");
-                console.error(error);
-            }
-            toggleLoading(false);
+        try {
+            const result = await axios.post('http://localhost:8080/toilets', {
+                city: data.city,
+                country: data.country,
+                genderneutral: data.genderneutral,
+                infoText: data.infoText,
+                latitude: data.latitude,
+                longitude: data.longitude,
+                openingHours: data.openingHours,
+                title: data.title,
+            });
+            setSubmitInfo(result);
+            console.log("Alle data van 1 submitrequest:");
+            console.log(result);
+
+        } catch (e) {
+            setError(`Het toevoegen is mislukt. Probeer het opnieuw (${e.message})`)
+            console.error(e);
         }
+        console.log("Resultaat data useState:");
+        console.log(submitInfo);
+        toggleSubmitSuccess(true);
 
-        getResults();
+        setTimeout(() => {
+            history.push("/search");
+        }, 5000);
+    }
+    console.log(errors);
 
+    useEffect(() => {
+        document.title = "Toevoegen nieuwe toilet locatie :: Closette"
     }, []);
 
     return (
-        <section className="submit__page">
+        <>
             <TopNav/>
             <Header
                 title="Toevoegen / Inzenden"
             />
-            {error && <p className="error-message">{error}</p>}
+            <div className="submit__page content-wrapper">
+                <h2>Toilet gevonden? Voeg hier een nieuwe toe!</h2>
 
-            {user ?
-                <><h3>Toilet gevonden? Voeg hier een nieuwe toe!</h3>
-                    <section>
-                        <h1>Toevoegen - nieuw toilet posten</h1>
-                        <div className="wrapper">
-                            <Accordeon title="Wat betekenen die locatie getallen?">
-                                <p>Alle plekken op de wereld zijn te beschrijven met GPS co&ouml;rdinaten: de breedtegraad en lengtegraad. Ezelsbruggetje: breedtegraad (latitude) komt altijd v&oacute;&oacute;r
-                                    lengtegraad (longitude) - dus op alfabetische volgorde. Ook in het
-                                    Engels zijn ze toevallig in alfabetische volgorde: [latitude, longitude].</p>
-                            </Accordeon>
-                        </div>
-                    </section>
-                </>
-                :
-                <h3>Je bent niet ingelogd - <Link to="/signup">Maak eerst een account</Link> om te kunnen reageren
-                    of <Link to="/login"> log in</Link>.</h3>}
-            {loading && <Loader/>}
-            {subInfo &&
-            <div className="toilet__card">
-                <header className="toilet__header">
-                    <span className="thumbnail-container">
-                        {/* met objectkeys eerst checken of data is binnengekomen, daarna renderen */}
-                        {/* anders wordt standaard plaatje geplaatst */}
-                        {Object.keys(subInfo.data[4]).length > 0 && subInfo.hasPhoto !== null ?
-                            <img src={`${subInfo.data[4].header_img}`} alt="thumbnail"
-                                 className="thumbnail"/> :
-                            <img src={logo} alt="thumbnail" className="thumbnail" height="150"
-                                 width="150"/>}
-                    </span>
-                    <h2 className="toilet__heading">{subInfo.data[4].title} = Name</h2>
-                </header>
-                <section>
-                    <h4 className="toilet__heading">Title display:</h4>
-                    <h2 className="toilet__title">
-                        {subInfo.data[4].author}
-                    </h2>
-                    <h2 className="toilet__heading">Description</h2>
-                    <p className="toilet__description">{subInfo.data[4].infoText}.</p>
-                    <h3 className="toilet__heading">Subscribers:</h3>
+                {user ?
+                    <>
+                        <form className="form-container"
+                              onSubmit={handleSubmit(onFormSubmitToilet)}
+                        >
+                            <InputField
+                                inputType="text"
+                                placeholderText="Bijvoorbeeld: Museum bar..."
+                                errors={errors}
+                                register={register}
+                                labelText="Titel/Naam van locatie"
+                                labelId="title-field"
+                                inputName="title"
+                                validationRules={{
+                                    required: {
+                                        value: true,
+                                        message: "Titel invullen is verplicht. Vul aub iets in",
+                                    },
+                                    minLength: {
+                                        value: 6,
+                                        message: "Te korte titel.",
+                                    },
+                                }}
+                            />
 
-                    {/* data omzetten naar puntjes met mijn helper functie  */}
-                    <p className="toilet__subscribers">{parseToDots(subInfo.data[4].latitude)}1.000</p>
-                </section>
+                            <InputField
+                                inputType="text"
+                                placeholderText="Bijvoorbeeld: Barcelona..."
+                                errors={errors}
+                                register={register}
+                                labelText="Stad/Plaats"
+                                labelId="city-field"
+                                inputName="city"
+                                validationRules={{
+                                    required: {
+                                        value: true,
+                                        message: "Plaatsnaam invullen is verplicht. Vul aub iets in",
+                                    },
+                                    minLength: {
+                                        value: 1,
+                                        message: "Te korte naam, gebruik minstens 2 tekens.",
+                                    },
+                                    maxLength: {
+                                        value: 85,
+                                        message: "Te lange plaatsnaam, gebruik maximaal 85 tekens. Er is slechts 1 stad in de wereld met een plaatsnaam van 85 tekens: Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu, in Nieuw-Zeeland.",
+
+                                    },
+                                }}
+                            />
+
+                            <InputField
+                                inputType="text"
+                                placeholderText="Bijvoorbeeld: Kenia..."
+                                errors={errors}
+                                register={register}
+                                labelText="Land"
+                                labelId="country-field"
+                                inputName="country"
+                                validationRules={{
+                                    required: {
+                                        value: true,
+                                        message: "Land invullen is verplicht. Vul aub iets in",
+                                    },
+                                    minLength: {
+                                        value: 1,
+                                        message: "Te korte naam, gebruik minstens 2 tekens.",
+                                    },
+                                    maxLength: {
+                                        value: 85,
+                                        message: "Te lange regionaam, gebruik maximaal 85 tekens.",
+
+                                    },
+                                }}
+                            />
+
+                            <InputField
+                                inputType="text"
+                                placeholderText="Bijvoorbeeld: 52.3700"
+                                errors={errors}
+                                register={register}
+                                labelText="Breedtegraad (latitude)"
+                                labelId="latitude-field"
+                                inputName="latitude"
+                                validationRules={{
+                                    minLength: {
+                                        value: 5,
+                                        message: "Te kort coördinaat, gebruik minstens 5 tekens.",
+                                    },
+                                    maxLength: {
+                                        value: 12,
+                                        message: "Te lang coördinaat, gebruik maximaal 12 tekens.",
+
+                                    },
+                                }}
+                            />
+
+                            <InputField
+                                inputType="text"
+                                placeholderText="Bijvoorbeeld: 4.8900"
+                                errors={errors}
+                                register={register}
+                                labelText="Lengtegraad (longitude)"
+                                labelId="longitude-field"
+                                inputName="longitude"
+                                validationRules={{
+                                    minLength: {
+                                        value: 4,
+                                        message: "Te kort coördinaat, gebruik minstens 5 tekens.",
+                                    },
+                                    maxLength: {
+                                        value: 12,
+                                        message: "Te lang coördinaat, gebruik maximaal 12 tekens.",
+
+                                    },
+                                }}
+                            />
+
+                            <section className="checkbox-filters">
+                                <Slider
+                                    errors={errors}
+                                    register={register}
+                                    labelId="genderneutraal-check"
+                                    inputName="genderneutraal"
+                                    filterAttribute="Genderneutraal"
+                                    yes="wel"
+                                    no="niet"
+                                >
+
+                                </Slider>
+
+                                <Slider
+                                    errors={errors}
+                                    register={register}
+                                    labelId="free-check"
+                                    inputName="free"
+                                    filterAttribute="Gratis"
+                                    yes="wel"
+                                    no="niet"
+                                >
+
+                                </Slider>
+
+                                <Slider
+                                    errors={errors}
+                                    register={register}
+                                    labelId="accessible-check"
+                                    inputName="accessible"
+                                    filterAttribute="Invalidentoilet"
+                                    yes="wel"
+                                    no="niet"
+                                >
+
+                                </Slider>
+
+                                <InputTextarea
+                                    rowNr={3}
+                                    columnNr={10}
+                                    placeholderText="Bijvoorbeeld: zeer schoon op doordeweekse dagen..."
+                                    errors={errors}
+                                    register={register}
+                                    labelText="Schoon/Vies"
+                                    labelId="cleanliness-field"
+                                    inputName="cleanliness"
+                                    validationRules={{
+                                        maxLength: {
+                                            value: 80,
+                                            message: "Te lang, gebruik maximaal 80 tekens.",
+
+                                        },
+                                    }}
+                                />
+
+                                <InputTextarea
+                                    rowNr={6}
+                                    columnNr={30}
+                                    placeholderText="Typ hier een beschrijving van o.a. hoe het toilet te bereiken is e.a. bijzonderheden, wees zo gedetaillerd als je wilt..."
+                                    errors={errors}
+                                    register={register}
+                                    labelText="Info beschrijving:"
+                                    labelId="infoText-field"
+                                    inputName="infoText"
+                                    validationRules={{
+                                        maxLength: {
+                                            value: 255,
+                                            message: "Te lang, gebruik maximaal 255 tekens.",
+
+                                        },
+                                    }}
+                                />
+
+                                <InputField
+                                    inputType="text"
+                                    placeholderText="Bijvoorbeeld: 9h - 17h..."
+                                    errors={errors}
+                                    register={register}
+                                    labelText="Openingstijden:"
+                                    labelId="openingHours-field"
+                                    inputName="openingHours"
+                                    validationRules={{
+                                        maxLength: {
+                                            value: 80,
+                                            message: "Te lang, gebruik maximaal 80 tekens.",
+
+                                        },
+                                    }}
+                                />
+
+                                <Slider
+                                    errors={errors}
+                                    register={register}
+                                    labelId="public-check"
+                                    inputName="public"
+                                    filterAttribute="Openbaar"
+                                    yes="wel"
+                                    no="niet"
+                                >
+
+                                </Slider>
+
+                                <Slider
+                                    errors={errors}
+                                    register={register}
+                                    labelId="has_photo-check"
+                                    inputName="has_photo"
+                                    filterAttribute="Met foto"
+                                    yes="wel"
+                                    no="zonder"
+                                >
+                                    (later uploaden)
+                                </Slider>
+
+                                <Slider
+                                    errors={errors}
+                                    register={register}
+                                    labelId="has_rating-check"
+                                    inputName="has_rating"
+                                    filterAttribute="Met sterren"
+                                >
+                                    (later beoordelen)
+                                </Slider>
+
+                                <Slider
+                                    errors={errors}
+                                    register={register}
+                                    labelId="has_description-check"
+                                    inputName="has_description"
+                                    filterAttribute="Heeft beschrijving"
+                                />
+
+                                <Slider
+                                    errors={errors}
+                                    register={register}
+                                    labelId="has_opening_hours-check"
+                                    inputName="has_opening_hours"
+                                    filterAttribute="Openingstijden"
+                                />
+
+                            </section>
+
+                            <button
+                                type="submit"
+                            >
+                                Toevoegen/ plaatsen
+                            </button>
+                            {error && <p className="error-message">{error}</p>}
+                            {submitSuccess === true &&
+                            <div className="confirmation__container">
+                                <Loader/>
+                                <h3>Toevoegen gelukt!<br/>Zoek je nieuwe toilet nu meteen op in de
+                                    database (je wordt automatisch doorgestuurd).</h3>
+                            </div>}
+
+                        </form>
+
+                        <section>
+                            <div className="wrapper">
+                                <Accordeon title="Wat betekenen die locatie getallen?">
+                                    <p>Alle plekken op de wereld zijn te beschrijven met GPS
+                                        co&ouml;rdinaten: de breedtegraad en lengtegraad.
+                                        Ezelsbruggetje: breedtegraad (latitude) komt altijd
+                                        v&oacute;&oacute;r
+                                        lengtegraad (longitude) - dus op alfabetische volgorde. Ook
+                                        in
+                                        het
+                                        Engels zijn ze toevallig in alfabetische volgorde:
+                                        [latitude,
+                                        longitude].</p>
+                                </Accordeon>
+                            </div>
+                        </section>
+                        <p>Lees meer <Link to="/info/faq-handleiding">in de f.a.q.</Link></p>
+                    </>
+                    :
+                    <>
+                        <h3>~ Je bent niet ingelogd ~</h3>
+                        <h4>
+                            <Link to="/signup">Maak eerst
+                                een account</Link> om te kunnen reageren
+                            of <Link to="/login"> log in</Link>.</h4>
+                    </>}
+                <BackButton/>
             </div>
-            }
-            <BackButton/>
-        </section>
+        </>
     );
 }
 

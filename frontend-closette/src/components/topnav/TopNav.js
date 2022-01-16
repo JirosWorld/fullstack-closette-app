@@ -32,7 +32,7 @@ function TopNav({children}) {
                     <li><NavLink to="/contact" activeClassName="active-link">Contact</NavLink></li>
                     {user ?
                         <li>
-                            <NavLink to="/dashboard" onClick={logout}
+                            <NavLink to="/login" onClick={logout}
                                      activeClassName="active-link">Uitloggen</NavLink>
                         </li>
                         : <li>

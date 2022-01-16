@@ -47,6 +47,9 @@ function AuthContextProvider({ children }) {
         console.log(decodedToken);
         const userId = decodedToken.sub;
 
+        console.log("Dit is de userId:");
+        console.log(userId);
+
         fetchUserData(jwtToken, userId);
     }
 
@@ -79,8 +82,10 @@ function AuthContextProvider({ children }) {
         }
     }
 
-    function logoutFunction() {
-        console.log('logout!');
+    function logoutFunction(jwtToken) {
+        console.log('log out');
+        history.push("/");
+        localStorage.removeItem('closetteToken', jwtToken);
         setAuthState({
             user: null,
             status: 'done',

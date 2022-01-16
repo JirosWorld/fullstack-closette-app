@@ -15,8 +15,8 @@ public interface ToiletRepository extends JpaRepository<Toilet, Integer> {
     List<Toilet> findAllByLatitude(String latitude);
     List<Toilet> findAllByCity(String city);
     List<Toilet> findAllByCityContainingIgnoreCase(String city);
-    Iterable<Toilet> findAllByCountry(String country);
-    Iterable<Toilet> findAllByCountryContainingIgnoreCase(String country);
+    List<Toilet> findAllByCountry(String country);
+    List<Toilet> findAllByCountryContainingIgnoreCase(String country);
 
 //    @Query("SELECT b FROM Toilet b WHERE b.title LIKE %:s%")    // using JPQL
 //    or

@@ -11,8 +11,6 @@ import java.time.format.FormatStyle;
 @Table(name = "newsposts")
 public class NewsPost {
 
-    // attributen
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -94,9 +92,7 @@ public class NewsPost {
         this.newsauthor = newsauthor;
     }
 
-
     // toString
-
 
     @Override
     public String toString() {
