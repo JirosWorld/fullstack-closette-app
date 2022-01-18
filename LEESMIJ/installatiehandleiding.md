@@ -6,18 +6,18 @@ door Jiro Ghianni
 
 Houd deze repository bijelkaar binnen 1 directory. Dat wil zeggen: sleep de front-end map _niet_ naar een andere plek ten opzichte van de back-end. Dit in verband met de relatieve paden van een aantal standaard-afbeeldingen die als voorbeeld zijn gebruikt om de database te vullen.
 
-Let op: wanneer je dit project in 1 keer binnen een IDE importeert van Github, dan moet je er rekening mee houden dat de start scripts in de ***sub directories*** staan, dus 1 map lager dan deze Readme. Dit heeft invloed op het opstarten van zowel de back- als de front-end. Het is daarom eenvoudiger om dit project te DOWNLOADEN als ZIP, deze uit te pakken, en daarna de individuele mappen als 'root' te openen in een IDE naar keuze. 
+Let op: wanneer je dit project in 1 keer binnen een IDE importeert van Github, dan moet je er rekening mee houden dat de start scripts in de ***sub directories*** staan, dus 1 map lager dan de ROOT! Dit heeft invloed op het opstarten van zowel de back- als de front-end. Het is daarom eenvoudiger om dit project te DOWNLOADEN als ZIP, deze uit te pakken, en daarna de individuele mappen als 'root' te openen in een IDE naar keuze. 
 
 ## Installatie samengevat
 
-1. download de gehele ZIP van Github (dus: _niet_ uitchecken als versioncontrolled project)
-2. open de backend-closette map in een Java IDE of console
-3. verander de database gegevens
-4. verander het upload pad naar een map op je lokale machine
-5. run eventueel Maven vanuit de backend map, en start de applicatie `ClosetteApp`
-5. open de frontend-closette map in een React IDE of console
-6. run `$ npm install` en `$ npm start` vanuit de front-end folder
-7. bekijk de front-end in Chrome e.d.
+1. download de gehele ZIP van Github (dus: _niet_ uitchecken als versioncontrolled project) en pak deze ut op je lokale machine.
+2. open de backend-closette map in een Java IDE of console.
+3. verander de database gegevens zoals hieronder aangegeven.
+4. verander het upload pad naar een map op je lokale machine.
+5. run eventueel Maven vanuit de backend map, en start de Java applicatie `ClosetteApp` in de SRC/main map.
+5. open de frontend-closette map in een React IDE of console.
+6. run `$ npm install` en `$ npm start` **_vanuit_** de front-end folder zelf.
+7. bekijk de front-end in een browser.
 
 Zie voor verdere uitleg hieronder.
 
@@ -25,7 +25,7 @@ Zie voor verdere uitleg hieronder.
 
 Als je het project gedownload hebt naar jouw locale machine, installeer je eerst de back-end. Liefst via een Java-ready/Maven-ready IDE zoals IntelliJ maar het kan ook door de `backend-closette` folder te openen in elke terminal van jouw keuze.
 
-Je IDE kan als notieficatie de vraag stellen of Maven dit project mag vertrouwen, ze gdan 'yes' op de rust vraag. En installeer JPA buddy en de andere plugins wanneer daar akkoord op wordt gevraagd.
+Je IDE kan als notificatie de vraag stellen of Maven dit project mag vertrouwen, zeg dan 'yes' op de trust vraag. En installeer JPA buddy en de andere plugins wanneer daar akkoord op wordt gevraagd.
 
 In de meeste gevallen volstaat het om de _backend-closette_ map te openen in een IDE, die Java kan complieren, en het pom-bestand van Maven te laten installeren, waarna de Main klasse `ClosetteApplicatie` gedraaid (run) kan worden. (Het back-end startscript staat in `bckend-closette/pom.xml`). Maar installatie en runnen vanuit de `backend-closette` directory kan ook in 1 keer via een terminal naar keuze met het commando:
 
@@ -89,7 +89,7 @@ Wanneer dit klaar is, kun je (wederom vanuit de `frontend-closette` map) de appl
 
 Als je dit project opent in Webstorm kun je hiervoor ook het NPM START afspeelknopje gebruiken.
 
-Open http://localhost:3000 om de web-app in een browser te bekijken en te bedienen. 
+Je IDE kan als notificatie de vraag stellen of je browser (bijvoorbeeld Chrome) deze app mag vertrouwen; beantwoordt bevestigend op elke trust vraag. Open http://localhost:3000 om de web-app in een browser te bekijken en te bedienen. 
 
 Axios, React Router 5.2, React-Hook-Form, JWT-decoder,emailJS etc. zijn reeds gesaved in JSON builder en worden automatisch mee geïnstalleerd.
 
@@ -101,4 +101,4 @@ Dit project werkt alleen wanneer je Nodejs versie Node.js 15.4.0 of hoger hebt g
 
 ### Voorkeur browsers
 
-NB: Gebruik bij voorkeur **Chrome**, **Edge** of **Opera**. Natuurlijk werkt alles ook in Firefox en Safari maar sommige fonts worden daarin niet mooi 'bold' gerendered. Ook worden op sommige afbeeldingen het 'filter' CSS attribuut gebruikt, deze werkt momenteel nog niet altijd goed in Edge (en al helemaal niet in Explorer).
+NB: Gebruik bij voorkeur **Chrome**, **Edge** of **Opera**. Natuurlijk werkt alles ook in Firefox en Safari maar sommige fonts worden daarin niet mooi 'bold' gerendered. Ook wordt op sommige afbeeldingen het 'filter' CSS attribuut gebruikt, deze werkt momenteel nog niet altijd goed in Edge (en al helemaal niet in Explorer).

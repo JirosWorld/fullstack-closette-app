@@ -6,9 +6,9 @@ door Jiro Ghianni
 
 Deze directory bevat:
 
-* de Installatiehandleiding voor zowel front-end als back-end:  [link naar installatiehandleiding in markdown](installatiehandleiding.md)
+* de Installatiehandleiding voor zowel front-end als back-end:  [link naar de Installatiehandleiding in markdown](installatiehandleiding.md)
 
-* het Functioneel ontwerp + het Technisch ontwerp **samen** in 1 PDF: [link naar ontwerpen in PDF](functioneel-technisch.pdf)
+* het Functioneel ontwerp + het Technisch ontwerp **samen** in 1 PDF: [link naar Functioneel/Technisch ontwerp in PDF](functioneel-technisch.pdf) (8MB)
 
 * Broncode van beide projecten staat in de ZIP en het [online Github-project](../).
 
@@ -16,7 +16,7 @@ Deze directory bevat:
 
 ### Leuke extra’s
 
-Er is ook een 'text-only' markdown versie van het functioneel- en technisch ontwerp: [link naar ontwerpen in markdown](functioneel-technisch.md)
+Er is ook een 'text-only' markdown versie van het functioneel- en technisch ontwerp: [link naar ontwerptekst in markdown](functioneel-technisch.md)
 
 
 
