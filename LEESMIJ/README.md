@@ -8,7 +8,7 @@ Deze directory bevat:
 
 * de Installatiehandleiding voor zowel front-end als back-end:  [link naar de Installatiehandleiding in markdown](installatiehandleiding.md)
 
-* het Functioneel ontwerp + het Technisch ontwerp **samen** in 1 PDF: [link naar Functioneel/Technisch ontwerp in PDF](functioneel-technisch.pdf) (8MB)
+* het Functioneel ontwerp + het Technisch ontwerp **samen** in 1 PDF: [link naar Functioneel/Technisch ontwerp in PDF](eindopdracht-FSD-app-jiro.pdf) (8 MB)
 
 * Broncode van beide projecten staat in de ZIP en het [online Github-project](../).
 
@@ -16,7 +16,7 @@ Deze directory bevat:
 
 ### Leuke extra’s
 
-Er is ook een 'text-only' markdown versie van het functioneel- en technisch ontwerp: [link naar ontwerptekst in markdown](functioneel-technisch.md)
+Er is ook een 'text-only' markdown versie van het functioneel- en technisch ontwerp: [link naar ontwerptekst in markdown](functioneel-technisch.md) en een verzameling van alle Postman requests (= dezelfde als in de back-end documentation map).
 
 
 

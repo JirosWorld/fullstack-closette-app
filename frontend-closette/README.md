@@ -25,16 +25,18 @@ is: [Jiro's Github Fullstack Closette App](https://github.com/JirosWorld/fullsta
 
 Zie de installatiehandleiding in de LEESMIJ folder. Belangrijk voor Github gebruikers: download eerst het hele project als ZIP en pak deze uit, daarna kun je de front-end folder als root openen in een IDE met React/NPM/console zoals Webstorm.
 
-### Installatie samengevat
+## Installatie samengevat
 
-1. download de gehele ZIP van Github (dus: _niet_ uitchecken als versioncontrolled project)
-2. open de backend-closette map in een Java IDE of console
-3. verander de database gegevens
-4. verander het upload pad naar een map op je lokale machine
-5. run eventueel Maven vanuit de backend map, en start de applicatie `ClosetteApp`
-5. open de frontend-closette map in een React IDE of console
-6. run `$ npm install` en `$ npm start` vanuit de front-end folder
-7. bekijk de front-end in Chrome e.d.
+1. download de gehele ZIP van Github (dus: _niet_ uitchecken als versioncontrolled project) en pak deze ut op je lokale machine.
+2. open de backend-closette map in een Java IDE of console.
+3. verander de database gegevens zoals hieronder aangegeven.
+4. verander het upload pad naar een map op je lokale machine.
+5. run eventueel Maven vanuit de backend map, en start de Java applicatie `ClosetteApp` in de SRC/main map.
+5. open de frontend-closette map in een React IDE of console.
+6. run `$ npm install` en `$ npm start` **_vanuit_** de front-end folder zelf.
+7. bekijk de front-end in een browser.
+
+Zie voor verdere uitleg de [volledige installatiehandleiding](../LEESMIJ/installatiehandleiding.md).
 
 Saluut,
 

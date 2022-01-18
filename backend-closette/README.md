@@ -8,11 +8,11 @@ De database settings, in (bijvoorbeeld) pgAdmin:
 * user/owner: springboot
 * password: springboot
 
-Maak dus eerst een user aan met naam/wachtwoord springboot. En daarna een lege database met de naam closette, gekoppeld aan deze user.
+Maak dus eerst een user aan met naam/wachtwoord springboot. En daarna een lege database met de naam `closette`, gekoppeld aan deze user.
 
 Zodra de upload-functie wekt: pas het upload-pad aan naar joiw eigen lokale pad.
 
-Accepteer installatie van de JPA Buddy plug-in.
+Accepteer installatie van de JPA Buddy plug-in. Verdere installatiehandleidingen staan [in de LEESMIJ map](../LEESMIJ).
 
 #### Standaard users
 
