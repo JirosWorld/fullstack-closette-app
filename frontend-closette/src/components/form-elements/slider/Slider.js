@@ -5,7 +5,7 @@ import styles from './Slider.module.css';
 //  Alle andere checkboxes mogen in default stijl
 
 function Slider({register, labelId, yes, no, filterAttribute, inputName, children}) {
-    const [checkedState, toggleCheckedState] = useState(false);
+    const [checkedState, toggleCheckedState] = useState();
     const [firstMount, toggleFirstMount] = useState(false);
 
 

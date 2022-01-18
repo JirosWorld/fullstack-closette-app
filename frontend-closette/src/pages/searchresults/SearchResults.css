@@ -49,13 +49,13 @@
 }
 
 .mapped__posts span {
-    margin: 0 1em;
+    margin: 0 1em 0 0;
 }
 .mapped__posts span.no-image {
     margin: 0;
 }
 
-.mapped__posts li {
+.mapped__posts li, .mapped__posts.item {
     display: flex;
     padding: 1em;
     margin: 5px 0 10px 0;
@@ -81,7 +81,7 @@
 
 .mapped__post__detail,
 .mapped__post__detail a {
-    color: var(--hardpink);
+    color: var(--AccessibleGreen);
     font-size: 1.1em;
     font-weight: bold;
 }

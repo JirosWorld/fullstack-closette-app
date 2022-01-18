@@ -2,7 +2,9 @@ package nl.novi.closette.controller;
 
 import nl.novi.closette.model.FileUploadResponse;
 import nl.novi.closette.model.Photo;
+import nl.novi.closette.model.Toilet;
 import nl.novi.closette.repository.PhotoRepository;
+import nl.novi.closette.service.FileStorageService;
 import nl.novi.closette.service.PhotoService;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -61,9 +63,7 @@ public class PhotoDbController {
 
         Photo doc = photoRepository.findByFileName(fileName);
 
-//        this mediaType decides witch type you accept if you only accept 1 type
-//        MediaType contentType = MediaType.IMAGE_JPEG;
-//        this is going to accept multiple types
+//        this is going to accept multiple file types
 
         String mimeType = request.getServletContext().getMimeType(doc.getFileName());
 
@@ -134,6 +134,14 @@ public class PhotoDbController {
         response.setStatus(200);
         response.addHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment;fileName=zipfile");
     }
+
+    // function to make patching possible
+//    @PatchMapping(value = "single/uploadDb/{id}")
+//    public FileUploadResponse singleFileUpload(@RequestParam("file") MultipartFile file) throws IOException {
+//        FileStorageService.partialUpdatePhotoDb(id, photo);
+//
+//        return ResponseEntity.noContent().build();
+//    }
 
 
 }

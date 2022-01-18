@@ -3,11 +3,12 @@ import emailjs from '@emailjs/browser';
 import {useForm} from 'react-hook-form';
 
 import "./ContactPage.css";
-// Dit contactformulier werkt via de EmailJS mailserver-account, niet via de back-end
+// Dit contactformulier werkt via mijn EmailJS mailserver-cloud-account, niet via de back-end
 import {init} from '@emailjs/browser';
 import {Link} from "react-router-dom";
 import InputField from "../../components/form-elements/inputfield/InputField";
 import InputTextarea from "../../components/form-elements/inputfield/InputTextarea";
+import Slider from "../../components/form-elements/slider/Slider";
 
 init("user_QXd8UjBeN4IPK6AdPaueU");
 
@@ -89,8 +90,18 @@ export const ContactUs = () => {
                     }}
                 />
 
+                <Slider
+                    errors={errors}
+                    register={register}
+                    labelId="privacy-check"
+                    inputName="privacy"
+                    filterAttribute="Akkoord met privacy"
+                >
+                    Link <Link to="/info/faq-handleiding">naar privacy pagina</Link>
+                </Slider>
+
                 <input type="submit" value="Send"/>
-                <p>Link <Link to="/info/faq-handleiding">naar privacy pagina</Link>.</p>
+
             </form>
             {submitSuccess === true &&
             <div className="confirmation__container">

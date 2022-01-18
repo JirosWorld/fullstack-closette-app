@@ -51,7 +51,7 @@ function RegisterPage() {
             <TopNav/>
             <Header
                 title="Nieuwe account aanmaken"/>
-            <div className="register__page content-wrapper">
+            <main className="register__page content-wrapper">
                 <form className="form-container" onSubmit={handleSubmit(onFormSubmit)}>
                     <InputField
                         inputType="email"
@@ -119,9 +119,8 @@ function RegisterPage() {
                     <p>Heb je al een account? Ga dan hier <Link to="/login"> naar de inlog
                         pagina</Link>.</p>
                 </form>
-
-                <BackButton/>
-            </div>
+            </main>
+            <BackButton/>
         </>
     );
 }

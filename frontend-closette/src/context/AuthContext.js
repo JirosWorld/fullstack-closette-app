@@ -51,6 +51,10 @@ function AuthContextProvider({ children }) {
         console.log(userId);
 
         fetchUserData(jwtToken, userId);
+
+        setTimeout(() => {
+            history.push("/");
+        }, 3000);
     }
 
     async function fetchUserData(token, username) {
@@ -73,9 +77,9 @@ function AuthContextProvider({ children }) {
                 status: 'done',
             });
 
-            setTimeout(() => {
-                history.push("/");
-            }, 3000);
+            // setTimeout(() => {
+            //     history.push("/");
+            // }, 3000);
 
         } catch(e) {
             console.error(e);

@@ -1,5 +1,6 @@
 package nl.novi.closette.dto;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -12,10 +13,10 @@ public class ToiletRequestDto {
         @Size(min=1, max=100)
         private String title;
 
-        @Size(min=2, max=20, message="latitude is too long or too short, please use a dot.")
+        @Size(min=0, max=20, message="latitude is too long, please use a dot.")
         private String latitude;
 
-        @Size(min=2, max=20, message="longitude is too long or too short, please use a dot.")
+        @Size(min=0, max=20, message="longitude is too long, please use a dot.")
         private String longitude;
 
         private String postTime;
@@ -25,7 +26,10 @@ public class ToiletRequestDto {
         private String cleanliness;
         private boolean hasPhoto;
         private String openingHours;
+
+        @Column(columnDefinition="text")
         private String infoText;
+
         private double ratingAverage;
         private String address;
 

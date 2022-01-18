@@ -34,10 +34,14 @@
 .accordion-title.open {
     color: black;
 }
+.accordion-title.open {
+    border: solid 1px var(--hardpink);
+}
+
 .accordion-title.open::after {
     content: "";
     border-top: 0;
-    border-bottom: 5px solid;
+    border-bottom: 5px solid  var(--hardpink);
 }
 .accordion-content {
     padding: 1em 1.5em;

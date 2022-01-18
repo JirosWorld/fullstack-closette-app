@@ -16,8 +16,13 @@ public class NewsPost {
     private int id;
 
     private String title;
+
+    @Column(columnDefinition="text")
     private String description;
+
+    @Column(columnDefinition="text")
     private String paragraph;
+
     private String postTime;
 
     @JsonIgnoreProperties("newsposts")

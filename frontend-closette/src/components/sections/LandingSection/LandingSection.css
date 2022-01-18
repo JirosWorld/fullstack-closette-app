@@ -68,8 +68,8 @@ svg.svg-submit {
 svg.svg-avatar-black {
     width: 200px;
     height: 200px;
-    fill: #000;
-    stroke: #000;
+    fill: var(--blackcontrast);
+    stroke: var(--blackcontrast);
 }
 
 .column__icon-box {

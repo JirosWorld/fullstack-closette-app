@@ -31,7 +31,7 @@ function NewsFeedPage() {
                 console.log(result.data);
 
             } catch (error) {
-                setError("Er is iets misgegaan bij het ophalen van de data");
+                setError(`Er is iets misgegaan bij het ophalen van de data - (${error.message})`);
                 console.error(error);
             }
             toggleLoading(false);
@@ -47,8 +47,8 @@ function NewsFeedPage() {
             <Header
                 title="Nieuwsoverzicht"
             />
-            <div className="Newsfeed__page content-wide">
-                <BackButton/>
+            <main className="Newsfeed__page content-wide">
+
                 {error && <p className="error-message">{error}</p>}
                 <section className="news posts">
 
@@ -57,7 +57,7 @@ function NewsFeedPage() {
                         {newsEntry.data && newsEntry.data.map((post) => {
                                 console.log("post.data:");
                                 console.log(post);
-                                return <li key={post.title && post.title}>
+                                return <li key={post.id && post.title}>
                                     <Link
                                         activeClassName="active-link"
                                         to={`news/${post.id}`}>
@@ -70,7 +70,7 @@ function NewsFeedPage() {
                             </span>
                                     </Link>
 
-                                    <div className="content-wrapper">
+                                    <div className="wrapper">
                                         <h2 className="mapped__post__title">
                                         <span><Link
                                             activeClassName="active-link"
@@ -78,7 +78,7 @@ function NewsFeedPage() {
                                 </Link></span>
                                         </h2>
                                         <span className="mapped__post__author">
-                                    Auteur: {post.newsauthor.username}
+                                    Auteur: {post.newsauthor && post.newsauthor.username}
                                     </span><span className="mapped__post__detail">
                                 Datum <Link
                                         activeClassName="active-link"
@@ -87,10 +87,7 @@ function NewsFeedPage() {
 
                                         <div className="mapped__post__details">
                                             <p>
-                                                Intro: {post.description}
-                                            </p>
-                                            <p>
-                                                Nieuwsbericht: {post.paragraph}
+                                                Samenvatting: {post.description}
                                             </p>
                                         </div>
                                     </div>
@@ -109,7 +106,7 @@ function NewsFeedPage() {
                     </ul>
                 </section>
                 <BackButton/>
-            </div>
+            </main>
         </>
     );
 }

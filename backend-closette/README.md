@@ -62,6 +62,15 @@ Accepteer installatie van de JPA Buddy plug-in.
 * {PUT [/news/{id}]}
 * {DELETE [/news/{id}]}
 
+#### photo
+
+* {POST [/multiple/upload]}
+* {POST [/single/uploadDb]}
+* {GET [/zipDownload/db]}
+* {GET [/zipDownload]}
+* {GET [/download/{fileName}]}
+* {GET [/downloadFromDB/{fileName}]}
+* {POST [/multiple/upload/db]}
 
 #### overige
 

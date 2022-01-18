@@ -47,7 +47,7 @@ function LoginPage() {
             <TopNav/>
             <Header
                 title="Inloggen"/>
-            <div className="login__page content-wrapper">
+            <main className="login__page content-wrapper">
                 {loginSuccess === true &&
                 <div className="confirmation__container">
                     <Loader/>
@@ -95,8 +95,8 @@ function LoginPage() {
                     <p>Heb je nog geen account? Maak er dan <Link to="/signup"> hier eentje
                         aan</Link>.</p>
                 </form>
-                <BackButton/>
-            </div>
+            </main>
+            <BackButton/>
         </>
     );
 }

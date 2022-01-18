@@ -46,10 +46,10 @@ function SubmitPage() {
             console.log(result);
 
         } catch (e) {
-            setError(`Het toevoegen is mislukt. Probeer het opnieuw (${e.message})`)
+            setError(`(${e.message}) - Wanneer je een 400 error ziet, dan heb je een naam ingevoerd die al bestaat of je hebt een GPS coordinaat gebruikt dat al is ingevoerd - zorg dat titel en locatie UNIEK zijn.`)
             console.error(e);
         }
-        console.log("Resultaat data useState:");
+        console.log("Resultaat submitdata useState:");
         console.log(submitInfo);
         toggleSubmitSuccess(true);
 
@@ -70,7 +70,7 @@ function SubmitPage() {
             <Header
                 title="Toevoegen / Inzenden"
             />
-            <div className="submit__page content-wrapper">
+            <main className="submit__page content-wrapper">
                 <h2>Toilet gevonden? Voeg hier een nieuwe toe!</h2>
                 <p>Lees meer <Link to="/info/faq-handleiding">in de f.a.q.</Link></p>
 
@@ -91,10 +91,10 @@ function SubmitPage() {
                                     validationRules={{
                                         required: {
                                             value: true,
-                                            message: "Titel invullen is verplicht. Vul aub iets in",
+                                            message: "Titel invullen is verplicht. Vul a.u.b. iets in",
                                         },
                                         minLength: {
-                                            value: 6,
+                                            value: 3,
                                             message: "Te korte titel.",
                                         },
                                     }}
@@ -111,7 +111,7 @@ function SubmitPage() {
                                     validationRules={{
                                         required: {
                                             value: true,
-                                            message: "Plaatsnaam invullen is verplicht. Vul aub iets in",
+                                            message: "Plaatsnaam invullen is verplicht. Vul a.u.b. iets in",
                                         },
                                         minLength: {
                                             value: 1,
@@ -146,7 +146,7 @@ function SubmitPage() {
                                     validationRules={{
                                         required: {
                                             value: true,
-                                            message: "Land invullen is verplicht. Vul aub iets in",
+                                            message: "Land invullen is verplicht. Vul a.u.b. iets in",
                                         },
                                         minLength: {
                                             value: 1,
@@ -258,7 +258,7 @@ function SubmitPage() {
                                 <InputTextarea
                                     rowNr={6}
                                     columnNr={30}
-                                    placeholderText="Typ hier een beschrijving van o.a. hoe het toilet te bereiken is e.a. bijzonderheden, wees zo gedetaillerd als je wilt..."
+                                    placeholderText="Typ hier een beschrijving van o.a. hoe het toilet te bereiken is e.a. bijzonderheden, wees zo gedetailleerd als je wilt..."
                                     errors={errors}
                                     register={register}
                                     labelText="Info beschrijving:"
@@ -266,8 +266,8 @@ function SubmitPage() {
                                     inputName="infoText"
                                     validationRules={{
                                         maxLength: {
-                                            value: 255,
-                                            message: "Te lang, gebruik maximaal 255 tekens.",
+                                            value: 500,
+                                            message: "Te lang, gebruik maximaal 500 tekens.",
 
                                         },
                                     }}
@@ -289,18 +289,6 @@ function SubmitPage() {
                                         },
                                     }}
                                 />
-
-                                <Slider
-                                    errors={errors}
-                                    register={register}
-                                    labelId="public-check"
-                                    inputName="public"
-                                    filterAttribute="Openbaar"
-                                    yes="wel"
-                                    no="niet"
-                                >
-
-                                </Slider>
 
                                 <Slider
                                     errors={errors}
@@ -352,7 +340,6 @@ function SubmitPage() {
                             <div className="confirmation__container">
                                 <Loader/>
                                 <h3>Toevoegen gelukt!</h3>
-                                <p>Wanneer je een 400 error ziet, dan heb je een naam ingevoerd die al bestaat of je hebt een GPS coordinaat gebruikt dat ook al is ingevoerd - zorg dat titel en locatie UNIEK zijn.</p>
                                     <h2>Zoek je nieuwe toilet nu meteen op in de
                                     database (je wordt automatisch doorgestuurd).</h2>
                             </div>}
@@ -368,8 +355,8 @@ function SubmitPage() {
                                 een account</Link> om te kunnen reageren
                             of <Link to="/login"> log in</Link>.</h4>
                     </>}
-                <BackButton/>
-            </div>
+            </main>
+            <BackButton/>
         </>
     );
 }

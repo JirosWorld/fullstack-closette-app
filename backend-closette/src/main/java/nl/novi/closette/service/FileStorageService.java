@@ -1,5 +1,7 @@
 package nl.novi.closette.service;
 
+import nl.novi.closette.exception.RecordNotFoundException;
+import nl.novi.closette.model.Photo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -13,11 +15,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Optional;
 
 @Service
 public class FileStorageService {
 
-//    The next line is also possible instead of line 14 and 15
     @Value("${my.upload_location}")
     private Path fileStoragePath;
     private String fileStorageLocation;
@@ -30,7 +32,7 @@ public class FileStorageService {
         try {
             Files.createDirectories(fileStoragePath);
         } catch (IOException e) {
-            throw new RuntimeException("Issue in creating file directory");
+            throw new RuntimeException("Problem in creating file directory");
         }
 
     }
@@ -61,13 +63,35 @@ public class FileStorageService {
         try {
             resource = new UrlResource(path.toUri());
         } catch (MalformedURLException e) {
-            throw new RuntimeException("Issue in reading the file", e);
+            throw new RuntimeException("Problem in reading the file", e);
         }
 
         if(resource.exists()&& resource.isReadable()) {
             return resource;
         } else {
-            throw new RuntimeException("the file doesn't exist or not readable");
+            throw new RuntimeException("The file doesn't exist or not readable");
         }
     }
+
+    // function to make patching possible
+//    public void partialUpdatePhotoDb(int id, Photo photo) {
+//        Optional<Photo> optionalPhoto = photoRepository.findById(id);
+//
+//        if (optionalPhoto.isPresent()) {
+//            Photo storedPhoto = photoRepository.findById(id).orElse(null);
+//
+//            if (photo.getDocFile() != null && !photo.getDocFile().isEmpty()) {
+//                storedPhoto.setDocFile(photo.getDocFile());
+//            }
+//            if (photo.getFileName() != null && !photo.getFileName().isEmpty()) {
+//                storedPhoto.setFileName(photo.getFileName());
+//            }
+//            photoRepository.save(storedPhoto);
+//
+//        } else {
+//            throw new RecordNotFoundException("ID does not exist!!!");
+//        }
+//    }
+
+
 }

@@ -12,13 +12,16 @@ function ContactPage() {
     }, []);
 
     return (
-        <section className="contact__page  content-wrapper">
+
+        <>
             <TopNav/>
             <Header
                 title="Contactpagina"/>
-                <ContactUs />
-            <BackButton />
-        </section>
+            <main className="contact__page  content-wrapper">
+                <ContactUs/>
+            </main>
+            <BackButton/>
+        </>
     );
 }
 

@@ -13,7 +13,7 @@ import FreeIcon from "../../assets/icons/icon-money-free-gratis.png";
 import PaidIcon from "../../assets/icons/icon-money-pay-euro.png";
 import noImage from "../../assets/icons/icon-lines-toilet-jiro.svg";
 
-function ToiletPost() {
+function ToiletPhotoSCHETS() {
     const {user} = useContext(AuthContext);
     console.log(user);
     const {id} = useParams();
@@ -95,6 +95,15 @@ function ToiletPost() {
                             </div>
                         </div>
                         <div className="template-main-content toilet">
+                            <p>Endpoints voor photos: &#123;<br/>
+                                * POST [/multiple/upload]<br/>
+                                * POST [/single/uploadDb]<br/>
+                                * GET [/zipDownload/db]<br/>
+                                * GET [/zipDownload]<br/>
+                                * GET [/download/&#123;fileName&#125;]<br/>
+                                * GET [/downloadFromDB/&#123;fileName&#125;]<br/>
+                                * POST [/multiple/upload/db]
+                            </p>
                             <div className="template-main-content--wrapper">
                                 <p>Beschrijving: {toiletEntry && toiletEntry.infoText}</p>
                                 <p>Adres: {toiletEntry && toiletEntry.address}</p>
@@ -156,4 +165,4 @@ function ToiletPost() {
     );
 }
 
-export default ToiletPost;
+export default ToiletPhotoSCHETS;

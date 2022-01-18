@@ -34,6 +34,16 @@ public class ToiletService {
         return toiletRepository.findAllByCountryContainingIgnoreCase(country);
     }
 
+//    schets voor zoek queries in query pad
+//    List<Toilet> findAllByGenderneutral(Boolean genderneutral);
+//    List<Toilet> findAllByFree(Boolean free);
+//    List<Toilet> findAllByAccessible(Boolean accessible);
+//    List<Toilet> findAllByCleanliness(Boolean cleanliness);
+//    List<Toilet> findAllByHasPhoto(Boolean hasPhoto);
+    public List<Toilet> getToiletsByGenderneutral(Boolean genderneutral){
+        return toiletRepository.findAllByGenderneutral(genderneutral);
+    }
+
     public Toilet getToilet(int id) {
         Optional<Toilet> optionalToilet = toiletRepository.findById(id);
 
@@ -54,11 +64,17 @@ public class ToiletService {
 
     public int addToilet(ToiletRequestDto toiletRequestDto) {
 
-        String latitude = toiletRequestDto.getLatitude();
-        List<Toilet> toilets = (List<Toilet>) toiletRepository.findAllByLatitude(latitude);
-        if (toilets.size() > 0) {
-            throw new BadRequestException("this exact latitude already exists! Please add detailed degrees");
-        }
+        // uitgezet voor testdoeleinden, wél functioneel in real life:
+//        String title = toiletRequestDto.getTitle();
+//        List<Toilet> toilets = toiletRepository.findAllByTitle(title);
+//        if (toilets.size() > 0) {
+//            throw new BadRequestException("this exact title already exists! Please add detailed name");
+//        }
+//        String latitudeDuplicate = toiletRequestDto.getLatitude();
+//        List<Toilet> latitudes = toiletRepository.findAllByLatitude(latitudeDuplicate);
+//        if (latitudes.size() > 0) {
+//            throw new BadRequestException("this exact location already exists! Please add detailed GPS coordinates, with a dot.");
+//        }
 
         Toilet toilet = new Toilet();
         toilet.setTitle(toiletRequestDto.getTitle());

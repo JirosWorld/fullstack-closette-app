@@ -1,5 +1,6 @@
 package nl.novi.closette.dto;
 
+import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -13,10 +14,11 @@ public class NewsPostRequestDto {
         private String title;
 
         @NotBlank
-        @Size(min=1, max=200, message="Introduction paragraph is too long, 200 characters maximum.")
+        @Size(min=1, max=255, message="Introduction paragraph is too long, 255 characters maximum.")
         private String description;
 
         @NotBlank
+        @Column(columnDefinition="text")
         @Size(min=10, message="Paragraph is too short, minimum of 10 characters.")
         private String paragraph;
 

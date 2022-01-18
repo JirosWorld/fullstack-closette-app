@@ -26,7 +26,10 @@ public class Toilet {
     private String cleanliness;
     private boolean hasPhoto;
     private String openingHours;
+
+    @Column(columnDefinition="text")
     private String infoText;
+
     private double ratingAverage;
     private String city;
     private String country;

@@ -49,8 +49,8 @@ public class NewsPostService {
 
     public int addPost(NewsPostRequestDto newsPostRequestDto) {
 
-        String latitude = newsPostRequestDto.getTitle();
-        List<NewsPost> posts = (List<NewsPost>) newsPostRepository.findAllByTitle(latitude);
+        String titleDuplicate = newsPostRequestDto.getTitle();
+        List<NewsPost> posts = (List<NewsPost>) newsPostRepository.findAllByTitle(titleDuplicate);
         if (posts.size() > 0) {
             throw new BadRequestException("this exact title already exists! Please add a unique title.");
         }

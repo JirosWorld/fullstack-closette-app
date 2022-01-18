@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {
     Switch,
-    Route, Redirect
+    Route
 } from "react-router-dom";
 import './App.css';
 import HomePage from "./pages/homepage/HomePage";
@@ -14,18 +14,20 @@ import RegisterPage from "./pages/registerpage/RegisterPage";
 import DashboardPage from "./pages/dashboardpage/DashboardPage";
 import SearchResults from "./pages/searchresults/SearchResults";
 import Footer from "./components/footer/Footer";
-import NewsPost from "./pages/newspost/NewsPost";
+import NewsPost from "./pages/newspost-infopost/NewsPost";
 import ToiletPost from "./pages/toiletpost/ToiletPost";
-import FaqPage from "./pages/newspost/FaqPage";
-import SearchByQueriesPage from "./pages/searchpage/SearchByQueriesPage";
+import FaqPage from "./pages/newspost-infopost/FaqPage";
+import SearchSCHETS from "./pages/searchpage/SearchSCHETS";
+import ToiletPhotoSCHETS from "./pages/toiletpost/ToiletPhotoSCHETS";
+import ToiletPatchSCHETS from "./pages/toiletpost/ToiletPatchSCHETS";
 
-function PrivateRoute({children, isAuth, ...rest}) {
-    return (
-        <Route {...rest}>
-            {isAuth ? children : <Redirect to="/login"/>}
-        </Route>
-    )
-}
+// function PrivateRoute({children, isAuth, ...rest}) {
+//     return (
+//         <Route {...rest}>
+//             {isAuth ? children : <Redirect to="/login"/>}
+//         </Route>
+//     )
+// }
 
 function App() {
 
@@ -46,9 +48,6 @@ function App() {
                         </Route>
                         <Route exact path="/searchresults">
                             <SearchResults/>
-                        </Route>
-                        <Route exact path="/searchqueries">
-                            <SearchByQueriesPage/>
                         </Route>
                         <Route exact path="/toilets/:id">
                             <ToiletPost/>
@@ -82,6 +81,20 @@ function App() {
                         {/*</PrivateRoute>*/}
                         <Route path="/login">
                             <LoginPage/>
+                        </Route>
+
+                    {/*    URL's for development testing only, not for testers */}
+                        <Route path="/searchschets">
+                            <SearchSCHETS/>
+                        </Route>
+                        <Route path="/photoschets">
+                            <ToiletPhotoSCHETS/>
+                        </Route>
+                        <Route exact path="/patchschets/toilets/:id">
+                            <ToiletPatchSCHETS/>
+                        </Route>
+                        <Route path="/patchschets">
+                            <ToiletPatchSCHETS/>
                         </Route>
                     </Switch>
                 </div>
