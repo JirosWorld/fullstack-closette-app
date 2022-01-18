@@ -2,19 +2,16 @@
 
 _Markdown text-only versie_
 
-Deze 'text only' versie is alleen bedoeld om in een browser op Github makkelijk snel te kunnen lezen hoe het ontwerp inelkaar steekt. Het échte ontwerp document staat hier: [PDF ontwerp document met afbeeldingen](functioneel-technisch.md)
+Deze 'text only' versie is alleen bedoeld om in een browser op Github makkelijk snel te kunnen lezen hoe het ontwerp inelkaar steekt. Het échte ontwerp document staat hier: [PDF ontwerp document met afbeeldingen](eindopdracht-FSD-app-jiro.pdf)
 
 door Jiro Ghianni
 
 ## Text Only inhoud
 
-### = Zonder afbeeldingen =
-
-
 
 FUNCTIONEEL EN TECHNISCH ONTWERP ‘CLOSETTE’
 
-
+De rest van deze tekst komt pas online op de dag van de eindopdracht zodat mede-studenten niet kunnen spieken
 
 
 

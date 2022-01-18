@@ -85,10 +85,9 @@ function SearchPage() {
         <>
             <TopNav/>
             <Header
-                title="Zoeken"/>
+                title="Snel-Zoeken"/>
             <div className="search__page content-wrapper">
-                <h2>'Snel-zoeken'</h2>
-                <p>Scroll naar beneden nadat je de zoek-knop hebt ingedrukt.</p>
+                <p>Op deze pagina kun je snel-zoeken op basis van &oacute;f stad, &oacute;f land &oacute;f locatie-naam. Scroll naar beneden, nadat je een zoek-knop hebt ingedrukt, om de zoekresultaten te zien.</p>
                 <h3>Zoek op stad</h3>
                 <form className="form-container city" onSubmit={handleSubmit(onFormSubmitCity)}>
                     <InputField

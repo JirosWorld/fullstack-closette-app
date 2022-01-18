@@ -1,0 +1,8 @@
+.show {
+    visibility: initial;
+    display: block;
+}
+.hidden {
+    visibility: hidden;
+    display: none;
+}
