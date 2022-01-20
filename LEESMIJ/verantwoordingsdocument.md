@@ -20,7 +20,7 @@ Zie [Functioneel-Technisch ontwerp](functioneel-technisch.md) in deze directory.
 
 ## Technische ontwerpbeslissingen
 
-Als einddexameneis wordt er gevraagd om minstens 10 technische ontwerpbeslissingen. Deze volgen hierondner in meerdere kopjes: Servers, database, Java en Springboot, software, Git, testen en beveiliging.
+Als einddexameneis wordt er gevraagd om minstens 10 technische ontwerpbeslissingen. Deze volgen hieronder in meerdere kopjes: Servers, database, Java en Springboot, software, Git, testen en beveiliging.
 
 ## Servers
 
@@ -92,6 +92,11 @@ Zie de directories/folders onder `src/test/java`.
 * De beveiliging is niet production-ready doordat er  natuurlijk te eenvoudige wachtwoorden ('password') en een te simpele secret key is gebruikt ('secret'). In de werkelijkheid kan er beter worden gewerkt met cookies i.p.v. alleen een JWT token. 
 * Via authenticatie met JSON Web Token (JWT) was het mogelijk om de endpoints te beveiligen met authenticate en authorisaties. Het verwijderen van een bestaande gebruiker is beveiligd, zodat alleen gebruikers met de ADMIN rol deze acties kunnen uitvoeren.
 * De CORS beveiligingscode heb ik rechtstreeks gekopiëerd van wat we in de les te zien kregen.
+
+
+## Technische functionaliteits beslissingen
+
+In de eindexamenopdracht wordt als eis gesteld dat er een "bestands-up- en download" functionaliteit in de app zit. De upload- en download werkt volledig op de back-end, maar op de front-end is alleen de upload functie expliciet te zien: dit omdat een 'download' niet nodig is als funtionaliteit. Natuurlijk vindt er eigenlijk wél een soort 'download' plaats op de front-end omdat de geüploade afbeeldingen op de front-end in HTML worden afgebeeld/gerendered.
 
 ## Wat is er niet gedaan + disclaimers
 
