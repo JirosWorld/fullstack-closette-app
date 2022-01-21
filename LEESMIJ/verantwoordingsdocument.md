@@ -116,6 +116,8 @@ _(limitaties van de applicatie en beargumentatie van mogelijke doorontwikkelinge
 
 • De gestelde kwaliteitseis van een totale test-coverage van 50% is behaald.
 
+• Aan de front-end zijn geen Dev dependencies gebruikt. 
+
 • Het ontwerp in Figma komt niet 100% overeen met wat ik uiteindelijk in React heb gebouwd; in CSS kan ik 'pixel perfect' bouwen maar Figma doet niet wat ik wil. Een aantal elementen in Figma hadden afgeronde hoeken moeten hebben, maar dat lukt niet overal. Deze manier van werken is niet 'industry standard' - ik moet het design van een UX designer natuurlijk tot op de pixel nauwkeurig kunnen nabouwen. In deze oplevering lijkt het nu alsof ik me niet aan mijn eigen ontwerp heb gehouden - maar eigenlijk is het omgekeerd. Figma houdt zich niet aan mij.
 
 • De front-end website is niet geoptimaliseerd voor Explorer. Bij meer tijd zou ik echt wel ook zeer verouderde browsers willen supporten, vooral omwille van de toegankelijkheid.
