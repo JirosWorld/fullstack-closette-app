@@ -41,9 +41,16 @@ public class FileStorageService {
 
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
-//        Windows users moeten hier mogelijk een BACKSLASH invoeren in plaats van de SLASH die hier staat
+//
+// Windows users moeten hier mogelijk een BACKSLASH invoeren in plaats van de SLASH die hier staat
+// voor sommige Windows gebruikers is hier zelfs een path nodig met TWEE Backslashes naastelkaar: "\\"
+//
+
         Path filePath = Paths.get(fileStoragePath + "/" + fileName);
-//        het pad hierboven kan problemen geven bij Windows users, Mac users zijn veilig
+
+//
+// het pad hierboven kan problemen geven bij Windows users, Mac users zijn veilig.
+//
 
         try {
             Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);

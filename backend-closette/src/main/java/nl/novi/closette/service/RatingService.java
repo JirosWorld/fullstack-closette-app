@@ -1,5 +1,6 @@
 package nl.novi.closette.service;
 
+import nl.novi.closette.dto.RatingRequestDto;
 import nl.novi.closette.exception.RecordNotFoundException;
 import nl.novi.closette.model.Toilet;
 import nl.novi.closette.model.User;

@@ -37,7 +37,7 @@ Zie voor verdere uitleg hieronder.
 
 Als je het project gedownload hebt naar jouw locale machine, installeer je eerst de back-end. Liefst via een Java-ready/Maven-ready IDE zoals IntelliJ maar het kan ook door de `backend-closette` folder te openen in elke terminal van jouw keuze.
 
-Je IDE kan als notificatie de vraag stellen of Maven dit project mag vertrouwen, zeg dan 'yes' op de trust vraag. En installeer JPA buddy en de andere plugins wanneer daar akkoord op wordt gevraagd.
+Je IDE kan als notificatie de vraag stellen of Maven dit project mag vertrouwen, zeg dan 'yes' op de trust vraag. En installeer JPA buddy en de andere plugins wanneer daar akkoord op wordt gevraagd. Indien IntelliJ vraagt om een DataSource of SQL dialect te kiezen, doen dit dan NIET, laat het zoals het is. En klik OK op de JPA Buddy default configuratie.
 
 In de meeste gevallen volstaat het om de _backend-closette_ map te openen in een IDE, die Java kan complieren, en het pom-bestand van Maven te laten installeren, waarna de Main klasse `ClosetteApplicatie` gedraaid (run) kan worden. (Het back-end startscript staat in `bckend-closette/pom.xml`). Maar installatie en runnen vanuit de `backend-closette` directory kan ook in 1 keer via een terminal naar keuze met het commando:
 

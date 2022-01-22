@@ -1,5 +1,6 @@
 package nl.novi.closette.controller;
 
+import nl.novi.closette.dto.RatingRequestDto;
 import nl.novi.closette.model.Toilet;
 import nl.novi.closette.model.Rating;
 import nl.novi.closette.service.RatingService;
@@ -50,6 +51,11 @@ public class RatingController {
     @PostMapping(value = "/ratings/{id}/toilets")
     public ResponseEntity<Object> addRatingToilet(@PathVariable int id, @RequestBody Toilet toilet) {
         ratingService.addRatingToilet(id, toilet);
+//        int newId = ratingService.addRating(rating);
+
+//        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+//                .buildAndExpand(newId).toUri();
+
         return ResponseEntity.created(null).build();
     }
 }

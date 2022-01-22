@@ -18,6 +18,8 @@ function ContactPage() {
             <Header
                 title="Contactpagina"/>
             <main className="contact__page  content-wrapper">
+                <p>Heb je een vraag? Of: zie je iets op de website dat niet okee is? Stuur ons
+                    dan een bericht.</p>
                 <ContactUs/>
             </main>
             <BackButton/>

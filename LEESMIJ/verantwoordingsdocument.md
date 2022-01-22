@@ -24,7 +24,7 @@ Als einddexameneis wordt er gevraagd om minstens 10 technische ontwerpbeslissing
 
 ## Servers
 
-Er wordt gebruik gemaakt van Apache Tomcat, onder de motorkap van Spring Boot.
+Er wordt gebruik gemaakt van Apache Tomcat, op de achtergrond van Spring Boot.
 
 De front-end server draait op http://localhost:3000
 
@@ -38,7 +38,7 @@ Door de ingebouwde ondersteuning van Spring Boot voor vele database producten vi
 Daarom zijn er in de directory/folder `src/main/resources` verschillende `application.properties` meegeleverd:
 
 * JPA
-* Hibernate
+* Hibernate (de ORM)
 * Tables droppen bij elke Run
 * een uniek niet-realief pad naar de Uploads directory
 * postgres profiel en dialect

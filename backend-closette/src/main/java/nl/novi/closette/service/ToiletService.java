@@ -8,6 +8,7 @@ import nl.novi.closette.repository.ToiletRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +22,27 @@ public class ToiletService {
     public List<Toilet> getToilets() {
         return toiletRepository.findAll();
     }
+
+    // find all with queries - needs te be expanded for country
+    public Iterable<Toilet> getToiletsQuery(String title, String city, String country) {
+        if (!title.isEmpty()) {
+            if (!city.isEmpty()) {
+                return toiletRepository.findAllByTitleAndCityAndCountry(title, city, country);
+            }
+            else {
+                return toiletRepository.findAllByTitle(title);
+            }
+        }
+        else {
+            if (!city.isEmpty()) {
+                return toiletRepository.findAllByCityContainingIgnoreCase(city);
+            }
+            else {
+                return toiletRepository.findAll();
+            }
+        }
+    }
+    // end queries
 
     public List<Toilet> getToiletsByTitle(String title) {
         return toiletRepository.findAllByTitleContainingIgnoreCase(title);

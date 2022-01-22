@@ -10,9 +10,6 @@ import java.util.Set;
 @Table(name = "users")
 public class User {
 
-//        @Column(nullable = true, unique = true)
-//        private int id;
-
         @Id
         @Column(nullable = false, unique = true)
         private String username;
@@ -45,14 +42,6 @@ public class User {
         public void setUsername(String username) {
                 this.username = username;
         }
-
-//        public int getId() {
-//                return id;
-//        }
-//
-//        public void setId(int id) {
-//                this.id = id;
-//        }
 
         public List<NewsPost> getNewsposts() {
                 return newsposts;
