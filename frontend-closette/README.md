@@ -15,7 +15,7 @@ is: [Jiro's Github Fullstack Closette App](https://github.com/JirosWorld/fullsta
 
 * in de 'LEESMIJ' map staat de Installatiehandleiding:  [link naar installatiehandleiding in markdown](../LEESMIJ/installatiehandleiding.md)
 
-* in de 'LEESMIJ' map staat het Functioneel ontwerp + het Technisch ontwerp **samen** in 1 PDF; er is ook een 'text-only' markdown versie: [link naar ontwerpen in markdown](../LEESMIJ/functioneel-technisch.md)
+* in de 'LEESMIJ' map staat het [Functioneel ontwerp + het Technisch ontwerp **samen** in 1 PDF](../LEESMIJ/eindopdracht-FSD-app-jiro.pdf) (9 MB)
 
 * Broncode van beide projecten staat in de complete ZIP en het online Github-project.
 
