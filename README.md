@@ -2,7 +2,7 @@
 
 door Jiro Ghianni
 
-![Closette logo](LEESMIJ/assets/screenshot-closette.png)
+![Closette screenshot front-end](LEESMIJ/assets/screenshot-closette.png)
 
 ## Inhoud en installatie
 
@@ -10,18 +10,20 @@ Welkom bij de _Closette ~ genderneutrale toiletten zoek-app_. Deze applicatie ku
 
 * Deze Readme...
 
-    * ...beschrijft waar alle documenten en applicaties te vinden zijn
+    * ... beschrijft waar alle documenten en applicaties te vinden zijn
 
-    * ..bevat de link naar de GIT repository waarnaar het project geüpload
+    * ... bevat de link naar de GIT repository waarnaar het project geüpload
 is: [Jiro's Github Fullstack Closette App](https://github.com/JirosWorld/fullstack-closette-app).
 
 * in de 'LEESMIJ' map staat alle documentatie bijelkaar, inclusief de Installatiehandleiding:  [link naar installatiehandleiding in markdown](LEESMIJ/installatiehandleiding.md)
 
-* in de 'LEESMIJ' map staat het Functioneel ontwerp + het Technisch ontwerp [**samen** in 1 PDF](LEESMIJ/eindopdracht-FSD-app-jiro.pdf) (8 MB); er is ook een 'text-only' markdown versie: [link naar ontwerpen in markdown](LEESMIJ/functioneel-technisch.md)
+* in de 'LEESMIJ' map staat het Functioneel ontwerp + het Technisch ontwerp [**samen** in één PDF](LEESMIJ/eindopdracht-FSD-app-jiro.pdf) (9 MB); _(er is ook een ['text-only' markdown versie](LEESMIJ/functioneel-technisch.md))_
 
 * Broncode van beide projecten staat in de ZIP en het online Github-project.
 
 * in de 'LEESMIJ' map staat ook het Verantwoordingsdocument: [link naar Verantwoordingsdocument in markdown](LEESMIJ/verantwoordingsdocument.md)
+
+* en in de 'LEESMIJ' map staat de verzameling van [alle Endpoint + Postman requests](LEESMIJ/postman_collection.json) (JSON)
 
 ### Leuke extra’s
 
