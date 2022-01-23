@@ -36,7 +36,7 @@ function SearchPage() {
             console.log("alle result inhoud:");
             console.log(result);
             setTimeout(() => {
-                window.scrollTo({ top: 1000, behavior: 'smooth' })
+                window.scrollTo({top: 1000, behavior: 'smooth'})
             }, 0);
             console.log("De pagina begint met de window naar boven gescrolld");
 
@@ -58,7 +58,7 @@ function SearchPage() {
             console.log("alle country zoek inhoud:");
             console.log(result);
             setTimeout(() => {
-                window.scrollTo({ top: 1000, behavior: 'smooth' })
+                window.scrollTo({top: 1000, behavior: 'smooth'})
             }, 0);
         } catch (error) {
             setError(`Er is iets misgegaan bij het ophalen van de data - (${error.message})`);
@@ -78,7 +78,7 @@ function SearchPage() {
             console.log("alle naam zoek inhoud:");
             console.log(result);
             setTimeout(() => {
-                window.scrollTo({ top: 1000, behavior: 'smooth' })
+                window.scrollTo({top: 1000, behavior: 'smooth'})
             }, 0);
         } catch (error) {
             setError(`Er is iets misgegaan bij het ophalen van de data - (${error.message})`);
@@ -95,7 +95,9 @@ function SearchPage() {
             <Header
                 title="Snel-Zoeken"/>
             <div className="search__page content-wrapper">
-                <p>Op deze pagina kun je snel-zoeken op basis van &oacute;f stad, &oacute;f land &oacute;f locatie-naam. Scroll naar beneden, nadat je een zoek-knop hebt ingedrukt, om de zoekresultaten te zien.</p>
+                <p>Op deze pagina kun je snel-zoeken op basis van &oacute;f stad, &oacute;f
+                    land &oacute;f locatie-naam. Scroll naar beneden, nadat je een zoek-knop hebt
+                    ingedrukt, om de zoekresultaten te zien.</p>
                 <h3>Zoek op stad</h3>
                 <form className="form-container city" onSubmit={handleSubmit(onFormSubmitCity)}>
                     <InputField
@@ -164,10 +166,12 @@ function SearchPage() {
                                     to={`toilets/${post.id}`}>
                             <span className="thumbnail-container">
                                 {/*check om te kijken of de thumbnail bestaat*/}
-                                {post.hasPhoto.length > 7 ?
-                                    <img src={`${post.hasPhoto}`} alt="thumbnail"
-                                         className="thumbnail"
-                                         width="150"/> :
+                                {post.photo ?
+                                    <img
+                                        src={`http://localhost:8080/download/${post.photo.fileName}`}
+                                        alt="thumbnail"
+                                        className="thumbnail"
+                                        width="150" height="150"/> :
                                     <span className="no-image">
                                         <img src={noImage} alt="thumbnail"
                                              className="thumbnail transparent" height="150"
@@ -188,7 +192,7 @@ function SearchPage() {
                                         &#127988; "{post.country}"
                                     </span><br/>
                                     <span
-                                        className="mapped__post__votes">Rating: {post.ratingAverage} ★★★</span>
+                                        className="mapped__post__votes">Rating: {post.ratingAverage} &#9733; &#x2605; &#9733;</span>
                                     <div className="mapped__post__details">
                                         <p>Beschrijving: {post.infoText}</p>
                                         <p>{post.genderneutral
@@ -201,9 +205,9 @@ function SearchPage() {
 
                                             {post.free
                                                 ? <span> gratis <img src={FreeIcon}
-                                                                    alt="map"
-                                                                    width="25"
-                                                                    className="free-icon"/></span>
+                                                                     alt="map"
+                                                                     width="25"
+                                                                     className="free-icon"/></span>
                                                 : <span><img src={PaidIcon}
                                                              alt="map"
                                                              width="25"
@@ -211,9 +215,9 @@ function SearchPage() {
                                             |
                                             invalidenWC: {post.accessible ?
                                                 <span> <img src={AccessibleIcon}
-                                                           alt="map"
-                                                           width="25"
-                                                           className="accessible-icon"/> </span> :
+                                                            alt="map"
+                                                            width="25"
+                                                            className="accessible-icon"/> </span> :
                                                 <span>Nee</span>}</p>
                                         <p className="location-link">Klik voor locatie op kaart: <a
                                             href={post.latitude &&
@@ -230,11 +234,10 @@ function SearchPage() {
                     )}
                 </ul>
 
-                <p>
+                <div className="content-wrapper"><p>
                     Bekijk <Link to="/searchresults">ALLE toiletten data</Link> zonder te zoeken.
-                </p>
+                </p></div>
             </section>
-            <BackButton/>
         </>
     );
 }

@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import "./FeaturedToilet.css"
 import FeaturedToiletImg from "../../../assets/img/img-post-victorian-toilet.jpg";
 import Loader from "../../loader/Loader";
+import GenderneutralIcon from "../../../assets/icons/icon-transgenderneutral.svg";
 
 function FeaturedToilet() {
 
@@ -58,19 +59,31 @@ function FeaturedToilet() {
                             <h4><Link
                                 to={`toilets/${toiletEntry.data[6].id}`}>{toiletEntry.data
                             && toiletEntry.data[6].title}</Link></h4>
-                            <li>stad: {toiletEntry.data && toiletEntry.data[6].city}</li>
-                            <li>land: {toiletEntry.data && toiletEntry.data[6].country}</li>
-                            <li>genderneutraal?: {toiletEntry.data && toiletEntry.data[6].genderneutral
-                                ? <span>Ja</span> : <span>Nee</span>}</li>
-                            <li>informatie: {toiletEntry.data && toiletEntry.data[6].infoText}</li>
+                            <li className="mapped__post__detail">stad: {toiletEntry.data
+                            && toiletEntry.data[6].city}</li>
+                            <li className="mapped__post__detail">land: {toiletEntry.data
+                            && toiletEntry.data[6].country}</li>
+                            <li>beoordeling: {toiletEntry.data && toiletEntry.data[6].ratingAverage}
+                                &#9733; &#x2605; &#9733;</li>
+                            <li>genderneutraal?: {toiletEntry.data
+                            && toiletEntry.data[6].genderneutral
+                                ? <span>Ja <img src={GenderneutralIcon}
+                                                alt="map"
+                                                title="genderneutraal"
+                                                width="25"
+                                                className="genderneutral-icon"/></span> :
+                                <span>Nee</span>}</li>
+                            <li>informatie: {toiletEntry.data
+                            && toiletEntry.data[6].infoText}</li>
                             <li>Locatie op kaart: <a
-                                href={toiletEntry.data && `https://www.openstreetmap.org/?mlat=${toiletEntry.data[6].latitude}&mlon=${toiletEntry.data[6].longitude}&zoom=15`}
-                                rel="noreferrer" target="_blank"><img src={MapIcon} alt="map"
-                                                                      width="25"
-                                                                      className="map-icon"/></a> (externe
+                                href={toiletEntry.data
+                                && `https://www.openstreetmap.org/?mlat=${toiletEntry.data[6].latitude}&mlon=${toiletEntry.data[6].longitude}&zoom=15`}
+                                rel="noreferrer" target="_blank">
+                                <img src={MapIcon} alt="map"
+                                     width="25"
+                                     className="map-icon"/></a> (externe
                                 link)
                             </li>
-                            <li>beoordeling: {toiletEntry.data && toiletEntry.data[6].ratingAverage}</li>
                         </ul>
                     </>
                     }

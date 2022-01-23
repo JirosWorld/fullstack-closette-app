@@ -46,7 +46,6 @@ ul, ol, dd {
     margin: 0;
     padding: 0;
 }
-
 /**/
 /* einde CSS reset */
 
@@ -121,7 +120,7 @@ body {
 }
 
 fieldset {
-    border: 1px solid var(--softpink);
+    border: 10px solid var(--softpink);
     border-radius: 15px;
     padding: 1em;
 }

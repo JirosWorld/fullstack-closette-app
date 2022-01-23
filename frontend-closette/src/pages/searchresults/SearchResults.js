@@ -24,7 +24,7 @@ function SearchResults() {
         document.title = "Alle data :: Closette"
 
         setTimeout(() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' })
+            window.scrollTo({top: 0, behavior: 'smooth'})
         }, 0);
         console.log("De pagina begint met de window naar boven gescrolld");
 
@@ -73,68 +73,64 @@ function SearchResults() {
                                         to={`toilets/${post.id}`}>
                             <span className="thumbnail-container">
                                 {/*check om te kijken of de thumbnail bestaat
-                                (URL mag niet kleiner dan (http://).length zijn,
                                 anders default image + link */}
-
-                                {post.hasPhoto.length > 7 ?
-                                    <img src={`${post.hasPhoto}`} alt="thumbnail"
+                                {post.photo ?
+                                    <img src={`http://localhost:8080/download/${post.photo.fileName}`} alt="thumbnail"
                                          className="thumbnail"
-                                         width="150"/> :
+                                         width="150" height="150"/> :
                                     <span className="no-image">
                                         <img src={noImage} alt="thumbnail"
                                              className="thumbnail transparent" height="150"
                                              width="150"/><p>NO IMAGE</p></span>
                                 }
-                            </span>
+                                    </span>
                                     </Link>
 
                                     <section className="content-wide">
-                                        <h2 className="mapped__post__title">
+                                        <h2 className="mapped__post__title">nr. {post.id}. &nbsp;
                                             <Link
-                                                to={`toilets/${post.id}`}>{Object.keys(post.title).length > 0
+                                                to={`toilets/${post.id}`}>{Object.keys(post.title).length
+                                            > 0
                                             && post.title}</Link>
                                         </h2>
-
-                                        |<span className="mapped__post__author">Stad: {post.city}</span>|
+                                        <span className="mapped__post__author">Stad: {post.city}</span>
                                         <br/>
-                                        | <span className="mapped__post__detail">
-                                Land
-                                <Link
-                                    to={`toilets/${post.id}`}> &#x23E9; "{post.postTime}"
-                                </Link></span>|
+                                        <span className="mapped__post__detail">
+                                Land {post.country}</span>
                                         <br/>
-                                        | <span
-                                        className="mapped__post__votes">Rating: {post.ratingAverage} ★★★</span>.
-
-
+                                        <span
+                                            className="mapped__post__votes">Rating:
+                                            {post.ratingAverage} &#9733; &#x2605; &#9733;</span>
                                         <div className="mapped__post__details">
                                             <p>
-                                                genderneutraal?: {post.genderneutral
-                                                ? <span>Ja <img src={GenderneutralIcon}
-                                                             alt="map"
-                                                             width="25"
-                                                             className="genderneutral-icon"/></span> : <span>Nee</span>}<br/>
-                                                gratis?: {post.free
-                                                ? <span>Ja <img src={FreeIcon}
-                                                                alt="map"
-                                                                width="25"
-                                                                className="free-icon"/></span>
-                                                : <span>Nee <img src={PaidIcon}
+                                                gender/gratis/invaliden ja/nee <br/>
+                                                {post.genderneutral
+                                                    ? <span><img src={GenderneutralIcon}
                                                                  alt="map"
+                                                                 title="genderneutraal"
                                                                  width="25"
-                                                                 className="free-icon"/></span>}<br/>
-                                                geplaatst op: {post.postTime}<br/>
-                                                openingstijden: {post.openingHours}<br/>
-                                                informatie: {post.infoText}<br/>
-                                                rolstoeltoegankelijk: {post.accessible ?
-                                                <span>Ja <img src={AccessibleIcon}
-                                                              alt="map"
-                                                              width="25"
-                                                              className="accessible-icon"/>
+                                                                 className="genderneutral-icon"/></span> :
+                                                    <span>Nee</span>}
+                                                 {post.free
+                                                ? <span><img src={FreeIcon}
+                                                             alt="map"
+                                                             title="gratis"
+                                                             width="25"
+                                                             className="free-icon"/></span>
+                                                : <span><img src={PaidIcon}
+                                                             alt="map"
+                                                             title="niet gratis"
+                                                             width="25"
+                                                             className="free-icon"/></span>}
+                                                 {post.accessible ?
+                                                <span><img src={AccessibleIcon}
+                                                           alt="map"
+                                                           title="rolstoeltoegankelijk"
+                                                           width="25"
+                                                           className="accessible-icon"/>
                                                 </span> : <span>Nee</span>}<br/>
+                                                openingstijden: {post.openingHours}<br/>
                                                 hygi&euml;ne: {post.cleanliness}<br/>
-                                                breedtegraad: {post.latitude}<br/>
-                                                lengtegraad: {post.longitude}<br/>
                                                 Locatie op kaart: <a
                                                 href={toiletEntry.data &&
                                                 `https://www.openstreetmap.org/?mlat=${post.latitude}&mlon=${post.longitude}&zoom=15}`}
@@ -147,7 +143,8 @@ function SearchResults() {
                                                 heeft foto?: {post.hasPhoto
                                                 ? <span>Ja</span> : <span>Nee</span>}<br/>
                                                 heeft rating: {post.ratingAverage}<br/>
-                                                {/*owner id: {post.owner.id}<br/>*/}
+                                                Foto: <a href={post.photo && `http://localhost:8080/download/${post.photo.fileName}`} rel="noreferrer" target="_blank">{post.photo && `/download/${post.photo.fileName}`}</a>
+                                                {/*owner id: {post.owner.id}<br/>*/} <br/>
                                                 geplaatst door user: {post.owner && post.owner.name}
                                             </p>
                                         </div>
