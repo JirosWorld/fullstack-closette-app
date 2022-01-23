@@ -82,6 +82,8 @@ Voor het ontwikkelen is gebruik gemaakt van
 
 Zie https://github.com/jirosworld en de `.git` directory/folder van het project.
 
+Ik heb tenminste 1X een feature branch gemaakt voor het maken van database relaties en foto testen - die pull requests zijn allemaal gemerged met Main en nu niet meer zichtbaar.
+
 Let op: door de gitignore file zijn onnodige NPM node bestanden voor de front-end en IDE bestanden niet bijgevoegd in deze projectfolder. Deze dient men zelf te installeren via NPM install. Zie de [installatiehandleiding](installatiehandleiding.md).
 
 ## Unit-testen
