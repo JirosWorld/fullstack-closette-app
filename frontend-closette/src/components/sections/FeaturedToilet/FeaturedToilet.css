@@ -3,7 +3,16 @@
     flex-direction: row;
 }
 
-@media (max-width: 600px) {
+.featured-post--content ul, .featured-post--content li {
+    padding: 0 0 0 0;
+    margin: 0 0 0 1.1em;
+}
+.featured-post--content h3, .featured-post--content h4, .featured-post--content h5 {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+@media only screen and (max-width: 600px) {
     .featured-post {
         visibility: hidden;
         display: none;

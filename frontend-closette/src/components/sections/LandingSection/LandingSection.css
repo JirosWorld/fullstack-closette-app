@@ -27,7 +27,7 @@ section.landing__page {
     max-width: 300px;
 }
 
-@media screen and (min-width: 870px) {
+@media only screen and (min-width: 870px) {
     .landing__page__content {
         flex-wrap: nowrap;
         flex-direction: row;
@@ -43,7 +43,7 @@ section.landing__page {
     }
 }
 
-@media screen and (min-width: 1000px) {
+@media only screen and (min-width: 1000px) {
     .landing__page__content {
         justify-content: space-between;
         margin: auto;

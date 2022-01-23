@@ -17,6 +17,11 @@ function NewsPost() {
     useEffect(() => {
         document.title = "Nieuws artikel :: Closette"
 
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+        }, 0);
+        console.log("De pagina begint met de window naar boven gescrolld");
+
         async function fetchAllNews() {
             setError('');
             toggleLoading(true);
@@ -58,7 +63,7 @@ function NewsPost() {
                                              width="300"/> :
                                         <span className="no-image">
                                         <img src={noImage} alt="thumbnail"
-                                             className="thumbnail transparent" height="300"
+                                             className="transparent" height="300"
                                              width="300"/><p>NO IMAGE</p></span>
                                     }
                             </span>

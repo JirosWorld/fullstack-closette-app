@@ -25,7 +25,7 @@ function ToiletPost() {
     const [toiletEntry, setToiletEntry] = useState([]);
     const [submitInfo, setSubmitInfo] = useState();
 
-    // het Patch/Put request werkt; maar formulier moet alleen zichtbaar zijn wanneer daarom gevraagd wordt
+    // formulier moet alleen zichtbaar zijn wanneer daarom gevraagd wordt
     const [visibility, setVisibility] = useState(true);
 
     const [loading, toggleLoading] = useState(false);
@@ -34,9 +34,41 @@ function ToiletPost() {
     // const history = useHistory();
     const {register, handleSubmit, formState: {errors}} = useForm();
 
+    //mounting fase
+    useEffect(() => {
+        document.title = "Toilet details :: Closette"
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+        }, 0);
+        console.log("De pagina begint met de window naar boven gescrolld");
+
+        async function fetchToilets() {
+
+            setError('');
+            toggleLoading(true);
+
+            try {
+                const result = await axios.get(`http://localhost:8080/toilets/${id}`);
+                setToiletEntry(result.data);
+                console.log("alle toilet result.data:");
+                console.log(toiletEntry.data);
+                setVisibility(true);
+
+            } catch (error) {
+                setError(`Er is iets misgegaan bij het ophalen van de data, of... je hebt dit toilet succesvol verwijderd! - (${error.message})`);
+                console.error(error);
+            }
+            toggleLoading(false);
+        }
+        fetchToilets();
+    }, []);
+
+    // start aanpassen-functie
     async function onFormSubmitPatchToilet(data) {
         setError('');
-
+        setTimeout(() => {
+            window.scrollTo({ top: 50, behavior: 'smooth' })
+        }, 0);
         try {
             const result = await axios.patch(`http://localhost:8080/toilets/${id}`, {
                 title: data.title,
@@ -67,35 +99,37 @@ function ToiletPost() {
         setTimeout(() => {
             // refresh window, show updated post
             window.location.reload(true);
-        }, 5000);
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+        }, 0);
+    }
+    // einde aanpassen-functie
+
+    // start delete functie
+    async function deleteFunction() {
+        if (window.confirm("Weet je zeker dat je dit toilet helemaal wilt verwijderen?")) {
+            try {
+                setSubmitInfo(await axios.delete(`http://localhost:8080/toilets/${id}`));
+                setToiletEntry(await axios.delete(`http://localhost:8080/toilets/${id}`));
+                await axios.delete(`http://localhost:8080/toilets/${id}`);
+                console.log("Deleten volbracht.");
+                setVisibility(true);
+                // window.location.reload(true);
+                setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                }, 0);
+            } catch (error) {
+                setError(`Dit toilet bestaat niet meer - (${error.message})`);
+                console.error(error.message);
+            }
+        } else {
+            console.log("Deleten gecanceled.");
+            setTimeout(() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+            }, 0);
+        }
     }
 
-    //mounting fase
-    useEffect(() => {
-        document.title = "Toilet details :: Closette"
-
-        async function fetchToilets() {
-
-            setError('');
-            toggleLoading(true);
-
-            try {
-                const result = await axios.get(`http://localhost:8080/toilets/${id}`);
-                setToiletEntry(result.data);
-                console.log("alle toilet result.data:");
-                console.log(setToiletEntry);
-                setVisibility(true);
-
-            } catch (error) {
-                setError(`Er is iets misgegaan bij het ophalen van de data - (${error.message})`);
-                console.error(error);
-            }
-            toggleLoading(false);
-        }
-
-        fetchToilets();
-
-    }, []);
+    // einde delete functie
 
     return (
         <>
@@ -125,8 +159,8 @@ function ToiletPost() {
                                     }
                             </span>
                                     {user && <>
-                                        <p>Geen foto te zien?
-                                            <form>
+                                    <p className="margin-zero">Geen foto te zien?</p>
+                                            <form className="margin-zero">
                                                 <label htmlFor="photo">Upload hier een
                                                     nieuwe:</label>
                                                 <input type="file" id="narrow"
@@ -134,7 +168,6 @@ function ToiletPost() {
                                                 <input name="photo" type="submit" value="Uploaden"
                                                        id="narrow"/>
                                             </form>
-                                        </p>
                                     </>}
                                 </div>
                                 <div className="template-intro toilet">
@@ -199,7 +232,13 @@ function ToiletPost() {
                                     passen!</em></p>
                                 <p>
                                     <button type="button" className="add"
-                                            onClick={() => setVisibility(false)}>Pas aan
+                                            onClick={() => setVisibility(false)}>Pas details aan
+                                    </button>
+                                </p>
+                                <p>
+                                    <button type="button"
+                                            onClick={deleteFunction}
+                                            className="delete">Verwijder dit toilet &#10060;
                                     </button>
                                 </p>
                             </div>
@@ -215,6 +254,12 @@ function ToiletPost() {
             {/* start of section that will be shown when 'pas aan' button is clicked */}
             {user &&
             <div className={visibility ? "hidden" : "show"}>
+                <div className="content-wrapper">
+                    <h2>Pas toilet details aan</h2>
+                    <p>Hier kun je elke detail aanpassen dat je maar wilt. De informatie over dit
+                        toilet die reeds is ingevuld, blijft staan. Alleen de velden die je hier
+                        aanpast, zullen worden veranderd.</p>
+                </div>
                 <form className="form-container"
                       onSubmit={handleSubmit(onFormSubmitPatchToilet)}
                 >
@@ -463,6 +508,13 @@ function ToiletPost() {
                         Updaten
                     </button>
                     {/* on button click: patch/put update toilet and setVisibility(true) */}
+
+                    <button
+                        onClick={() => window.location.reload(true)}
+                    >
+                        Cancel
+                    </button>
+
                     {error && <p className="error-message">{error}</p>}
                     {submitSuccess === true &&
                     <div className="confirmation__container">

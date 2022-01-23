@@ -35,6 +35,10 @@ function SearchPage() {
             setToiletEntry(result);
             console.log("alle result inhoud:");
             console.log(result);
+            setTimeout(() => {
+                window.scrollTo({ top: 1000, behavior: 'smooth' })
+            }, 0);
+            console.log("De pagina begint met de window naar boven gescrolld");
 
         } catch (error) {
             setError(`Er is iets misgegaan bij het ophalen van de data - (${error.message})`);
@@ -53,7 +57,9 @@ function SearchPage() {
             setToiletEntry(result);
             console.log("alle country zoek inhoud:");
             console.log(result);
-
+            setTimeout(() => {
+                window.scrollTo({ top: 1000, behavior: 'smooth' })
+            }, 0);
         } catch (error) {
             setError(`Er is iets misgegaan bij het ophalen van de data - (${error.message})`);
             console.error(error);
@@ -71,7 +77,9 @@ function SearchPage() {
             setToiletEntry(result);
             console.log("alle naam zoek inhoud:");
             console.log(result);
-
+            setTimeout(() => {
+                window.scrollTo({ top: 1000, behavior: 'smooth' })
+            }, 0);
         } catch (error) {
             setError(`Er is iets misgegaan bij het ophalen van de data - (${error.message})`);
             console.error(error);
@@ -170,7 +178,7 @@ function SearchPage() {
 
                                 <div className="content-wide">
                                     <Link
-                                        activeClassName="active-link"
+                                        className="active-link"
                                         to={`toilets/${post.id}`}><h2 className="mapped__post__title">
                                         <span>{Object.keys(post.title).length > 0
                                         && post.title}</span>

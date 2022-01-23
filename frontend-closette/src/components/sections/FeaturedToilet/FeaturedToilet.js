@@ -38,7 +38,7 @@ function FeaturedToilet() {
         <>
             {error && <p className="error-message">{error}</p>}
             <div className="featured-post">
-                <h4>Toilet van de week: {toiletEntry.data && toiletEntry.data[6].id}</h4>
+                <h3>Toilet van de week</h3>
                 <div className="featured-post--content">
                     <>
                         {toiletEntry.data &&
@@ -55,9 +55,9 @@ function FeaturedToilet() {
                     <>
                         <ul>
                             {loading && <Loader/>}
-                            <li>naam: <Link
+                            <h4><Link
                                 to={`toilets/${toiletEntry.data[6].id}`}>{toiletEntry.data
-                            && toiletEntry.data[6].title}</Link></li>
+                            && toiletEntry.data[6].title}</Link></h4>
                             <li>stad: {toiletEntry.data && toiletEntry.data[6].city}</li>
                             <li>land: {toiletEntry.data && toiletEntry.data[6].country}</li>
                             <li>genderneutraal?: {toiletEntry.data && toiletEntry.data[6].genderneutral

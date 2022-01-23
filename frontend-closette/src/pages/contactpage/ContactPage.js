@@ -9,6 +9,12 @@ function ContactPage() {
 
     useEffect(() => {
         document.title = "Contact :: Closette"
+
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+        }, 0);
+        console.log("De pagina begint met de window naar boven gescrolld");
+
     }, []);
 
     return (

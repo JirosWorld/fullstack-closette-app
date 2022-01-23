@@ -11,6 +11,12 @@
     font-style: normal;
 }
 
+/* to make Windows scroll work */
+html {
+    height: 100%;
+    overflow:auto;
+}
+
 :root {
     --hardpink: #E2126D;
     --hardgreen: #0DA89D;
@@ -28,24 +34,8 @@
     -webkit-appearance: none;
 }
 
-*,
-*::before,
-*::after {
+p, input, button {
     box-sizing: border-box;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
-}
-
-button {
-    background-color: transparent;
-    color: inherit;
-    border-width: 0;
-    padding: 0;
-    cursor: pointer;
 }
 
 figure {
@@ -55,28 +45,8 @@ figure {
 ul, ol, dd {
     margin: 0;
     padding: 0;
-    list-style: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-    font-size: inherit;
-    font-weight: inherit;
-}
-
-p {
-    margin: 0;
-}
-
-cite {
-    font-style: normal;
-}
-
-fieldset {
-    border-width: 0;
-    padding: 0;
-    margin: 0;
-}
 /**/
 /* einde CSS reset */
 
@@ -145,9 +115,15 @@ body {
     /*margin: 0 auto;*/
 }
 
+.margin-zero {
+    padding: 0;
+    margin: 0;
+}
+
 fieldset {
     border: 1px solid var(--softpink);
     border-radius: 15px;
+    padding: 1em;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -218,7 +194,7 @@ button[type=button]:hover {
 
 /* app-wide mobile styles */
 
-@media (max-width: 700px) {
+@media only screen and (max-width: 700px) {
     .content-wrapper, body, .main, .body__wrapper {
         padding: 0;
         margin: 0;

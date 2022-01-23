@@ -19,7 +19,6 @@ import ToiletPost from "./pages/toiletpost/ToiletPost";
 import FaqPage from "./pages/newspost-infopost/FaqPage";
 import SearchSCHETS from "./pages/searchpage/SearchSCHETS";
 import ToiletPhotoSCHETS from "./pages/toiletpost/ToiletPhotoSCHETS";
-import ToiletPatchSCHETS from "./pages/toiletpost/ToiletPatchSCHETS";
 
 // function PrivateRoute({children, isAuth, ...rest}) {
 //     return (
@@ -87,14 +86,8 @@ function App() {
                         <Route path="/searchschets">
                             <SearchSCHETS/>
                         </Route>
-                        <Route path="/photoschets">
+                        <Route path="/photoschets/toilets/:id">
                             <ToiletPhotoSCHETS/>
-                        </Route>
-                        <Route exact path="/patchschets/toilets/:id">
-                            <ToiletPatchSCHETS/>
-                        </Route>
-                        <Route path="/patchschets">
-                            <ToiletPatchSCHETS/>
                         </Route>
                     </Switch>
                 </div>
