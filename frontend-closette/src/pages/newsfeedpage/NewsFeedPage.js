@@ -59,7 +59,6 @@ function NewsFeedPage() {
                                 console.log(post);
                                 return <li key={post.id && post.title}>
                                     <Link
-                                        activeClassName="active-link"
                                         to={`news/${post.id}`}>
                             <span className="thumbnail-container">
                             {/*    placeholder*/}
@@ -73,7 +72,6 @@ function NewsFeedPage() {
                                     <div className="wrapper">
                                         <h2 className="mapped__post__title">
                                         <span><Link
-                                            activeClassName="active-link"
                                             to={`news/${post.id}`}> "{post.title}"
                                 </Link></span>
                                         </h2>
@@ -81,7 +79,6 @@ function NewsFeedPage() {
                                     Auteur: {post.newsauthor && post.newsauthor.username}
                                     </span><span className="mapped__post__detail">
                                 Datum <Link
-                                        activeClassName="active-link"
                                         to={`/news/${post.id}`}> {post.postTime}
                                 </Link></span>
 

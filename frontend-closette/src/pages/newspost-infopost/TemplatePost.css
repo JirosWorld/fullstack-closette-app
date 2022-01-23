@@ -22,6 +22,7 @@
 
 .template-intro.toilet {
     background-color: var(--softgreen);
+    margin-bottom: 3em;
 }
 
 .template-intro.dashboard {
@@ -53,6 +54,14 @@
 }
 .toilet .template-main-content--wrapper p::before {
     content: "- ";
+}
+
+.newspost__page .template-main-content {
+    margin-top: 6em;
+}
+
+.true-image, .true-image__visible {
+    border-radius: 5px;
 }
 
 @media only screen and (max-width: 700px) {

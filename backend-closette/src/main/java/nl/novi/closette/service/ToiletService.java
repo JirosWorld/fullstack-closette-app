@@ -23,26 +23,25 @@ public class ToiletService {
         return toiletRepository.findAll();
     }
 
-    // find all with queries - needs te be expanded for country
-    public Iterable<Toilet> getToiletsQuery(String title, String city, String country) {
-        if (!title.isEmpty()) {
-            if (!city.isEmpty()) {
-                return toiletRepository.findAllByTitleAndCityAndCountry(title, city, country);
-            }
-            else {
-                return toiletRepository.findAllByTitle(title);
-            }
+    // find all with queries
+    public Iterable<Toilet> findAllToiletsQuery(String title, String city, String country) {
+        if (!title.isEmpty() && city.isEmpty() && country.isEmpty()) {
+            return toiletRepository.findAllByTitleContainingIgnoreCase(title);
+        }
+        else if (title.isEmpty() && !city.isEmpty() && country.isEmpty()) {
+            return toiletRepository.findAllByCityContainingIgnoreCase(city);
+        }
+        else if (title.isEmpty() && city.isEmpty() && !country.isEmpty()) {
+            return toiletRepository.findAllByCountryContainingIgnoreCase(country);
+        }
+        else if (!title.isEmpty() && !city.isEmpty() && !country.isEmpty()) {
+            return toiletRepository.findAllByTitleAndCityAndCountry(title, city, country);
         }
         else {
-            if (!city.isEmpty()) {
-                return toiletRepository.findAllByCityContainingIgnoreCase(city);
-            }
-            else {
-                return toiletRepository.findAll();
-            }
+            return toiletRepository.findAll();
         }
     }
-    // end queries
+
 
     public List<Toilet> getToiletsByTitle(String title) {
         return toiletRepository.findAllByTitleContainingIgnoreCase(title);
@@ -99,6 +98,7 @@ public class ToiletService {
 //        }
 
         Toilet toilet = new Toilet();
+
         toilet.setTitle(toiletRequestDto.getTitle());
         toilet.setLatitude(toiletRequestDto.getLatitude());
         toilet.setLongitude(toiletRequestDto.getLongitude());

@@ -3,6 +3,9 @@ package nl.novi.closette.dto;
 import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 
 public class ToiletRequestDto {
@@ -70,6 +73,8 @@ public class ToiletRequestDto {
         }
 
         public void setPostTime(String postTime) {
+                LocalDate localDate = LocalDate.now();
+                postTime = localDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG));
                 this.postTime = postTime;
         }
 

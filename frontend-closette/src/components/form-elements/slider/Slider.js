@@ -6,26 +6,30 @@ import styles from './Slider.module.css';
 
 function Slider({register, labelId, yes, no, filterAttribute, inputName, children}) {
     const [checkedState, toggleCheckedState] = useState();
-    const [firstMount, toggleFirstMount] = useState(false);
+    // const [firstMount, toggleFirstMount] = useState(false);
 
 
     function toggleCheckbox() {
-        if (checkedState === false) {
+        if (checkedState === false && checkedState === null) {
+            console.log("Status van de checkbox:");
+            console.log(checkedState);
             toggleCheckedState(true);
         } else {
+            console.log("Status van de checkbox na klik:");
+            console.log(checkedState);
             toggleCheckedState(false);
         }
     }
 
-    useEffect(() => {
-        toggleFirstMount(true);
-    }, []);
+    // useEffect(() => {
+    //     toggleFirstMount(false);
+    // }, []);
 
-    useEffect(() => {
-        if(firstMount) {
-            toggleCheckbox();
-        }
-    }, [checkedState]);
+    // useEffect(() => {
+    //     if(firstMount) {
+    //         toggleCheckbox();
+    //     }
+    // }, [checkedState]);
 
     return (
         <div className={styles["slider-container"]}>

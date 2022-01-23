@@ -23,7 +23,7 @@ function ToiletPost() {
     console.log(user);
     const {id} = useParams();
     const [toiletEntry, setToiletEntry] = useState([]);
-    const [submitInfo, setSubmitInfo] = useState();
+    const [patchInfo, setPatchInfo] = useState();
 
     // formulier moet alleen zichtbaar zijn wanneer daarom gevraagd wordt
     const [visibility, setVisibility] = useState(true);
@@ -51,7 +51,7 @@ function ToiletPost() {
                 const result = await axios.get(`http://localhost:8080/toilets/${id}`);
                 setToiletEntry(result.data);
                 console.log("alle toilet result.data:");
-                console.log(toiletEntry.data);
+                console.log(result.data);
                 setVisibility(true);
 
             } catch (error) {
@@ -76,24 +76,27 @@ function ToiletPost() {
                 city: data.city,
                 country: data.country,
                 genderneutral: data.genderneutral,
+                hasPhoto: data.hasPhoto,
                 infoText: data.infoText,
                 latitude: data.latitude,
                 longitude: data.longitude,
                 openingHours: data.openingHours,
+                ratingAverage: data.ratingAverage,
                 free: data.free,
                 accessible: data.accessible,
-                // public: data.public, = toilet wel/niet openbaar
             });
-            setSubmitInfo(result);
-            console.log("Alle data van 1 submitrequest:");
+            setPatchInfo(result);
+            console.log("Alle data van 1 Patch request:");
             console.log(result);
+            console.log(result.data);
+            console.log(patchInfo);
 
         } catch (e) {
             setError(`(${e.message}) - Wanneer je een 400 error ziet, dan heb je een naam ingevoerd die al bestaat of je hebt een GPS coordinaat gebruikt dat al is ingevoerd - zorg dat titel en locatie UNIEK zijn.`)
             console.error(e);
         }
         console.log("Resultaat submitdata useState:");
-        console.log(submitInfo);
+        console.log(patchInfo);
         toggleSubmitSuccess(true);
 
         setTimeout(() => {
@@ -108,7 +111,7 @@ function ToiletPost() {
     async function deleteFunction() {
         if (window.confirm("Weet je zeker dat je dit toilet helemaal wilt verwijderen?")) {
             try {
-                setSubmitInfo(await axios.delete(`http://localhost:8080/toilets/${id}`));
+                setPatchInfo(await axios.delete(`http://localhost:8080/toilets/${id}`));
                 setToiletEntry(await axios.delete(`http://localhost:8080/toilets/${id}`));
                 await axios.delete(`http://localhost:8080/toilets/${id}`);
                 console.log("Deleten volbracht.");
@@ -146,8 +149,9 @@ function ToiletPost() {
                                 <div className="template-thumbnail">
                                 <span className="thumbnail-container">
                                     {/* bestaat-foto-check */}
-                                    {toiletEntry && toiletEntry.photo ?
-                                        <img src={`${toiletEntry.photo}`} alt="thumbnail"
+                                    {toiletEntry && toiletEntry.hasPhoto ?
+                                        <img src=
+                                                 {`http://localhost:8080/download/img-post-amsterdammuseum.jpg`} alt="thumbnail"
                                              className="thumbnail-wide"
                                              width="300"/> :
                                         <>
@@ -430,7 +434,7 @@ function ToiletPost() {
                         <InputTextarea
                             rowNr={6}
                             columnNr={30}
-                            placeholderText="Typ hier een beschrijving van o.a. hoe het toilet te bereiken is e.a. bijzonderheden, wees zo gedetailleerd als je wilt..."
+                            placeholderText="Typ hier een beschrijving van o.a. hoe het toilet te bereiken is (is het openbaar?) e.a. bijzonderheden, wees zo gedetailleerd als je wilt..."
                             errors={errors}
                             register={register}
                             labelText="Info beschrijving:"
@@ -457,6 +461,24 @@ function ToiletPost() {
                                 maxLength: {
                                     value: 80,
                                     message: "Te lang, gebruik maximaal 80 tekens.",
+
+                                },
+                            }}
+                        />
+
+                        <InputField
+                            inputType="text"
+                            inputMode="numeric" pattern="[0-9]*"
+                            placeholderText="Geef cijfer van 1 - 10"
+                            errors={errors}
+                            register={register}
+                            labelText="Beoordeling"
+                            labelId="averageRating-field"
+                            inputName="averageRating"
+                            validationRules={{
+                                maxLength: {
+                                    value: 2,
+                                    message: "Te lang, gebruik maximaal 2 tekens.",
 
                                 },
                             }}

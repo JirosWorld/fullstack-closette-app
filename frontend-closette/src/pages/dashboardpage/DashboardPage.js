@@ -3,7 +3,7 @@ import {AuthContext} from "../../context/AuthContext";
 import TopNav from "../../components/topnav/TopNav";
 import Header from "../../components/header/Header";
 import BackButton from "../../components/buttons/BackButton";
-import {Link, Route} from "react-router-dom";
+import {Link} from "react-router-dom";
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
 import Avatar from "../../assets/icons/icon-lines-user-jiro.svg";
@@ -149,7 +149,7 @@ function DashboardPage() {
                                             <Link to="/searchschets">
                                                 <p>SearchSCHETS</p>
                                             </Link>
-                                            <Link to="/photoschets/toilets/:id">
+                                            <Link to="/photoschets/toilets/3">
                                                 <p>ToiletPhotoSCHETS</p>
                                             </Link>
                                         </>

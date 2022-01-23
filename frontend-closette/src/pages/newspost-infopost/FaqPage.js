@@ -5,8 +5,7 @@ import {Link} from "react-router-dom";
 import BackButton from "../../components/buttons/BackButton";
 import Accordeon from "../../components/accordeon/Accordeon";
 import GPS from "../../assets/img/MapsViewGPSCoordinates-iPhone.jpg";
-import FAQimage from "../../assets/img/question-mark-shapes.svg"
-import axios from "axios";
+import FAQimage from "../../assets/img/question-mark-shapes.svg";
 
 function FaqPage() {
 

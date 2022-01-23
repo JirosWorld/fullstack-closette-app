@@ -51,9 +51,8 @@ public class RatingController {
     @PostMapping(value = "/ratings/{id}/toilets")
     public ResponseEntity<Object> addRatingToilet(@PathVariable int id, @RequestBody Toilet toilet) {
         ratingService.addRatingToilet(id, toilet);
-//        int newId = ratingService.addRating(rating);
-
-//        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+//        int newId = ratingService.addRatingToilet(id, toilet);
+//        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{toilet}/{id}")
 //                .buildAndExpand(newId).toUri();
 
         return ResponseEntity.created(null).build();
