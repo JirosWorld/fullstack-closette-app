@@ -23,7 +23,7 @@ function ToiletPhotoSCHETS() {
 
     //mounting fase
     useEffect(() => {
-        document.title = "Toilet details :: Closette"
+        document.title = "ToiletPhotoSCHETS :: Closette"
 
         async function fetchToilets() {
 
@@ -51,7 +51,7 @@ function ToiletPhotoSCHETS() {
         <>
             <TopNav/>
             <Header
-                title="Toilet details"/>
+                title="ToiletPhotoSCHETS"/>
             <main className="toiletpost__page content-wrapper">
 
                 <section className="template">

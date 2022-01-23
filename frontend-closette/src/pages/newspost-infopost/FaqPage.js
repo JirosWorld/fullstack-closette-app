@@ -1,28 +1,55 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import TopNav from "../../components/topnav/TopNav";
 import Header from "../../components/header/Header";
 import {Link} from "react-router-dom";
 import BackButton from "../../components/buttons/BackButton";
 import Accordeon from "../../components/accordeon/Accordeon";
 import GPS from "../../assets/img/MapsViewGPSCoordinates-iPhone.jpg";
+import FAQimage from "../../assets/img/question-mark-shapes.svg";
 
 function FaqPage() {
+
+    useEffect(() => {
+        document.title = "F.a.q en handleiding :: Closette"
+
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+        }, 0);
+        console.log("De pagina begint met de window naar boven gescrolld");
+
+    }, []);
+
     return (
         <>
             <TopNav/>
             <Header
-                title="F.a.q en handleiding"/>
-            <div className="newspost__page content-wrapper">
-                <section>
+                title="F.a.q en handleiding :: Closette"/>
+            <main className="faq__page content-wrapper">
+                <section className="template">
+
+                    <div className="template-head">
+                        <div className="template-thumbnail">
+                                <span className="thumbnail-container">
+                                        <img src={FAQimage} alt="thumbnail"
+                                             height="300"
+                                             width="300"/>
+                            </span>
+                        </div>
+                        <div className="template-intro faq">
+                            <h3>Veelgestelde vragen en andere zaken</h3>
+                            <ul>
+                                <li>Handleiding</li>
+                                <li>F.A.Q.</li>
+                                <li><a href="#privacy">Privacy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
                     <article>
-                        <h3>Inhoud</h3>
-                        <ul>
-                            <li>Handleiding</li>
-                            <li>F.A.Q.</li>
-                            <li><a href="#privacy">Privacy</a></li>
-                        </ul>
+
                         <h3>Handleiding</h3>
-                        <p>Op deze site kun je naar veilige genderneutrale toiletten zoeken. Niet-ingelogde
+                        <p>Op deze site kun je naar veilige genderneutrale toiletten zoeken.
+                            Niet-ingelogde
                             gebruikers kunnen <Link to="/search">toiletten zoeken</Link> en alle
                             data bekijken. Ook het <Link to="/news">Nieuws</Link> en de
                             onderliggende artikelen zijn openbaar.</p>
@@ -121,11 +148,14 @@ function FaqPage() {
                     <div>
                         <p><Link to="/">&lt;&lt; Home</Link></p>
                     </div>
+
+
                 </section>
                 <BackButton/>
-            </div>
+            </main>
         </>
-    );
+    )
+        ;
 }
 
 export default FaqPage;

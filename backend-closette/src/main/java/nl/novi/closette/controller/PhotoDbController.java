@@ -1,11 +1,14 @@
 package nl.novi.closette.controller;
 
+import nl.novi.closette.exception.RecordNotFoundException;
 import nl.novi.closette.model.FileUploadResponse;
 import nl.novi.closette.model.Photo;
 import nl.novi.closette.model.Toilet;
 import nl.novi.closette.repository.PhotoRepository;
 import nl.novi.closette.service.FileStorageService;
 import nl.novi.closette.service.PhotoService;
+import nl.novi.closette.service.ToiletService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -22,6 +25,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -32,9 +36,18 @@ public class PhotoDbController {
     private PhotoRepository photoRepository;
     private PhotoService databaseService;
 
+    @Autowired
+    private PhotoService photoService;
+
     public PhotoDbController(PhotoRepository photoRepository, PhotoService databaseService) {
         this.databaseService = databaseService;
         this.photoRepository = photoRepository;
+    }
+
+
+    @GetMapping(value = "/photos/{id}")
+    public ResponseEntity<Object> findPhoto(@PathVariable Long id) {
+        return ResponseEntity.ok(photoService.findPhoto(id));
     }
 
     @PostMapping("single/uploadDb")
@@ -52,7 +65,7 @@ public class PhotoDbController {
 
         String contentType = file.getContentType();
 
-        FileUploadResponse response = new FileUploadResponse(name, contentType, url );
+        FileUploadResponse response = new FileUploadResponse(name, contentType, url);
 
         return response;
     }
@@ -75,9 +88,9 @@ public class PhotoDbController {
 
     //    post for multiple uploads to database
     @PostMapping("/multiple/upload/db")
-    List<FileUploadResponse> multipleUpload(@RequestParam("files") MultipartFile [] files) {
+    List<FileUploadResponse> multipleUpload(@RequestParam("files") MultipartFile[] files) {
 
-        if(files.length > 7) {
+        if (files.length > 7) {
             throw new RuntimeException("to many files selected");
         }
 
@@ -113,7 +126,7 @@ public class PhotoDbController {
     public void zipDownload(@RequestParam("fileName") String[] files, HttpServletResponse response) throws IOException {
 
 
-        try(ZipOutputStream zos = new ZipOutputStream(response.getOutputStream())){
+        try (ZipOutputStream zos = new ZipOutputStream(response.getOutputStream())) {
             Arrays.asList(files).stream().forEach(file -> {
                 Resource resource = databaseService.downLoadFileDatabase(file);
                 ZipEntry zipEntry = new ZipEntry(resource.getFilename());

@@ -8,6 +8,7 @@ import nl.novi.closette.repository.ToiletRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +22,26 @@ public class ToiletService {
     public List<Toilet> getToilets() {
         return toiletRepository.findAll();
     }
+
+    // find all with queries
+    public Iterable<Toilet> findAllToiletsQuery(String title, String city, String country) {
+        if (!title.isEmpty() && city.isEmpty() && country.isEmpty()) {
+            return toiletRepository.findAllByTitleContainingIgnoreCase(title);
+        }
+        else if (title.isEmpty() && !city.isEmpty() && country.isEmpty()) {
+            return toiletRepository.findAllByCityContainingIgnoreCase(city);
+        }
+        else if (title.isEmpty() && city.isEmpty() && !country.isEmpty()) {
+            return toiletRepository.findAllByCountryContainingIgnoreCase(country);
+        }
+        else if (!title.isEmpty() && !city.isEmpty() && !country.isEmpty()) {
+            return toiletRepository.findAllByTitleAndCityAndCountry(title, city, country);
+        }
+        else {
+            return toiletRepository.findAll();
+        }
+    }
+
 
     public List<Toilet> getToiletsByTitle(String title) {
         return toiletRepository.findAllByTitleContainingIgnoreCase(title);
@@ -77,6 +98,7 @@ public class ToiletService {
 //        }
 
         Toilet toilet = new Toilet();
+
         toilet.setTitle(toiletRequestDto.getTitle());
         toilet.setLatitude(toiletRequestDto.getLatitude());
         toilet.setLongitude(toiletRequestDto.getLongitude());

@@ -23,9 +23,9 @@ function ToiletPost() {
     console.log(user);
     const {id} = useParams();
     const [toiletEntry, setToiletEntry] = useState([]);
-    const [submitInfo, setSubmitInfo] = useState();
+    const [patchInfo, setPatchInfo] = useState();
 
-    // het Patch/Put request werkt; maar formulier moet alleen zichtbaar zijn wanneer daarom gevraagd wordt
+    // formulier moet alleen zichtbaar zijn wanneer daarom gevraagd wordt
     const [visibility, setVisibility] = useState(true);
 
     const [loading, toggleLoading] = useState(false);
@@ -34,45 +34,13 @@ function ToiletPost() {
     // const history = useHistory();
     const {register, handleSubmit, formState: {errors}} = useForm();
 
-    async function onFormSubmitPatchToilet(data) {
-        setError('');
-
-        try {
-            const result = await axios.patch(`http://localhost:8080/toilets/${id}`, {
-                title: data.title,
-                address: data.address,
-                city: data.city,
-                country: data.country,
-                genderneutral: data.genderneutral,
-                infoText: data.infoText,
-                latitude: data.latitude,
-                longitude: data.longitude,
-                openingHours: data.openingHours,
-                free: data.free,
-                accessible: data.accessible,
-                // public: data.public, = toilet wel/niet openbaar
-            });
-            setSubmitInfo(result);
-            console.log("Alle data van 1 submitrequest:");
-            console.log(result);
-
-        } catch (e) {
-            setError(`(${e.message}) - Wanneer je een 400 error ziet, dan heb je een naam ingevoerd die al bestaat of je hebt een GPS coordinaat gebruikt dat al is ingevoerd - zorg dat titel en locatie UNIEK zijn.`)
-            console.error(e);
-        }
-        console.log("Resultaat submitdata useState:");
-        console.log(submitInfo);
-        toggleSubmitSuccess(true);
-
-        setTimeout(() => {
-            // refresh window, show updated post
-            window.location.reload(true);
-        }, 5000);
-    }
-
     //mounting fase
     useEffect(() => {
         document.title = "Toilet details :: Closette"
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+        }, 0);
+        console.log("De pagina begint met de window naar boven gescrolld");
 
         async function fetchToilets() {
 
@@ -83,19 +51,88 @@ function ToiletPost() {
                 const result = await axios.get(`http://localhost:8080/toilets/${id}`);
                 setToiletEntry(result.data);
                 console.log("alle toilet result.data:");
-                console.log(setToiletEntry);
+                console.log(result.data);
                 setVisibility(true);
 
             } catch (error) {
-                setError(`Er is iets misgegaan bij het ophalen van de data - (${error.message})`);
+                setError(`Er is iets misgegaan bij het ophalen van de data, of... je hebt dit toilet succesvol verwijderd! - (${error.message})`);
                 console.error(error);
             }
             toggleLoading(false);
         }
-
         fetchToilets();
-
     }, []);
+
+    // start aanpassen-functie
+    async function onFormSubmitPatchToilet(data) {
+        setError('');
+        setTimeout(() => {
+            window.scrollTo({ top: 50, behavior: 'smooth' })
+        }, 0);
+        try {
+            const result = await axios.patch(`http://localhost:8080/toilets/${id}`, {
+                title: data.title,
+                address: data.address,
+                city: data.city,
+                country: data.country,
+                genderneutral: data.genderneutral,
+                hasPhoto: data.hasPhoto,
+                infoText: data.infoText,
+                latitude: data.latitude,
+                longitude: data.longitude,
+                openingHours: data.openingHours,
+                ratingAverage: data.ratingAverage,
+                free: data.free,
+                accessible: data.accessible,
+            });
+            setPatchInfo(result);
+            console.log("Alle data van 1 Patch request:");
+            console.log(result);
+            console.log(result.data);
+            console.log(patchInfo);
+
+        } catch (e) {
+            setError(`(${e.message}) - Wanneer je een 400 error ziet, dan heb je een naam ingevoerd die al bestaat of je hebt een GPS coordinaat gebruikt dat al is ingevoerd - zorg dat titel en locatie UNIEK zijn.`)
+            console.error(e);
+        }
+        console.log("Resultaat submitdata useState:");
+        console.log(patchInfo);
+        toggleSubmitSuccess(true);
+
+        setTimeout(() => {
+            // refresh window, show updated post
+            window.location.reload(true);
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+        }, 0);
+    }
+    // einde aanpassen-functie
+
+    // start delete functie
+    async function deleteFunction() {
+        if (window.confirm("Weet je zeker dat je dit toilet helemaal wilt verwijderen?")) {
+            try {
+                setPatchInfo(await axios.delete(`http://localhost:8080/toilets/${id}`));
+                setToiletEntry(await axios.delete(`http://localhost:8080/toilets/${id}`));
+                await axios.delete(`http://localhost:8080/toilets/${id}`);
+                console.log("Deleten volbracht.");
+                setVisibility(true);
+                // window.location.reload(true);
+                setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                }, 0);
+            } catch (error) {
+                setError(`Dit toilet bestaat niet meer - (${error.message})`);
+                console.error(error.message);
+            }
+        } else {
+            console.log("Deleten gecanceled.");
+            setTimeout(() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+            }, 0);
+        }
+    }
+
+    // einde delete functie
 
     return (
         <>
@@ -112,8 +149,9 @@ function ToiletPost() {
                                 <div className="template-thumbnail">
                                 <span className="thumbnail-container">
                                     {/* bestaat-foto-check */}
-                                    {toiletEntry && toiletEntry.photo ?
-                                        <img src={`${toiletEntry.photo}`} alt="thumbnail"
+                                    {toiletEntry && toiletEntry.hasPhoto ?
+                                        <img src=
+                                                 {`http://localhost:8080/download/img-post-amsterdammuseum.jpg`} alt="thumbnail"
                                              className="thumbnail-wide"
                                              width="300"/> :
                                         <>
@@ -125,8 +163,8 @@ function ToiletPost() {
                                     }
                             </span>
                                     {user && <>
-                                        <p>Geen foto te zien?
-                                            <form>
+                                    <p className="margin-zero">Geen foto te zien?</p>
+                                            <form className="margin-zero">
                                                 <label htmlFor="photo">Upload hier een
                                                     nieuwe:</label>
                                                 <input type="file" id="narrow"
@@ -134,7 +172,6 @@ function ToiletPost() {
                                                 <input name="photo" type="submit" value="Uploaden"
                                                        id="narrow"/>
                                             </form>
-                                        </p>
                                     </>}
                                 </div>
                                 <div className="template-intro toilet">
@@ -199,7 +236,13 @@ function ToiletPost() {
                                     passen!</em></p>
                                 <p>
                                     <button type="button" className="add"
-                                            onClick={() => setVisibility(false)}>Pas aan
+                                            onClick={() => setVisibility(false)}>Pas details aan
+                                    </button>
+                                </p>
+                                <p>
+                                    <button type="button"
+                                            onClick={deleteFunction}
+                                            className="delete">Verwijder dit toilet &#10060;
                                     </button>
                                 </p>
                             </div>
@@ -215,6 +258,12 @@ function ToiletPost() {
             {/* start of section that will be shown when 'pas aan' button is clicked */}
             {user &&
             <div className={visibility ? "hidden" : "show"}>
+                <div className="content-wrapper">
+                    <h2>Pas toilet details aan</h2>
+                    <p>Hier kun je elke detail aanpassen dat je maar wilt. De informatie over dit
+                        toilet die reeds is ingevuld, blijft staan. Alleen de velden die je hier
+                        aanpast, zullen worden veranderd.</p>
+                </div>
                 <form className="form-container"
                       onSubmit={handleSubmit(onFormSubmitPatchToilet)}
                 >
@@ -385,7 +434,7 @@ function ToiletPost() {
                         <InputTextarea
                             rowNr={6}
                             columnNr={30}
-                            placeholderText="Typ hier een beschrijving van o.a. hoe het toilet te bereiken is e.a. bijzonderheden, wees zo gedetailleerd als je wilt..."
+                            placeholderText="Typ hier een beschrijving van o.a. hoe het toilet te bereiken is (is het openbaar?) e.a. bijzonderheden, wees zo gedetailleerd als je wilt..."
                             errors={errors}
                             register={register}
                             labelText="Info beschrijving:"
@@ -412,6 +461,24 @@ function ToiletPost() {
                                 maxLength: {
                                     value: 80,
                                     message: "Te lang, gebruik maximaal 80 tekens.",
+
+                                },
+                            }}
+                        />
+
+                        <InputField
+                            inputType="text"
+                            inputMode="numeric" pattern="[0-9]*"
+                            placeholderText="Geef cijfer van 1 - 10"
+                            errors={errors}
+                            register={register}
+                            labelText="Beoordeling"
+                            labelId="averageRating-field"
+                            inputName="averageRating"
+                            validationRules={{
+                                maxLength: {
+                                    value: 2,
+                                    message: "Te lang, gebruik maximaal 2 tekens.",
 
                                 },
                             }}
@@ -463,6 +530,13 @@ function ToiletPost() {
                         Updaten
                     </button>
                     {/* on button click: patch/put update toilet and setVisibility(true) */}
+
+                    <button
+                        onClick={() => window.location.reload(true)}
+                    >
+                        Cancel
+                    </button>
+
                     {error && <p className="error-message">{error}</p>}
                     {submitSuccess === true &&
                     <div className="confirmation__container">

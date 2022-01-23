@@ -3,8 +3,11 @@
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
+/backend-closette/!.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+/backend-closette/!**/src/main/**/target/
+/backend-closette/!**/src/test/**/target/
 
 ### STS ###
 .apt_generated
@@ -17,6 +20,9 @@ target/
 
 ### IntelliJ IDEA ###
 .idea
+/.idea
+/backend-closette/.idea
+/frontend-closette/.idea
 *.iws
 *.iml
 *.ipr
@@ -37,8 +43,7 @@ build/
 
 # dependencies
 /node_modules
-.idea
-/.idea
+/frontend-closette/node_modules/
 /.pnp
 .pnp.js
 

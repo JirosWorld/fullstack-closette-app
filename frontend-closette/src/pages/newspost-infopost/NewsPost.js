@@ -17,6 +17,11 @@ function NewsPost() {
     useEffect(() => {
         document.title = "Nieuws artikel :: Closette"
 
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+        }, 0);
+        console.log("De pagina begint met de window naar boven gescrolld");
+
         async function fetchAllNews() {
             setError('');
             toggleLoading(true);
@@ -25,7 +30,7 @@ function NewsPost() {
                 const result = await axios.get(`http://localhost:8080/news/${id}`);
                 setNewsEntry(result.data);
                 console.log("alle nieuws result.data:");
-                console.log(setNewsEntry);
+                console.log(newsEntry);
 
             } catch (error) {
                 setError(`Er is iets misgegaan bij het ophalen van de data - (${error.message})`);
@@ -33,8 +38,8 @@ function NewsPost() {
             }
             toggleLoading(false);
         }
-
-        fetchAllNews();
+        fetchAllNews()
+        // fetchAllNews().then(data => setNewsEntry(data));
 
     }, []);
 
@@ -52,15 +57,14 @@ function NewsPost() {
                             <div className="template-thumbnail">
                                 <span className="thumbnail-container">
                                     {/* bestaat-foto-check */}
-                                    {newsEntry.photo ?
-                                        <img src={`${newsEntry.photo}`} alt="thumbnail"
-                                             className="thumbnail"
-                                             width="300"/> :
-                                        <span className="no-image">
-                                        <img src={noImage} alt="thumbnail"
-                                             className="thumbnail transparent" height="300"
-                                             width="300"/><p>NO IMAGE</p></span>
-                                    }
+                                    {/*{newsEntry && newsEntry.id}*/}
+
+                                        <span className="true-image">
+                                        <img
+                                            src={`http://localhost:8080/download/img-post-amsterdammuseum.jpg`} alt="thumbnail"
+                                             className="true-image__visible" height="300"
+                                             width="300"/></span>
+
                             </span>
                             </div>
                             <div className="template-intro news">

@@ -14,6 +14,8 @@ Deze directory bevat:
 
 * het Verantwoordingsdocument: [link naar Verantwoordingsdocument in markdown](verantwoordingsdocument.md)
 
+* de verzameling van [alle Endpoint + Postman requests](postman_collection.json) (JSON)
+
 ### Leuke extra’s
 
 Er is ook een 'text-only' markdown versie van het functioneel- en technisch ontwerp: [link naar ontwerptekst in markdown](functioneel-technisch.md) en een verzameling van alle Postman requests (= dezelfde als in de back-end documentation map).

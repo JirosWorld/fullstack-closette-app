@@ -244,7 +244,6 @@ function SearchPage() {
                                 <div className="content-wrapper">
                                     <h2 className="mapped__post__title">
                                         <Link
-                                            activeClassName="active-link"
                                             to={`/patchschets/toilets/${post.id}`}><span>{Object.keys(post.title).length > 0
                                         && post.title}</span>
                                         </Link>
@@ -253,7 +252,6 @@ function SearchPage() {
                                         Stad: {post.city} |</span>
                                     <span className="mapped__post__detail">
                                         Land <Link
-                                        activeClassName="active-link"
                                         to={`/patchschets/toilets/${post.id}`}> "{post.country}"
                                         </Link>
                                     </span>

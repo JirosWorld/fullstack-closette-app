@@ -30,19 +30,6 @@ public class NewsPost {
     @JoinColumn(name = "newsauthor_id", referencedColumnName = "username")
     private User newsauthor;
 
-    public NewsPost() {
-    }
-
-    // full constructor
-    public NewsPost(int id, String title, String author, String description, String paragraph, String postTime, User newsauthor) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.paragraph = paragraph;
-        this.postTime = postTime;
-        this.newsauthor = newsauthor;
-    }
-
     // getters and setters
 
     public int getId() {
@@ -97,17 +84,4 @@ public class NewsPost {
         this.newsauthor = newsauthor;
     }
 
-    // toString
-
-    @Override
-    public String toString() {
-        return "NewsPost{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", paragraph='" + paragraph + '\'' +
-                ", postTime='" + postTime + '\'' +
-                ", newsauthor=" + newsauthor +
-                '}';
-    }
 }

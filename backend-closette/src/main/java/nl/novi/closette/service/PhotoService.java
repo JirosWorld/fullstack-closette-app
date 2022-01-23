@@ -1,16 +1,23 @@
 package nl.novi.closette.service;
 
+import nl.novi.closette.exception.RecordNotFoundException;
+import nl.novi.closette.model.Photo;
 import nl.novi.closette.repository.PhotoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.MalformedURLException;
+import java.util.Optional;
 
 @Service
 public class PhotoService {
     private PhotoRepository doc;
+
+    @Autowired
+    private PhotoRepository photoRepository;
 
     public PhotoService(PhotoRepository doc){
         this.doc = doc;
@@ -35,4 +42,15 @@ public class PhotoService {
             throw new RuntimeException("the file doesn't exist or not readable");
         }
     }
+
+    public Photo findPhoto(Long id) {
+        Optional<Photo> optionalPhoto = photoRepository.findById(id);
+
+        if (optionalPhoto.isPresent()) {
+            return optionalPhoto.get();
+        } else {
+            throw new RecordNotFoundException("ID does not exist!");
+        }
+    }
+
 }

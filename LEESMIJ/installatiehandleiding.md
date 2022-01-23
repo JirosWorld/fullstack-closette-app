@@ -8,9 +8,9 @@ Houd deze repository bijelkaar binnen 1 directory. Dat wil zeggen: sleep de fron
 
 Let op: wanneer je dit project in 1 keer binnen een IDE importeert van Github, dan moet je er rekening mee houden dat de start scripts in de ***sub directories*** staan, dus 1 map lager dan de ROOT! Dit heeft invloed op het opstarten van zowel de back- als de front-end. Het is daarom eenvoudiger om dit project te DOWNLOADEN als ZIP, deze uit te pakken, en daarna de individuele mappen als 'root' te openen in een IDE naar keuze. 
 
-## Installatie samengevat
+## Complete installatie kort samengevat
 
-1. download de gehele ZIP van Github (dus: _niet_ uitchecken als versioncontrolled project) en pak deze ut op je lokale machine.
+1. download de gehele ZIP van Github (dus: _niet_ uitchecken als versioncontrolled project) en pak deze uit op je lokale machine.
 2. open de backend-closette map in een Java IDE of console.
 3. verander de database gegevens zoals hieronder aangegeven.
 4. verander het upload pad naar een map op je lokale machine.
@@ -23,9 +23,21 @@ Zie voor verdere uitleg hieronder.
 
 ## Back-end Applicatie starten ~ uitgebreid
 
+1. Lijst van benodigdheden Back-End
+2. Stappenplan 
+3. Lijst van alle rest endpoints
+
+
+## 1. Lijst van benodigdheden Back-End
+
+## 2. Stappenplan
+
+## 3. Lijst van alle rest endpoints
+
+
 Als je het project gedownload hebt naar jouw locale machine, installeer je eerst de back-end. Liefst via een Java-ready/Maven-ready IDE zoals IntelliJ maar het kan ook door de `backend-closette` folder te openen in elke terminal van jouw keuze.
 
-Je IDE kan als notificatie de vraag stellen of Maven dit project mag vertrouwen, zeg dan 'yes' op de trust vraag. En installeer JPA buddy en de andere plugins wanneer daar akkoord op wordt gevraagd.
+Je IDE kan als notificatie de vraag stellen of Maven dit project mag vertrouwen, zeg dan 'yes' op de trust vraag. En installeer JPA buddy en de andere plugins wanneer daar akkoord op wordt gevraagd. Indien IntelliJ vraagt om een DataSource of SQL dialect te kiezen, doen dit dan NIET, laat het zoals het is. En klik OK op de JPA Buddy default configuratie.
 
 In de meeste gevallen volstaat het om de _backend-closette_ map te openen in een IDE, die Java kan complieren, en het pom-bestand van Maven te laten installeren, waarna de Main klasse `ClosetteApplicatie` gedraaid (run) kan worden. (Het back-end startscript staat in `bckend-closette/pom.xml`). Maar installatie en runnen vanuit de `backend-closette` directory kan ook in 1 keer via een terminal naar keuze met het commando:
 
@@ -76,6 +88,24 @@ Bij back-end problemen:
 ---
 
 ## Front-end Applicatie starten
+
+1. Lijst van benodigdheden Front-End
+2. Stappenplan
+3. Lijst van alle functies
+
+
+## 1. Lijst van benodigdheden Front-End
+
+## 2. Stappenplan
+
+## 3. Lijst van alle functies
+
+
+Lijst van benodigdheden
+
+Stappenplan
+
+Lijst van alle functies
 
 Als je het project gedownload hebt naar jouw locale machine, en je de back-end hebt opgestart, installeer je (vanuit de `frontend-closette` map) eerst de node_modules door het volgende commando in een terminal te runnen:
 

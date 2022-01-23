@@ -53,7 +53,7 @@ svg.svg-lookingglass-icon.mobile, svg.svg-plus-icon.mobile {
     }
 }
 
-@media (max-width: 870px) {
+@media only screen and (max-width: 870px) {
 
     .hamburger {
         display: inline-block;

@@ -1,166 +1,202 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
 @font-face {
-  font-family: 'tensoregular';
-  src: url('./assets/fonts/03_Tenso_Regular-webfont.woff2') format('woff2'),
-  url('./assets/fonts/03_Tenso_Regular-webfont.woff') format('woff'),
-  url('./assets/fonts/03_Tenso_Regular.otf') format('opentype'),
-  url('./assets/fonts/03_Tenso_Regular-webfont.ttf') format('truetype'),
-  url('./assets/fonts/03_Tenso_Regular-webfont.svg#tensoregular') format('svg');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'tensoregular';
+    src: url('./assets/fonts/03_Tenso_Regular-webfont.woff2') format('woff2'),
+    url('./assets/fonts/03_Tenso_Regular-webfont.woff') format('woff'),
+    url('./assets/fonts/03_Tenso_Regular.otf') format('opentype'),
+    url('./assets/fonts/03_Tenso_Regular-webfont.ttf') format('truetype'),
+    url('./assets/fonts/03_Tenso_Regular-webfont.svg#tensoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* to make Windows scroll work */
+html {
+    height: 100%;
+    overflow:auto;
 }
 
 :root {
-  --hardpink: #E2126D;
-  --hardgreen: #0DA89D;
-  --AccessibleGreen: #0A857D;
-  --softgreen: #E7FDFC;
-  --softpink: #FDE7F1;
-  --softbrown: #EEE5E3;
-  --blackcontrast: #1F132A;
-/*  al deze kleuren beantwoorden aan de toegankelijkhedsi/accessibility eisen */
+    --hardpink: #E2126D;
+    --hardgreen: #0DA89D;
+    --AccessibleGreen: #0A857D;
+    --softgreen: #E7FDFC;
+    --softpink: #FDE7F1;
+    --softbrown: #EEE5E3;
+    --blackcontrast: #1F132A;
+    /*  al deze kleuren beantwoorden aan de toegankelijkhedsi/accessibility eisen */
 }
 
+/* start CSS reset */
+/**/
+[type="find"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+p, input, button {
+    box-sizing: border-box;
+}
+
+figure {
+    margin: 0;
+}
+
+ul, ol, dd {
+    margin: 0;
+    padding: 0;
+}
+/**/
+/* einde CSS reset */
+
 body {
-  font-family: 'tensoregular', Arial, sans-serif;
-  background-color: slategrey;
-  padding: 0;
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  font-size:20px;
-  color: var(--blackcontrast);
-  box-sizing: border-box;
+    font-family: 'tensoregular', Arial, sans-serif;
+    background-color: slategrey;
+    padding: 0;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: var(--blackcontrast);
+    box-sizing: border-box;
 }
 
 .body__wrapper {
-  background-color: var(--softbrown);
-  background: var(--softbrown);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff), color-stop(100%,var(--softbrown)));
-  background: -webkit-linear-gradient(top,  #fff 0%, var(--softbrown) 100%);
-  background:    -moz-linear-gradient(top,  #fff 0%, var(--softbrown) 100%);
-  background:     -ms-linear-gradient(top,  #fff 0%, var(--softbrown) 100%);
-  background:      -o-linear-gradient(top,  #fff 0%, var(--softbrown) 100%);
-  background:         linear-gradient(to bottom, #fff 0%, var(--softbrown) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#EEE5E3',GradientType=0 );
-  background-attachment: fixed;
-  padding: 0;
-  margin: 1em;
-  border-radius: 25px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+    background-color: var(--softbrown);
+    background: var(--softbrown);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, var(--softbrown)));
+    background: -webkit-linear-gradient(top, #fff 0%, var(--softbrown) 100%);
+    background: -moz-linear-gradient(top, #fff 0%, var(--softbrown) 100%);
+    background: -ms-linear-gradient(top, #fff 0%, var(--softbrown) 100%);
+    background: -o-linear-gradient(top, #fff 0%, var(--softbrown) 100%);
+    background: linear-gradient(to bottom, #fff 0%, var(--softbrown) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e5799', endColorstr='#EEE5E3', GradientType=0);
+    background-attachment: fixed;
+    padding: 0;
+    margin: 1em;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
 
 .main {
-  background-color: white;
-  padding: 1em;
-  max-width: 925px;
-  margin: 0.5em;
-  border-radius: 25px;
-  z-index: 30;
+    background-color: white;
+    padding: 1em;
+    max-width: 925px;
+    margin: 0.5em;
+    border-radius: 25px;
+    z-index: 30;
 }
 
 .wrapper {
-  line-height: 1.4;
-  padding: 30px;
-  max-width: 600px;
-  margin: 0 auto;
+    line-height: 1.4;
+    padding: 30px;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .content-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  line-height: 1.4;
-  padding: 100px 100px 5px 100px;
-  max-width: 800px;
-  /*margin: 0 auto;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.4;
+    padding: 100px 100px 5px 100px;
+    max-width: 800px;
+    /*margin: 0 auto;*/
+}
+
+.margin-zero {
+    padding: 0;
+    margin: 0;
 }
 
 fieldset {
-  border: 1px solid var(--softpink);
-  border-radius: 15px;
+    border: 10px solid var(--softpink);
+    border-radius: 15px;
+    padding: 1em;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Fredoka One', Verdana, cursive;
+    font-family: 'Fredoka One', Verdana, cursive;
 }
+
 h1 {
-  font-size: 2em;
+    font-size: 2em;
 }
 
 .hardpink, a {
-  color: var(--hardpink);
+    color: var(--hardpink);
 }
 
 .hardgreen {
-  color: var(--hardgreen);
+    color: var(--hardgreen);
 }
 
 a:hover {
-  color: var(--AccessibleGreen);
+    color: var(--AccessibleGreen);
 }
 
 button {
-  cursor: pointer;
+    cursor: pointer;
 }
+
 hr {
-  width: 100%;
-  margin: 2em 0;
-  border: 2px solid var(--hardpink);
+    width: 100%;
+    margin: 2em 0;
+    border: 2px solid var(--hardpink);
 }
 
 button[type=button] {
-  border-radius: 5px;
-  color: var(--hardpink);
-  font-size: 20px;
-  font-weight: bold;
-  margin: 1em 0 10px 0;
-  padding: 10px 16px;
-  width: 420px;
-  background-color: var(--softpink);
-  border: 1px solid var(--hardpink);
+    border-radius: 5px;
+    color: var(--hardpink);
+    font-size: 20px;
+    font-weight: bold;
+    margin: 1em 0 10px 0;
+    padding: 10px 16px;
+    width: 420px;
+    background-color: var(--softpink);
+    border: 1px solid var(--hardpink);
 }
 
 button[type=button]:hover {
-  border-radius: 5px;
-  color: var(--softpink);
-  font-size: 20px;
-  font-weight: bold;
-  margin: 1em 0 10px 0;
-  padding: 10px 16px;
-  width: 420px;
-  background-color: var(--blackcontrast);
-  border: 1px solid var(--blackcontrast);
+    border-radius: 5px;
+    color: var(--softpink);
+    font-size: 20px;
+    font-weight: bold;
+    margin: 1em 0 10px 0;
+    padding: 10px 16px;
+    width: 420px;
+    background-color: var(--blackcontrast);
+    border: 1px solid var(--blackcontrast);
 }
 
 .error-message {
-  padding: 16px 0;
-  color: var(--hardpink);
-  border-radius: 8px;
+    padding: 16px 0;
+    color: var(--hardpink);
+    border-radius: 8px;
 }
 
 .transparent {
-  zoom: 1;
-  filter: alpha(opacity=40);
-  opacity: 0.4;
+    zoom: 1;
+    filter: alpha(opacity=40);
+    opacity: 0.4;
 }
 
-/*// app-wide mobile styles*/
+/* app-wide mobile styles */
 
-@media (max-width: 700px) {
-  .content-wrapper, body, .main, .body__wrapper {
-    padding: 0;
-    margin: 0;
-    border-radius: 0;
-  }
+@media only screen and (max-width: 700px) {
+    .content-wrapper, body, .main, .body__wrapper {
+        padding: 0;
+        margin: 0;
+        border-radius: 0;
+    }
 }

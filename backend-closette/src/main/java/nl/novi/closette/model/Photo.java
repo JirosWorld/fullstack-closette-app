@@ -1,6 +1,8 @@
 package nl.novi.closette.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "photos")
@@ -15,6 +17,11 @@ public class Photo {
     @Lob
     private byte[] docFile;
 
+    @OneToMany(mappedBy = "photo", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = false)
+    private List<Toilet> toilets = new ArrayList<>();
+
+    // getters and setters
+
     public Long getId() {
         return id;
     }
@@ -23,6 +30,8 @@ public class Photo {
         return fileName;
     }
 
+//    @Column(length = 16000000) // This should generate a medium blob
+//    @Basic(fetch = FetchType.LAZY)
     public byte[] getDocFile() {
         return docFile;
     }
@@ -37,5 +46,16 @@ public class Photo {
 
     public void setDocFile(byte[] docFile) {
         this.docFile = docFile;
+    }
+
+    // getters and setters of relation tables
+
+
+    public List<Toilet> getToilets() {
+        return toilets;
+    }
+
+    public void setToilets(List<Toilet> toilets) {
+        this.toilets = toilets;
     }
 }

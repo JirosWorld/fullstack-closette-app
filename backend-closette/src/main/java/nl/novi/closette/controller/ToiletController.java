@@ -21,17 +21,21 @@ public class ToiletController {
     private ToiletService toiletService;
 
     @GetMapping(value = "/toilets")
-    public ResponseEntity<Object> getToilets(@RequestParam(value="title", required = false) String title, @RequestParam(value="city", required = false ) String city, @RequestParam(value="country", required = false) String country) {
+    public ResponseEntity<Object> getToilets(@RequestParam(value = "title", required = false) String title, @RequestParam(value = "city", required = false) String city, @RequestParam(value = "country", required = false) String country) {
 
 
         List<Toilet> toilets;
-        if(title == null && city!= null && country == null){
+        if (title == null && city != null && country == null) {
             toilets = toiletService.getToiletsByCity(city);
-        } else if(title != null && city== null && country == null){
+        } else if (title != null && city == null && country == null) {
             toilets = toiletService.getToiletsByTitle(title);
-        } else if(title == null && city== null && country != null){
+        } else if (title == null && city == null && country != null) {
             toilets = toiletService.getToiletsByCountry(country);
-        } else {
+        }
+//        else if (title != null && city != null && country != null) {
+//            toilets = (List<Toilet>) toiletService.findAllToiletsQuery(title, city, country);
+//        }
+        else {
             toilets = toiletService.getToilets();
         }
 

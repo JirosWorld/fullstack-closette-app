@@ -3,13 +3,10 @@ import {AuthContext} from "../../context/AuthContext";
 import TopNav from "../../components/topnav/TopNav";
 import Header from "../../components/header/Header";
 import BackButton from "../../components/buttons/BackButton";
-import {Link, Route} from "react-router-dom";
+import {Link} from "react-router-dom";
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
 import Avatar from "../../assets/icons/icon-lines-user-jiro.svg";
-import SearchSCHETS from "../searchpage/SearchSCHETS";
-import ToiletPhotoSCHETS from "../toiletpost/ToiletPhotoSCHETS";
-import ToiletPatchSCHETS from "../toiletpost/ToiletPatchSCHETS";
 
 function DashboardPage() {
 
@@ -60,7 +57,7 @@ function DashboardPage() {
             <TopNav/>
             <Header
                 title="Mijn Dashboard"/>
-            <main className="newspost__page content-wrapper">
+            <main className="dashboard__page content-wrapper">
                 <section className="template">
                     <article>
                         {error && <p className="error-message">{error}</p>}
@@ -82,7 +79,7 @@ function DashboardPage() {
                             </div>
                         </div>
                         <div className="template-main-content">
-                            <div className="template-main-content--wrapper">
+                            <div>
                                 <h2>Gegevens</h2>
                                 {user ?
 
@@ -152,11 +149,8 @@ function DashboardPage() {
                                             <Link to="/searchschets">
                                                 <p>SearchSCHETS</p>
                                             </Link>
-                                            <Link to="/photoschets">
+                                            <Link to="/photoschets/toilets/3">
                                                 <p>ToiletPhotoSCHETS</p>
-                                            </Link>
-                                            <Link to="/patchschets">
-                                                <p>ToiletPatchSCHETS</p>
                                             </Link>
                                         </>
                                         :

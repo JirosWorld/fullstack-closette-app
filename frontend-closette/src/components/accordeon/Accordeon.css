@@ -17,7 +17,7 @@
     color: #666;
     padding: 0.5em 1.5em;
     border: solid 1px var(--hardgreen);
-    border-radius: 1.5em;
+    border-radius: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;

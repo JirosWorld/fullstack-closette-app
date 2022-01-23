@@ -8,7 +8,7 @@ Hier een antwoord op de vragen:
 * Welke technische ontwerpbeslissingen heb ik gemaakt en waarom?
 * Is aan alle voorwaarden uit de opdracht voldaan?
 
-Conclusie: aan alle voorwaarden gesteld in de opdracht, `Integrale eindopdracht Bootcamp v3.0.pdf` is voldaan, zelfs al is niet álle funtionaliteit, die ik in de back-end heb gebouwd, zichtbaar te gebruiken in de front-end.
+Conclusie: Zelfs al is niet álle funtionaliteit, die ik in de back-end heb gebouwd, zichtbaar te gebruiken in de front-end: aan alle voorwaarden gesteld in de opdracht, `Integrale eindopdracht Bootcamp v3.0.pdf` is voldaan.
 
 ## Functioneel Ontwerp
 
@@ -20,11 +20,11 @@ Zie [Functioneel-Technisch ontwerp](functioneel-technisch.md) in deze directory.
 
 ## Technische ontwerpbeslissingen
 
-Als einddexameneis wordt er gevraagd om minstens 10 technische ontwerpbeslissingen. Deze volgen hierondner in meerdere kopjes: Servers, database, Java en Springboot, software, Git, testen en beveiliging.
+Als einddexameneis wordt er gevraagd om minstens 10 technische ontwerpbeslissingen. Deze volgen hieronder in meerdere kopjes: Servers, database, Java en Springboot, software, Git, testen, beveiliging en 'Technische functionaliteits beslissingen'.
 
 ## Servers
 
-Er wordt gebruik gemaakt van Apache Tomcat, onder de motorkap van Spring Boot.
+Op de achtergrond van Spring Boot wordt er gebruik gemaakt van Apache Tomcat.
 
 De front-end server draait op http://localhost:3000
 
@@ -34,11 +34,11 @@ De back-end server draait op http://localhost:8080
 
 De database is PostgreSQL.
 
-Door de ingebouwde ondersteuning van Spring Boot voor vele database producten via JDBC drivers, kunnen de backend en de database niet zomaar worden gescheiden en kunnen niet 100% los van elkaar op verschillende systemen draaien.
+Door de ingebouwde ondersteuning van Spring Boot met haar database produkten, kunnen de backend en de database niet zomaar worden gescheiden en kunnen niet 100% los van elkaar op verschillende systemen draaien.
 Daarom zijn er in de directory/folder `src/main/resources` verschillende `application.properties` meegeleverd:
 
 * JPA
-* Hibernate
+* Hibernate (de ORM)
 * Tables droppen bij elke Run
 * een uniek niet-realief pad naar de Uploads directory
 * postgres profiel en dialect
@@ -49,7 +49,7 @@ Alle back-end code is Java 11 of hoger t/m 17. Op dit moment lijkt JDK 17 de nie
 
 ### Spring Boot
 
-Er is van het Spring Boot Framework gebruik gemaakt, en daarvan zijn de volgende modulen gebruikt:
+Er is van het Spring Boot Framework gebruik gemaakt, en daarvan zijn de volgende plug-ins/produkten gebruikt:
 
 * Spring Web
 * JPA
@@ -58,6 +58,7 @@ Er is van het Spring Boot Framework gebruik gemaakt, en daarvan zijn de volgende
 * JUnit Test
 * Jackson
 * Hibernate
+* Thumeleaf
 
 Door middel van een listener heb ik alle `Rest endpoints` verzameld in een lijst die in de documentatie van de back-end map staat, daarin staan ook alle Postman request als importeerbaar `JSON file Collection v2.1` bestand (inclusief JSON-voorbeelden). In de IDE heb ik ook de JPA Buddy plug-in gebruikt.
 
@@ -65,7 +66,7 @@ Door middel van een listener heb ik alle `Rest endpoints` verzameld in een lijst
 
 Voor het ontwikkelen is gebruik gemaakt van
 
-* IntelliJ IDEA Mac 2021.2.3 (Ultimate Edition) met plugins
+* IntelliJ IDEA Mac 2021.2.3 (Ultimate Edition) met plug-ins
 * online Visual Paradigm Online (voor sequence, use case en class diagrams)
 * Maven 3.6.3
 * Postman Mac 9.3.1
@@ -93,6 +94,14 @@ Zie de directories/folders onder `src/test/java`.
 * Via authenticatie met JSON Web Token (JWT) was het mogelijk om de endpoints te beveiligen met authenticate en authorisaties. Het verwijderen van een bestaande gebruiker is beveiligd, zodat alleen gebruikers met de ADMIN rol deze acties kunnen uitvoeren.
 * De CORS beveiligingscode heb ik rechtstreeks gekopiëerd van wat we in de les te zien kregen.
 
+
+## Technische functionaliteits beslissingen
+
+* In de eindexamenopdracht wordt als eis gesteld dat er een "bestands-up- en download" functionaliteit in de app zit. De upload- en download werkt volledig op de back-end, maar op de front-end is alleen de upload functie expliciet te zien: dit omdat een 'download' niet nodig is als funtionaliteit. Natuurlijk vindt er _eigenlijk_ wél een soort 'download' plaats op de front-end omdat de geüploade afbeeldingen op de front-end in HTML worden afgebeeld/gerendered.
+* Ik heb gebruik gemaakt van standaard CSS en bij slechts 1 component heb ik een CSS-module gebruikt; dit omdat ik al bekend ben met CSS en dit tijd scheelde bij ontwikkelen. Wel heb ik hier en daar de BEM notatie gebruikt om ermee te oefenen.
+* Dit project gebruikt de verouderde versie 5 van React Router-Dom, omdat deze in de lessen is behandeld.
+* 
+
 ## Wat is er niet gedaan + disclaimers
 
 _(limitaties van de applicatie en beargumentatie van mogelijke doorontwikkelingen)_
@@ -103,6 +112,8 @@ _(limitaties van de applicatie en beargumentatie van mogelijke doorontwikkelinge
 
 • Het filteren van zoekresultaten gebeurt, op het moment van schrijven, vooral aan de front-end. Dat wil zeggen; er wordt zoveel mogelijk uit de database getoond (bijvoorbeeld alle gevonden entries uit 1 stad) en die kunnen dan d.m.v. filterknoppen binnen 1 window verfijnd worden zonder dat er een verzoek naar de database nodig is - voor aantal functies kun je KIEZEN of je die aan de frontend of aan de backend wilt afhandelen. Door tijdgebrek vond ik het makkelijker om de filtering vooral aan de frontend af te handelen.
 
+• Het diep indelen in React componenten heb ik niet gedetailleerd kunnen doen door tijdgebrek - in principe zou het beter zijn om van elk type Axios request of Async functie een eigen component te maken, maar ik heb nu vaak voor de individuele pagina's een flinke lap code gemaakt. Op zich is dat nu nog niet zo'n probleem in dit project omdat er nog niet veel pagina-soorten zijn, en dus ook nog niet veel templates dus de code wordt niet echt herhaald.
+
 • geen https SSL certificaat omdat dit bij nakijken problemen kan geven maar in het het echte bedrijfsleven moet dit wel.
 
 • geen CORS URL gekozen dus in plaats van port 3000 heb ik een * operator gekozen zodat alle verzoeken naar de back-end door kunnen komen.
@@ -111,17 +122,21 @@ _(limitaties van de applicatie en beargumentatie van mogelijke doorontwikkelinge
 
 • De gestelde kwaliteitseis van een totale test-coverage van 50% is behaald.
 
-• Het ontwerp in Figma komt niet 100% overeen met wat ik uiteindelijk in React heb gebouwd; in CSS kan ik 'pixel perfect' bouwen maar Figma doet niet wat ik wil. Een aantal elementen in Figma hadden afgeronde hoeken moeten hebben, maar dat lukt niet overal. Deze manier van werken is niet 'industry standard' - ik moet het design van een UX designer natuurlijk tot op de pixel nauwkeurig kunnen nabouwen. In deze oplevering lijkt het nu alsof ik me niet aan mijn eigen ontwerp heb gehouden - maar eigenlijk is het omgekeerd. Figma houdt zich niet aan mij.
+• Aan de front-end zijn geen Dev dependencies gebruikt. 
 
-• De front-end website is niet geoptimaliseerd voor Explorer. Bij meer tijd zou ik echt wel ook zeer verouderde browsers willen supporten, vooral omwille van de toegankelijkheid.
+• Het ontwerp in Figma komt niet 100% overeen met wat ik uiteindelijk in React heb gebouwd; in CSS kan ik 'pixel perfect' bouwen maar Figma doet niet wat ik wil. Een aantal elementen in Figma hadden afgeronde hoeken moeten hebben, maar dat lukt niet overal. Deze manier van werken is niet 'industry standard' - ik moet het design van een UX designer natuurlijk tot op de pixel nauwkeurig kunnen nabouwen. In deze oplevering lijkt het nu alsof ik me niet aan mijn eigen ontwerp heb gehouden - maar eigenlijk is het omgekeerd: Figma houdt zich niet aan mij.
+
+• De front-end website is niet geoptimaliseerd voor Explorer en heb ik niet kunnen testen op touch-screens (waar bijvoorbeeld Hovers niet werken). Bij meer tijd zou ik echt wel ook zeer verouderde browsers willen supporten, vooral omwille van de toegankelijkheid.
+
+• Voor de end-points heb ik makkelijk leesbare woorden gebruikt, en niet de "api/v1/..." notatie, omdat deze niet behandeld is in de les en ik er geen voordeel in zag om dit te doen voor een App die niet klaar is voor release en waarin ik geen toekomstige versies zie, met een transitie periode naar versie 1.
 
 • Ik heb aan de back-end zijde geen mailserver functie gebouwd (geen vereiste), dus heb ik het contactformulier functioneel gemaakt via de EmailJS cloudfunctie. Dit is vast niet zoals het bij een professioneel bedrijf er aan toe zou gaan, maar het heeft goed bruikbare templates.
 
 ## Leerpunten
 
-• ik ben altijd goed geweest in de miniemste details; ik ben geen project-manager met helicoptervisie, dus het was niet onverwacht dat ik moeite had met het vastleggen/structureren van de ontwerpfase, maar dat ik minder moeite had met het uitpuzzelen van code details
+• ik ben altijd goed geweest in minieme details; ik ben geen project-manager met helicoptervisie, dus het was niet onverwacht dat ik moeite had met het vastleggen/structureren van de ontwerpfase, maar dat ik minder moeite had met het uitpuzzelen van code details
 
-• ik heb meer dan de benodigde tijd besteed aan de bootcamp stof, maar kwam uiteindelijk toch tijd te kort om álles dat ik in de back-end heb gebouwd ook daadwekelijk functioneel te construeren in de front-end. In real life zou ik voor een CMS kiezen, met open-source database.
+• ik heb meer dan de benodigde tijd besteed aan de Bootcamp stof, maar kwam uiteindelijk toch tijd te kort om álles dat ik in de back-end heb gebouwd ook daadwerkelijk functioneel te construeren in de front-end. In real life zou ik voor een CMS kiezen, met open-source database die runt op FTP servers.
 
 • deze Bootcamp is slechts een eerste begin; als ik 4 jaar de tijd had gehad dan zou ik heel blij geworden zijn van meer SASS of LESS aan de front-end en een 'env' folder e.a. intelligente manieren voor centraal management
 

@@ -1,8 +1,16 @@
 package nl.novi.closette.dto;
 
+import nl.novi.closette.model.Photo;
+import nl.novi.closette.model.Rating;
+
 import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 
 public class ToiletRequestDto {
@@ -70,6 +78,8 @@ public class ToiletRequestDto {
         }
 
         public void setPostTime(String postTime) {
+                LocalDate localDate = LocalDate.now();
+                postTime = localDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG));
                 this.postTime = postTime;
         }
 
@@ -156,4 +166,5 @@ public class ToiletRequestDto {
         public void setCountry(String country) {
                 this.country = country;
         }
+
 }

@@ -11,7 +11,7 @@
 
 .thumbnail {
     width: 150px;
-    margin-right: 16px;
+    border-radius: 10px;
 }
 
 .map-icon:hover {
@@ -21,7 +21,11 @@
 
 .thumbnail-container {
     display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0 0 15px 0;
+    background-color: #eee;
+    border-radius: 15px;
 }
 
 .posts {
