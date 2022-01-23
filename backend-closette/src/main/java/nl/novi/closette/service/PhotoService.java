@@ -3,7 +3,6 @@ package nl.novi.closette.service;
 import nl.novi.closette.exception.RecordNotFoundException;
 import nl.novi.closette.model.Photo;
 import nl.novi.closette.repository.PhotoRepository;
-import nl.novi.closette.repository.ToiletRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;

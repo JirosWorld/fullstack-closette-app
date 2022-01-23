@@ -18,8 +18,22 @@ public class Rating {
 //    private String ratingUser;
 //    private List<Integer> ratingsList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = false)
     private List<Toilet> toilets = new ArrayList<>();
+
+    // constructor
+
+
+    public Rating() {
+    }
+
+    public Rating(int id, double ratingToilet, String name, List<Toilet> toilets) {
+        this.id = id;
+        this.ratingToilet = ratingToilet;
+        this.name = name;
+        this.toilets = toilets;
+    }
+
 
     // getters and setters
 

@@ -41,18 +41,14 @@ public class Toilet {
     @JoinColumn(name = "rating_id", referencedColumnName = "id")
     private Rating owner;
 
-    public Toilet() {}
+    @JsonIgnoreProperties("toilets")
+    @ManyToOne
+    @JoinColumn(name = "photo_id", referencedColumnName = "id")
+    private Photo photo;
 
-    public Toilet(String title, String city, String country, String postTime) {
-        this.title = title;
-        this.city = city;
-        this.country = country;
-        this.postTime = postTime;
-    }
+    // constructor
 
-    // full constructor
-
-    public Toilet(int id, String title, String latitude, String longitude, String postTime, boolean genderneutral, boolean free, boolean accessible, String cleanliness, boolean hasPhoto, String openingHours, String infoText, double ratingAverage, String city, String country, String address, Rating owner) {
+    public Toilet(int id, String title, String latitude, String longitude, String postTime, boolean genderneutral, boolean free, boolean accessible, String cleanliness, boolean hasPhoto, String openingHours, String infoText, double ratingAverage, String city, String country, String address, Rating owner, Photo photo) {
         this.id = id;
         this.title = title;
         this.latitude = latitude;
@@ -69,7 +65,10 @@ public class Toilet {
         this.city = city;
         this.country = country;
         this.address = address;
-        this.owner = owner;
+    }
+
+    public Toilet() {
+
     }
 
     // getters and setters
@@ -210,25 +209,11 @@ public class Toilet {
         this.owner = owner;
     }
 
-    @Override
-    public String toString() {
-        return "Toilet{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", latitude='" + latitude + '\'' +
-                ", longitude='" + longitude + '\'' +
-                ", postTime='" + postTime + '\'' +
-                ", genderneutral=" + genderneutral +
-                ", free=" + free +
-                ", accessible=" + accessible +
-                ", cleanliness='" + cleanliness + '\'' +
-                ", hasPhoto=" + hasPhoto +
-                ", openingHours='" + openingHours + '\'' +
-                ", infoText='" + infoText + '\'' +
-                ", ratingAverage=" + ratingAverage +
-                ", city='" + city + '\'' +
-                ", country='" + country + '\'' +
-                ", owner=" + owner +
-                '}';
+    public Photo getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Photo photo) {
+        this.photo = photo;
     }
 }

@@ -1,6 +1,10 @@
 package nl.novi.closette.dto;
 
+import nl.novi.closette.model.Toilet;
+
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class RatingRequestDto {
@@ -15,7 +19,6 @@ public class RatingRequestDto {
         private String name;
 
         // setters and getters
-
 
         public int getId() {
                 return id;
@@ -40,4 +43,5 @@ public class RatingRequestDto {
         public void setName(String name) {
                 this.name = name;
         }
+
 }
