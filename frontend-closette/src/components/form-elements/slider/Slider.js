@@ -1,53 +1,42 @@
 import React, {useEffect, useState} from 'react';
 import styles from './Slider.module.css';
 
-//  Module van maken omdat dit de enige checkboxes mogen zijn met een slider stijl
-//  Alle andere checkboxes mogen in default stijl
-
 function Slider({register, labelId, yes, no, filterAttribute, inputName, children}) {
-    const [checkedState, toggleCheckedState] = useState();
-    // const [firstMount, toggleFirstMount] = useState(false);
+    const [firstMount, toggleFirstMount] = useState(false);
+    const [isChecked, toggleIsChecked] = useState(false);
 
-
-    function toggleCheckbox() {
-        if (checkedState === false && checkedState === null) {
-            console.log("Status van de checkbox:");
-            console.log(checkedState);
-            toggleCheckedState(true);
-        } else {
-            console.log("Status van de checkbox na klik:");
-            console.log(checkedState);
-            toggleCheckedState(false);
-        }
+    const handleOnChange = () => {
+        toggleIsChecked(!isChecked);
+        console.log("Status van de checkbox na klik:");
+        console.log(inputName + ": " +  !isChecked);
     }
 
-    // useEffect(() => {
-    //     toggleFirstMount(false);
-    // }, []);
-
-    // useEffect(() => {
-    //     if(firstMount) {
-    //         toggleCheckbox();
-    //     }
-    // }, [checkedState]);
+    useEffect(() => {
+        if(firstMount) {
+            console.log("Status van de checkbox update:");
+            console.log(isChecked);
+        }
+    }, [isChecked]);
 
     return (
-        <div className={styles["slider-container"]}>
+        <>
+            <div className={styles["slider-container"]}>
 
-            <span className={styles["filter-attribute"]}>{filterAttribute}</span>
+                <span className={styles["filter-attribute"]}>{filterAttribute}</span>
 
-            <p className={styles["switch-label"]}>
-                {no}
-            </p>
+                <p className={styles["switch-label"]}>
+                    {no}
+                </p>
 
-            <span className={styles["switch-wrapper"]}>
+                <span className={styles["switch-wrapper"]}>
         <input
             type="checkbox"
             className={styles.switch}
             id={labelId}
-            value={checkedState}
-            onChange={() => toggleCheckedState(!checkedState)}
+            checked={isChecked}
+            name={inputName}
             {...register(inputName)}
+            onChange={handleOnChange}
         />
 
         <label
@@ -57,14 +46,17 @@ function Slider({register, labelId, yes, no, filterAttribute, inputName, childre
 
       </label>
       </span>
-
-            <p className={styles["switch-label"]}>
-                {yes}
-            </p>
-            <span className={styles["extra-label-info"]}>
+                <p className={styles["switch-label"]}>
+                    {yes}
+                </p>
+                <span className={styles["extra-label-info"]}>
                 {children}
             </span>
-        </div>
+            </div>
+            <div className="result">
+                Checkbox: {isChecked ? "checked" : "not-checked"}.
+            </div>
+        </>
     );
 }
 

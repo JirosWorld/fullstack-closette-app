@@ -11,6 +11,7 @@ function InputField({ errors, register, placeholderText, labelText, labelId, inp
       <input type={inputType}
              id={labelId}
              className={errors[inputName] && "error"}
+             name={inputName}
              {...register(inputName, validationRules)}
              placeholder={placeholderText}
       />

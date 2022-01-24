@@ -22,8 +22,8 @@ function ToiletPost() {
     const {user} = useContext(AuthContext);
     console.log(user);
     const {id} = useParams();
-    const [toiletEntry, setToiletEntry] = useState([]);
-    const [patchInfo, setPatchInfo] = useState();
+    const [toiletEntry, setToiletEntry] = useState({});
+    const [patchInfo, setPatchInfo] = useState({});
 
     // formulier moet alleen zichtbaar zijn wanneer daarom gevraagd wordt
     const [visibility, setVisibility] = useState(true);
@@ -32,7 +32,7 @@ function ToiletPost() {
     const [submitSuccess, toggleSubmitSuccess] = useState(false);
     const [error, setError] = useState('');
     // const history = useHistory();
-    const {register, handleSubmit, formState: {errors}} = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm({ mode: 'onBlur' });
 
     //mounting fase
     useEffect(() => {
@@ -67,7 +67,7 @@ function ToiletPost() {
     async function onFormSubmitPatchToilet(data) {
         setError('');
         setTimeout(() => {
-            window.scrollTo({ top: 50, behavior: 'smooth' })
+            window.scrollTo({ top: 0, behavior: 'smooth' })
         }, 0);
         try {
             const result = await axios.patch(`http://localhost:8080/toilets/${id}`, {
@@ -75,22 +75,17 @@ function ToiletPost() {
                 address: data.address,
                 city: data.city,
                 country: data.country,
+                free: data.free,
+                accessible: data.accessible,
                 genderneutral: data.genderneutral,
-                hasPhoto: data.hasPhoto,
                 infoText: data.infoText,
                 latitude: data.latitude,
                 longitude: data.longitude,
+                hasPhoto: data.hasPhoto,
                 openingHours: data.openingHours,
                 ratingAverage: data.ratingAverage,
-                free: data.free,
-                accessible: data.accessible,
             });
             setPatchInfo(result);
-            console.log("Alle data van 1 Patch request:");
-            console.log(result);
-            console.log(result.data);
-            console.log(patchInfo);
-
         } catch (e) {
             setError(`(${e.message}) - Wanneer je een 400 error ziet, dan heb je een naam ingevoerd die al bestaat of je hebt een GPS coordinaat gebruikt dat al is ingevoerd - zorg dat titel en locatie UNIEK zijn.`)
             console.error(e);
@@ -98,11 +93,13 @@ function ToiletPost() {
         console.log("Resultaat submitdata useState:");
         console.log(patchInfo);
         toggleSubmitSuccess(true);
+        console.log("Data na patch success:");
+        console.log(data);
 
         setTimeout(() => {
             // refresh window, show updated post
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             window.location.reload(true);
-            window.scrollTo({ top: 0, behavior: 'smooth' })
         }, 0);
     }
     // einde aanpassen-functie
@@ -121,7 +118,7 @@ function ToiletPost() {
                     window.scrollTo({ top: 0, behavior: 'smooth' })
                 }, 0);
             } catch (error) {
-                setError(`Dit toilet bestaat niet meer - (${error.message})`);
+                setError(`Dit toilet bestaat niet meer ... je hebt dit toilet succesvol verwijderd! - (${error.message})`);
                 console.error(error.message);
             }
         } else {
@@ -131,7 +128,6 @@ function ToiletPost() {
             }, 0);
         }
     }
-
     // einde delete functie
 
     return (
@@ -167,10 +163,10 @@ function ToiletPost() {
                                             <form className="margin-zero">
                                                 <label htmlFor="photo">Upload hier een
                                                     nieuwe:</label>
-                                                <input type="file" id="narrow"
+                                                <input type="file" id="photo"
                                                        name="photo"/><br/>
                                                 <input name="photo" type="submit" value="Uploaden"
-                                                       id="narrow"/>
+                                                       id="photo" className="narrow"/>
                                             </form>
                                     </>}
                                 </div>
@@ -180,7 +176,7 @@ function ToiletPost() {
                                         geplaatst: {toiletEntry && toiletEntry.postTime}</em></p>
                                     <p><strong>Stad: {toiletEntry && toiletEntry.city}</strong></p>
                                     <p>Land: {toiletEntry && toiletEntry.country}</p>
-                                    <p>beoordeling: {toiletEntry && toiletEntry.ratingAverage} ★★★</p>
+                                    <p>Beoordeling: {toiletEntry && toiletEntry.ratingAverage} &#9733; &#x2605; &#9733;</p>
 
                                 </div>
                             </div>
@@ -381,8 +377,8 @@ function ToiletPost() {
                         <Slider
                             errors={errors}
                             register={register}
-                            labelId="genderneutraal-check"
-                            inputName="genderneutraal"
+                            labelId="genderneutral-check"
+                            inputName="genderneutral"
                             filterAttribute="Genderneutraal"
                             yes="wel"
                             no="niet"
@@ -467,17 +463,17 @@ function ToiletPost() {
                         />
 
                         <InputField
-                            inputType="text"
-                            inputMode="numeric" pattern="[0-9]*"
+                            inputType="number"
                             placeholderText="Geef cijfer van 1 - 10"
                             errors={errors}
                             register={register}
-                            labelText="Beoordeling"
+                            labelText="Beoordeling (geef cijfer van 1 - 10)"
                             labelId="averageRating-field"
                             inputName="averageRating"
+                            min="1" max="10"
                             validationRules={{
                                 maxLength: {
-                                    value: 2,
+                                    value: 3,
                                     message: "Te lang, gebruik maximaal 2 tekens.",
 
                                 },
@@ -488,39 +484,13 @@ function ToiletPost() {
                             errors={errors}
                             register={register}
                             labelId="has_photo-check"
-                            inputName="has_photo"
+                            inputName="hasPhoto"
                             filterAttribute="Met foto"
                             yes="wel"
                             no="zonder"
                         >
                             (later uploaden)
                         </Slider>
-
-                        <Slider
-                            errors={errors}
-                            register={register}
-                            labelId="has_rating-check"
-                            inputName="has_rating"
-                            filterAttribute="Met sterren"
-                        >
-                            (later beoordelen)
-                        </Slider>
-
-                        <Slider
-                            errors={errors}
-                            register={register}
-                            labelId="has_description-check"
-                            inputName="has_description"
-                            filterAttribute="Heeft beschrijving"
-                        />
-
-                        <Slider
-                            errors={errors}
-                            register={register}
-                            labelId="has_opening_hours-check"
-                            inputName="has_opening_hours"
-                            filterAttribute="Openingstijden"
-                        />
 
                     </fieldset>
 

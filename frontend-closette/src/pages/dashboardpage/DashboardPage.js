@@ -23,7 +23,7 @@ function DashboardPage() {
     useEffect(() => {
         const token = localStorage.getItem('closetteToken');
 
-        if (user.username === "admin") {
+        if (user && user.username === "admin") {
             // checken of admin is ingelogd, laat dan pas de Userlijst in Dashboard zien
             async function getPrivateContent() {
                 setError('');
@@ -104,18 +104,15 @@ function DashboardPage() {
 
                                 <section className="dashboard__user-data">
                                     {/* admin users zien hier andere content dan gewone users */}
-                                    {user.username === "admin" ?
+                                    {user && user.username === "admin" ?
                                         <>
                                             <h2>Moderator Dashboard</h2>
                                             <div>
                                                 <h2>Gegevens</h2>
-                                                <p><strong>Moderator
-                                                    gebruikersnaam:</strong> {user.username}</p>
-                                                <p><strong>Moderator e-mail:</strong> {user.email}
-                                                </p>
-                                                <p>
-                                                    <button type="submit">verander wachtwoord
-                                                    </button>
+                                                <p><strong>
+                                                    Moderator
+                                                    gebruikersnaam:</strong> {user.username}
+                                                    <br/><strong>Moderator e-mail:</strong> {user.email}
                                                 </p>
                                             </div>
                                             <h3>Alle geregistreerde gebruikers</h3>
@@ -129,13 +126,13 @@ function DashboardPage() {
                                                                 key={Object.keys(post.username).length > 0
                                                                 && post.username}>
                                                                 <ul>
-                                                                    <li>Gebruikersnaam: {Object.keys(post.username).length > 0 &&
-                                                                    post.username}</li>
-                                                                    <li>E-mail: {Object.keys(post.email).length > 0
-                                                                    && post.email}</li>
-                                                                    <li>Wachtwoord
+                                                                    <p>Gebruikersnaam: {Object.keys(post.username).length > 0 &&
+                                                                    post.username}</p>
+                                                                    <p>E-mail: {Object.keys(post.email).length > 0
+                                                                    && post.email}</p>
+                                                                    <p className="word-break">Wachtwoord
                                                                         (gecodeerd): {Object.keys(post.password).length > 0
-                                                                        && post.password}</li>
+                                                                        && post.password}</p>
                                                                     {/*<li>Rechten: {post.authorities && post.authorities[1].authority}</li>*/}
                                                                 </ul>
                                                             </li>

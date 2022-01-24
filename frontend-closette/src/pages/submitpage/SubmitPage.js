@@ -17,11 +17,11 @@ function SubmitPage() {
     // alleen ingelogde users mogen nieuwe entries toevoegen
     console.log(user);
 
-    const [submitInfo, setSubmitInfo] = useState();
+    const [submitInfo, setSubmitInfo] = useState({});
     const [submitSuccess, toggleSubmitSuccess] = useState(false);
     const [error, setError] = useState('');
     const history = useHistory();
-    const {register, handleSubmit, formState: {errors}} = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm({ mode: 'onBlur' });
 
     async function onFormSubmitToilet(data) {
         setError('');
@@ -32,33 +32,34 @@ function SubmitPage() {
                 address: data.address,
                 city: data.city,
                 country: data.country,
+                free: data.free,
+                accessible: data.accessible,
                 genderneutral: data.genderneutral,
                 infoText: data.infoText,
                 latitude: data.latitude,
                 longitude: data.longitude,
+                hasPhoto: data.hasPhoto,
                 openingHours: data.openingHours,
-                free: data.free,
-                accessible: data.accessible,
-                // public: data.public, = toilet wel/niet openbaar
+                ratingAverage: data.ratingAverage,
             });
             setSubmitInfo(result);
-            console.log("Alle data van 1 submitrequest:");
-            console.log(result);
+            console.log("Data na submit?:");
+            console.log(data);
 
         } catch (e) {
             setError(`(${e.message}) - Wanneer je een 400 error ziet, dan heb je een naam ingevoerd die al bestaat of je hebt een GPS coordinaat gebruikt dat al is ingevoerd - zorg dat titel en locatie UNIEK zijn.`)
             console.error(e);
         }
-        console.log("Resultaat submitdata useState:");
-        console.log(submitInfo);
         toggleSubmitSuccess(true);
+        console.log("Data na submit success:");
+        console.log(data);
 
         setTimeout(() => {
             history.push("/search");
         }, 5000);
     }
 
-    console.log(errors);
+    console.log("Errors:" ,errors);
 
     useEffect(() => {
         document.title = "Toevoegen nieuwe toilet locatie :: Closette"
@@ -195,7 +196,7 @@ function SubmitPage() {
                                     inputName="longitude"
                                     validationRules={{
                                         minLength: {
-                                            value: 4,
+                                            value: 5,
                                             message: "Te kort coördinaat, gebruik minstens 5 tekens.",
                                         },
                                         maxLength: {
@@ -209,8 +210,8 @@ function SubmitPage() {
                                 <Slider
                                     errors={errors}
                                     register={register}
-                                    labelId="genderneutraal-check"
-                                    inputName="genderneutraal"
+                                    labelId="genderneutral-check"
+                                    inputName="genderneutral"
                                     filterAttribute="Genderneutraal"
                                     yes="wel"
                                     no="niet"
@@ -259,6 +260,24 @@ function SubmitPage() {
                                     }}
                                 />
 
+                                <InputField
+                                    inputType="number"
+                                    placeholderText="Geef cijfer van 1 - 10"
+                                    errors={errors}
+                                    register={register}
+                                    labelText="Beoordeling (geef cijfer van 1 - 10)"
+                                    labelId="averageRating-field"
+                                    inputName="averageRating"
+                                    min="1" max="10"
+                                    validationRules={{
+                                        maxLength: {
+                                            value: 3,
+                                            message: "Te lang, gebruik maximaal 2 tekens.",
+
+                                        },
+                                    }}
+                                />
+
                                 <InputTextarea
                                     rowNr={6}
                                     columnNr={30}
@@ -298,39 +317,13 @@ function SubmitPage() {
                                     errors={errors}
                                     register={register}
                                     labelId="has_photo-check"
-                                    inputName="has_photo"
+                                    inputName="hasPhoto"
                                     filterAttribute="Met foto"
                                     yes="wel"
                                     no="zonder"
                                 >
                                     (later uploaden)
                                 </Slider>
-
-                                <Slider
-                                    errors={errors}
-                                    register={register}
-                                    labelId="has_rating-check"
-                                    inputName="has_rating"
-                                    filterAttribute="Met sterren"
-                                >
-                                    (later beoordelen)
-                                </Slider>
-
-                                <Slider
-                                    errors={errors}
-                                    register={register}
-                                    labelId="has_description-check"
-                                    inputName="has_description"
-                                    filterAttribute="Heeft beschrijving"
-                                />
-
-                                <Slider
-                                    errors={errors}
-                                    register={register}
-                                    labelId="has_opening_hours-check"
-                                    inputName="has_opening_hours"
-                                    filterAttribute="Openingstijden"
-                                />
 
                             </fieldset>
 

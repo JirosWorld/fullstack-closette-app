@@ -131,15 +131,21 @@ function SearchResults() {
                                                 </span> : <span>Nee</span>}<br/>
                                                 openingstijden: {post.openingHours}<br/>
                                                 hygi&euml;ne: {post.cleanliness}<br/>
-                                                Locatie op kaart: <a
-                                                href={toiletEntry.data &&
-                                                `https://www.openstreetmap.org/?mlat=${post.latitude}&mlon=${post.longitude}&zoom=15}`}
-                                                rel="noreferrer" target="_blank">
-                                                <img src={MapIcon}
-                                                     alt="map"
-                                                     width="25"
-                                                     className="map-icon"/> (externe
-                                                link)</a><br/>
+                                                {post.latitude
+                                                ?
+                                                    <>
+                                                        Locatie op kaart: <a
+                                                        href={toiletEntry.data &&
+                                                        `https://www.openstreetmap.org/?mlat=${post.latitude}&mlon=${post.longitude}&zoom=15}`}
+                                                        rel="noreferrer" target="_blank">
+                                                        <img src={MapIcon}
+                                                             alt="map"
+                                                             width="25"
+                                                             className="map-icon"/> (externe
+                                                        link)</a>
+                                                    </>
+                                                    : <>(geen GPS locatie)</> }
+                                                <br/>
                                                 heeft foto?: {post.hasPhoto
                                                 ? <span>Ja</span> : <span>Nee</span>}<br/>
                                                 heeft rating: {post.ratingAverage}<br/>

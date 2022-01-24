@@ -41,7 +41,7 @@ textarea {
     border: 1px solid var(--hardpink);
 }
 
-input#narrow, input[type=submit]#narrow, input[type=button]#narrow, button[type=submit]#narrow, input[type=submit]#narrow:hover, input[type=button]#narrow:hover, button[type=submit]#narrow:hover {
+.narrow, input#narrow, input[type=file], input[type=submit]#narrow, input[type=button]#narrow, button[type=submit]#narrow, input[type=submit]#narrow:hover, input[type=button]#narrow:hover, button[type=submit]#narrow:hover {
     width: initial;
     max-width: 250px;
 }

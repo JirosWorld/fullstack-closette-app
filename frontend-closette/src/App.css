@@ -185,6 +185,10 @@ button[type=button]:hover {
     border-radius: 8px;
 }
 
+.word-break {
+    word-break: break-all;
+}
+
 .transparent {
     zoom: 1;
     filter: alpha(opacity=40);
