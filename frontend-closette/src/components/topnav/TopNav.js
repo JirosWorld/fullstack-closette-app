@@ -30,6 +30,16 @@ function TopNav({children}) {
                     </li>}
                     <li><NavLink to="/news" activeClassName="active-link">Nieuws</NavLink></li>
                     <li><NavLink to="/contact" activeClassName="active-link">Contact</NavLink></li>
+
+                    {user ? <li>
+                            <NavLink to="/dashboard"
+                                     activeClassName="active-link">Dashboard</NavLink>
+                        </li>
+                        :
+                        <li><NavLink to="/signup"
+                                    activeClassName="active-link">Registreren</NavLink></li>
+                    }
+                    
                     {user ?
                         <li>
                             <NavLink to="/login" onClick={logout}
@@ -39,14 +49,7 @@ function TopNav({children}) {
                             <NavLink to="/login"
                                      activeClassName="active-link">Inloggen</NavLink>
                         </li>}
-                    {user ? <li>
-                        <NavLink to="/dashboard"
-                                 activeClassName="active-link">Dashboard</NavLink>
-                    </li>
-                    :
-                        <NavLink to="/signup"
-                                 activeClassName="active-link">Registreren</NavLink>
-                    }
+
                 </ul>
                 <div className={`top-nav__hamburger ${isClassActive ? 'open': null}`} onClick={toggleClass}>
                     <Hamburger />

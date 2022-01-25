@@ -59,11 +59,9 @@ function SearchResults() {
                 title="Alle data"
             />
             <div className="searchresults__page content-wide">
-
-                {error && <p className="error-message">{error}</p>}
                 <div className="posts">
-
                     <ul className="mapped__posts">
+                        {error && <p className="error-message">{error}</p>}
                         {loading && <Loader/>}
                         {toiletEntry.data && toiletEntry.data.map((post) => {
                                 console.log("post.data:");

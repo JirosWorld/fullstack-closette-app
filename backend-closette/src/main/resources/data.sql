@@ -25,7 +25,8 @@ VALUES ('100', 'img-post-amsterdammuseum.jpg'),
        ('1000', 'img-post-victorian-toilet.jpg'),
        ('1100', 'img-news-UNISEX.jpg'),
        ('1200', 'img-post-outhouse-toilet.jpg'),
-       ('1300', 'img-post-sexmuseum.jpg');
+       ('1300', 'img-news-Unisex-Toilet.png'),
+       ('1400', 'img-news-unisex-sign.png');
 
 INSERT INTO newsposts (title, description, paragraph, post_time, newsauthor_id)
 VALUES ('Handleiding en f.a.q.',

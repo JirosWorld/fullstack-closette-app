@@ -53,9 +53,9 @@ function Slider({register, labelId, yes, no, filterAttribute, inputName, childre
                 {children}
             </span>
             </div>
-            <div className="result">
-                Checkbox: {isChecked ? "checked" : "not-checked"}.
-            </div>
+            {/*<div className="result">*/}
+            {/*    Checkbox: {isChecked ? "checked" : "not-checked"}.*/}
+            {/*</div>*/}
         </>
     );
 }

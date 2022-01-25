@@ -261,18 +261,18 @@ function SubmitPage() {
                                 />
 
                                 <InputField
-                                    inputType="number"
+                                    inputType="text"
+                                    inputmode="decimal"
                                     placeholderText="Geef cijfer van 1 - 10"
                                     errors={errors}
                                     register={register}
                                     labelText="Beoordeling (geef cijfer van 1 - 10)"
                                     labelId="averageRating-field"
                                     inputName="averageRating"
-                                    min="1" max="10"
                                     validationRules={{
                                         maxLength: {
                                             value: 3,
-                                            message: "Te lang, gebruik maximaal 2 tekens.",
+                                            message: "Te lang, gebruik maximaal 2 tekens (een geheel cijfer van 1 - 10).",
 
                                         },
                                     }}

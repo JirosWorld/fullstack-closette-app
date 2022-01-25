@@ -156,7 +156,6 @@ function SearchPage() {
                     </button>
                 </form>
 
-                {error && <p className="error-message">{error}</p>}
 
                 <hr/>
                 <h4>Zoekresultaten</h4>
@@ -165,6 +164,7 @@ function SearchPage() {
 
             <section className="results">
                 <ul className="mapped__posts">
+                    {error && <p className="error-message">{error}</p>}
                     {loading && <Loader/>}
                     {toiletEntry.data && toiletEntry.data.map((post) => {
                             return <li key={post.id && post.title}>
