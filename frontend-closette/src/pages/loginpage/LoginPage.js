@@ -12,7 +12,7 @@ import BackButton from "../../components/buttons/BackButton";
 
 function LoginPage() {
     const {login} = useContext(AuthContext);
-    const {register, handleSubmit, formState: {errors}} = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm({ mode: 'onBlur' });
     const [loginSuccess, toggleLoginSuccess] = useState(false);
 
     async function onFormSubmit(data) {

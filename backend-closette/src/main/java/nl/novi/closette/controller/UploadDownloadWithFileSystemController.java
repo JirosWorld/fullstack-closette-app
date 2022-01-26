@@ -2,6 +2,7 @@ package nl.novi.closette.controller;
 
 import nl.novi.closette.model.FileUploadResponse;
 import nl.novi.closette.service.FileStorageService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,8 +30,20 @@ public class UploadDownloadWithFileSystemController {
         this.fileStorageService = fileStorageService;
     }
 
+//    simpeler upload zonder base64
+    @Value("${my.upload_location}")
+    private String storageLocation;
+
+    @RequestMapping(value = "/file-upload", method = RequestMethod.POST)
+    @ResponseBody
+    public String uploadFile(@RequestParam("file") MultipartFile multipartFile) throws IOException {
+
+        multipartFile.transferTo(new File(storageLocation + multipartFile.getOriginalFilename()));
+        return "File successfully uploaded!";
+    }
+
 //    post for single upload
-    @PostMapping("single/upload")
+    @PostMapping("/single/upload")
     FileUploadResponse singleFileUpload(@RequestParam("file") MultipartFile file){
 
         String fileName = fileStorageService.storeFile(file);
@@ -92,7 +106,7 @@ public class UploadDownloadWithFileSystemController {
 
     }
 
-    @GetMapping("zipDownload")
+    @GetMapping("/zipDownload")
     public void zipDownload(@RequestParam("fileName") String[] files, HttpServletResponse response) throws IOException {
 
         try(ZipOutputStream zos = new ZipOutputStream(response.getOutputStream())){

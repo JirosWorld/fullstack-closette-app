@@ -6,6 +6,8 @@ import {AuthContext} from "../../context/AuthContext";
 import "./TopNav.css";
 import LogoNav from "../../assets/img/logo-toilet-nav.png";
 import Hamburger from "./Hamburger";
+import Avatar from "../../assets/icons/icon-lines-user-jiro.svg";
+import IconLogout from "../../assets/icons/icon-lines-logout.svg";
 
 function TopNav({children}) {
 
@@ -31,17 +33,25 @@ function TopNav({children}) {
                     <li><NavLink to="/news" activeClassName="active-link">Nieuws</NavLink></li>
                     <li><NavLink to="/contact" activeClassName="active-link">Contact</NavLink></li>
 
-                    {user ? <li>
+                    {user ? <li className="dashboard-link__align">
+                            <img src={Avatar} alt="thumbnail"
+                                 className="thumbnail-wide transparent" height="20"
+                                 width="25"/>
                             <NavLink to="/dashboard"
-                                     activeClassName="active-link">Dashboard</NavLink>
+                                     activeClassName="active-link">
+                                Dashboard</NavLink>
                         </li>
                         :
-                        <li><NavLink to="/signup"
+                        <li>
+                            <NavLink to="/signup"
                                     activeClassName="active-link">Registreren</NavLink></li>
                     }
                     
                     {user ?
-                        <li>
+                        <li  className="dashboard-link__align">
+                            <img src={IconLogout} alt="thumbnail"
+                                 className="thumbnail-wide transparent" height="20"
+                                 width="25"/>
                             <NavLink to="/login" onClick={logout}
                                      activeClassName="active-link">Uitloggen</NavLink>
                         </li>

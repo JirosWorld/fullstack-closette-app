@@ -59,9 +59,9 @@ function FeaturedToilet() {
                             <h4><Link
                                 to={`toilets/${toiletEntry.data[6].id}`}>{toiletEntry.data
                             && toiletEntry.data[6].title}</Link></h4>
-                            <li className="mapped__post__detail">stad: {toiletEntry.data
+                            <li className="mapped__post__nation">stad: {toiletEntry.data
                             && toiletEntry.data[6].city}</li>
-                            <li className="mapped__post__detail">land: {toiletEntry.data
+                            <li className="mapped__post__nation">land: {toiletEntry.data
                             && toiletEntry.data[6].country}</li>
                             <li>beoordeling: {toiletEntry.data && toiletEntry.data[6].ratingAverage}
                                 &#9733; &#x2605; &#9733;</li>

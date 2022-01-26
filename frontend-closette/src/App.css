@@ -26,6 +26,7 @@ html {
     --softbrown: #EEE5E3;
     --blackcontrast: #1F132A;
     /*  al deze kleuren beantwoorden aan de toegankelijkhedsi/accessibility eisen */
+    --lightgrey: #f2f2f2;
 }
 
 /* start CSS reset */
@@ -196,6 +197,15 @@ button[type=button]:hover {
 }
 
 /* app-wide mobile styles */
+
+@media screen and (max-width: 900px) {
+    .content-wrapper {
+        padding: 100px 0 5px 0;
+    }
+    .mapped__posts {
+        max-width: 620px;
+    }
+}
 
 @media only screen and (max-width: 700px) {
     .content-wrapper, body, .main, .body__wrapper {

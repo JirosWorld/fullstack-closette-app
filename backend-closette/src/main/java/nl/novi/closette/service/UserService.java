@@ -129,8 +129,8 @@ public class UserService {
         final int MIN_LENGTH = 4;
         final int MIN_DIGITS = 1;
         final int MIN_LOWER = 1;
-        final int MIN_UPPER = 1;
-        final int MIN_SPECIAL = 1;
+        final int MIN_UPPER = 0;
+        final int MIN_SPECIAL = 0;
         final String SPECIAL_CHARS = "@#$%&*!()+=-_";
 
         long countDigit = password.chars().filter(ch -> ch >= '0' && ch <= '9').count();

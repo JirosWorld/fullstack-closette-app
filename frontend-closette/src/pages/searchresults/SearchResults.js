@@ -73,9 +73,11 @@ function SearchResults() {
                                 {/*check om te kijken of de thumbnail bestaat
                                 anders default image + link */}
                                 {post.photo ?
-                                    <img src={`http://localhost:8080/download/${post.photo.fileName}`} alt="thumbnail"
-                                         className="thumbnail"
-                                         width="150" height="150"/> :
+                                    <img
+                                        src={`http://localhost:8080/download/${post.photo.fileName}`}
+                                        alt="thumbnail"
+                                        className="thumbnail"
+                                        width="150" height="150"/> :
                                     <span className="no-image">
                                         <img src={noImage} alt="thumbnail"
                                              className="thumbnail transparent" height="150"
@@ -93,48 +95,51 @@ function SearchResults() {
                                         </h2>
                                         <span className="mapped__post__author">Stad: {post.city}</span>
                                         <br/>
-                                        <span className="mapped__post__detail">
-                                Land {post.country}</span>
+                                        <span className="mapped__post__nation">
+                                            Land {post.country}</span>
                                         <br/>
                                         <span
                                             className="mapped__post__votes">Rating:
                                             {post.ratingAverage} &#9733; &#x2605; &#9733;</span>
                                         <div className="mapped__post__details">
-                                            <p>
-                                                gender/gratis/invaliden ja/nee <br/>
+                                            <p>Genderneutraal/gratis/toegankelijk </p>
+                                            <p className="tiny-info">
                                                 {post.genderneutral
                                                     ? <span><img src={GenderneutralIcon}
                                                                  alt="map"
                                                                  title="genderneutraal"
                                                                  width="25"
                                                                  className="genderneutral-icon"/></span> :
-                                                    <span>Nee</span>}
-                                                 {post.free
-                                                ? <span><img src={FreeIcon}
-                                                             alt="map"
-                                                             title="gratis"
-                                                             width="25"
-                                                             className="free-icon"/></span>
-                                                : <span><img src={PaidIcon}
-                                                             alt="map"
-                                                             title="niet gratis"
-                                                             width="25"
-                                                             className="free-icon"/></span>}
-                                                 {post.accessible ?
-                                                <span><img src={AccessibleIcon}
-                                                           alt="map"
-                                                           title="rolstoeltoegankelijk"
-                                                           width="25"
-                                                           className="accessible-icon"/>
-                                                </span> : <span>Nee</span>}<br/>
+                                                    <span>Niet genderneutraal</span>}
+                                                {post.free
+                                                    ? <span><img src={FreeIcon}
+                                                                 alt="map"
+                                                                 title="gratis"
+                                                                 width="25"
+                                                                 className="free-icon"/></span>
+                                                    : <span><img src={PaidIcon}
+                                                                 alt="map"
+                                                                 title="niet gratis"
+                                                                 width="25"
+                                                                 className="free-icon"/></span>}
+                                                {post.accessible ?
+                                                    <span><img src={AccessibleIcon}
+                                                               alt="map"
+                                                               title="rolstoeltoegankelijk"
+                                                               width="25"
+                                                               className="accessible-icon"/>
+                                                </span> : <span>Nee</span>}
+                                            </p>
+
+                                            <p>
                                                 openingstijden: {post.openingHours}<br/>
                                                 hygi&euml;ne: {post.cleanliness}<br/>
                                                 {post.latitude
-                                                ?
-                                                    <>
-                                                        Locatie op kaart: <a
-                                                        href={toiletEntry.data &&
-                                                        `https://www.openstreetmap.org/?mlat=${post.latitude}&mlon=${post.longitude}&zoom=15}`}
+                                                    ?
+                        <>
+                            Locatie op kaart: <a
+                            href={toiletEntry.data &&
+                            `https://www.openstreetmap.org/?mlat=${post.latitude}&mlon=${post.longitude}&zoom=15}`}
                                                         rel="noreferrer" target="_blank">
                                                         <img src={MapIcon}
                                                              alt="map"
@@ -142,14 +147,23 @@ function SearchResults() {
                                                              className="map-icon"/> (externe
                                                         link)</a>
                                                     </>
-                                                    : <>(geen GPS locatie)</> }
-                                                <br/>
-                                                heeft foto?: {post.hasPhoto
-                                                ? <span>Ja</span> : <span>Nee</span>}<br/>
-                                                heeft rating: {post.ratingAverage}<br/>
-                                                Foto: <a href={post.photo && `http://localhost:8080/download/${post.photo.fileName}`} rel="noreferrer" target="_blank">{post.photo && `/download/${post.photo.fileName}`}</a>
-                                                {/*owner id: {post.owner.id}<br/>*/} <br/>
-                                                geplaatst door user: {post.owner && post.owner.name}
+                                                    : <><em>(geen GPS locatie)</em></>}
+                                                <p>
+                                                    heeft foto?: {post.hasPhoto
+                                                    ? <span className="tiny-info">Ja</span>
+                                                    : <span className="tiny-info">Nee</span>}
+                                                </p>
+                                                <p>heeft rating: {post.ratingAverage
+                                                    ? <span>
+                                                        <strong>{post.ratingAverage}</strong></span>
+                                                    : <span className="tiny-info">Nee</span>}
+                                                </p>
+                                                Foto: <a
+                                                href={post.photo
+                                                && `http://localhost:8080/download/${post.photo.fileName}`}
+                                                rel="noreferrer"
+                                                target="_blank">{post.photo
+                                            && `/download/${post.photo.fileName}`}</a>
                                             </p>
                                         </div>
                                     </section>

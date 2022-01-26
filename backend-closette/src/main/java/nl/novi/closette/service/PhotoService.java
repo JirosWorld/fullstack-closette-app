@@ -19,6 +19,25 @@ public class PhotoService {
     @Autowired
     private PhotoRepository photoRepository;
 
+    public Iterable<Photo> getPhotoposts(String fileName) {
+        if (fileName.isEmpty()) {
+            return photoRepository.findAll();
+        }
+        else {
+            return (Iterable<Photo>) photoRepository.findByFileName(fileName);
+        }
+    }
+
+    public Photo findPhoto(Long id) {
+        Optional<Photo> optionalPhoto = photoRepository.findById(id);
+
+        if (optionalPhoto.isPresent()) {
+            return optionalPhoto.get();
+        } else {
+            throw new RecordNotFoundException("ID does not exist!");
+        }
+    }
+
     public PhotoService(PhotoRepository doc){
         this.doc = doc;
     }
@@ -43,14 +62,5 @@ public class PhotoService {
         }
     }
 
-    public Photo findPhoto(Long id) {
-        Optional<Photo> optionalPhoto = photoRepository.findById(id);
-
-        if (optionalPhoto.isPresent()) {
-            return optionalPhoto.get();
-        } else {
-            throw new RecordNotFoundException("ID does not exist!");
-        }
-    }
 
 }

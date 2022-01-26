@@ -3,11 +3,9 @@ package nl.novi.closette.controller;
 import nl.novi.closette.exception.RecordNotFoundException;
 import nl.novi.closette.model.FileUploadResponse;
 import nl.novi.closette.model.Photo;
-import nl.novi.closette.model.Toilet;
 import nl.novi.closette.repository.PhotoRepository;
 import nl.novi.closette.service.FileStorageService;
 import nl.novi.closette.service.PhotoService;
-import nl.novi.closette.service.ToiletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -44,10 +42,16 @@ public class PhotoDbController {
         this.photoRepository = photoRepository;
     }
 
+    // mappings
 
     @GetMapping(value = "/photos/{id}")
     public ResponseEntity<Object> findPhoto(@PathVariable Long id) {
         return ResponseEntity.ok(photoService.findPhoto(id));
+    }
+
+    @GetMapping(value = "/photos")
+    public ResponseEntity<Object> getPhotos(@RequestParam(name="fileName", defaultValue="") String fileName) {
+        return ResponseEntity.ok(photoService.getPhotoposts(fileName));
     }
 
     @PostMapping("single/uploadDb")

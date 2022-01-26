@@ -39,6 +39,10 @@
     visibility: hidden;
 }
 
+.dashboard-link__align, .dashboard-link__align * {
+    vertical-align: baseline;
+}
+
 svg.svg-lookingglass-icon.mobile, svg.svg-plus-icon.mobile {
     display: none;
     visibility: hidden;

@@ -1,7 +1,7 @@
 .specific__post {
     padding: 1.5em;
     border-radius: 25px;
-    border: 2px lightskyblue solid;
+    border: 2px var(--softgreen) solid;
     background-color: white;
 }
 
@@ -21,15 +21,22 @@
 
 .thumbnail-container {
     display: flex;
+    flex-direction: column-reverse;
     align-items: center;
     justify-content: center;
     margin: 0 0 15px 0;
-    background-color: #eee;
+    background-color: var(--lightgrey);
     border-radius: 15px;
 }
 
 .posts {
     padding: 1em;
+}
+
+.tiny-info {
+    font-size: 12px;
+    font-weight: bold;
+    color: #666;
 }
 
 .no-image {
@@ -84,10 +91,16 @@
 }
 
 .mapped__post__detail,
-.mapped__post__detail a {
+.mapped__post__detail a,
+.mapped__post__nation,
+.mapped__post__nation a {
     color: var(--AccessibleGreen);
     font-size: 1.1em;
     font-weight: bold;
+}
+
+.mapped__post__details p {
+    margin: 0.3em 0 0 0;
 }
 
 .mapped__post__votes {

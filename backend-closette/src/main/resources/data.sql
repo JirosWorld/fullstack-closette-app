@@ -13,7 +13,7 @@ VALUES ('Standaard gebruiker', 2.5),
        ('nieuwe user', 4.8);
 
 INSERT INTO photos (id, file_name)
-VALUES ('100', 'img-post-amsterdammuseum.jpg'),
+VALUES ('199', 'img-post-amsterdammuseum.jpg'),
        ('200', 'img-post-artistic-toilet.jpg'),
        ('300', 'img-post-back-to-wall-toilet.jpg'),
        ('400', 'img-post-black-white-toilet.jpg'),
@@ -50,7 +50,7 @@ VALUES ('Het Amsterdam Museum', '52.3700', '4.8900', '2019-05-05', 1, TRUE,
         'Dit toilet kun je alleen bezoeken na toegang te betalen tot het museum. Een beschrijving van o.a. hoe het toilet te bereiken is e.a. bijzonderheden, met veel gedetailleerde informatie. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium blanditiis, dolore, dolores doloribus dolorum, earum esse ex iure molestias necessitatibus obcaecati qui temporibus.',
         '10h tot 17h tijdens de pandemie',
         'Kalverstraat 92- 1012 PH Amsterdam',
-        8.8, 100),
+        8.8, 199),
        ('NOVI Hogeschool', '52.0905', '5.1478', '2020-03-04', 3, TRUE, 'Utrecht', 'NL Nederland Holland Netherlands',
         'schoon', TRUE, TRUE, FALSE,
         'Vergeet je mondkapje niet. Een beschrijving van o.a. hoe het toilet te bereiken is e.a. bijzonderheden, met veel gedetailleerde informatie. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium blanditiis, dolore, dolores doloribus dolorum, earum esse ex iure molestias necessitatibus obcaecati.',

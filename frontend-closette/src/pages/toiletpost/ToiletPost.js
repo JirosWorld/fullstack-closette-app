@@ -25,7 +25,7 @@ function ToiletPost() {
     const [toiletEntry, setToiletEntry] = useState({});
     const [patchInfo, setPatchInfo] = useState({});
 
-    // formulier moet alleen zichtbaar zijn wanneer daarom gevraagd wordt
+    // patch formulier moet alleen zichtbaar zijn wanneer daarom gevraagd wordt
     const [visibility, setVisibility] = useState(true);
 
     const [loading, toggleLoading] = useState(false);
