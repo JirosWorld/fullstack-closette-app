@@ -119,7 +119,8 @@ function ToiletPost() {
                     window.scrollTo({ top: 0, behavior: 'smooth' })
                 }, 0);
             } catch (error) {
-                setError(`Dit toilet bestaat niet meer ... je hebt dit toilet succesvol verwijderd! - (${error.message})`);
+                setError(`Dit toilet bestaat niet meer ... je hebt dit 
+                toilet succesvol verwijderd! - (${error.message})`);
                 console.error(error.message);
             }
         } else {
@@ -148,7 +149,7 @@ function ToiletPost() {
                                     {/* bestaat-foto-check */}
                                     {toiletEntry && toiletEntry.hasPhoto ?
                                         <img src=
-                                                 {`http://localhost:8080/download/img-post-amsterdammuseum.jpg`} alt="thumbnail"
+                                                 {`http://localhost:8080/download/img-news-Unisex-Toilet.png`}                                                 alt="thumbnail"
                                              className="thumbnail-wide"
                                              width="300"/> :
                                         <>

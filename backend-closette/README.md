@@ -21,6 +21,7 @@ Accepteer installatie van de JPA Buddy plug-in. Verdere installatiehandleidingen
 
 * admin - password
 * user - password
+* tester - password
 
 ### Endpoints
 

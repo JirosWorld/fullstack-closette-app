@@ -66,6 +66,7 @@ Maak dus eerst een user aan met naam/wachtwoord `springboot`. En daarna een lege
 
 * admin - password
 * user - password
+* tester - password
 
 ### Back-end aanpassingen voor uploads
 

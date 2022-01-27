@@ -5,6 +5,7 @@ import TopNav from "../../components/topnav/TopNav";
 import LandingSection from "../../components/sections/LandingSection/LandingSection";
 import FeaturedToilet from "../../components/sections/FeaturedToilet/FeaturedToilet";
 import {Link} from "react-router-dom";
+import FAQbook from "../../assets/icons/icon-book.png";
 
 function HomePage() {
 
@@ -24,7 +25,9 @@ function HomePage() {
             <div className="home__page  content-wrapper">
                 <LandingSection/>
                 <hr/>
-                <p>Lees meer <Link to="/info/faq-handleiding">in de f.a.q.</Link></p>
+                <p><img src={FAQbook}
+                        alt="reader icon"
+                        width="35"/> Lees meer <Link to="/info/faq-handleiding">in de f.a.q.</Link></p>
                 <hr/>
                 <FeaturedToilet/>
             </div>

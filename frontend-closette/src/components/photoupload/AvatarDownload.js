@@ -54,9 +54,6 @@ function AvatarDownload() {
 
             {/* Toon alleen de nieuw geuploade foto's, niet de prefilled data */}
 
-            {photoDownloadEntry[photoDownloadEntry.length - 1]}
-            wat doet dit?
-
             {photoDownloadEntry && photoDownloadEntry.id < 200
                 ?
                 <>

@@ -107,3 +107,24 @@
     font-size: 1.1em;
     font-weight: bold;
 }
+
+.searchfilter__forms {
+    display: flex;
+    flex-direction: row;
+}
+
+.searchfilter__forms input {
+    visibility: hidden;
+    display: none;
+}
+
+.searchfilter__forms button {
+    width: 200px;
+    margin: 0 10px 0 0;
+    border-radius: 30px;
+}
+.searchfilter__forms button:hover {
+    width: 200px;
+    margin: 0 10px 0 0;
+    border-radius: 30px;
+}

@@ -116,11 +116,15 @@ _(limitaties van de applicatie en beargumentatie van mogelijke doorontwikkelinge
 
 • Het diep indelen in React componenten heb ik niet gedetailleerd kunnen doen door tijdgebrek - in principe zou het beter zijn om van elk type Axios request of Async functie een eigen component te maken, maar ik heb nu vaak voor de individuele pagina's een flinke lap code gemaakt. Op zich is dat nu nog niet zo'n probleem in dit project omdat er nog niet veel pagina-soorten zijn, en dus ook nog niet veel templates dus de code wordt niet echt herhaald.
 
+• Omdat ik veel funcionaliteit wilde bouwen en de app echt op een volledige website, gevoed door een database, wilde laten lijken, heb ik veel logica ingebouwd waarbij ik veel `comments` en `console.logs` nodig had - door tijdgebrek heb ik deze niet allemaal kunnen verwijderen maar in een real life werksituatie zou ik dat wel opschonen - bovendien zou ik ze dan 100% in het Engels doen. Ik denk dat 20% van mijn comments in het Nederlands zijn en dat is niet de bedoeling, maar i.e.g. niet schadelijk.
+
 • Geen https SSL certificaat omdat dit bij nakijken problemen kan geven maar in het het echte bedrijfsleven moet dit wel.
 
 • Geen CORS URL gekozen dus in plaats van port 3000 heb ik een * operator gekozen zodat **alle** verzoeken naar de back-end door kunnen komen.
 
 • Geen performance tests. Het is dus niet zeker wat er gebeurt als er enorm grote aantallen gebruikers grote hoeveelheden data gaan invoeren. Meer data heeft impact op het schijfruimtegebruik van de database en op de snelheid waarmee tabellen bevraagd kunnen worden.
+
+• Geen uitgebreide splitsing van de DTO's naar input en output, wat wel netter zou zijn, maar dit is geen exameneis.
 
 • De gestelde kwaliteitseis van een totale test-coverage van 50% is behaald.
 
