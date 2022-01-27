@@ -23,6 +23,11 @@ function SearchPage() {
 
     useEffect(() => {
         document.title = "Zoeken op stad, land, naam :: Closette"
+
+        setTimeout(() => {
+            window.scrollTo({top: 0, behavior: 'smooth'})
+        }, 0);
+        console.log("De pagina begint met de window naar boven gescrolld");
     }, []);
 
     async function onFormSubmitCity(dataCity) {
@@ -30,13 +35,15 @@ function SearchPage() {
         console.log(dataCity);
         setError('');
         toggleLoading(true);
+        console.log("toiletEntry als string:");
+        console.log(toiletEntry);
         try {
             const result = await axios.get(`http://localhost:8080/toilets?city=${dataCity.city}`);
             setToiletEntry(result);
             console.log("alle result inhoud:");
             console.log(result);
             setTimeout(() => {
-                window.scrollTo({top: 1000, behavior: 'smooth'})
+                window.scrollTo({top: 1100, behavior: 'smooth'})
             }, 0);
             console.log("De pagina begint met de window naar boven gescrolld");
 
@@ -58,7 +65,7 @@ function SearchPage() {
             console.log("alle country zoek inhoud:");
             console.log(result);
             setTimeout(() => {
-                window.scrollTo({top: 1000, behavior: 'smooth'})
+                window.scrollTo({top: 1200, behavior: 'smooth'})
             }, 0);
         } catch (error) {
             setError(`Er is iets misgegaan bij het ophalen van de data - (${error.message})`);
@@ -78,7 +85,7 @@ function SearchPage() {
             console.log("alle naam zoek inhoud:");
             console.log(result);
             setTimeout(() => {
-                window.scrollTo({top: 1000, behavior: 'smooth'})
+                window.scrollTo({top: 1300, behavior: 'smooth'})
             }, 0);
         } catch (error) {
             setError(`Er is iets misgegaan bij het ophalen van de data - (${error.message})`);
@@ -149,7 +156,6 @@ function SearchPage() {
                     </button>
                 </form>
 
-                {error && <p className="error-message">{error}</p>}
 
                 <hr/>
                 <h4>Zoekresultaten</h4>
@@ -158,6 +164,7 @@ function SearchPage() {
 
             <section className="results">
                 <ul className="mapped__posts">
+                    {error && <p className="error-message">{error}</p>}
                     {loading && <Loader/>}
                     {toiletEntry.data && toiletEntry.data.map((post) => {
                             return <li key={post.id && post.title}>
@@ -219,13 +226,22 @@ function SearchPage() {
                                                             width="25"
                                                             className="accessible-icon"/> </span> :
                                                 <span>Nee</span>}</p>
-                                        <p className="location-link">Klik voor locatie op kaart: <a
-                                            href={post.latitude &&
-                                            `https://www.openstreetmap.org/?mlat=${post.latitude}&mlon=${post.longitude}&zoom=15}`}
-                                            rel="noreferrer" target="_blank">
-                                            <img src={MapIcon}
-                                                 alt="map"
-                                                 width="25" className="map-icon"/></a></p>
+                                        <p className="location-link">
+                                            {post.latitude ?
+                                            <>
+                                                Klik voor locatie op kaart:
+                                                <a
+                                                    href={post.latitude &&
+                    `https://www.openstreetmap.org/?mlat=${post.latitude}&mlon=${post.longitude}&zoom=15}`}
+                                                    rel="noreferrer" target="_blank">
+                                                    <img src={MapIcon}
+                                                         alt="map"
+                                                         width="25" className="map-icon"/></a>
+                                            </>
+                                                :
+                                                <>(geen GPS locatie)</>
+                                            }
+                                        </p>
                                     </div>
                                 </div>
                                 {/* <!-- end content wrapper --> */}

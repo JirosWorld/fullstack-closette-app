@@ -1,9 +1,12 @@
 import React, {useRef, useState} from 'react';
 import emailjs from '@emailjs/browser';
 import {useForm} from 'react-hook-form';
+import EmailSent from "../../assets/icons/icon-email-sent.png";
 
 import "./ContactPage.css";
+//
 // Dit contactformulier werkt via mijn EmailJS mailserver-cloud-account, niet via de back-end
+//
 import {init} from '@emailjs/browser';
 import {Link} from "react-router-dom";
 import InputField from "../../components/form-elements/inputfield/InputField";
@@ -15,7 +18,7 @@ init("user_QXd8UjBeN4IPK6AdPaueU");
 
 export const ContactUs = () => {
     const form = useRef();
-    const {register, handleSubmit, formState: {errors}} = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm({ mode: 'onBlur' });
     const [submitSuccess, toggleSubmitSuccess] = useState(false);
 
 
@@ -96,6 +99,8 @@ export const ContactUs = () => {
                     labelId="privacy-check"
                     inputName="privacy"
                     filterAttribute="Akkoord met privacy"
+                    yes="ja"
+                    no="nee"
                 >
                     Link <Link to="/info/faq-handleiding">naar privacy pagina</Link>
                 </Slider>
@@ -105,8 +110,11 @@ export const ContactUs = () => {
             </form>
             {submitSuccess === true &&
             <div className="confirmation__container">
+                <img src={EmailSent}
+                     alt="email sent icon"
+                     width="100"/>
                 <h3>Versturen gelukt!</h3>
-                <p>Als je een geldig mailadres hebt ingevuld, ontvang je nu automatisch een &eacute;chte e-mail.</p>
+                <p>Als je een geldig mailadres hebt ingevuld, ontvang je nu automatisch een &eacute;chte e-mail met bevestiging.</p>
             </div>}
 
         </>

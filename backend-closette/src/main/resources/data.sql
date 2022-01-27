@@ -1,9 +1,11 @@
 INSERT INTO users (username, password, enabled, email)
 VALUES ('user', '$2y$10$Asnk2HVhhHTwlOur0beC8.SQSHd.zOCKidUPIJYC4xSKy/CAxToQy', TRUE, 'jiro@jirosworld.com'),
+       ('tester', '$2y$10$Asnk2HVhhHTwlOur0beC8.SQSHd.zOCKidUPIJYC4xSKy/CAxToQy', TRUE, 'tester@jirosworld.com'),
        ('admin', '$2y$10$Asnk2HVhhHTwlOur0beC8.SQSHd.zOCKidUPIJYC4xSKy/CAxToQy', TRUE, 'jiro@jiroghianni.com');
 
 INSERT INTO authorities (username, authority)
 VALUES ('user', 'ROLE_USER'),
+       ('tester', 'ROLE_USER'),
        ('admin', 'ROLE_USER'),
        ('admin', 'ROLE_ADMIN');
 
@@ -13,7 +15,7 @@ VALUES ('Standaard gebruiker', 2.5),
        ('nieuwe user', 4.8);
 
 INSERT INTO photos (id, file_name)
-VALUES ('100', 'img-post-amsterdammuseum.jpg'),
+VALUES ('199', 'img-post-amsterdammuseum.jpg'),
        ('200', 'img-post-artistic-toilet.jpg'),
        ('300', 'img-post-back-to-wall-toilet.jpg'),
        ('400', 'img-post-black-white-toilet.jpg'),
@@ -25,7 +27,8 @@ VALUES ('100', 'img-post-amsterdammuseum.jpg'),
        ('1000', 'img-post-victorian-toilet.jpg'),
        ('1100', 'img-news-UNISEX.jpg'),
        ('1200', 'img-post-outhouse-toilet.jpg'),
-       ('1300', 'img-post-sexmuseum.jpg');
+       ('1300', 'img-news-Unisex-Toilet.png'),
+       ('1400', 'img-news-unisex-sign.png');
 
 INSERT INTO newsposts (title, description, paragraph, post_time, newsauthor_id)
 VALUES ('Handleiding en f.a.q.',
@@ -49,9 +52,9 @@ VALUES ('Het Amsterdam Museum', '52.3700', '4.8900', '2019-05-05', 1, TRUE,
         'Dit toilet kun je alleen bezoeken na toegang te betalen tot het museum. Een beschrijving van o.a. hoe het toilet te bereiken is e.a. bijzonderheden, met veel gedetailleerde informatie. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium blanditiis, dolore, dolores doloribus dolorum, earum esse ex iure molestias necessitatibus obcaecati qui temporibus.',
         '10h tot 17h tijdens de pandemie',
         'Kalverstraat 92- 1012 PH Amsterdam',
-        8.8, 100),
+        8.8, 199),
        ('NOVI Hogeschool', '52.0905', '5.1478', '2020-03-04', 3, TRUE, 'Utrecht', 'NL Nederland Holland Netherlands',
-        'schoon', TRUE, TRUE, FALSE,
+        'schoon', TRUE, FALSE , FALSE,
         'Vergeet je mondkapje niet. Een beschrijving van o.a. hoe het toilet te bereiken is e.a. bijzonderheden, met veel gedetailleerde informatie. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium blanditiis, dolore, dolores doloribus dolorum, earum esse ex iure molestias necessitatibus obcaecati.',
         '9h tot 17h', 'Newtonlaan 247- 3584 BH Utrecht', 3.1, 300),
        ('Berghain | Panorama Bar | homo bar', '52.5111', '13.4430', '12 2021', 2, FALSE,

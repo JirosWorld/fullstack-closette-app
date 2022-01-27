@@ -6,3 +6,9 @@
     visibility: hidden;
     display: none;
 }
+.photo-upload__data {
+    padding: 1em;
+    font-size: 90%;
+    background-color: var(--softbrown);
+    border-radius: 15px;
+}

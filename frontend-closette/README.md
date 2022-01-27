@@ -6,6 +6,8 @@ door Jiro Ghianni
 
 ## Inhoud en installatie
 
+⚠️ :warning: Let op: wanneer je dit project in 1 keer binnen een IDE importeert van Github, dan moet je er rekening mee houden dat de start scripts in de ***sub directories*** staan, dus 1 map lager dan de ROOT! Open dan _alleen_ de `frontend-closette` map als 'root' in een IDE/Webstorm.
+
 Welkom bij de _Closette ~ genderneutrale toiletten zoek-app_. Deze front-end kun je zelf installeren via de installatie handleiding. Alle toelichtingen en uitleg over hoe deze app inelkaar zit, kun je in de LEESMIJ folder vinden, daarin staan:
 
 * Deze Readme
@@ -15,7 +17,7 @@ is: [Jiro's Github Fullstack Closette App](https://github.com/JirosWorld/fullsta
 
 * in de 'LEESMIJ' map staat de Installatiehandleiding:  [link naar installatiehandleiding in markdown](../LEESMIJ/installatiehandleiding.md)
 
-* in de 'LEESMIJ' map staat het Functioneel ontwerp + het Technisch ontwerp **samen** in 1 PDF; er is ook een 'text-only' markdown versie: [link naar ontwerpen in markdown](../LEESMIJ/functioneel-technisch.md)
+* in de 'LEESMIJ' map staat het [Functioneel ontwerp + het Technisch ontwerp **samen** in 1 PDF](../LEESMIJ/eindopdracht-FSD-app-jiro.pdf) (9 MB)
 
 * Broncode van beide projecten staat in de complete ZIP en het online Github-project.
 

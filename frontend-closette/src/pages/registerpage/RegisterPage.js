@@ -13,7 +13,7 @@ function RegisterPage() {
     const [registerSuccess, toggleRegisterSuccess] = useState(false);
     const [error, setError] = useState('');
     const history = useHistory();
-    const {register, handleSubmit, formState: {errors}} = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm({ mode: 'onBlur' });
 
     async function onFormSubmit(data) {
         setError('');
@@ -80,6 +80,7 @@ function RegisterPage() {
                         inputType="text"
                         errors={errors}
                         register={register}
+                        placeholderText="... typ minstens 4 tekens"
                         labelText="Gebruikersnaam"
                         labelId="username-field"
                         inputName="username"
@@ -99,13 +100,14 @@ function RegisterPage() {
                         inputType="password"
                         errors={errors}
                         register={register}
+                        placeholderText="... met tenminste 1 cijfer en 1 gewone letter"
                         labelText="Wachtwoord"
                         labelId="password-field"
                         inputName="password"
                         validationRules={{
                             minLength: {
                                 value: 4,
-                                message: "Te kort wachtwoord, gebruik minstens 4 tekens"
+                                message: "Te kort wachtwoord, gebruik minstens 4 tekens, met tenminste 1 cijfer en 1 gewone letter."
                             }
                         }}
                     />

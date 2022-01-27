@@ -1,5 +1,8 @@
 ## Back-End Datasource settings in application.properties
 
+⚠️ :warning: Let op: wanneer je dit project in 1 keer binnen een IDE importeert van Github, dan moet je er rekening mee houden dat de start scripts in de ***sub directories*** staan, dus 1 map lager dan de ROOT! Open dan _alleen_ de `backend-closette` map als 'root' in een IDE/Intellij.
+
+
 #### Belangrijk: verander eerst deze lokale instellingen!
 
 De database settings, in (bijvoorbeeld) pgAdmin:
@@ -18,6 +21,7 @@ Accepteer installatie van de JPA Buddy plug-in. Verdere installatiehandleidingen
 
 * admin - password
 * user - password
+* tester - password
 
 ### Endpoints
 
@@ -25,6 +29,7 @@ Accepteer installatie van de JPA Buddy plug-in. Verdere installatiehandleidingen
 * {GET [/toilets]}
 * {GET [/toilets/{id}]}
 * {PATCH [/toilets/{id}]}
+* {PATCH [/toiletsdto/{id}]}
 * {POST [/toilets]}
 * {PUT [/toilets/{id}]}
 * {POST [/users/{username}/authorities]}
@@ -33,6 +38,7 @@ Accepteer installatie van de JPA Buddy plug-in. Verdere installatiehandleidingen
 
 #### users
 * {POST [/authenticate]}
+* {POST [/users/register]}
 * {DELETE [/users/{username}/authorities/{authority}]}
 * {GET [/users/{username}/authorities]}
 * {GET [/users/{username}]}
@@ -64,6 +70,9 @@ Accepteer installatie van de JPA Buddy plug-in. Verdere installatiehandleidingen
 
 #### photo
 
+* {GET [/photos]}
+* {GET [/photos/{id}]}
+* {POST [/file-upload]}
 * {POST [/multiple/upload]}
 * {POST [/single/uploadDb]}
 * {GET [/zipDownload/db]}

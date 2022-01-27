@@ -6,7 +6,7 @@ door Jiro Ghianni
 
 Houd deze repository bijelkaar binnen 1 directory. Dat wil zeggen: sleep de front-end map _niet_ naar een andere plek ten opzichte van de back-end. Dit in verband met de relatieve paden van een aantal standaard-afbeeldingen die als voorbeeld zijn gebruikt om de database te vullen.
 
-Let op: wanneer je dit project in 1 keer binnen een IDE importeert van Github, dan moet je er rekening mee houden dat de start scripts in de ***sub directories*** staan, dus 1 map lager dan de ROOT! Dit heeft invloed op het opstarten van zowel de back- als de front-end. Het is daarom eenvoudiger om dit project te DOWNLOADEN als ZIP, deze uit te pakken, en daarna de individuele mappen als 'root' te openen in een IDE naar keuze. 
+⚠️ :warning: Let op: wanneer je dit project in 1 keer binnen een IDE importeert van Github, dan moet je er rekening mee houden dat de start scripts in de ***sub directories*** staan, dus 1 map lager dan de ROOT! Dit heeft invloed op het opstarten van zowel de back- als de front-end. Het is daarom eenvoudiger om dit project te DOWNLOADEN als ZIP, deze uit te pakken, en daarna de individuele mappen als 'root' te openen in een IDE naar keuze. 
 
 ## Complete installatie kort samengevat
 
@@ -66,6 +66,7 @@ Maak dus eerst een user aan met naam/wachtwoord `springboot`. En daarna een lege
 
 * admin - password
 * user - password
+* tester - password
 
 ### Back-end aanpassingen voor uploads
 

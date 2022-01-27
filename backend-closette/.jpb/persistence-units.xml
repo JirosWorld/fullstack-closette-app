@@ -4,7 +4,7 @@
     <persistence-units>
       <persistence-unit name="Default">
         <packages>
-          <package value="nl.novi.closette" />
+          <package value="com.jirosworld.closette" />
         </packages>
       </persistence-unit>
     </persistence-units>
