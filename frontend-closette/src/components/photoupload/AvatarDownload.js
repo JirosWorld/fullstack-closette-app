@@ -4,11 +4,11 @@ import {useParams} from "react-router-dom";
 import axios from "axios";
 import Loader from "../loader/Loader";
 
-function PhotoDownload() {
+function AvatarDownload() {
 
     // er worden 2 endpoints doorelkaar gebruikt voor de backend:
     //  http://localhost:8080/downloadFromDB <= om echt te downloaden uit de database
-    // en http://localhost:8080/download/{bestandsnaam} <= fake prefilled data uit de Uploads directory
+    // en http://localhost:8080/download/{bestandsnaam} <= 'fake' prefilled data uit de Uploads directory
 
 
     const {id} = useParams();
@@ -27,7 +27,7 @@ function PhotoDownload() {
 
             try {
                 const result = await axios.get(`http://localhost:8080/photos`);
-                setPhotoDownloadEntry(result.data);
+                setPhotoDownloadEntry(result.data[result.data.length - 1]);
                 console.log("alle photoDownloadEntry data:");
                 console.log(result.data);
 
@@ -41,51 +41,51 @@ function PhotoDownload() {
         fetchPhotoDownloads();
     }, []);
 
+    // console.log("Alleen nieuwste avatar uit array:");
+    // let last_element = photoDownloadEntry[photoDownloadEntry.length - 1];
+    // console.log(last_element);
+    // console.log("Op 14 na laatste entry uit objecten-array:");
+    // console.log(photoDownloadEntry.slice(Math.max(photoDownloadEntry.length - 16, 13)));
+
     return (
         <span className="thumbnail-container">
             {error && <p className="error-message">{error}</p>}
             {loading && <Loader/>}
 
-            {photoDownloadEntry && photoDownloadEntry.map((post) => {
-                    // console.log("Gemapte foto post.data:");
-                    // console.log(post);
+            {/* Toon alleen de nieuw geuploade foto's, niet de prefilled data */}
 
+            {photoDownloadEntry[photoDownloadEntry.length - 1]}
+            wat doet dit?
 
-                    return <div key={post.id && post.fileName}>
-                        {/* Toon alleen de nieuw geuploade foto's, niet de prefilled data */}
-                        {photoDownloadEntry && post.id < 200
-                            ?
-                            <>
-                                {/* bestaat-foto-check */}
-                                {photoDownloadEntry ?
-                                    <span className="true-image__visible">
-                                        <img src=
-                                                 {`http://localhost:8080/downloadFromDB/${post.fileName}`}
+            {photoDownloadEntry && photoDownloadEntry.id < 200
+                ?
+                <>
+                    {/* bestaat-foto-check */}
+                    {photoDownloadEntry ?
+                        <span className="true-image__visible">
+                            <img src={`http://localhost:8080/downloadFromDB/${photoDownloadEntry.fileName}`}
                                              alt="thumbnail"
                                              className="thumbnail-wide"
                                              width="300"/>
-                                        <p>Foto ID nummer: {post.id}</p>
-                                        <p>Hoort bij toilet: {post.id}</p>
+                                        <p>Foto ID nummer: {photoDownloadEntry.id}</p>
+                                        <p>Naam van foto: {photoDownloadEntry.fileName}</p>
                                     </span>
-                                    :
-                                    <>
+                        :
+                        <>
                     <span className="no-image">
                     <img src={noImage} alt="thumbnail"
                          className="thumbnail-wide transparent" height="300"
                          width="300"/><p>NO IMAGE</p></span>
-                                    </>
-                                }
-                            </>
+                        </>
+                    }
+                </>
 
-                            :
-                            <></>}
+                :
+                <></>}
 
-                    </div>
-
-                }
-            )}
-        </span>
-    );
+</span>
+)
+    ;
 }
 
-export default PhotoDownload;
+export default AvatarDownload;

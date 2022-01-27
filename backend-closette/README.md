@@ -28,6 +28,7 @@ Accepteer installatie van de JPA Buddy plug-in. Verdere installatiehandleidingen
 * {GET [/toilets]}
 * {GET [/toilets/{id}]}
 * {PATCH [/toilets/{id}]}
+* {PATCH [/toiletsdto/{id}]}
 * {POST [/toilets]}
 * {PUT [/toilets/{id}]}
 * {POST [/users/{username}/authorities]}
@@ -36,6 +37,7 @@ Accepteer installatie van de JPA Buddy plug-in. Verdere installatiehandleidingen
 
 #### users
 * {POST [/authenticate]}
+* {POST [/users/register]}
 * {DELETE [/users/{username}/authorities/{authority}]}
 * {GET [/users/{username}/authorities]}
 * {GET [/users/{username}]}
@@ -67,6 +69,9 @@ Accepteer installatie van de JPA Buddy plug-in. Verdere installatiehandleidingen
 
 #### photo
 
+* {GET [/photos]}
+* {GET [/photos/{id}]}
+* {POST [/file-upload]}
 * {POST [/multiple/upload]}
 * {POST [/single/uploadDb]}
 * {GET [/zipDownload/db]}

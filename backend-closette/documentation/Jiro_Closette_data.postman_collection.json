@@ -459,6 +459,35 @@
 					"response": []
 				},
 				{
+					"name": "Querie (defunct) op Titel&City?",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/toilets?title=pal&city=lon",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"toilets"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "pal"
+								},
+								{
+									"key": "city",
+									"value": "lon"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "PUT 1 new toilet",
 					"request": {
 						"method": "PUT",
@@ -519,6 +548,36 @@
 					"response": []
 				},
 				{
+					"name": "PATCH 1 deeltje toilet via DTO",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"Titeltje\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/toiletsdto/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"toiletsdto",
+								"2"
+							]
+						},
+						"description": "Vervang/bewerk een klein deel van een entry."
+					},
+					"response": []
+				},
+				{
 					"name": "PATCH 1 deel toilet id=10",
 					"request": {
 						"method": "PATCH",
@@ -542,6 +601,36 @@
 							"path": [
 								"toilets",
 								"10"
+							]
+						},
+						"description": "Vervang/bewerk een klein deel van een entry."
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH 1 deel toilet via DTO id=9 Copy",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"title\": \"Patch Put verander Patch\",\n        \"address\": \"Patch patch 123\",\n        \"latitude\": \"48.8500\",\n        \"longitude\": \"2.3511\",\n        \"cleanliness\": \"schoon en gepatched\",\n        \"openingHours\": \"8:00 - 20:00\",\n        \"infoText\": \"Patch tekst. Put. Patch. Hebban olla vogala nestas hagunnan, hinase hic enda tu. Patch tekst. Put. Patch. Hebban olla vogala nestas hagunnan, hinase hic enda tu. Patch tekst. Put. Patch.\",\n        \"city\": \"Patch city\",\n        \"country\": \"Patched Countryside\",\n        \"ratingAverage\": 8.2,\n        \"genderneutral\": true,\n        \"free\": true,\n        \"hasPhoto\": true,\n        \"accessible\": false\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/toiletsdto/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"toiletsdto",
+								"9"
 							]
 						},
 						"description": "Vervang/bewerk een klein deel van een entry."
@@ -648,7 +737,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"ratingToilet\": 3.0\n}",
+							"raw": "{\n    \"id\": 4,\n    \"ratingToilet\": 6.30,\n    \"name\": \"Tester\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -656,7 +745,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/ratings/2",
+							"raw": "http://localhost:8080/ratings/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -664,7 +753,37 @@
 							"port": "8080",
 							"path": [
 								"ratings",
-								"2"
+								""
+							]
+						},
+						"description": "Laat zien wie er lid is er waar ze precies 'eigenaar' van zijn."
+					},
+					"response": []
+				},
+				{
+					"name": "Post nóg 1 Rating",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ratingToilet\": 8.0,\n    \"name\": \"Vrijwilliger\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ratings/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ratings",
+								""
 							]
 						},
 						"description": "Laat zien wie er lid is er waar ze precies 'eigenaar' van zijn."

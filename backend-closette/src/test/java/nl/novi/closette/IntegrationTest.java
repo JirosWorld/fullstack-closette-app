@@ -1,6 +1,5 @@
 package nl.novi.closette;
 
-import nl.novi.closette.ClosetteApp;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -15,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = ClosetteApp.class)
 @AutoConfigureMockMvc
 @EnableConfigurationProperties
-//@WithMockUser(username = "admin", roles = {"ADMIN"})
+
 public class IntegrationTest {
 
     @Autowired
@@ -30,6 +29,24 @@ public class IntegrationTest {
     @Test
     void shouldReturn200ForEndpointToilets() throws Exception {
         mockMvc.perform(get("/toilets").with(user("user").roles("USER")))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void shouldReturn200ForEndpointNewsPosts() throws Exception {
+        mockMvc.perform(get("/news").with(user("user").roles("USER")))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void shouldReturn200ForEndpointPhotos() throws Exception {
+        mockMvc.perform(get("/photos").with(user("user").roles("USER")))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void shouldReturn200ForEndpointRatings() throws Exception {
+        mockMvc.perform(get("/ratings").with(user("user").roles("USER")))
                 .andExpect(status().isOk());
     }
 

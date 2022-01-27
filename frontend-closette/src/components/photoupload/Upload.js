@@ -53,7 +53,7 @@ function Upload({setFile, url, setUrl}) {
                                 </p>
                             </div>
                             :
-                            <p>Selecteer eerst een foto</p>
+                            <p>Kies een foto!</p>
                         }
 
                     </>
@@ -61,7 +61,7 @@ function Upload({setFile, url, setUrl}) {
                     :
 
                     <div className="preview__text">
-                        <p>Selecteer eerst een foto</p>
+                        <p>Kies eerst een foto</p>
                     </div>
 
                 }

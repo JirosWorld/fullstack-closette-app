@@ -77,4 +77,11 @@ public class ToiletController {
         return ResponseEntity.noContent().build();
     }
 
+    @PatchMapping(value = "/toiletsdto/{id}")
+    public ResponseEntity<Object> partialUpdateToiletDto(@PathVariable int id, @RequestBody ToiletRequestDto toiletRequestDto) {
+        toiletService.partialUpdateToiletDto(id, toiletRequestDto);
+
+        return ResponseEntity.noContent().build();
+    }
+
 }

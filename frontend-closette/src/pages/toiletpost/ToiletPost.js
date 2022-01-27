@@ -79,6 +79,7 @@ function ToiletPost() {
                 accessible: data.accessible,
                 genderneutral: data.genderneutral,
                 infoText: data.infoText,
+                cleanliness: data.cleanliness,
                 latitude: data.latitude,
                 longitude: data.longitude,
                 hasPhoto: data.hasPhoto,
@@ -463,8 +464,7 @@ function ToiletPost() {
                         />
 
                         <InputField
-                            inputType="text"
-                            inputmode="decimal"
+                            inputType="number"
                             placeholderText="Geef cijfer van 1 - 10"
                             errors={errors}
                             register={register}
@@ -474,7 +474,7 @@ function ToiletPost() {
                             validationRules={{
                                 maxLength: {
                                     value: 3,
-                                    message: "Te lang, gebruik maximaal 2 tekens (een geheel cijfer van 1 - 10.",
+                                    message: "Te lang, gebruik maximaal 2 tekens (een geheel getal van 1 - 10.",
 
                                 },
                             }}

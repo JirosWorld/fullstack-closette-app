@@ -7,6 +7,10 @@ import {Link} from "react-router-dom";
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
 import Avatar from "../../assets/icons/icon-lines-user-jiro.svg";
+import PhotoDownload from "../../components/photoupload/PhotoDownload";
+import PhotoUpload from "../../components/photoupload/PhotoUpload";
+import AvatarDownload from "../../components/photoupload/AvatarDownload";
+import AvatarUpload from "../../components/photoupload/AvatarUpload";
 
 function DashboardPage() {
 
@@ -68,7 +72,14 @@ function DashboardPage() {
                                     <img src={Avatar} alt="thumbnail"
                                          className="thumbnail-wide transparent" height="300"
                                          width="300"/>
-                            </span>
+                                </span>
+                                {/* Dynamisch foto deel start */}
+                                    <AvatarDownload />
+                                {user &&
+                                <>
+                                    <AvatarUpload />
+                                </>}
+                                {/* Dynamisch foto deel einde */}
                             </div>
                             <div className="template-intro dashboard">
                                 <h3>Welkom in jouw gebruikers profiel</h3>

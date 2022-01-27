@@ -213,4 +213,7 @@ button[type=button]:hover {
         margin: 0;
         border-radius: 0;
     }
+    .main.container {
+        padding: 0 1.5em;
+    }
 }

@@ -36,6 +36,7 @@ function SubmitPage() {
                 accessible: data.accessible,
                 genderneutral: data.genderneutral,
                 infoText: data.infoText,
+                cleanliness: data.cleanliness,
                 latitude: data.latitude,
                 longitude: data.longitude,
                 hasPhoto: data.hasPhoto,
@@ -261,8 +262,7 @@ function SubmitPage() {
                                 />
 
                                 <InputField
-                                    inputType="text"
-                                    inputmode="decimal"
+                                    inputType="number"
                                     placeholderText="Geef cijfer van 1 - 10"
                                     errors={errors}
                                     register={register}

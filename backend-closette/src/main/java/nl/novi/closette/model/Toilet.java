@@ -29,7 +29,7 @@ public class Toilet {
 
     @Column(columnDefinition="text")
     private String infoText;
-
+    // cast primitive double to Double?
     private double ratingAverage;
     private String city;
     private String country;

@@ -165,6 +165,7 @@ public class ToiletService {
             if (toilet.getOpeningHours() != null && !toilet.getOpeningHours().isEmpty()) {
                 storedToilet.setOpeningHours(toilet.getOpeningHours());
             }
+            // cast primitive double to Double
             if (toilet.getRatingAverage() != 0) {
                 storedToilet.setRatingAverage(toilet.getRatingAverage());
             }
@@ -179,6 +180,63 @@ public class ToiletService {
             }
             if (toilet.isHasPhoto()) {
                 storedToilet.setHasPhoto(toilet.isHasPhoto());
+            }
+            toiletRepository.save(storedToilet);
+
+        } else {
+            throw new RecordNotFoundException("ID does not exist!!!");
+        }
+    }
+
+
+    // (patch via DTO)
+    public void partialUpdateToiletDto(int id, ToiletRequestDto toiletRequestDto) {
+        Optional<Toilet> optionalToilet = toiletRepository.findById(id);
+
+        if (optionalToilet.isPresent()) {
+            Toilet storedToilet = toiletRepository.findById(id).orElse(null);
+
+            if (toiletRequestDto.getTitle() != null && !toiletRequestDto.getTitle().isEmpty()) {
+                storedToilet.setTitle(toiletRequestDto.getTitle());
+            }
+            if (toiletRequestDto.getCity() != null && !toiletRequestDto.getCity().isEmpty()) {
+                storedToilet.setCity(toiletRequestDto.getCity());
+            }
+            if (toiletRequestDto.getCountry() != null && !toiletRequestDto.getCountry().isEmpty()) {
+                storedToilet.setCountry(toiletRequestDto.getCountry());
+            }
+            if (toiletRequestDto.getLatitude() != null && !toiletRequestDto.getLatitude().isEmpty()) {
+                storedToilet.setLatitude(toiletRequestDto.getLatitude());
+            }
+            if (toiletRequestDto.getLongitude() != null && !toiletRequestDto.getLongitude().isEmpty()) {
+                storedToilet.setLongitude(toiletRequestDto.getLongitude());
+            }
+            if (toiletRequestDto.getAddress() != null && !toiletRequestDto.getAddress().isEmpty()) {
+                storedToilet.setAddress(toiletRequestDto.getAddress());
+            }
+            if (toiletRequestDto.getCleanliness() != null && !toiletRequestDto.getCleanliness().isEmpty()) {
+                storedToilet.setCleanliness(toiletRequestDto.getCleanliness());
+            }
+            if (toiletRequestDto.getInfoText() != null && !toiletRequestDto.getInfoText().isEmpty()) {
+                storedToilet.setInfoText(toiletRequestDto.getInfoText());
+            }
+            if (toiletRequestDto.getOpeningHours() != null && !toiletRequestDto.getOpeningHours().isEmpty()) {
+                storedToilet.setOpeningHours(toiletRequestDto.getOpeningHours());
+            }
+            if (toiletRequestDto.getRatingAverage() != 0) {
+                storedToilet.setRatingAverage(toiletRequestDto.getRatingAverage());
+            }
+            if (toiletRequestDto.isGenderneutral()) {
+                storedToilet.setGenderneutral(toiletRequestDto.isGenderneutral());
+            }
+            if (toiletRequestDto.isAccessible()) {
+                storedToilet.setAccessible(toiletRequestDto.isAccessible());
+            }
+            if (toiletRequestDto.isFree()) {
+                storedToilet.setFree(toiletRequestDto.isFree());
+            }
+            if (toiletRequestDto.isHasPhoto()) {
+                storedToilet.setHasPhoto(toiletRequestDto.isHasPhoto());
             }
             toiletRepository.save(storedToilet);
 

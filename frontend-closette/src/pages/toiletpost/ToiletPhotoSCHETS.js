@@ -73,7 +73,7 @@ function ToiletPhotoSCHETS() {
             window.scrollTo({top: 0, behavior: 'smooth'})
         }, 0);
         try {
-            const result = await axios.patch(`http://localhost:8080/toilets/${id}`, {
+            const result = await axios.patch(`http://localhost:8080/toiletsdto/${id}`, {
                 title: data.title,
                 address: data.address,
                 city: data.city,
@@ -82,6 +82,7 @@ function ToiletPhotoSCHETS() {
                 accessible: data.accessible,
                 genderneutral: data.genderneutral,
                 infoText: data.infoText,
+                cleanliness: data.cleanliness,
                 latitude: data.latitude,
                 longitude: data.longitude,
                 hasPhoto: data.hasPhoto,
@@ -451,7 +452,7 @@ function ToiletPhotoSCHETS() {
 
                         <InputField
                             inputType="text"
-                            inputmode="decimal"
+                            // inputmode="decimal"
                             placeholderText="Geef cijfer van 1 - 10"
                             errors={errors}
                             register={register}
