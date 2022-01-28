@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import noImage from "../../assets/icons/icon-lines-toilet-jiro.svg";
-import {useParams} from "react-router-dom";
 import axios from "axios";
 import Loader from "../loader/Loader";
+import Avatar from "../../assets/icons/icon-lines-user-jiro.svg";
 
 function AvatarDownload() {
 
@@ -10,9 +9,8 @@ function AvatarDownload() {
     //  http://localhost:8080/downloadFromDB <= om echt te downloaden uit de database
     // en http://localhost:8080/download/{bestandsnaam} <= 'fake' prefilled data uit de Uploads directory
 
-
-    const {id} = useParams();
-    const [photoDownloadEntry, setPhotoDownloadEntry] = useState([]);
+    const [avatarDownloadEntry, setAvatarDownloadEntry] = useState([]);
+    const [mostRecentPhoto, setMostRecentPhoto] = useState({});
 
     const [loading, toggleLoading] = useState(false);
     const [error, setError] = useState('');
@@ -20,69 +18,66 @@ function AvatarDownload() {
     //mounting fase foto-deel
     useEffect(() => {
 
-        async function fetchPhotoDownloads() {
+        async function fetchAvatarDownloads() {
 
             setError('');
             toggleLoading(true);
 
             try {
                 const result = await axios.get(`http://localhost:8080/photos`);
-                setPhotoDownloadEntry(result.data[result.data.length - 1]);
-                console.log("alle photoDownloadEntry data:");
+                setAvatarDownloadEntry(result.data);
+                setMostRecentPhoto(result.data[result.data.length - 1]);
+                console.log("alle avatar downloadEntry data:");
                 console.log(result.data);
+                console.log("de meest recent geuploade avatar:");
+                console.log(result.data[result.data.length - 1]);
 
             } catch (error) {
-                setError(`Er is iets misgegaan bij het ophalen van de foto - (${error.message})`);
+                setError(`Er is iets misgegaan bij het ophalen van de gebruikersafbeelding - (${error.message})`);
                 console.error(error);
             }
             toggleLoading(false);
         }
 
-        fetchPhotoDownloads();
+        fetchAvatarDownloads();
     }, []);
-
-    // console.log("Alleen nieuwste avatar uit array:");
-    // let last_element = photoDownloadEntry[photoDownloadEntry.length - 1];
-    // console.log(last_element);
-    // console.log("Op 14 na laatste entry uit objecten-array:");
-    // console.log(photoDownloadEntry.slice(Math.max(photoDownloadEntry.length - 16, 13)));
 
     return (
         <span className="thumbnail-container">
             {error && <p className="error-message">{error}</p>}
             {loading && <Loader/>}
 
-            {/* Toon alleen de nieuw geuploade foto's, niet de prefilled data */}
-
-            {photoDownloadEntry && photoDownloadEntry.id < 200
-                ?
+            {avatarDownloadEntry ?
                 <>
-                    {/* bestaat-foto-check */}
-                    {photoDownloadEntry ?
-                        <span className="true-image__visible">
-                            <img src={`http://localhost:8080/downloadFromDB/${photoDownloadEntry.fileName}`}
-                                             alt="thumbnail"
-                                             className="thumbnail-wide"
-                                             width="300"/>
-                                        <p>Foto ID nummer: {photoDownloadEntry.id}</p>
-                                        <p>Naam van foto: {photoDownloadEntry.fileName}</p>
-                                    </span>
-                        :
-                        <>
+                    <span className="true-image__visible">
+                        <img
+                            src={`http://localhost:8080/downloadFromDB/${mostRecentPhoto.fileName}`}
+                            alt="thumbnail"
+                            className="thumbnail-wide"
+                            width="300"/>
+                        <p className="tiny-info">Foto ID: {mostRecentPhoto.id} |
+                                Naam van gebruikersfoto:<br/>{mostRecentPhoto.fileName}</p>
+                    </span>
+
+                    <p>dit hieronder verbergen</p>
                     <span className="no-image">
-                    <img src={noImage} alt="thumbnail"
+                    <img src={Avatar} alt="thumbnail"
                          className="thumbnail-wide transparent" height="300"
-                         width="300"/><p>NO IMAGE</p></span>
-                        </>
-                    }
+                         width="300"/>
+                    </span>
                 </>
-
                 :
-                <></>}
+                <>
+                    <span className="no-image">
+                        <img src={Avatar} alt="thumbnail"
+                             className="thumbnail-wide transparent" height="300"
+                             width="300"/>
+                    </span> poeee
+                </>
+            }
 
-</span>
-)
-    ;
+        </span>
+    );
 }
 
 export default AvatarDownload;

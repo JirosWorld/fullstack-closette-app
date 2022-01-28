@@ -17,6 +17,9 @@ import InputField from "../../components/form-elements/inputfield/InputField";
 import Slider from "../../components/form-elements/slider/Slider";
 import InputTextarea from "../../components/form-elements/inputfield/InputTextarea";
 import {useForm} from "react-hook-form";
+import CameraIcon from "../../assets/icons/icon-camera.png";
+import PhotoDownload from "../../components/photoupload/PhotoDownload";
+import PhotoUpload from "../../components/photoupload/PhotoUpload";
 
 function ToiletPost() {
     const {user} = useContext(AuthContext);
@@ -145,31 +148,12 @@ function ToiletPost() {
                             {loading && <Loader/>}
                             <div className="template-head">
                                 <div className="template-thumbnail">
-                                <span className="thumbnail-container">
-                                    {/* bestaat-foto-check */}
-                                    {toiletEntry && toiletEntry.hasPhoto ?
-                                        <img src=
-                                                 {`http://localhost:8080/download/img-news-Unisex-Toilet.png`}                                                 alt="thumbnail"
-                                             className="thumbnail-wide"
-                                             width="300"/> :
-                                        <>
-                                        <span className="no-image">
-                                        <img src={noImage} alt="thumbnail"
-                                             className="thumbnail-wide transparent" height="300"
-                                             width="300"/><p>NO IMAGE</p></span>
-                                        </>
-                                    }
-                            </span>
-                                    {user && <>
-                                    <p className="margin-zero">Geen foto te zien?</p>
-                                            <form className="margin-zero">
-                                                <label htmlFor="photo">Upload hier een
-                                                    nieuwe:</label>
-                                                <input type="file" id="photo"
-                                                       name="photo"/><br/>
-                                                <input name="photo" type="submit" value="Uploaden"
-                                                       id="photo" className="narrow"/>
-                                            </form>
+                                    {/* Dynamisch foto deel start */}
+                                    <PhotoDownload />
+                                    {/* Dynamisch foto deel einde */}
+                                    {user &&
+                                    <>
+                                        <PhotoUpload/>
                                     </>}
                                 </div>
                                 <div className="template-intro toilet">
@@ -212,7 +196,13 @@ function ToiletPost() {
                                         <span>Nee</span>}</p>
                                     <p>hygi&euml;ne: {toiletEntry && toiletEntry.cleanliness}</p>
                                     <p>heeft foto?: {toiletEntry && toiletEntry.hasPhoto
-                                        ? <span>Ja</span> : <span>Nee</span>}</p>
+                                        ? <span><img src={CameraIcon}
+                                                     alt="has visual"
+                                                     title="heeft foto"
+                                                     width="25"
+                                                     className="camera-icon"/></span>
+                                        : <span className="tiny-info">Geen foto</span>}
+                                    </p>
                                     <p>breedtegraad: {toiletEntry.latitude && toiletEntry.latitude}</p>
                                     <p>lengtegraad: {toiletEntry.longitude && toiletEntry.longitude}</p>
                                     <p>Locatie op kaart: <a

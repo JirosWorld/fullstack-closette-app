@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import noImage from "../../assets/icons/icon-lines-toilet-jiro.svg";
-import {useParams} from "react-router-dom";
+import noImage from "../../assets/img/no-image.png";
 import axios from "axios";
 import Loader from "../loader/Loader";
 
@@ -10,9 +9,9 @@ function PhotoDownload() {
     //  http://localhost:8080/downloadFromDB <= om echt te downloaden uit de database
     // en http://localhost:8080/download/{bestandsnaam} <= fake prefilled data uit de Uploads directory
 
-
-    const {id} = useParams();
+    const [avatarDownloadEntry, setAvatarDownloadEntry] = useState([]);
     const [photoDownloadEntry, setPhotoDownloadEntry] = useState([]);
+    const [mostRecentPhoto, setMostRecentPhoto] = useState({});
 
     const [loading, toggleLoading] = useState(false);
     const [error, setError] = useState('');
@@ -28,8 +27,11 @@ function PhotoDownload() {
             try {
                 const result = await axios.get(`http://localhost:8080/photos`);
                 setPhotoDownloadEntry(result.data);
-                console.log("alle photoDownloadEntry data:");
+                setMostRecentPhoto(result.data[result.data.length - 1]);
+                console.log("alle foto downloadEntry data:");
                 console.log(result.data);
+                console.log("de meest recent geuploade foto:");
+                console.log(result.data[result.data.length - 1]);
 
             } catch (error) {
                 setError(`Er is iets misgegaan bij het ophalen van de foto - (${error.message})`);
@@ -46,44 +48,26 @@ function PhotoDownload() {
             {error && <p className="error-message">{error}</p>}
             {loading && <Loader/>}
 
-            {photoDownloadEntry && photoDownloadEntry.map((post) => {
-                    // console.log("Gemapte foto post.data:");
-                    // console.log(post);
-
-
-                    return <div key={post.id && post.fileName}>
-                        {/* Toon alleen de nieuw geuploade foto's, niet de prefilled data */}
-                        {photoDownloadEntry && post.id < 200
-                            ?
-                            <>
-                                {/* bestaat-foto-check */}
-                                {photoDownloadEntry ?
-                                    <span className="true-image__visible">
-                                        <img src=
-                                                 {`http://localhost:8080/downloadFromDB/${post.fileName}`}
-                                             alt="thumbnail"
-                                             className="thumbnail-wide"
-                                             width="300"/>
-                                        <p>Foto ID nummer: {post.id}</p>
-                                        <p>Hoort bij toilet: {post.id}</p>
-                                    </span>
-                                    :
-                                    <>
+            {photoDownloadEntry ?
+                <span className="true-image__visible">
+                    <img
+                        src={`http://localhost:8080/downloadFromDB/${mostRecentPhoto.fileName}`}
+                        alt="thumbnail"
+                        className="thumbnail-wide"
+                        width="300"/>
+                    <p className="tiny-info">Foto ID: {mostRecentPhoto.id} |
+                            Naam van foto:<br/>{mostRecentPhoto.fileName}</p>
+                </span>
+                :
+                <>
                     <span className="no-image">
-                    <img src={noImage} alt="thumbnail"
-                         className="thumbnail-wide transparent" height="300"
-                         width="300"/><p>NO IMAGE</p></span>
-                                    </>
-                                }
-                            </>
+                        <img src={noImage} alt="thumbnail"
+                             className="thumbnail-wide transparent" height="300"
+                             width="300"/>
+                    </span>
+                </>
+            }
 
-                            :
-                            <></>}
-
-                    </div>
-
-                }
-            )}
         </span>
     );
 }

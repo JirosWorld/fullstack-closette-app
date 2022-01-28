@@ -6,23 +6,28 @@ import BackButton from "../../components/buttons/BackButton";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
-import Avatar from "../../assets/icons/icon-lines-user-jiro.svg";
-import PhotoDownload from "../../components/photoupload/PhotoDownload";
-import PhotoUpload from "../../components/photoupload/PhotoUpload";
 import AvatarDownload from "../../components/photoupload/AvatarDownload";
 import AvatarUpload from "../../components/photoupload/AvatarUpload";
+import {useForm} from "react-hook-form";
+import ChangePassword from "./ChangePassword";
 
 function DashboardPage() {
 
     useEffect(() => {
         document.title = "Mijn dashboard :: Closette"
+        setTimeout(() => {
+            window.scrollTo({top: 0, behavior: 'smooth'})
+        }, 0);
+        console.log("De pagina begint met de window naar boven gescrolld");
     }, []);
 
     const [privateContent, setPrivateContent] = useState({});
     const [loading, toggleLoading] = useState(false);
     const [error, setError] = useState('');
     const {user} = useContext(AuthContext);
-    console.log(user);
+    console.log("ingelogde user heet:", user);
+    const {register, handleSubmit, formState: {errors}} = useForm({mode: 'onBlur'});
+    const [modal, toggleModal] = useState(false);
 
     useEffect(() => {
         const token = localStorage.getItem('closetteToken');
@@ -50,10 +55,14 @@ function DashboardPage() {
 
             getPrivateContent();
         } else {
-            console.log("Gewone user is ingelogd");
+            console.log("Admin is niet ingelogd");
         }
 
     }, []);
+
+    const toggleModalClass = () => {
+        toggleModal(!modal);
+    };
 
     return (
 
@@ -68,22 +77,17 @@ function DashboardPage() {
                         {loading && <Loader/>}
                         <div className="template-head">
                             <div className="template-thumbnail">
-                                <span className="thumbnail-container">
-                                    <img src={Avatar} alt="thumbnail"
-                                         className="thumbnail-wide transparent" height="300"
-                                         width="300"/>
-                                </span>
                                 {/* Dynamisch foto deel start */}
-                                    <AvatarDownload />
+                                <AvatarDownload/>
                                 {user &&
                                 <>
-                                    <AvatarUpload />
+                                    <AvatarUpload/>
                                 </>}
                                 {/* Dynamisch foto deel einde */}
                             </div>
                             <div className="template-intro dashboard">
                                 <h3>Welkom in jouw gebruikers profiel</h3>
-                                <p>Hier kun je je gegevens bekijken en (ooit) je wachtwoord
+                                <p>Als je bent ingelogd, kun je hier je gegevens bekijken en je wachtwoord
                                     aanpassen.
                                     <br/> Moderators kunnen hier de gegevens bekijken van alle
                                     bestaande gebruikers.</p>
@@ -98,8 +102,23 @@ function DashboardPage() {
                                         <p><strong>Gebruikersnaam:</strong> {user.username}</p>
                                         <p><strong>E-mail:</strong> {user.email}</p>
                                         <p>
-                                            <button type="submit">verander wachtwoord</button>
+                                            <button type="button" onClick={toggleModalClass}>
+                                                verander wachtwoord
+                                            </button>
                                         </p>
+                                        <div className={`modal__wrapper ${modal
+                                            ? 'open'
+                                            : 'hidden'}`}>
+                                            <div className="modal__body">
+                                                <p className="close">
+                                                    <button type="button"
+                                                            onClick={toggleModalClass}>
+                                                        &#9587; Sluit
+                                                    </button>
+                                                </p>
+                                                <ChangePassword/>
+                                            </div>
+                                        </div>
                                     </>
 
                                     :
@@ -123,7 +142,8 @@ function DashboardPage() {
                                                 <p><strong>
                                                     Moderator
                                                     gebruikersnaam:</strong> {user.username}
-                                                    <br/><strong>Moderator e-mail:</strong> {user.email}
+                                                    <br/><strong>Moderator
+                                                        e-mail:</strong> {user.email}
                                                 </p>
                                             </div>
                                             <h3>Alle geregistreerde gebruikers</h3>
@@ -153,7 +173,7 @@ function DashboardPage() {
                                             </div>
                                             <hr/>
                                             <p>URL's for development testing only, not for
-                                                testers</p> 
+                                                testers</p>
                                             <Link to="/searchschets">
                                                 <p>SearchSCHETS</p>
                                             </Link>
@@ -170,7 +190,8 @@ function DashboardPage() {
                                 <section className="faq">
                                     <h3>Closette: Hoe werkt het?</h3>
                                     <p>Uitgebreide informatie en een handleiding kun je vinden in
-                                        de <Link to="/info/faq-handleiding">f.a.q. pagina</Link>.</p>
+                                        de <Link to="/info/faq-handleiding">f.a.q. pagina</Link>.
+                                    </p>
                                     <ul>
                                         <li>Alle gebruikers, ook die niet ingelogd zijn, kunnen
                                             zoeken naar

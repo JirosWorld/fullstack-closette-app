@@ -17,6 +17,10 @@ public interface ToiletRepository extends JpaRepository<Toilet, Integer> {
 
     List<Toilet> findAllByGenderneutral(Boolean genderneutral);
 
+    List<Toilet> findAllByTitle(String title);
+
+    List<Toilet> findAllByLatitude(String latitudeDuplicate);
+
     List<Toilet> findAllByFree(Boolean free);
 
     List<Toilet> findAllByHasPhoto(Boolean hasPhoto);
@@ -32,6 +36,5 @@ public interface ToiletRepository extends JpaRepository<Toilet, Integer> {
 
     @Query(value = "SELECT * FROM toilets WHERE title=?1 AND city=?2 AND country=?3 ORDER BY city", nativeQuery = true)
     Iterable<Toilet> findAllByTitleAndCityAndCountry(String title, String city, String country);
-
 
 }

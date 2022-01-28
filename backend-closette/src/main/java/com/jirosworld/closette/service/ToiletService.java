@@ -1,8 +1,12 @@
 package com.jirosworld.closette.service;
 
+import com.jirosworld.closette.exception.BadRequestException;
 import com.jirosworld.closette.exception.RecordNotFoundException;
 import com.jirosworld.closette.dto.ToiletRequestDto;
+import com.jirosworld.closette.model.Photo;
+import com.jirosworld.closette.model.Rating;
 import com.jirosworld.closette.model.Toilet;
+import com.jirosworld.closette.repository.PhotoRepository;
 import com.jirosworld.closette.repository.ToiletRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +19,9 @@ public class ToiletService {
 
     @Autowired
     private ToiletRepository toiletRepository;
+
+    @Autowired
+    private PhotoRepository photoRepository;
 
     //    find all
     public List<Toilet> getToilets() {
@@ -59,6 +66,7 @@ public class ToiletService {
 //    List<Toilet> findAllByAccessible(Boolean accessible);
 //    List<Toilet> findAllByCleanliness(Boolean cleanliness);
 //    List<Toilet> findAllByHasPhoto(Boolean hasPhoto);
+
     public List<Toilet> getToiletsByGenderneutral(Boolean genderneutral){
         return toiletRepository.findAllByGenderneutral(genderneutral);
     }
@@ -83,17 +91,17 @@ public class ToiletService {
 
     public int addToilet(ToiletRequestDto toiletRequestDto) {
 
-        // uitgezet voor testdoeleinden, wél functioneel in real life:
-//        String title = toiletRequestDto.getTitle();
-//        List<Toilet> toilets = toiletRepository.findAllByTitle(title);
-//        if (toilets.size() > 0) {
-//            throw new BadRequestException("this exact title already exists! Please add detailed name");
-//        }
-//        String latitudeDuplicate = toiletRequestDto.getLatitude();
-//        List<Toilet> latitudes = toiletRepository.findAllByLatitude(latitudeDuplicate);
-//        if (latitudes.size() > 0) {
-//            throw new BadRequestException("this exact location already exists! Please add detailed GPS coordinates, with a dot.");
-//        }
+        // staat uit tijdens testdoeleinden, wél functioneel in real life:
+        String title = toiletRequestDto.getTitle();
+        List<Toilet> toilets = toiletRepository.findAllByTitle(title);
+        if (toilets.size() > 0) {
+            throw new BadRequestException("This exact title already exists! Please add detailed name");
+        }
+        String latitudeDuplicate = toiletRequestDto.getLatitude();
+        List<Toilet> latitudes = toiletRepository.findAllByLatitude(latitudeDuplicate);
+        if (latitudes.size() > 0) {
+            throw new BadRequestException("This location already exists! Please add exact and detailed GPS coordinates, with a dot.");
+        }
 
         Toilet toilet = new Toilet();
 
@@ -239,6 +247,36 @@ public class ToiletService {
             toiletRepository.save(storedToilet);
 
         } else {
+            throw new RecordNotFoundException("ID does not exist!");
+        }
+    }
+
+    // relation tables
+    public Photo getToiletPhoto(int id) {
+        Optional<Toilet> optionalToilet = toiletRepository.findById(id);
+
+        if (optionalToilet.isPresent()) {
+            Toilet toilet = optionalToilet.get();
+            return toilet.getPhoto();
+        }
+        else {
+            throw new RecordNotFoundException("ID does not exist!");
+        }
+    }
+
+    public void addToiletPhoto(int id, Photo photo) {
+        Optional<Toilet> optionalToilet = toiletRepository.findById(id);
+
+        if (optionalToilet.isPresent()) {
+            Toilet toilet = optionalToilet.get();
+            Photo newphoto = toilet.getPhoto();
+
+            photoRepository.save(photo);
+
+            newphoto.setToilet(newphoto.getToilet());
+            toiletRepository.save(toilet);
+        }
+        else {
             throw new RecordNotFoundException("ID does not exist!!!");
         }
     }

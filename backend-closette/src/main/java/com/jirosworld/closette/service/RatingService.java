@@ -58,7 +58,7 @@ public class RatingService {
             return rating.getToilets();
         }
         else {
-            throw new RecordNotFoundException("ID does not exist!!!");
+            throw new RecordNotFoundException("ID does not exist!");
         }
     }
 
@@ -75,7 +75,7 @@ public class RatingService {
             ratingRepository.save(rating);
         }
         else {
-            throw new RecordNotFoundException("ID does not exist!!!");
+            throw new RecordNotFoundException("ID does not exist!");
         }
     }
 

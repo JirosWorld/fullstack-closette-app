@@ -81,6 +81,7 @@ body {
     padding: 0;
     margin: 1em;
     border-radius: 25px;
+    position: relative;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -180,6 +181,23 @@ button[type=button]:hover {
     border: 1px solid var(--blackcontrast);
 }
 
+input[type="file" i] {
+    background-color: var(--lightgrey);
+}
+
+input::-webkit-file-upload-button, input[type=file]::file-selector-button {
+    border: 2px solid var(--blackcontrast);
+    padding: .2em .4em;
+    border-radius: .2em;
+    background-color: #f9b8d4;
+    transition: 0.2s;
+}
+
+input[type=file]::file-selector-button:hover {
+    background-color: var(--softgreen);
+    border: 2px solid var(--hardgreen);
+}
+
 .error-message {
     padding: 16px 0;
     color: var(--hardpink);
@@ -188,6 +206,11 @@ button[type=button]:hover {
 
 .word-break {
     word-break: break-all;
+}
+
+.hoverwide:hover {
+    height: 35px;
+    width: 40px;
 }
 
 .transparent {

@@ -5,7 +5,6 @@ import BackButton from "../../components/buttons/BackButton";
 import {Link, useParams} from "react-router-dom";
 import Loader from "../../components/loader/Loader";
 import axios from "axios";
-import noImage from "../../assets/icons/icon-lines-toilet-jiro.svg";
 import "./TemplatePost.css";
 
 function NewsPost() {
@@ -61,8 +60,8 @@ function NewsPost() {
 
                                         <span className="true-image">
                                         <img
-                                            src={`http://localhost:8080/download/img-post-amsterdammuseum.jpg`} alt="thumbnail"
-                                             className="true-image__visible" height="300"
+                                            src={`http://localhost:8080/download/img-news-unisex-sign.png`} alt="thumbnail"
+                                             className="true-image__visible"
                                              width="300"/></span>
 
                             </span>

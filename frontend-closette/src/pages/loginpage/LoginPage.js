@@ -12,10 +12,12 @@ import BackButton from "../../components/buttons/BackButton";
 
 function LoginPage() {
     const {login} = useContext(AuthContext);
+    const [error, setError] = useState('');
     const {register, handleSubmit, formState: {errors}} = useForm({ mode: 'onBlur' });
     const [loginSuccess, toggleLoginSuccess] = useState(false);
 
     async function onFormSubmit(data) {
+        setError('');
         console.log("Login data (secret):");
         console.log(data);
         try {
@@ -33,6 +35,7 @@ function LoginPage() {
 
         } catch (e) {
             console.error(e);
+            setError(`Het inloggen is mislukt. Vul de juste gegevens in - (${e.message})`);
         }
     }
 
@@ -96,6 +99,7 @@ function LoginPage() {
                     <button type="submit">
                         Inloggen
                     </button>
+                    {error && <p className="error-message">{error}</p>}
                     <p>Heb je nog geen account? Maak er dan <Link to="/signup"> hier eentje
                         aan</Link>.</p>
                 </form>

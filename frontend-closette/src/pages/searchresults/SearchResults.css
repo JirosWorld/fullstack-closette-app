@@ -29,6 +29,10 @@
     border-radius: 15px;
 }
 
+.true-image__visible p {
+    padding: 1em;
+}
+
 .posts {
     padding: 1em;
 }

@@ -13,7 +13,7 @@ import FreeIcon from "../../assets/icons/icon-money-free-gratis.png";
 import PaidIcon from "../../assets/icons/icon-money-pay-euro.png";
 import AccessibleIcon from "../../assets/icons/icon-accessible.svg";
 import noImage from "../../assets/icons/icon-lines-toilet-jiro.svg";
-import BackButton from "../../components/buttons/BackButton";
+import CameraIcon from "../../assets/icons/icon-camera.png";
 
 function SearchPage() {
     const {register, handleSubmit, formState: {errors}} = useForm();
@@ -204,28 +204,37 @@ function SearchPage() {
                                         <p>Beschrijving: {post.infoText}</p>
                                         <p>{post.genderneutral
                                             ? <span><img src={GenderneutralIcon}
-                                                         alt="map"
+                                                         alt="genderneutral"
                                                          width="25"
                                                          className="genderneutral-icon"/></span> :
                                             <span>niet genderneutraal</span>}
-                                            |
+                                            | 
 
                                             {post.free
-                                                ? <span> gratis <img src={FreeIcon}
-                                                                     alt="map"
+                                                ? <span>gratis <img src={FreeIcon}
+                                                                     alt="free"
                                                                      width="25"
                                                                      className="free-icon"/></span>
                                                 : <span><img src={PaidIcon}
-                                                             alt="map"
+                                                             alt="paid"
                                                              width="25"
                                                              className="free-icon"/></span>}
                                             |
                                             invalidenWC: {post.accessible ?
                                                 <span> <img src={AccessibleIcon}
-                                                            alt="map"
+                                                            alt="accessible"
                                                             width="25"
                                                             className="accessible-icon"/> </span> :
-                                                <span>Nee</span>}</p>
+                                                <span>Nee</span>}
+                                            |
+                                            foto?: {post.hasPhoto
+                                                ? <span><img src={CameraIcon}
+                                                             alt="has visual"
+                                                             title="heeft foto"
+                                                             width="25"
+                                                             className="camera-icon"/></span>
+                                                : <span className="tiny-info">Nee</span>}
+                                        </p>
                                         <p className="location-link">
                                             {post.latitude ?
                                             <>

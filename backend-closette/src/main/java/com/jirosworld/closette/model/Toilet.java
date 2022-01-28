@@ -1,11 +1,14 @@
 package com.jirosworld.closette.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "toilets")
@@ -27,28 +30,34 @@ public class Toilet {
     private boolean hasPhoto;
     private String openingHours;
 
-    @Column(columnDefinition="text")
+    @Column(columnDefinition = "text")
     private String infoText;
     // cast primitive double to Double?
     private double ratingAverage;
     private String city;
     private String country;
     private String address;
-//    private boolean public; <= is the location publicly accessible
+//    private boolean public; <= is the toilet publicly accessible
+
 
     @JsonIgnoreProperties("toilets")
     @ManyToOne
     @JoinColumn(name = "rating_id", referencedColumnName = "id")
-    private Rating owner;
+    private Rating reviewer;
 
-    @JsonIgnoreProperties("toilets")
-    @ManyToOne
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "photo_id", referencedColumnName = "id")
     private Photo photo;
 
-    // constructor
+//        @JsonIgnoreProperties("users")
+    @OneToMany
+//        @JoinColumn(name = "rating_id", referencedColumnName = "user_username")
+    private List<Rating> ratings = new ArrayList<>();
 
-    public Toilet(int id, String title, String latitude, String longitude, String postTime, boolean genderneutral, boolean free, boolean accessible, String cleanliness, boolean hasPhoto, String openingHours, String infoText, double ratingAverage, String city, String country, String address, Rating owner, Photo photo) {
+    // default constructor
+
+    public Toilet(int id, String title, String latitude, String longitude, String postTime, boolean genderneutral, boolean free, boolean accessible, String cleanliness, boolean hasPhoto, String openingHours, String infoText, double ratingAverage, String city, String country, String address, Rating reviewer, Photo photo, List<Rating> ratings) {
         this.id = id;
         this.title = title;
         this.latitude = latitude;
@@ -65,16 +74,18 @@ public class Toilet {
         this.city = city;
         this.country = country;
         this.address = address;
-        this.owner = owner;
+        this.reviewer = reviewer;
         this.photo = photo;
+        this.ratings = ratings;
     }
+
 
     // lege constructor
 
     public Toilet() {
     }
 
-    // korte constructor voor tests
+    // shorter constructor for tests
 
     public Toilet(int id, String title, String latitude, String longitude, String postTime, boolean genderneutral, boolean free, boolean accessible, String cleanliness, boolean hasPhoto, String openingHours, String infoText, double ratingAverage, String city, String country, String address) {
         this.id = id;
@@ -113,9 +124,13 @@ public class Toilet {
         this.title = title;
     }
 
-    public String getAddress() { return address; }
+    public String getAddress() {
+        return address;
+    }
 
-    public void setAddress(String address) { this.address = address; }
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public String getLatitude() {
         return latitude;
@@ -225,12 +240,12 @@ public class Toilet {
 
     // getters and setters of relation tables
 
-    public Rating getOwner() {
-        return owner;
+    public Rating getReviewer() {
+        return reviewer;
     }
 
-    public void setOwner(Rating owner) {
-        this.owner = owner;
+    public void setReviewer(Rating reviewer) {
+        this.reviewer = reviewer;
     }
 
     public Photo getPhoto() {
@@ -239,5 +254,13 @@ public class Toilet {
 
     public void setPhoto(Photo photo) {
         this.photo = photo;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
     }
 }

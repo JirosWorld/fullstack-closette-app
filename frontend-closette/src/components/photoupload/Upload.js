@@ -41,26 +41,29 @@ function Upload({setFile, url, setUrl}) {
                              alt="preview__upload"/>
                         {selectedFile.name
                             ?
-                            <div className="photo-upload__data">
-                                <p><strong>Naam foto:</strong> <em>{selectedFile.name}</em></p>
-                                <p><strong>Bestandstype:</strong> <em>{selectedFile.type}</em></p>
-                                <p><strong>Grootte in bytes:</strong> <em>{selectedFile.size}</em>
+                            <div className="photo-upload__data margin-zero">
+                                <p className="margin-zero"><strong>Naam foto:</strong>
+                                    <em>{selectedFile.name}</em></p>
+                                <p className="margin-zero"><strong>Bestandstype:</strong>
+                                    <em>{selectedFile.type}</em></p>
+                                <p className="margin-zero"><strong>Grootte in bytes:</strong>
+                                    <em>{selectedFile.size}</em>
                                 </p>
-                                <p>
+                                <p className="margin-zero">
                                     <strong>Datum van uploaden:</strong>
                                     <em>{selectedFile.lastModifiedDate
                                     && selectedFile.lastModifiedDate.toLocaleDateString()}</em>
                                 </p>
                             </div>
                             :
-                            <p>Kies een foto!</p>
+                            <p className="margin-zero">Kies een foto!</p>
                         }
 
                     </>
 
                     :
 
-                    <div className="preview__text">
+                    <div className="margin-zero">
                         <p>Kies eerst een foto</p>
                     </div>
 

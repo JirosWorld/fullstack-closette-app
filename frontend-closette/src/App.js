@@ -11,7 +11,7 @@ import ContactPage from "./pages/contactpage/ContactPage";
 import NewsFeedPage from "./pages/newsfeedpage/NewsFeedPage";
 import LoginPage from "./pages/loginpage/LoginPage";
 import RegisterPage from "./pages/registerpage/RegisterPage";
-import DashboardPage from "./pages/dashboardpage/DashboardPage";
+import DashboardPage from "./pages/dashboardpages/DashboardPage";
 import SearchResults from "./pages/searchresults/SearchResults";
 import Footer from "./components/footer/Footer";
 import NewsPost from "./pages/newspost-infopost/NewsPost";

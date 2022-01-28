@@ -1,12 +1,13 @@
 package com.jirosworld.closette.service;
 
 import com.jirosworld.closette.dto.UserPostRequestDto;
-import com.jirosworld.closette.exception.BadRequestException;
-import com.jirosworld.closette.exception.InvalidPasswordException;
-import com.jirosworld.closette.exception.NotAuthorizedException;
-import com.jirosworld.closette.exception.UserNotFoundException;
+import com.jirosworld.closette.exception.*;
 import com.jirosworld.closette.model.Authority;
 import com.jirosworld.closette.model.User;
+import com.jirosworld.closette.model.Rating;
+import com.jirosworld.closette.model.User;
+import com.jirosworld.closette.repository.RatingRepository;
+import com.jirosworld.closette.repository.ToiletRepository;
 import com.jirosworld.closette.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -14,7 +15,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -167,6 +170,26 @@ public class UserService {
         }
         else {
             throw new NotAuthorizedException();
+        }
+    }
+
+    @Autowired
+    private RatingRepository ratingRepository;
+
+    public void addUserRating(String username, Rating rating) {
+        Optional<User> optionalUser = userRepository.findById(username);
+
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            List<Rating> ratings = user.getRatings();
+
+            ratingRepository.save(rating);
+
+            ratings.add(rating);
+            userRepository.save(user);
+        }
+        else {
+            throw new RecordNotFoundException("User does not exist!!!");
         }
     }
 

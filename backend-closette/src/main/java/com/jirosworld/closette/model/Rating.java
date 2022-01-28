@@ -18,7 +18,7 @@ public class Rating {
 //    private String ratingUser;
 //    private List<Integer> ratingsList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = false)
+    @OneToMany(mappedBy = "reviewer", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = false)
     private List<Toilet> toilets = new ArrayList<>();
 
     // constructor

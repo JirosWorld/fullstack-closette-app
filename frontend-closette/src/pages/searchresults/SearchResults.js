@@ -11,6 +11,7 @@ import noImage from "../../assets/icons/icon-lines-toilet-jiro.svg";
 import GenderneutralIcon from "../../assets/icons/icon-transgenderneutral.svg";
 import FreeIcon from "../../assets/icons/icon-money-free-gratis.png";
 import PaidIcon from "../../assets/icons/icon-money-pay-euro.png";
+import CameraIcon from "../../assets/icons/icon-camera.png";
 import AccessibleIcon from "../../assets/icons/icon-accessible.svg"
 
 function SearchResults() {
@@ -66,7 +67,8 @@ function SearchResults() {
                         {toiletEntry.data && toiletEntry.data.map((post) => {
                                 console.log("post.data:");
                                 console.log(post);
-                                return <li key={post.id && post.title}>
+
+                    return <li key={post.id && post.title}>
                                     <Link
                                         to={`toilets/${post.id}`}>
                             <span className="thumbnail-container">
@@ -81,7 +83,8 @@ function SearchResults() {
                                     <span className="no-image">
                                         <img src={noImage} alt="thumbnail"
                                              className="thumbnail transparent" height="150"
-                                             width="150"/><p>NO IMAGE</p></span>
+                                             width="150"/>
+                                        <p>NO IMAGE</p></span>
                                 }
                                     </span>
                                     </Link>
@@ -102,44 +105,53 @@ function SearchResults() {
                                             className="mapped__post__votes">Rating:
                                             {post.ratingAverage} &#9733; &#x2605; &#9733;</span>
                                         <div className="mapped__post__details">
-                                            <p>Genderneutraal/gratis/toegankelijk </p>
+                                            <p className="mapped__post__detail">
+                                                <em>Genderneutraal/gratis/toegankelijk/foto:</em>
+                                            </p>
                                             <p className="tiny-info">
                                                 {post.genderneutral
                                                     ? <span><img src={GenderneutralIcon}
-                                                                 alt="map"
+                                                                 alt="genderneutral"
                                                                  title="genderneutraal"
                                                                  width="25"
                                                                  className="genderneutral-icon"/></span> :
                                                     <span>Niet genderneutraal</span>}
                                                 {post.free
                                                     ? <span><img src={FreeIcon}
-                                                                 alt="map"
+                                                                 alt="free"
                                                                  title="gratis"
                                                                  width="25"
                                                                  className="free-icon"/></span>
                                                     : <span><img src={PaidIcon}
-                                                                 alt="map"
+                                                                 alt="paid"
                                                                  title="niet gratis"
                                                                  width="25"
                                                                  className="free-icon"/></span>}
                                                 {post.accessible ?
                                                     <span><img src={AccessibleIcon}
-                                                               alt="map"
+                                                               alt="accessible"
                                                                title="rolstoeltoegankelijk"
                                                                width="25"
                                                                className="accessible-icon"/>
-                                                </span> : <span>Nee</span>}
+                                                </span> : <span>(Niet toegankelijk)</span>}
+                                                {post.hasPhoto
+                                                    ? <span><img src={CameraIcon}
+                                                                 alt="has visual"
+                                                                 title="heeft foto"
+                                                                 width="25"
+                                                                 className="camera-icon"/></span>
+                                                    : <span className="tiny-info">Geen foto</span>}
                                             </p>
 
-                                            <p>
+                                            <div>
                                                 openingstijden: {post.openingHours}<br/>
                                                 hygi&euml;ne: {post.cleanliness}<br/>
                                                 {post.latitude
                                                     ?
-                        <>
-                            Locatie op kaart: <a
-                            href={toiletEntry.data &&
-                            `https://www.openstreetmap.org/?mlat=${post.latitude}&mlon=${post.longitude}&zoom=15}`}
+                                                    <>
+                                                        Locatie op kaart: <a
+                                                        href={toiletEntry.data &&
+                                                        `https://www.openstreetmap.org/?mlat=${post.latitude}&mlon=${post.longitude}&zoom=15}`}
                                                         rel="noreferrer" target="_blank">
                                                         <img src={MapIcon}
                                                              alt="map"
@@ -148,11 +160,6 @@ function SearchResults() {
                                                         link)</a>
                                                     </>
                                                     : <><em>(geen GPS locatie)</em></>}
-                                                <p>
-                                                    heeft foto?: {post.hasPhoto
-                                                    ? <span className="tiny-info">Ja</span>
-                                                    : <span className="tiny-info">Nee</span>}
-                                                </p>
                                                 <p>heeft rating: {post.ratingAverage
                                                     ? <span>
                                                         <strong>{post.ratingAverage}</strong></span>
@@ -163,8 +170,9 @@ function SearchResults() {
                                                 && `http://localhost:8080/download/${post.photo.fileName}`}
                                                 rel="noreferrer"
                                                 target="_blank">{post.photo
-                                            && `/download/${post.photo.fileName}`}</a>
-                                            </p>
+                                            && `/download/${post.photo.fileName}`}
+                                                </a>
+                                            </div>
                                         </div>
                                     </section>
                                     {/* <!-- end content wrapper --> */}

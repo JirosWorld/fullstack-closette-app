@@ -1,8 +1,6 @@
 package com.jirosworld.closette.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "photos")
@@ -17,11 +15,16 @@ public class Photo {
     @Lob
     private byte[] docFile;
 
-    @OneToMany(mappedBy = "photo", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = false)
-    private List<Toilet> toilets = new ArrayList<>();
+//    @JsonIgnore
+    @OneToOne(mappedBy = "photo", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Toilet toilet;
+
 
     // getters and setters
 
+    public void setId(Long id) {
+        this.id = id;
+    }
     public Long getId() {
         return id;
     }
@@ -36,10 +39,6 @@ public class Photo {
         return docFile;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
@@ -50,12 +49,12 @@ public class Photo {
 
     // getters and setters of relation tables
 
-
-    public List<Toilet> getToilets() {
-        return toilets;
+    public Toilet getToilet() {
+        return toilet;
     }
 
-    public void setToilets(List<Toilet> toilets) {
-        this.toilets = toilets;
+    public void setToilet(Toilet toilet) {
+        this.toilet = toilet;
     }
+
 }

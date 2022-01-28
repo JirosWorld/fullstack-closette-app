@@ -30,18 +30,6 @@ public class UploadDownloadWithFileSystemController {
         this.fileStorageService = fileStorageService;
     }
 
-//    simpeler upload zonder base64
-    @Value("${my.upload_location}")
-    private String storageLocation;
-
-    @RequestMapping(value = "/file-upload", method = RequestMethod.POST)
-    @ResponseBody
-    public String uploadFile(@RequestParam("file") MultipartFile multipartFile) throws IOException {
-
-        multipartFile.transferTo(new File(storageLocation + multipartFile.getOriginalFilename()));
-        return "File successfully uploaded!";
-    }
-
 //    post for single upload
     @PostMapping("/single/upload")
     FileUploadResponse singleFileUpload(@RequestParam("file") MultipartFile file){

@@ -151,11 +151,11 @@ function ToiletPhotoSCHETS() {
                             <div className="template-head">
                                 <div className="template-thumbnail">
                                     {/* Dynamisch foto deel start */}
-                                    <PhotoDownload />
+                                        <PhotoDownload />
                                     {/* Dynamisch foto deel einde */}
                                     {user &&
                                     <>
-                                       <PhotoUpload/>
+                                        <PhotoUpload/>
                                     </>}
                                 </div>
                                 <div className="template-intro toilet">

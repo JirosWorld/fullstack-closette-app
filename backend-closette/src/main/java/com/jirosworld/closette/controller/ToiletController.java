@@ -1,6 +1,7 @@
 package com.jirosworld.closette.controller;
 
 import com.jirosworld.closette.dto.ToiletRequestDto;
+import com.jirosworld.closette.model.Photo;
 import com.jirosworld.closette.model.Toilet;
 import com.jirosworld.closette.service.ToiletService;
 
@@ -81,6 +82,18 @@ public class ToiletController {
         toiletService.partialUpdateToiletDto(id, toiletRequestDto);
 
         return ResponseEntity.noContent().build();
+    }
+
+    //    relation tables
+    @GetMapping(value = "/toilets/{id}/photos")
+    public ResponseEntity<Object> getToiletPhoto(@PathVariable int id) {
+        return ResponseEntity.ok(toiletService.getToiletPhoto(id));
+    }
+
+    @PostMapping(value = "/toilets/{id}/photos")
+    public ResponseEntity<Object> addToiletPhoto(@PathVariable int id, @RequestBody Photo photo) {
+        toiletService.addToiletPhoto(id, photo);
+        return ResponseEntity.created(null).build();
     }
 
 }

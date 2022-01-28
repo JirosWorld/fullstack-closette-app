@@ -126,7 +126,6 @@ public class PhotoDbController {
     @GetMapping("zipDownload/db")
     public void zipDownload(@RequestParam("fileName") String[] files, HttpServletResponse response) throws IOException {
 
-
         try (ZipOutputStream zos = new ZipOutputStream(response.getOutputStream())) {
             Arrays.asList(files).stream().forEach(file -> {
                 Resource resource = databaseService.downLoadFileDatabase(file);
@@ -149,13 +148,28 @@ public class PhotoDbController {
         response.addHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment;fileName=zipfile");
     }
 
+
     // function to make patching possible
-//    @PatchMapping(value = "single/uploadDb/{id}")
-//    public FileUploadResponse singleFileUpload(@RequestParam("file") MultipartFile file) throws IOException {
+    @PatchMapping(value = "single/uploadDb/{id}")
+    public FileUploadResponse singleFileUploadPatch(@RequestParam("file") MultipartFile file, @PathVariable Long id) throws IOException {
 //        FileStorageService.partialUpdatePhotoDb(id, photo);
-//
+        String name = StringUtils.cleanPath(file.getOriginalFilename());
+        Photo photo = new Photo();
+        photo.setFileName(name);
+        photo.setDocFile(file.getBytes());
+        photo.setId(id);
+
+        photoRepository.save(photo);
+
+        String url = ServletUriComponentsBuilder.fromCurrentContextPath().path("/downloadFromDB/").path(name).toUriString();
+
+        String contentType = file.getContentType();
+
+        FileUploadResponse response = new FileUploadResponse(name, contentType, url);
+
+        return response;
 //        return ResponseEntity.noContent().build();
-//    }
+    }
 
 
 }

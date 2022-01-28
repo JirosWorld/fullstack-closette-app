@@ -25,9 +25,10 @@ function HomePage() {
             <div className="home__page  content-wrapper">
                 <LandingSection/>
                 <hr/>
-                <p><img src={FAQbook}
+                <p><Link to="/info/faq-handleiding"><img src={FAQbook}
                         alt="reader icon"
-                        width="35"/> Lees meer <Link to="/info/faq-handleiding">in de f.a.q.</Link></p>
+                        width="35" className="hoverwide"/></Link>
+                    Lees meer <Link to="/info/faq-handleiding">in de f.a.q.</Link></p>
                 <hr/>
                 <FeaturedToilet/>
             </div>

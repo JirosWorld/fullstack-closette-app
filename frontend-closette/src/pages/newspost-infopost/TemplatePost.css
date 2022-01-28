@@ -1,3 +1,7 @@
+.template-main-content {
+    position: relative;
+}
+
 .template article {
     margin: 0 0 2em 0;
 }
@@ -14,6 +18,7 @@
     margin: 0 0 0 1.1em;
     border-radius: 15px;
     min-width: 450px;
+    min-height: 300px;
 }
 
 .template-intro.news {
@@ -27,6 +32,10 @@
 
 .template-intro.dashboard {
     background-color: var(--softbrown);
+}
+
+.no-image .template-thumbnail {
+    position: absolute;
 }
 
 .template-thumbnail {

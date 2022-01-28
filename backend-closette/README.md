@@ -1,6 +1,6 @@
 ## Back-End Datasource settings in application.properties
 
-⚠️ :warning: Let op: wanneer je dit project in 1 keer binnen een IDE importeert van Github, dan moet je er rekening mee houden dat de start scripts in de ***sub directories*** staan, dus 1 map lager dan de ROOT! Open dan _alleen_ de `backend-closette` map als 'root' in een IDE/Intellij.
+⚠️ Let op: wanneer je dit project in 1 keer binnen een IDE importeert van Github, dan moet je er rekening mee houden dat de start scripts in de ***sub directories*** staan, dus 1 map lager dan de ROOT! Open dan _alleen_ de `backend-closette` map als 'root' in een IDE/Intellij.
 
 
 #### Belangrijk: verander eerst deze lokale instellingen!
@@ -72,9 +72,9 @@ Accepteer installatie van de JPA Buddy plug-in. Verdere installatiehandleidingen
 
 * {GET [/photos]}
 * {GET [/photos/{id}]}
-* {POST [/file-upload]}
 * {POST [/multiple/upload]}
 * {POST [/single/uploadDb]}
+* {PATCH [/single/uploadDb/{id}]}
 * {GET [/zipDownload/db]}
 * {GET [/zipDownload]}
 * {GET [/download/{fileName}]}
