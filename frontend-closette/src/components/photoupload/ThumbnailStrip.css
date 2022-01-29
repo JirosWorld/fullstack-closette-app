@@ -1,0 +1,19 @@
+.thumbnailstrip.thumbnail-container {
+    width: 100%;
+    align-items: initial;
+    justify-content: center;
+}
+
+.thumbnailstrip__strip {
+    padding: 5px 0 0 0;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+}
+
+.thumbnailstrip__strip a {
+    margin: 2px 5px 2px 0;
+}

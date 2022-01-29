@@ -55,6 +55,7 @@ function LoginPage() {
             <Header
                 title="Inloggen"/>
             <main className="login__page content-wrapper">
+                <p>Alleen ingelogde gebruikers kunnen foto's uploaden en nieuwe toiletten toevoegen. Log daarom hier in!</p>
                 {loginSuccess === true &&
                 <div className="confirmation__container">
                     <Loader/>

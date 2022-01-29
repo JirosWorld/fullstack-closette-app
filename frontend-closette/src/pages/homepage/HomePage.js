@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import "./HomePage.css"
+import "./HomePage.css";
 import Header from "../../components/header/Header";
 import TopNav from "../../components/topnav/TopNav";
 import LandingSection from "../../components/sections/LandingSection/LandingSection";
@@ -27,7 +27,7 @@ function HomePage() {
                 <hr/>
                 <p><Link to="/info/faq-handleiding"><img src={FAQbook}
                         alt="reader icon"
-                        width="35" className="hoverwide"/></Link>
+                        width="35" className="visual-icon hoverwide"/></Link>
                     Lees meer <Link to="/info/faq-handleiding">in de f.a.q.</Link></p>
                 <hr/>
                 <FeaturedToilet/>

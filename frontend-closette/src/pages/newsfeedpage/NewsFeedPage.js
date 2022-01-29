@@ -6,7 +6,7 @@ import axios from "axios";
 import Loader from "../../components/loader/Loader";
 import {Link} from "react-router-dom";
 import noImage from "../../assets/icons/icon-lines-toilet-jiro.svg";
-import "./NewsFeedPage.css"
+import "./NewsFeedPage.css";
 
 function NewsFeedPage() {
     const [newsEntry, setNewsEntry] = useState([]);

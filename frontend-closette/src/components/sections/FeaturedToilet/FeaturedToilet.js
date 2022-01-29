@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import MapIcon from "../../../assets/icons/icon-map.png";
 import axios from "axios";
 import {Link} from "react-router-dom";
-import "./FeaturedToilet.css"
+import "./FeaturedToilet.css";
 import FeaturedToiletImg from "../../../assets/img/img-post-victorian-toilet.jpg";
 import Loader from "../../loader/Loader";
 import GenderneutralIcon from "../../../assets/icons/icon-transgenderneutral.svg";

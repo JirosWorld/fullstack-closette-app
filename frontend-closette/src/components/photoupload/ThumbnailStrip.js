@@ -2,8 +2,10 @@ import React, {useEffect, useState} from 'react';
 import noImage from "../../assets/img/no-image.png";
 import axios from "axios";
 import Loader from "../loader/Loader";
+import "./ThumbnailStrip.css";
+import {Link} from "react-router-dom";
 
-function PhotoDownload() {
+function ThumbnailStrip() {
 
     // er worden 2 endpoints doorelkaar gebruikt voor de backend:
     //  http://localhost:8080/downloadFromDB <= om echt te downloaden uit de database
@@ -44,38 +46,54 @@ function PhotoDownload() {
     }, []);
 
     return (
-        <span className="thumbnail-container">
+        <>
             {error && <p className="error-message">{error}</p>}
             {loading && <Loader/>}
+            <span className="thumbnailstrip thumbnail-container">
+
+            <div className="thumbnailstrip__strip">
 
             {photoDownloadEntry ?
                 <>
-                    <span className="true-image__visible">
-                        <img
-                            src={`http://localhost:8080/downloadFromDB/${mostRecentPhoto.fileName}`}
-                            alt="thumbnail"
-                            className="thumbnail-wide"
-                            width="300"/>
-                    </span>
-                        {/* default image when there is no uploaded data yet: */}
-                        <span className="no-image">
-                        <img src={noImage} alt="thumbnail"
-                             className="thumbnail-wide transparent" height="300"
-                             width="300"/>
-                    </span>
+
+                    {photoDownloadEntry.map((thumbpost) => {
+                        console.log("post.data:");
+                        console.log(thumbpost);
+
+                        return <span className="true-image__visible" key={thumbpost.id && thumbpost.title}>
+
+                            {thumbpost.id < 200
+                            &&
+                            <a
+                                href={`http://localhost:8080/downloadFromDB/${thumbpost.fileName}`}
+                                rel="noreferrer" target="_blank">
+                                <img
+                                    src={`http://localhost:8080/downloadFromDB/${thumbpost.fileName}`}
+                                    alt="thumbnail"
+                                    className="thumbnail-wide"
+                                    width="100"/>
+                            </a>
+
+                            }
+
+
+                        </span>
+                    })}
+
                 </>
                 :
                 <>
                     <span className="no-image">
                         <img src={noImage} alt="thumbnail"
-                             className="thumbnail-wide transparent" height="300"
-                             width="300"/>
+                             className="thumbnail-wide transparent" height="100"
+                             width="100"/>
                     </span>
                 </>
             }
-
+            </div>
         </span>
+        </>
     );
 }
 
-export default PhotoDownload;
+export default ThumbnailStrip;

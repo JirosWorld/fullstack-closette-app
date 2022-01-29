@@ -56,6 +56,7 @@ function RegisterPage() {
             <Header
                 title="Nieuwe account aanmaken"/>
             <main className="register__page content-wrapper">
+                <p>Alleen geregistreerde gebruikers kunnen foto's uploaden en nieuwe toiletten toevoegen. Meld je daarom hier aan!</p>
                 <form className="form-container" onSubmit={handleSubmit(onFormSubmit)}>
                     <InputField
                         inputType="email"

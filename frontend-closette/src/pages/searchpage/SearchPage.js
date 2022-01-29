@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import {useForm} from 'react-hook-form';
-import "./SearchPage.css"
+import "./SearchPage.css";
 import Header from "../../components/header/Header";
 import TopNav from "../../components/topnav/TopNav";
 import InputField from "../../components/form-elements/inputfield/InputField";

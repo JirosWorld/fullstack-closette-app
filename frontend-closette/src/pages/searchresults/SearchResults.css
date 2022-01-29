@@ -23,10 +23,13 @@
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
-    justify-content: center;
+    justify-content: end;
     margin: 0 0 15px 0;
     background-color: var(--lightgrey);
     border-radius: 15px;
+/*    mock styles to show most recent photo only: */
+    max-height: 450px;
+    overflow: hidden;
 }
 
 .true-image__visible p {

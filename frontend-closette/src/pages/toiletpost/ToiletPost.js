@@ -12,7 +12,6 @@ import AccessibleIcon from "../../assets/icons/icon-accessible.svg";
 import GenderneutralIcon from "../../assets/icons/icon-transgenderneutral.svg";
 import FreeIcon from "../../assets/icons/icon-money-free-gratis.png";
 import PaidIcon from "../../assets/icons/icon-money-pay-euro.png";
-import noImage from "../../assets/icons/icon-lines-toilet-jiro.svg";
 import InputField from "../../components/form-elements/inputfield/InputField";
 import Slider from "../../components/form-elements/slider/Slider";
 import InputTextarea from "../../components/form-elements/inputfield/InputTextarea";
@@ -20,6 +19,7 @@ import {useForm} from "react-hook-form";
 import CameraIcon from "../../assets/icons/icon-camera.png";
 import PhotoDownload from "../../components/photoupload/PhotoDownload";
 import PhotoUpload from "../../components/photoupload/PhotoUpload";
+import ThumbnailStrip from "../../components/photoupload/ThumbnailStrip";
 
 function ToiletPost() {
     const {user} = useContext(AuthContext);
@@ -166,6 +166,10 @@ function ToiletPost() {
 
                                 </div>
                             </div>
+
+                            <h3>Andere foto's</h3>
+                            <ThumbnailStrip/>
+
                             <div className="template-main-content toilet">
                                 <div className="template-main-content--wrapper">
                                     <p>Beschrijving: {toiletEntry && toiletEntry.infoText}</p>
@@ -402,6 +406,18 @@ function ToiletPost() {
 
                         </Slider>
 
+                        <Slider
+                            errors={errors}
+                            register={register}
+                            labelId="has_photo-check"
+                            inputName="hasPhoto"
+                            filterAttribute="Met foto"
+                            yes="met"
+                            no="zonder"
+                        >
+                            (upload <em>n&aacute;</em> invullen!)
+                        </Slider>
+
                         <InputField
                             inputType="text"
                             placeholderText="Bijvoorbeeld: zeer schoon op doordeweekse dagen..."
@@ -470,18 +486,6 @@ function ToiletPost() {
                                 },
                             }}
                         />
-
-                        <Slider
-                            errors={errors}
-                            register={register}
-                            labelId="has_photo-check"
-                            inputName="hasPhoto"
-                            filterAttribute="Met foto"
-                            yes="wel"
-                            no="zonder"
-                        >
-                            (later uploaden)
-                        </Slider>
 
                     </fieldset>
 

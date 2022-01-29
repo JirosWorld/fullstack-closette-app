@@ -11,6 +11,7 @@ import {useForm} from "react-hook-form";
 import InputField from "../../components/form-elements/inputfield/InputField";
 import Slider from "../../components/form-elements/slider/Slider";
 import InputTextarea from "../../components/form-elements/inputfield/InputTextarea";
+import FAQbook from "../../assets/icons/icon-book.png";
 
 function SubmitPage() {
     const {user} = useContext(AuthContext);
@@ -78,7 +79,11 @@ function SubmitPage() {
             />
             <main className="submit__page content-wrapper">
                 <h2>Toilet gevonden? Voeg hier een nieuwe toe!</h2>
-                <p>Lees meer <Link to="/info/faq-handleiding">in de f.a.q.</Link></p>
+                <p><Link to="/info/faq-handleiding"><img src={FAQbook}
+                                                         alt="reader icon"
+                                                         width="35"
+                                                         className="visual-icon hoverwide"/></Link>
+                    Lees meer <Link to="/info/faq-handleiding">in de f.a.q.</Link></p>
 
                 {user ?
                     <>
@@ -244,6 +249,18 @@ function SubmitPage() {
 
                                 </Slider>
 
+                                <Slider
+                                    errors={errors}
+                                    register={register}
+                                    labelId="has_photo-check"
+                                    inputName="hasPhoto"
+                                    filterAttribute="Met foto"
+                                    yes="met"
+                                    no="zonder"
+                                >
+                                    (upload <em>n&aacute;</em> invullen!)
+                                </Slider>
+
                                 <InputField
                                     inputType="text"
                                     placeholderText="Bijvoorbeeld: zeer schoon op doordeweekse dagen..."
@@ -312,18 +329,6 @@ function SubmitPage() {
                                         },
                                     }}
                                 />
-
-                                <Slider
-                                    errors={errors}
-                                    register={register}
-                                    labelId="has_photo-check"
-                                    inputName="hasPhoto"
-                                    filterAttribute="Met foto"
-                                    yes="wel"
-                                    no="zonder"
-                                >
-                                    (later uploaden)
-                                </Slider>
 
                             </fieldset>
 

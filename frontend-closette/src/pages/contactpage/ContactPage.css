@@ -3,3 +3,8 @@
     flex-direction: column;
     align-items: center;
 }
+
+.confirmation__container {
+    background-color: var(--softgreen);
+    border-radius: 15px;
+}

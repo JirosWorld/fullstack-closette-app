@@ -177,9 +177,6 @@ function DashboardPage() {
                                             <Link to="/searchschets">
                                                 <p>SearchSCHETS</p>
                                             </Link>
-                                            <Link to="/photoschets/toilets/3">
-                                                <p>ToiletPhotoSCHETS</p>
-                                            </Link>
                                         </>
                                         :
                                         <p>:-)</p>

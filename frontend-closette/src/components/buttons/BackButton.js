@@ -3,7 +3,7 @@ import {
     useHistory
 } from "react-router-dom";
 import {ReactComponent as BackArrow} from "../../assets/icons/back.svg";
-import "./BackButton.css"
+import "./BackButton.css";
 
 function BackButton() {
 

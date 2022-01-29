@@ -18,12 +18,12 @@ import NewsPost from "./pages/newspost-infopost/NewsPost";
 import ToiletPost from "./pages/toiletpost/ToiletPost";
 import FaqPage from "./pages/newspost-infopost/FaqPage";
 import SearchSCHETS from "./pages/searchpage/SearchSCHETS";
-import ToiletPhotoSCHETS from "./pages/toiletpost/ToiletPhotoSCHETS";
+
 
 // function PrivateRoute({children, isAuth, ...rest}) {
 //     return (
 //         <Route {...rest}>
-//             {isAuth ? children : <Redirect to="/login"/>}
+//             {isAuth ? children : <Redirect to="/login" />}
 //         </Route>
 //     )
 // }
@@ -85,9 +85,6 @@ function App() {
                     {/*    URL's for development testing only, not for testers */}
                         <Route path="/searchschets">
                             <SearchSCHETS/>
-                        </Route>
-                        <Route path="/photoschets/toilets/:id">
-                            <ToiletPhotoSCHETS/>
                         </Route>
                     </Switch>
                 </div>

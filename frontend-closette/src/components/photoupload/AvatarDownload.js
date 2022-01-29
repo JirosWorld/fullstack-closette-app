@@ -43,11 +43,13 @@ function AvatarDownload() {
     }, []);
 
     return (
-        <span className="thumbnail-container">
-            {error && <p className="error-message">{error}</p>}
-            {loading && <Loader/>}
+    <>
+        {error && <p className="error-message">{error}</p>}
+        {loading && <Loader/>}
 
-            {avatarDownloadEntry ?
+        <span className="thumbnail-container">
+
+            {avatarDownloadEntry !== null ?
                 <>
                     <span className="true-image__visible">
                         <img
@@ -58,8 +60,7 @@ function AvatarDownload() {
                         <p className="tiny-info">Foto ID: {mostRecentPhoto.id} |
                                 Naam van gebruikersfoto:<br/>{mostRecentPhoto.fileName}</p>
                     </span>
-
-                    <p>dit hieronder verbergen</p>
+                    {/* default image when there is no uploaded data yet: */}
                     <span className="no-image">
                     <img src={Avatar} alt="thumbnail"
                          className="thumbnail-wide transparent" height="300"
@@ -72,11 +73,13 @@ function AvatarDownload() {
                         <img src={Avatar} alt="thumbnail"
                              className="thumbnail-wide transparent" height="300"
                              width="300"/>
-                    </span> poeee
+                    </span>
                 </>
             }
 
-        </span>
+    </span>
+
+    </>
     );
 }
 
