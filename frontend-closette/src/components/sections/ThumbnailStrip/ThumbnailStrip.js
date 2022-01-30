@@ -62,7 +62,7 @@ function ThumbnailStrip() {
 
                         return <span className="true-image__visible" key={thumbpost.id && thumbpost.title}>
 
-                            {thumbpost.id < 400
+                            {thumbpost.id < 200
                             &&
                             <a
                                 href={`http://localhost:8080/downloadFromDB/${thumbpost.fileName}`}

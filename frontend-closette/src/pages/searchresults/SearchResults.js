@@ -64,6 +64,7 @@ function SearchResults() {
                     <ul className="mapped__posts">
                         {error && <p className="error-message">{error}</p>}
                         {loading && <Loader/>}
+
                         {toiletEntry.data && toiletEntry.data.map((post) => {
                                 console.log("post.data:");
                                 console.log(post);
@@ -76,10 +77,11 @@ function SearchResults() {
                                 anders default image + link */}
                                 {post.photo ?
                                     <img
-                                        src={`http://localhost:8080/downloadFromDB/${post.photo.fileName}`}
+                                        src={`http://localhost:8080/download/${post.photo.fileName}`}
                                         alt="thumbnail"
                                         className="thumbnail"
-                                        width="150" height="150"/> :
+                                        width="150" height="150"/>
+                                    :
                                     <span className="no-image">
                                         <img src={noImage} alt="thumbnail"
                                              className="thumbnail transparent" height="150"

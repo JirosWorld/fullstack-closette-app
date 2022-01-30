@@ -166,8 +166,12 @@ function SearchPage() {
                 <ul className="mapped__posts">
                     {error && <p className="error-message">{error}</p>}
                     {loading && <Loader/>}
+
+                    {toiletEntry.length === 0 && <p>Geen resultaten – doe een nieuwe zoekopdracht.</p>}
+
                     {toiletEntry.data && toiletEntry.data.map((post) => {
-                            return <li key={post.id && post.title}>
+
+                        return <li key={post.id && post.title}>
 
                                 <Link
                                     to={`toilets/${post.id}`}>
@@ -175,10 +179,12 @@ function SearchPage() {
                                 {/*check om te kijken of de thumbnail bestaat*/}
                                 {post.photo ?
                                     <img
-                                        src={`http://localhost:8080/downloadDb/${post.photo.fileName}`}
+                                        src={`http://localhost:8080/download/${post.photo.fileName}`}
                                         alt="thumbnail"
                                         className="thumbnail"
-                                        width="150" height="150"/> :
+                                        width="150" height="150"/>
+
+                                    :
                                     <span className="no-image">
                                         <img src={noImage} alt="thumbnail"
                                              className="thumbnail transparent" height="150"

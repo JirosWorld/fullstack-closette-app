@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "3c5fa254-0347-48c1-b753-98f969fbf174",
 		"name": "Jiro_Closette_data",
-		"description": "Welkom bij de Closette back-end requests. Deze app maakt een database aan van toilet-locaties. Een admin kan nieuwe users toevoegen en locaties en rating verwijderen.",
+		"description": "Welkom bij de Closette back-end requests. Deze app maakt een database aan van toilet-locaties. Een admin kan nieuwe users toevoegen en locaties en ratings verwijderen. Niet-ingelogde bezoekers kunnen dded toiletten-database doorzoeken. Ingelogde gebruikers kunnen foto's uploaden en nieuwe toiletten toevoegen en hun eigen wacht woord veranderen.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -40,7 +40,7 @@
 								"authenticate"
 							]
 						},
-						"description": "Haal de data op over 1 entry, met id = 2."
+						"description": "Haal nieuwe JWT token op."
 					},
 					"response": []
 				},
@@ -60,7 +60,7 @@
 								"users"
 							]
 						},
-						"description": "Haal de data op over 1 entry, met id = 2."
+						"description": "Haal alle users op."
 					},
 					"response": []
 				},
@@ -141,7 +141,7 @@
 								"register"
 							]
 						},
-						"description": "Haal de data op over 1 entry, met id = 2."
+						"description": "Registreer 1 nieuwe gebruiker."
 					},
 					"response": []
 				},
@@ -231,7 +231,7 @@
 								"authorities"
 							]
 						},
-						"description": "Haal de data op over 1 entry, met id = 2."
+						"description": "Haal de data op over user met id = admin."
 					},
 					"response": []
 				},
@@ -252,12 +252,12 @@
 								"user"
 							]
 						},
-						"description": "Haal de data op over 1 entry, met id = 2."
+						"description": "Verwijder 1 gebruiker met id = user."
 					},
 					"response": []
 				},
 				{
-					"name": "GET ALL Toilets -Zoeken",
+					"name": "GET ALL Toilets ** Zoeken **",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -272,7 +272,7 @@
 								"toilets"
 							]
 						},
-						"description": "Haal in een keer de totale database binnen."
+						"description": "Haal in een keer de totale Toiletten database binnen."
 					},
 					"response": []
 				},
@@ -293,7 +293,7 @@
 								"7"
 							]
 						},
-						"description": "Haal de data op over 1 entry, met id = 2."
+						"description": "Haal de data op over 1 toilet entry, met id = 7."
 					},
 					"response": []
 				},
@@ -346,7 +346,7 @@
 								"photos"
 							]
 						},
-						"description": "Haal de data op over 1 entry, met id = 2."
+						"description": "Upload 1 foto behorend bij toilet met id = 7."
 					},
 					"response": []
 				},
@@ -403,7 +403,8 @@
 							"path": [
 								"toilets"
 							]
-						}
+						},
+						"description": "Voeg nog een nieuw toilet toe, met andere naam en unieke GPS locatie."
 					},
 					"response": []
 				},
@@ -457,7 +458,8 @@
 									"value": "palace"
 								}
 							]
-						}
+						},
+						"description": "Zoek op naam."
 					},
 					"response": []
 				},
@@ -482,7 +484,8 @@
 									"value": "ber"
 								}
 							]
-						}
+						},
+						"description": "Zoek op stad."
 					},
 					"response": []
 				},
@@ -507,7 +510,8 @@
 									"value": "usa"
 								}
 							]
-						}
+						},
+						"description": "Zoek op land."
 					},
 					"response": []
 				},
@@ -626,7 +630,7 @@
 								"2"
 							]
 						},
-						"description": "Vervang/bewerk een klein deel van een entry."
+						"description": "Vervang/bewerk een klein deel van een entry via tussenkomst van de DTO."
 					},
 					"response": []
 				},
@@ -716,7 +720,7 @@
 								"1"
 							]
 						},
-						"description": "Vervang/bewerk een klein deel van een entry."
+						"description": "Vervang/bewerk een klein deel van een entry relatie."
 					},
 					"response": []
 				},
@@ -736,15 +740,24 @@
 								"ratings"
 							]
 						},
-						"description": "Laat zien wie er lid is er waar ze precies 'eigenaar' van zijn."
+						"description": "Laat zien welke rating is er door wie ze geplaatst zijn."
 					},
 					"response": []
 				},
 				{
-					"name": "GET 1 Rating for relation toilet",
+					"name": "post 1 Rating for relation toilet",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"ratingToilet\": 6,\n        \"toiletId\": 3,\n        \"userId\": 1,\n        \"name\": \"Standaard gebruiker\"\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:8080/ratings/3/toilets",
 							"protocol": "http",
@@ -758,7 +771,29 @@
 								"toilets"
 							]
 						},
-						"description": "Laat zien wie er lid is er waar ze precies 'eigenaar' van zijn."
+						"description": "Vervang welke rating is er door wie ze geplaatst zijn."
+					},
+					"response": []
+				},
+				{
+					"name": "GET 1 Rating for relation toilet",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ratings/3/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ratings",
+								"3",
+								""
+							]
+						},
+						"description": "Vervang welke rating is er door wie ze geplaatst zijn."
 					},
 					"response": []
 				},
@@ -789,7 +824,7 @@
 								"toilets"
 							]
 						},
-						"description": "Laat zien wie er lid is er waar ze precies 'eigenaar' van zijn."
+						"description": "Vervang welke rating is en door wie ze geplaatst is."
 					},
 					"response": []
 				},
@@ -820,7 +855,7 @@
 								"ratings"
 							]
 						},
-						"description": "Laat zien wie er lid is er waar ze precies 'eigenaar' van zijn."
+						"description": "Vervang welke rating is en door wie ze geplaatst is."
 					},
 					"response": []
 				},
@@ -841,7 +876,7 @@
 								"2"
 							]
 						},
-						"description": "Laat zien wie er lid is er waar ze precies 'eigenaar' van zijn."
+						"description": "Laat zien welke rating is en door wie ze geplaatst zijn."
 					},
 					"response": []
 				},
@@ -862,7 +897,7 @@
 								"4"
 							]
 						},
-						"description": "Laat zien wie er lid is er waar ze precies 'eigenaar' van zijn."
+						"description": "Verwijder een specifieke beoordeling."
 					},
 					"response": []
 				},
@@ -892,7 +927,7 @@
 								""
 							]
 						},
-						"description": "Laat zien wie er lid is er waar ze precies 'eigenaar' van zijn."
+						"description": "Toon welke rating is en door wie ze geplaatst is."
 					},
 					"response": []
 				},
@@ -922,7 +957,7 @@
 								""
 							]
 						},
-						"description": "Laat zien wie er lid is er waar ze precies 'eigenaar' van zijn."
+						"description": "Vervang welke rating is en door wie ze geplaatst is."
 					},
 					"response": []
 				},
@@ -942,7 +977,7 @@
 								"photos"
 							]
 						},
-						"description": "Haal de data op over 1 entry, met id = 2."
+						"description": "Haal alle foto's op."
 					},
 					"response": []
 				},
@@ -963,7 +998,7 @@
 								"200"
 							]
 						},
-						"description": "Haal de data op over 1 entry, met id = 2."
+						"description": "Haal 1 foto op, met id = 200."
 					},
 					"response": []
 				},
@@ -997,7 +1032,8 @@
 								"single",
 								"uploadDb"
 							]
-						}
+						},
+						"description": "Upload 1 foto naar naar de database, waardoor de foto een ID krijgt."
 					},
 					"response": []
 				},
@@ -1060,7 +1096,8 @@
 								"single",
 								"upload"
 							]
-						}
+						},
+						"description": "Upload 1 foto naar de Uploads directory, zonder database ID."
 					},
 					"response": []
 				},
@@ -1086,7 +1123,7 @@
 								}
 							]
 						},
-						"description": "Haal de data op over 1 entry, met id = 2."
+						"description": "Zoek foto op bestandsnaam."
 					},
 					"response": []
 				},
@@ -1106,7 +1143,7 @@
 								"news"
 							]
 						},
-						"description": "Haal in een keer de totale database binnen."
+						"description": "Haal in een keer alle nieuwsberichten binnen."
 					},
 					"response": []
 				},
@@ -1127,7 +1164,7 @@
 								"1"
 							]
 						},
-						"description": "Haal de data op over 1 entry, met id = 2."
+						"description": "Haal nieuwsbericht op met ID = 1."
 					},
 					"response": []
 				},
@@ -1305,7 +1342,7 @@
 								"1"
 							]
 						},
-						"description": "Vervang/bewerk een klein deel van een entry."
+						"description": "Vervang de inhoud van het gehele nieuwsbericht."
 					},
 					"response": []
 				}
