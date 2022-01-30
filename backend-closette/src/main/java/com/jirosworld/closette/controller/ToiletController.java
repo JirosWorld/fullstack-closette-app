@@ -39,7 +39,7 @@ public class ToiletController {
             toilets = toiletService.getToilets();
         }
 
-        return ResponseEntity.ok(toilets);   // Jackson  object => json
+        return ResponseEntity.ok(toilets);
     }
 
     @GetMapping(value = "/toilets/{id}")

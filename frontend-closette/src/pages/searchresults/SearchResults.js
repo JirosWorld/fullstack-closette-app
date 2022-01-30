@@ -76,7 +76,7 @@ function SearchResults() {
                                 anders default image + link */}
                                 {post.photo ?
                                     <img
-                                        src={`http://localhost:8080/download/${post.photo.fileName}`}
+                                        src={`http://localhost:8080/downloadFromDB/${post.photo.fileName}`}
                                         alt="thumbnail"
                                         className="thumbnail"
                                         width="150" height="150"/> :
@@ -167,10 +167,10 @@ function SearchResults() {
                                                 </p>
                                                 Foto: <a
                                                 href={post.photo
-                                                && `http://localhost:8080/download/${post.photo.fileName}`}
+                                                && `http://localhost:8080/downloadFromDB/${post.photo.fileName}`}
                                                 rel="noreferrer"
                                                 target="_blank">{post.photo
-                                            && `/download/${post.photo.fileName}`}
+                                            && `/downloadFromDB/${post.photo.fileName}`}
                                                 </a>
                                             </div>
                                         </div>

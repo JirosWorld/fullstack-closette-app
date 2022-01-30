@@ -43,7 +43,7 @@ function RegisterPage() {
     console.log(errors);
 
     useEffect(() => {
-        document.title = "Registreren :: Closette"
+        document.title = "Registreren :: Closette";
         setTimeout(() => {
             window.scrollTo({ top: 0, behavior: 'smooth' })
         }, 0);

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import noImage from "../../assets/img/no-image.png";
+import noImage from "../../../assets/img/no-image.png";
 import axios from "axios";
-import Loader from "../loader/Loader";
+import Loader from "../../loader/Loader";
 import "./ThumbnailStrip.css";
 import {Link} from "react-router-dom";
 
@@ -62,7 +62,7 @@ function ThumbnailStrip() {
 
                         return <span className="true-image__visible" key={thumbpost.id && thumbpost.title}>
 
-                            {thumbpost.id < 200
+                            {thumbpost.id < 400
                             &&
                             <a
                                 href={`http://localhost:8080/downloadFromDB/${thumbpost.fileName}`}

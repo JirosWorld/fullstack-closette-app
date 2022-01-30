@@ -14,21 +14,24 @@ VALUES ('Standaard gebruiker', 2.5),
        ('Moderator', 3.3),
        ('nieuwe user', 4.8);
 
-INSERT INTO photos (id, file_name)
-VALUES ('199', 'img-post-amsterdammuseum.jpg'),
-       ('200', 'img-post-artistic-toilet.jpg'),
-       ('300', 'img-post-back-to-wall-toilet.jpg'),
-       ('400', 'img-post-black-white-toilet.jpg'),
-       ('500', 'img-post-deco-toilet.jpg'),
-       ('600', 'img-post-krakers-toilet.jpg'),
-       ('700', 'img-post-urinoirs.jpg'),
-       ('800', 'img-post-French_Squatter_Toilet.jpg'),
-       ('900', 'img-post-Japans-Toilet.jpg'),
-       ('1000', 'img-post-victorian-toilet.jpg'),
-       ('1100', 'img-news-UNISEX.jpg'),
-       ('1200', 'img-post-outhouse-toilet.jpg'),
-       ('1300', 'img-news-Unisex-Toilet.png'),
-       ('1400', 'img-news-unisex-sign.png');
+-- insert 1 base64 image in prefilled data
+INSERT INTO photos (id, file_name, doc_file)
+VALUES ('199', 'no-image1.png', '54101' ),
+       ('200', 'img-post-amsterdammuseum.jpg', '54559' ),
+       ('250', 'img-post-artistic-toilet.jpg', '54560' ),
+       ('300', 'img-post-back-to-wall-toilet.jpg', '54561' ),
+       ('400', 'img-post-black-white-toilet.jpg', '54562' ),
+       ('500', 'img-post-deco-toilet.jpg', '54565' ),
+       ('600', 'img-post-krakers-toilet.jpg', '40649' ),
+       ('700', 'img-post-urinoirs.jpg', '40706' ),
+       ('800', 'img-post-French_Squatter_Toilet.jpg', '40766' ),
+       ('900', 'img-post-Japans-Toilet.jpg', '40767' ),
+       ('1000', 'img-post-victorian-toilet.jpg', '40769' ),
+       ('1100', 'img-news-UNISEX.jpg', '54558' ),
+       ('1200', 'img-post-outhouse-toilet.jpg', '54566' ),
+       ('1300', 'img-news-Unisex-Toilet.png', '54557' ),
+       ('1400', 'img-news-unisex-sign.png', '54556' ),
+       ('1450', 'no-image2.png', '54101' );
 
 INSERT INTO newsposts (title, description, paragraph, post_time, newsauthor_id)
 VALUES ('Handleiding en f.a.q.',
@@ -44,15 +47,13 @@ VALUES ('Handleiding en f.a.q.',
     -5 Speciale gebruikers (community managers) hebben meer rechten: moderators hebben de mogelijkheid om posts te censureren of verwijderen.',
         '2021-02-06', 'admin');
 
-INSERT INTO toilets (title, latitude, longitude, post_time, rating_id, accessible, city, country,
-                     cleanliness, free, genderneutral, has_photo, info_text, opening_hours, address, rating_average,
-                     photo_id)
+INSERT INTO toilets (title, latitude, longitude, post_time, rating_id, accessible, city, country, cleanliness, free, genderneutral, has_photo, info_text, opening_hours, address, rating_average, photo_id)
 VALUES ('Het Amsterdam Museum', '52.3700', '4.8900', '2019-05-05', 1, TRUE,
         'Amsterdam', 'NL Nederland Holland Netherlands', 'redelijk schoon', FALSE, TRUE, FALSE,
         'Dit toilet kun je alleen bezoeken na toegang te betalen tot het museum. Een beschrijving van o.a. hoe het toilet te bereiken is e.a. bijzonderheden, met veel gedetailleerde informatie. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium blanditiis, dolore, dolores doloribus dolorum, earum esse ex iure molestias necessitatibus obcaecati qui temporibus.',
         '10h tot 17h tijdens de pandemie',
         'Kalverstraat 92- 1012 PH Amsterdam',
-        8.8, 199),
+        8.8, 200),
        ('NOVI Hogeschool', '52.0905', '5.1478', '2020-03-04', 3, TRUE, 'Utrecht', 'NL Nederland Holland Netherlands',
         'schoon', TRUE, FALSE , TRUE,
         'Vergeet je mondkapje niet. Een beschrijving van o.a. hoe het toilet te bereiken is e.a. bijzonderheden, met veel gedetailleerde informatie. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium blanditiis, dolore, dolores doloribus dolorum, earum esse ex iure molestias necessitatibus obcaecati.',

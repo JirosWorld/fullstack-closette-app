@@ -27,7 +27,7 @@
 
 .template-intro.toilet {
     background-color: var(--softgreen);
-    margin-bottom: 3em;
+    margin-bottom: 0.5em;
 }
 
 .template-intro.dashboard {

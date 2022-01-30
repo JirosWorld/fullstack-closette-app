@@ -28,8 +28,12 @@
     background-color: var(--lightgrey);
     border-radius: 15px;
 /*    mock styles to show most recent photo only: */
-    max-height: 450px;
+    max-height: 300px;
     overflow: hidden;
+}
+
+.dashboard__page .thumbnail-container {
+    max-height: 365px;
 }
 
 .true-image__visible p {

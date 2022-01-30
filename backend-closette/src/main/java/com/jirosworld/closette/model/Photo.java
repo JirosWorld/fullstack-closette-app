@@ -1,6 +1,10 @@
 package com.jirosworld.closette.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "photos")
@@ -15,9 +19,9 @@ public class Photo {
     @Lob
     private byte[] docFile;
 
-//    @JsonIgnore
-    @OneToOne(mappedBy = "photo", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private Toilet toilet;
+    @JsonIgnore
+    @OneToMany(mappedBy = "photo", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = false)
+    private List<Toilet> toilets = new ArrayList<>();
 
 
     // getters and setters
@@ -33,7 +37,7 @@ public class Photo {
         return fileName;
     }
 
-//    @Column(length = 16000000) // This should generate a medium blob
+//    @Column(length = 16000000) // Generates medium blob
 //    @Basic(fetch = FetchType.LAZY)
     public byte[] getDocFile() {
         return docFile;
@@ -49,12 +53,12 @@ public class Photo {
 
     // getters and setters of relation tables
 
-    public Toilet getToilet() {
-        return toilet;
+
+    public List<Toilet> getToilets() {
+        return toilets;
     }
 
-    public void setToilet(Toilet toilet) {
-        this.toilet = toilet;
+    public void setToilets(List<Toilet> toilets) {
+        this.toilets = toilets;
     }
-
 }

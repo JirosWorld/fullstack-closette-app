@@ -30,10 +30,6 @@ import SearchSCHETS from "./pages/searchpage/SearchSCHETS";
 
 function App() {
 
-    useEffect(() => {
-        document.title = "~ Closette ::: de genderneutrale toiletzoeker app ~"
-    }, []);
-
     return (
         <>
             <div className="body__wrapper">

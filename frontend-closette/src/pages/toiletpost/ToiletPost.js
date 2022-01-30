@@ -19,7 +19,7 @@ import {useForm} from "react-hook-form";
 import CameraIcon from "../../assets/icons/icon-camera.png";
 import PhotoDownload from "../../components/photoupload/PhotoDownload";
 import PhotoUpload from "../../components/photoupload/PhotoUpload";
-import ThumbnailStrip from "../../components/photoupload/ThumbnailStrip";
+import ThumbnailStrip from "../../components/sections/ThumbnailStrip/ThumbnailStrip";
 
 function ToiletPost() {
     const {user} = useContext(AuthContext);
@@ -167,7 +167,7 @@ function ToiletPost() {
                                 </div>
                             </div>
 
-                            <h3>Andere foto's</h3>
+                            <h3 className="margin-zero">Andere foto's</h3>
                             <ThumbnailStrip/>
 
                             <div className="template-main-content toilet">

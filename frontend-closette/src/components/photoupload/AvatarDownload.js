@@ -57,7 +57,7 @@ function AvatarDownload() {
                             alt="thumbnail"
                             className="thumbnail-wide"
                             width="300"/>
-                        <p className="tiny-info">Foto ID: {mostRecentPhoto.id} |
+                        <p className="tiny-info margin-zero">Foto ID: {mostRecentPhoto.id} |
                                 Naam van gebruikersfoto:<br/>{mostRecentPhoto.fileName}</p>
                     </span>
                     {/* default image when there is no uploaded data yet: */}

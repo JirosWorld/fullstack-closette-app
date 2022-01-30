@@ -45,8 +45,8 @@ public class Toilet {
     @JoinColumn(name = "rating_id", referencedColumnName = "id")
     private Rating reviewer;
 
-    @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("toilets")
+    @ManyToOne
     @JoinColumn(name = "photo_id", referencedColumnName = "id")
     private Photo photo;
 

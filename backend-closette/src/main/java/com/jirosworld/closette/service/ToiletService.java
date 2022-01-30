@@ -273,7 +273,7 @@ public class ToiletService {
 
             photoRepository.save(photo);
 
-            newphoto.setToilet(newphoto.getToilet());
+            newphoto.setToilets(newphoto.getToilets());
             toiletRepository.save(toilet);
         }
         else {

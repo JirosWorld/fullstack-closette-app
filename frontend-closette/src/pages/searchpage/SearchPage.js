@@ -175,7 +175,7 @@ function SearchPage() {
                                 {/*check om te kijken of de thumbnail bestaat*/}
                                 {post.photo ?
                                     <img
-                                        src={`http://localhost:8080/download/${post.photo.fileName}`}
+                                        src={`http://localhost:8080/downloadDb/${post.photo.fileName}`}
                                         alt="thumbnail"
                                         className="thumbnail"
                                         width="150" height="150"/> :
