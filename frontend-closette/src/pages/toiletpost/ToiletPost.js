@@ -90,21 +90,21 @@ function ToiletPost() {
                 ratingAverage: data.ratingAverage,
             });
             setPatchInfo(result);
+            console.log("Resultaat submitdata useState:");
+            console.log(patchInfo);
+            toggleSubmitSuccess(true);
+            console.log("Data na patch success:");
+            console.log(data);
+
+            setTimeout(() => {
+                // refresh window, show updated toiletpost
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.location.reload(true);
+            }, 0);
         } catch (e) {
-            setError(`(${e.message}) - Wanneer je een 400 error ziet, dan heb je een naam ingevoerd die al bestaat of je hebt een GPS coordinaat gebruikt dat al is ingevoerd - zorg dat titel en locatie UNIEK zijn.`)
+            setError(`(${e.message}) - Wanneer je een 400 error ziet, dan heb je een naam ingevoerd die al bestaat of je hebt een GPS coordinaat gebruikt dat al is ingevoerd - zorg dat titel en locatie UNIEK zijn!`)
             console.error(e);
         }
-        console.log("Resultaat submitdata useState:");
-        console.log(patchInfo);
-        toggleSubmitSuccess(true);
-        console.log("Data na patch success:");
-        console.log(data);
-
-        setTimeout(() => {
-            // refresh window, show updated post
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            window.location.reload(true);
-        }, 0);
     }
     // einde aanpassen-functie
 
@@ -167,7 +167,7 @@ function ToiletPost() {
                                 </div>
                             </div>
 
-                            <h3 className="margin-zero">Andere foto's</h3>
+                            <h3 className="margin-zero">Meer foto's</h3>
                             <ThumbnailStrip/>
 
                             <div className="template-main-content toilet">
@@ -207,6 +207,13 @@ function ToiletPost() {
                                                      className="camera-icon"/></span>
                                         : <span className="tiny-info">Geen foto</span>}
                                     </p>
+                                    <p>Foto: <a
+                                        href={toiletEntry.latitude && toiletEntry.photo
+                                        && `http://localhost:8080/download/${toiletEntry.latitude && toiletEntry.photo.fileName}`}
+                                        rel="noreferrer"
+                                        target="_blank">{toiletEntry.latitude && toiletEntry.photo
+                                    && `⇪ /${toiletEntry.latitude && toiletEntry.photo.fileName}`}
+                                    </a></p>
                                     <p>breedtegraad: {toiletEntry.latitude && toiletEntry.latitude}</p>
                                     <p>lengtegraad: {toiletEntry.longitude && toiletEntry.longitude}</p>
                                     <p>Locatie op kaart: <a

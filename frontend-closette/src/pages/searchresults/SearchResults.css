@@ -70,6 +70,10 @@
     border-radius: 25px;
 }
 
+.newsfeed__page .mapped__posts {
+    background-color: var(--softbrown);
+}
+
 .mapped__posts span {
     margin: 0 1em 0 0;
 }
@@ -86,6 +90,10 @@
     background-color: white;
 }
 
+.newsfeed__page .mapped__posts li {
+    border: 5px #bb9890 solid;
+}
+
 .mapped__post__title {
     font-size: 1.3em;
     font-weight: bold;
@@ -94,6 +102,10 @@
 .mapped__post__title a {
     color: var(--hardpink);
     text-decoration: none;
+}
+
+.newsfeed__page .mapped__post__title a {
+    color: var(--blackcontrast);
 }
 
 .mapped__post__author {

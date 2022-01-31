@@ -105,7 +105,7 @@ export const ContactUs = () => {
                     Link <Link to="/info/faq-handleiding">naar privacy pagina</Link>
                 </Slider>
 
-                <input type="submit" value="Send"/>
+                <input type="submit" value="Verstuur"/>
 
             </form>
             {submitSuccess === true &&

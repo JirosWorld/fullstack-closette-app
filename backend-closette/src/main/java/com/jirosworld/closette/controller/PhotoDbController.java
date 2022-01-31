@@ -81,9 +81,10 @@ public class PhotoDbController {
 
         String mimeType = request.getServletContext().getMimeType(doc.getFileName());
 
-//        for download attachment use next line
+//        for download attachment:
 //        return ResponseEntity.ok().contentType(contentType).header(HttpHeaders.CONTENT_DISPOSITION, "attachment;fileName=" + resource.getFilename()).body(resource);
-//        for showing image in browser
+
+//        for showing image in browser:
         return ResponseEntity.ok().contentType(MediaType.parseMediaType(mimeType)).header(HttpHeaders.CONTENT_DISPOSITION, "inline;fileName=" + doc.getFileName()).body(doc.getDocFile());
     }
 

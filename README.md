@@ -15,7 +15,7 @@ Welkom bij de _Closette ~ genderneutrale toiletten zoek-app_. Deze applicatie ku
     * ... bevat de link naar de GIT repository waarnaar het project geüpload
 is: [Jiro's Github Fullstack Closette App](https://github.com/JirosWorld/fullstack-closette-app).
 
-* ⚠️ :warning: in de 'LEESMIJ' map staat alle documentatie bijelkaar, inclusief de Installatiehandleiding:  [link naar installatiehandleiding in markdown](LEESMIJ/installatiehandleiding.md)
+* ⚠️ in de 'LEESMIJ' map staat alle documentatie bijelkaar, inclusief de Installatiehandleiding:  [link naar installatiehandleiding in markdown](LEESMIJ/installatiehandleiding.md)
 
 * Zowel de Front-end als de Back-end map hebben nog eens dubbelop hun eigen documentatie in een Readme file. Dit is extra dubbelop overkill ja, maar het maakt het wel makkelijker om documentatie te bereiken zodra je deze folders als Root hebt geopend in verschillende IDE's.
 
@@ -25,7 +25,11 @@ is: [Jiro's Github Fullstack Closette App](https://github.com/JirosWorld/fullsta
 
 * in de 'LEESMIJ' map staat ook het Verantwoordingsdocument: [link naar Verantwoordingsdocument in markdown](LEESMIJ/verantwoordingsdocument.md)
 
-* en in de 'LEESMIJ' map staat de verzameling van [alle Endpoint + Postman requests](LEESMIJ/postman_collection.json) (JSON)
+* in de 'LEESMIJ' map staat de verzameling van [alle Endpoint + Postman requests](LEESMIJ/Jiro_Closette_data.postman_collection.json) (JSON); De endpoints heb ik tevens gepubliceerd op deze documentatie site (inclusief beschrijvingen):
+  https://documenter.getpostman.com/view/17991980/UVeCR95T
+
+* link naar de Figma ontwerpen:
+  https://www.figma.com/file/yv5hJQVzTMvwTT31oyQBRE/Jiro-Closette-design?node-id=0%3A1
 
 ### Leuke extra’s
 

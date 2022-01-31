@@ -23,6 +23,9 @@ is: [Jiro's Github Fullstack Closette App](https://github.com/JirosWorld/fullsta
 
 * in de 'LEESMIJ' map staat ook het Verantwoordingsdocument: [link naar Verantwoordingsdocument in markdown](../LEESMIJ/verantwoordingsdocument.md)
 
+* link naar de Figma ontwerpen:
+  https://www.figma.com/file/yv5hJQVzTMvwTT31oyQBRE/Jiro-Closette-design?node-id=0%3A1
+
 ## Front-end opstarten
 
 Zie de installatiehandleiding in de LEESMIJ folder. Belangrijk voor Github gebruikers: download eerst het hele project als ZIP en pak deze uit, daarna kun je de front-end folder als root openen in een IDE met React/NPM/console zoals Webstorm.

@@ -25,6 +25,12 @@ Accepteer installatie van de JPA Buddy plug-in. Verdere installatiehandleidingen
 
 ### Endpoints
 
+Onderstaande endpoints heb ik tevens gepubliceerd op de Postman documentatie site (inclusief beschrijvingen):
+https://documenter.getpostman.com/view/17991980/UVeCR95T
+
+* link naar de Figma ontwerpen:
+  https://www.figma.com/file/yv5hJQVzTMvwTT31oyQBRE/Jiro-Closette-design?node-id=0%3A1
+
 #### toilets
 * {GET [/toilets]}
 * {GET [/toilets/{id}]}
@@ -88,5 +94,5 @@ Accepteer installatie van de JPA Buddy plug-in. Verdere installatiehandleidingen
 { [/error], produces [text/html]}
 
 
-#### Een Postman export staat hier ook in de 'documentation' map: deze kun je importeren in Postman en daarin uitvoeren.
+#### Een Postman export staat in deze back-end directory ook in de 'documentation' map: deze kun je importeren in Postman en daarin uitvoeren.
 

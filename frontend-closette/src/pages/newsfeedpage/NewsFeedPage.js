@@ -47,7 +47,7 @@ function NewsFeedPage() {
             <Header
                 title="Nieuwsoverzicht"
             />
-            <main className="Newsfeed__page content-wide">
+            <main className="newsfeed__page content-wide">
 
                 {error && <p className="error-message">{error}</p>}
                 <section className="news posts">

@@ -167,13 +167,13 @@ function SearchResults() {
                                                         <strong>{post.ratingAverage}</strong></span>
                                                     : <span className="tiny-info">Nee</span>}
                                                 </p>
-                                                Foto: <a
-                                                href={post.photo
-                                                && `http://localhost:8080/downloadFromDB/${post.photo.fileName}`}
-                                                rel="noreferrer"
-                                                target="_blank">{post.photo
-                                            && `/downloadFromDB/${post.photo.fileName}`}
-                                                </a>
+                                                <p>Foto: <a
+                                                    href={post.photo
+                                                    && `http://localhost:8080/download/${post.photo.fileName}`}
+                                                    rel="noreferrer"
+                                                    target="_blank">{post.photo
+                                                && `⇪ /${post.photo.fileName}`}
+                                                </a></p>
                                             </div>
                                         </div>
                                     </section>

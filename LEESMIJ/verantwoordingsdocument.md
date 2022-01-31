@@ -12,15 +12,15 @@ Conclusie: Zelfs al is niet álle funtionaliteit, die ik in de back-end heb gebo
 
 ## Functioneel Ontwerp
 
-Zie [Functioneel-Technisch ontwerp](functioneel-technisch.md) in deze directory.
+Zie het gecombineerde [Functioneel-Technisch ontwerp](eindopdracht-FSD-app-jiro.pdf) in de PDF in deze directory.
 
 ## Technisch Ontwerp
 
-Zie [Functioneel-Technisch ontwerp](functioneel-technisch.md) in deze directory.
+Zie wederom het gecombineerde [Functioneel-Technisch ontwerp](eindopdracht-FSD-app-jiro.pdf) in de PDF in dezelfde directory.
 
 ## Technische ontwerpbeslissingen
 
-Als einddexameneis wordt er gevraagd om minstens 10 technische ontwerpbeslissingen. Deze volgen hieronder in meerdere kopjes: Servers, database, Java en Springboot, software, Git, testen, beveiliging en 'Technische functionaliteits beslissingen'.
+Als exameneis wordt er gevraagd om minstens 10 technische ontwerpbeslissingen. Deze volgen hieronder in de kopjes: Servers, database, Java en Springboot, software, Git, testen, beveiliging en 'Technische functionaliteits beslissingen'.
 
 ## Servers
 
@@ -34,7 +34,7 @@ De back-end server draait op http://localhost:8080
 
 De database is PostgreSQL.
 
-Door de ingebouwde ondersteuning van Spring Boot met haar database produkten, kunnen de backend en de database niet zomaar worden gescheiden en kunnen niet 100% los van elkaar op verschillende systemen draaien.
+Door de het gebruik van Spring Boot met haar database produkten, kunnen de backend en de database waarschijnlijk niet zomaar op verschillende systemen draaien.
 Daarom zijn er in de directory/folder `src/main/resources` verschillende `application.properties` meegeleverd:
 
 * JPA
@@ -81,7 +81,7 @@ Voor het ontwikkelen is gebruik gemaakt van
 
 Zie https://github.com/jirosworld en de `.git` directory/folder van het project.
 
-Ik heb tenminste 1X een feature branch gemaakt voor het maken van database relaties en foto testen - die pull requests zijn allemaal gemerged met Main en nu niet meer zichtbaar.
+Ik heb tenminste 2X een feature branch gemaakt voor het maken van database relaties en foto testen - die pull requests zijn allemaal gemerged met Main en nu niet meer zichtbaar. Alle commits vanaf de aanvang van de bouw zijn hier zichtbaar: https://github.com/JirosWorld/fullstack-closette-app/commits/main 
 
 Let op: door de gitignore file zijn onnodige NPM node bestanden voor de front-end en IDE bestanden niet bijgevoegd in deze projectfolder. Deze dient men zelf te installeren via NPM install. Zie de [installatiehandleiding](installatiehandleiding.md).
 
@@ -132,6 +132,10 @@ _(limitaties van de applicatie en beargumentatie van mogelijke doorontwikkelinge
 
 • Het ontwerp in Figma komt niet 100% overeen met wat ik uiteindelijk in React heb gebouwd; in CSS kan ik heus wel 'pixel perfect' bouwen maar Figma doet niet wat ik wil. Een aantal elementen in Figma hadden afgeronde hoeken moeten hebben, maar dat lukt niet overal. Deze manier van werken is niet 'industry standard' weet ik - ik moet het design van een UX designer natuurlijk tot op de pixel nauwkeurig kunnen nabouwen. In deze oplevering lijkt het nu alsof ik me niet aan mijn eigen ontwerp heb gehouden - maar eigenlijk is het omgekeerd: Figma houdt zich niet aan mij.
 
+• Ik had paginering in kunnen bouwen voor de front-end, of een "never-ending scroll" want nu komen alle resultaten op 1 pagina (zowel bij de toiletten als bij Nieuws). De paginering zou kunnen via de back-end met een CRUD repositiry, of aan de front-end met een javascript dat steeds een vast aantal posts toont op basis van scroll positie.
+
+• Het 2e 'main succes' scenario uit het functioneel ontwerp heb ik niet kunnen bouwen: het zou wel mooi zijn als ik een functionaliteit had kunnen bouwen waarbij meerdere eigenschappen van een toilet elkaar kunnen uitsluiten of aanvullen in een zoekopdracht - maar dat betekent eigenlijk dat ik voor alle combinaties een beslisboom moet maken; heel leuk maar ook tijdrovend. Ook had ik geen tijd om een functie te bouwen waarmee latitude en longitude aan elkaar gekoppeld blijven.
+
 • De front-end website is niet geoptimaliseerd voor Explorer en heb ik niet kunnen testen op touch-screens (waar bijvoorbeeld Hovers niet werken). Bij meer tijd zou ik echt wel ook zeer verouderde browsers willen supporten, vooral omwille van de toegankelijkheid.
 
 • Voor de end-points heb ik makkelijk leesbare woorden gebruikt, en niet de "api/v1/..." notatie, omdat deze niet behandeld is in de les en ik er geen voordeel in zag om dit te doen voor een App die niet klaar is voor release en waarin ik geen toekomstige versies zie, met een transitie periode naar versie 1.
@@ -139,6 +143,8 @@ _(limitaties van de applicatie en beargumentatie van mogelijke doorontwikkelinge
 • Ik heb aan de back-end zijde geen mailserver functie gebouwd (geen vereiste), dus heb ik het contactformulier functioneel gemaakt via de EmailJS cloudfunctie. Dit is vast niet zoals het bij een professioneel bedrijf er aan toe zou gaan, maar het heeft goed bruikbare templates.
 
 ## Leerpunten
+
+• De visuele en functionele eisen zijn echt eeuwig uit te breiden, en waren lastig voor mij om te trechteren naar een werkbare hoeveelheid code. Want: beperken tot iets kleins, blijkt het moeilijkste te zijn van dit proces. Het was ook niet van tevoren in te schatten hoeveel vande belangrijkste functionele eisen ik eigenlijk kon verwezenlijken.
 
 • ik ben altijd goed geweest in minieme details; ik ben geen project-manager met helicoptervisie, dus het was niet onverwacht dat ik moeite had met het vastleggen/structureren van de ontwerpfase, maar dat ik minder moeite had met het uitpuzzelen van code details.
 
@@ -149,5 +155,9 @@ _(limitaties van de applicatie en beargumentatie van mogelijke doorontwikkelinge
 • ik heb ervaring als front-end developer en dat ga ik blijven doen; ik denk dat ik nu een betere front-ender ben dan voorheen. Mijn volgende leerwens is Vue.js
 
 • het leren van back-end is echt enorm verhelderend, dat zouden alle front-enders eens moeten proberen.
+
+• Ik hoop dat nieuwe programmeurs gevoeliger gaan zijn voor diversiteit en nooit meer databases ontwerpen waarin gender slechts binair of een boolean is. We leven in 2021 dus het zou mooi zijn als sekse en gender nooit meer verplichte invoervelden zijn, óf heel gemakkelijk gewijzigd kunnen worden door gebruikers zelf. Het zou ook mooi zijn als docenten hierin een voortrekkersrol vervullen (op dezelfde wijze als Github die alle Master branches naar Main laat hernoemen) en minder vaak voorbeelden in de les geven over mensen die alleen hetero-relaties hebben of alleen maar ‘Jan’ of ‘Piet’ heten. 😬  Dat voelt in het begin misschien geforceerd, maar je moet érgens beginnen… Het kan i.e.g. blindheid verminderen bij programmeurs die voor echte mensen programmeren.
+Lees mijn stuk over diversiteit in code hier:
+https://codepen.io/jirosworld/post/how-to-build-diversity-into-your-code
 
 • Deze app is het begin van een idealistisch idee voor de toekomst. Ik heb nog plannen voor het koppelen van een Map API die toont op welke locatie op de kaart de gebruiker daadwerkelijk staat.

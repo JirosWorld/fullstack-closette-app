@@ -2,8 +2,15 @@ import React from 'react';
 import "./ScrollTop.css";
 
 function ScrollTop() {
+
+    function scrollToTop() {
+        setTimeout(() => {
+            window.scrollTo({top: 0, behavior: 'smooth'})
+        }, 0);
+    }
+
     return (
-        <a href="#root"><div className="scroll"> &uarr; </div></a>
+        <div className="scroll" onClick={scrollToTop}> &uarr; </div>
     );
 }
 

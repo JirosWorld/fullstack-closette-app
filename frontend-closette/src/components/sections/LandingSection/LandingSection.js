@@ -31,8 +31,8 @@ function LandingSection() {
                         </div>
                     </Link>
                     <h2 className="hardpink">TOILET PLAATSEN</h2>
-                    <p>Nieuw toilet gevonden? <Link to="/submit">Plaats</Link> haar/hem/hun op de
-                        site!</p>
+                    <p>Nieuw toilet gevonden? <Link to="/submit">Plaats</Link> haar/hem/hun in de
+                        app!</p>
                 </article>
                 }
                 {user ?

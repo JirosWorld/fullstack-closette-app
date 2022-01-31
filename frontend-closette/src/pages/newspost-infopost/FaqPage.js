@@ -48,7 +48,7 @@ function FaqPage() {
                     <article>
 
                         <h3>Handleiding</h3>
-                        <p>Op deze site kun je naar veilige genderneutrale toiletten zoeken.
+                        <p>In deze app kun je naar veilige genderneutrale toiletten zoeken.
                             Niet-ingelogde
                             gebruikers kunnen <Link to="/search">toiletten zoeken</Link> en alle
                             data bekijken. Ook het <Link to="/news">Nieuws</Link> en de
@@ -58,7 +58,7 @@ function FaqPage() {
 
                         <div className="wrapper">
                             <Accordeon title="Wat kunnen ingelogde gebruikers?">
-                                <p>Op deze site kun je, wanneer je bent ingelogd, veilige toiletten
+                                <p>In deze app kun je, wanneer je bent ingelogd, veilige toiletten
                                     inzenden zodat anderen ze kunnen vinden. Bij het plaatsen van
                                     een nieuwe toilet-locatie kun je allerlei opties per toilet
                                     aangeven. Alles wat je invult, wordt zichtbaar in de

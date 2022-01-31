@@ -1,9 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import {useForm} from 'react-hook-form';
 import "./SearchPage.css";
-import Header from "../../components/header/Header";
-import TopNav from "../../components/topnav/TopNav";
 import InputField from "../../components/form-elements/inputfield/InputField";
 import axios from "axios";
 import Loader from "../../components/loader/Loader";
@@ -15,64 +13,12 @@ import AccessibleIcon from "../../assets/icons/icon-accessible.svg";
 import noImage from "../../assets/icons/icon-lines-toilet-jiro.svg";
 import CameraIcon from "../../assets/icons/icon-camera.png";
 
-function SearchPage() {
+function SearchNameFunction() {
     const {register, handleSubmit, formState: {errors}} = useForm();
     const [toiletEntry, setToiletEntry] = useState('');
     const [loading, toggleLoading] = useState(false);
     const [error, setError] = useState('');
 
-    useEffect(() => {
-        document.title = "Zoeken op stad, land, naam :: Closette"
-
-        setTimeout(() => {
-            window.scrollTo({top: 0, behavior: 'smooth'})
-        }, 0);
-        console.log("De pagina begint met de window naar boven gescrolld");
-    }, []);
-
-    async function onFormSubmitCity(dataCity) {
-        console.log("Zoek STAD data input:");
-        console.log(dataCity);
-        setError('');
-        toggleLoading(true);
-        console.log("toiletEntry als string:");
-        console.log(toiletEntry);
-        try {
-            const result = await axios.get(`http://localhost:8080/toilets?city=${dataCity.city}`);
-            setToiletEntry(result);
-            console.log("alle result inhoud:");
-            console.log(result);
-            setTimeout(() => {
-                window.scrollTo({top: 1100, behavior: 'smooth'})
-            }, 0);
-            console.log("De pagina begint met de window naar boven gescrolld");
-
-        } catch (error) {
-            setError(`Er is iets misgegaan bij het ophalen van de data - (${error.message})`);
-            console.error(error);
-        }
-        toggleLoading(false);
-    }
-
-    async function onFormSubmitCountry(dataCountry) {
-        console.log("Zoek LAND data input:");
-        console.log(dataCountry);
-        setError('');
-        toggleLoading(true);
-        try {
-            const result = await axios.get(`http://localhost:8080/toilets?country=${dataCountry.country}`);
-            setToiletEntry(result);
-            console.log("alle country zoek inhoud:");
-            console.log(result);
-            setTimeout(() => {
-                window.scrollTo({top: 1200, behavior: 'smooth'})
-            }, 0);
-        } catch (error) {
-            setError(`Er is iets misgegaan bij het ophalen van de data - (${error.message})`);
-            console.error(error);
-        }
-        toggleLoading(false);
-    }
 
     async function onFormSubmitTitle(dataTitle) {
         console.log("Zoek TITEL data input:");
@@ -98,48 +44,7 @@ function SearchPage() {
 
     return (
         <>
-            <TopNav/>
-            <Header
-                title="Snel-Zoeken"/>
-            <main className="search__page content-wrapper">
-                <p>Op deze pagina kun je snel-zoeken op basis van &oacute;f stad, &oacute;f
-                    land &oacute;f locatie-naam. Scroll naar beneden, nadat je een zoek-knop hebt
-                    ingedrukt, om de zoekresultaten te zien.</p>
-                <h3>Zoek op stad</h3>
-                <form className="form-container city" onSubmit={handleSubmit(onFormSubmitCity)}>
-                    <InputField
-                        errors={errors}
-                        register={register}
-                        labelText="Stad"
-                        labelId="city-field"
-                        inputName="city"
-                        placeholderText="Bijvoorbeeld: Utr..."
-                    />
-                    <button type="submit">
-                        Zoeken
-                    </button>
-                </form>
-
-                <h3>Zoek op land</h3>
-                <form className="form-container land" onSubmit={handleSubmit(onFormSubmitCountry)}>
-                    <InputField
-                        errors={errors}
-                        register={register}
-                        labelText="Land"
-                        labelId="country-field"
-                        inputName="country"
-                        placeholderText="Bijvoorbeeld: USA..."
-                        validationRules={{
-                            minLength: {
-                                value: 1,
-                                message: "Je moet meer invullen"
-                            }
-                        }}
-                    />
-                    <button type="submit">
-                        Zoeken
-                    </button>
-                </form>
+            <div className="search__page content-wrapper">
 
                 <h3>Zoek op naam</h3>
                 <form className="form-container title" onSubmit={handleSubmit(onFormSubmitTitle)}>
@@ -160,7 +65,7 @@ function SearchPage() {
                 <hr/>
                 <h4>Zoekresultaten</h4>
 
-            </main>
+            </div>
 
             <section className="results">
                 <ul className="mapped__posts">
@@ -241,13 +146,6 @@ function SearchPage() {
                                                              className="camera-icon"/></span>
                                                 : <span className="tiny-info">Nee</span>}
                                         </p>
-                                        <p>Foto: <a
-                                            href={post.photo
-                                            && `http://localhost:8080/download/${post.photo.fileName}`}
-                                            rel="noreferrer"
-                                            target="_blank">{post.photo
-                                        && `⇪ /${post.photo.fileName}`}
-                                        </a></p>
                                         <p className="location-link">
                                             {post.latitude ?
                                             <>
@@ -272,12 +170,9 @@ function SearchPage() {
                     )}
                 </ul>
 
-                <div className="content-wrapper"><p>
-                    Bekijk <Link to="/searchresults">ALLE toiletten data</Link> zonder te zoeken.
-                </p></div>
             </section>
         </>
     );
 }
 
-export default SearchPage;
+export default SearchNameFunction;

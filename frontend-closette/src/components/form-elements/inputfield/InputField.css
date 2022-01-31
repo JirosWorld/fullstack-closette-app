@@ -19,6 +19,15 @@ button:hover, input[type=submit], input[type=button], button[type=submit] {
     border: 1px solid var(--hardpink);
 }
 
+.search__page input {
+    border: 1px solid var(--AccessibleGreen);
+}
+
+.search__page  input[type=submit], .search__page input[type=button], .search__page button[type=submit] {
+    background-color: var(--AccessibleGreen);
+    border: 1px solid var(--AccessibleGreen);
+}
+
 button:focus, input[type=submit]:focus, input[type=button]:focus, button[type=submit]:focus {
     outline: 2px dotted black;
 }

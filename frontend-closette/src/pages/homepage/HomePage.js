@@ -10,7 +10,7 @@ import FAQbook from "../../assets/icons/icon-book.png";
 function HomePage() {
 
     useEffect(() => {
-        document.title = "Closette ::: Home"
+        document.title = "Closette :: Home :: de genderneutrale toiletten app"
         setTimeout(() => {
             window.scrollTo({ top: 0, behavior: 'smooth' })
         }, 0);

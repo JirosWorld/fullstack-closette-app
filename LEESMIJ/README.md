@@ -14,7 +14,7 @@ Deze directory bevat:
 
 * het Verantwoordingsdocument: [link naar Verantwoordingsdocument in markdown](verantwoordingsdocument.md)
 
-* de verzameling van [alle Endpoint + Postman requests](postman_collection.json) (JSON)
+* de verzameling van [alle Endpoint + Postman requests](Jiro_Closette_data.postman_collection.json) (JSON)
 
 ### Leuke extra’s
 

@@ -78,7 +78,7 @@ function NewsPost() {
                         </div>
                     </article>
                     <div>
-                        <p><Link to="/">&lt;&lt; Home</Link></p>
+                        <p><Link to="/news">&lt;&lt; Nieuwsoverzicht</Link></p>
                     </div>
                 </section>
             </main>

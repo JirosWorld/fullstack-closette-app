@@ -39,6 +39,7 @@ public class Photo {
 
 //    @Column(length = 16000000) // Generates medium blob
 //    @Basic(fetch = FetchType.LAZY)
+    @Lob
     public byte[] getDocFile() {
         return docFile;
     }

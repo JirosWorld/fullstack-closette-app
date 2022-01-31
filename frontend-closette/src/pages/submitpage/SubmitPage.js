@@ -45,20 +45,19 @@ function SubmitPage() {
                 ratingAverage: data.ratingAverage,
             });
             setSubmitInfo(result);
-            console.log("Data na submit?:");
+            toggleSubmitSuccess(true);
+            console.log("Data na submit success:");
             console.log(data);
 
+            setTimeout(() => {
+                history.push("/search");
+            }, 5000);
+
         } catch (e) {
-            setError(`(${e.message}) - Wanneer je een 400 error ziet, dan heb je een naam ingevoerd die al bestaat of je hebt een GPS coordinaat gebruikt dat al is ingevoerd - zorg dat titel en locatie UNIEK zijn.`)
+            setError(`(${e.message}) - Wanneer je een 400 error ziet, dan heb je een naam ingevoerd die al bestaat of je hebt een GPS coordinaat gebruikt dat al is ingevoerd - zorg dat titel en locatie UNIEK zijn!`)
             console.error(e);
         }
-        toggleSubmitSuccess(true);
-        console.log("Data na submit success:");
-        console.log(data);
 
-        setTimeout(() => {
-            history.push("/search");
-        }, 5000);
     }
 
     console.log("Errors:" ,errors);

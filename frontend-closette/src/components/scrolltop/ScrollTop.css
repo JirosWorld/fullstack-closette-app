@@ -1,6 +1,6 @@
 .scroll {
     position: fixed;
-    bottom: 20px;
+    bottom: 30px;
     right: 5px;
     background-color: var(--softpink);
     width: 50px;
@@ -12,4 +12,5 @@
     font-family: Verdana, sans-serif;
     font-size: 2em;
     z-index: 40;
+    cursor: pointer;
 }
