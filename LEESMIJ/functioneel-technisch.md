@@ -2,7 +2,7 @@
 
 _Markdown text-only versie_
 
-Deze '**text only**' versie **_zónder_ afbeeldingen** is alleen bedoeld om in een browser op Github e.d. makkelijk snel te kunnen lezen hoe het ontwerp inelkaar steekt. Het échte ontwerp document staat hier: [PDF ontwerp document met afbeeldingen](funtioneel-technisch-ontwerp-app-jiro.pdf) (7 MB)
+Deze '**text only**' versie **_zónder_ afbeeldingen** is alleen bedoeld om in een browser op Github e.d. makkelijk snel te kunnen lezen hoe het ontwerp inelkaar steekt. Het échte ontwerp document staat hier: [PDF ontwerp document met afbeeldingen](functioneel-technisch-ontwerp-app-jiro.pdf) (7 MB)
 
 ~ door Jiro Ghianni.
 

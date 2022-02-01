@@ -8,7 +8,7 @@ Deze directory bevat:
 
 * de Installatiehandleiding voor zowel front-end als back-end:  [link naar de Installatiehandleiding in markdown](installatiehandleiding.md)
 
-* het Functioneel ontwerp + het Technisch ontwerp **samen** in 1 PDF: [link naar Functioneel/Technisch ontwerp in PDF](funtioneel-technisch-ontwerp-app-jiro.pdf) (9 MB)
+* het Functioneel ontwerp + het Technisch ontwerp **samen** in 1 PDF: [link naar Functioneel/Technisch ontwerp in PDF](functioneel-technisch-ontwerp-app-jiro.pdf) (9 MB)
 
 * Broncode van beide projecten staat in de ZIP en het [online Github-project](../).
 
