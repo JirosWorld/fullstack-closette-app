@@ -2,7 +2,7 @@
 
 _Markdown text-only versie_
 
-Deze '**text only**' versie **zonder afbeeldingen** is alleen bedoeld om in een browser op Github e.d. makkelijk snel te kunnen lezen hoe het ontwerp inelkaar steekt. Het échte ontwerp document staat hier: [PDF ontwerp document met afbeeldingen](eindopdracht-FSD-app-jiro.pdf)
+Deze '**text only**' versie **_zónder_ afbeeldingen** is alleen bedoeld om in een browser op Github e.d. makkelijk snel te kunnen lezen hoe het ontwerp inelkaar steekt. Het échte ontwerp document staat hier: [PDF ontwerp document met afbeeldingen](funtioneel-technisch-ontwerp-app-jiro.pdf) (7 MB)
 
 ~ door Jiro Ghianni.
 
@@ -10,9 +10,6 @@ Deze '**text only**' versie **zonder afbeeldingen** is alleen bedoeld om in een 
 
 
 FUNCTIONEEL EN TECHNISCH ONTWERP ‘CLOSETTE’
-
-De rest van deze tekst komt pas online op de dag van de eindopdracht zodat mede-studenten niet kunnen spieken
-
 
 
 INHOUD

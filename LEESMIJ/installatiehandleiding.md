@@ -30,7 +30,7 @@ Zie voor verdere uitleg hieronder.
 
 ## 1. Lijst van benodigdheden Back-End
 
-Voor alle installatie stappen is een werkende internet verbinding vereist.
+Voor de installatie is een werkende internet verbinding vereist.
 
 ## 2. Stappenplan
 

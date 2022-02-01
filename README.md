@@ -19,7 +19,7 @@ is: [Jiro's Github Fullstack Closette App](https://github.com/JirosWorld/fullsta
 
 * Zowel de Front-end als de Back-end map hebben nog eens dubbelop hun eigen documentatie in een Readme file. Dit is extra dubbelop overkill ja, maar het maakt het wel makkelijker om documentatie te bereiken zodra je deze folders als Root hebt geopend in verschillende IDE's.
 
-* in de 'LEESMIJ' map staat het Functioneel ontwerp + het Technisch ontwerp [**samen** in één PDF](LEESMIJ/eindopdracht-FSD-app-jiro.pdf) (9 MB); _(er is ook een ['text-only' markdown versie](LEESMIJ/functioneel-technisch.md))_
+* in de 'LEESMIJ' map staat het Functioneel ontwerp + het Technisch ontwerp [**samen** in één PDF](LEESMIJ/funtioneel-technisch-ontwerp-app-jiro.pdf) (9 MB); _(er is ook een ['text-only' markdown versie](LEESMIJ/functioneel-technisch.md))_
 
 * Broncode van beide projecten staat in de ZIP en het online Github-project.
 

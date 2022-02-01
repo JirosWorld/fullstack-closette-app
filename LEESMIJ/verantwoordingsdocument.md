@@ -12,11 +12,11 @@ Conclusie: Zelfs al is niet álle functionaliteit, die ik in de back-end heb geb
 
 ## Functioneel Ontwerp
 
-Zie het gecombineerde [Functioneel-Technisch ontwerp](eindopdracht-FSD-app-jiro.pdf) in de PDF in deze directory.
+Zie het gecombineerde [Functioneel-Technisch ontwerp](funtioneel-technisch-ontwerp-app-jiro.pdf) in de PDF (7 MB) in deze directory.
 
 ## Technisch Ontwerp
 
-Zie wederom het gecombineerde [Functioneel-Technisch ontwerp](eindopdracht-FSD-app-jiro.pdf) in de PDF in dezelfde directory.
+Zie wederom het gecombineerde [Functioneel-Technisch ontwerp](funtioneel-technisch-ontwerp-app-jiro.pdf) in de PDF in dezelfde directory.
 
 ## Technische ontwerpbeslissingen
 
