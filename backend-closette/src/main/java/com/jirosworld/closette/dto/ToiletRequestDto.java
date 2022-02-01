@@ -16,6 +16,12 @@ public class ToiletRequestDto {
         @Size(min=1, max=100)
         private String title;
 
+        @NotBlank
+        private String city;
+
+        @NotBlank
+        private String country;
+
         @Size(min=0, max=20, message="latitude is too long, please use a dot.")
         private String latitude;
 
@@ -29,18 +35,11 @@ public class ToiletRequestDto {
         private String cleanliness;
         private boolean hasPhoto;
         private String openingHours;
+        private String address;
 
         @Column(columnDefinition="text")
         private String infoText;
 
-        private double ratingAverage;
-        private String address;
-
-        @NotBlank
-        private String city;
-
-        @NotBlank
-        private String country;
 
         // getters and setters
 
@@ -132,14 +131,6 @@ public class ToiletRequestDto {
 
         public void setInfoText(String infoText) {
                 this.infoText = infoText;
-        }
-
-        public double getRatingAverage() {
-                return ratingAverage;
-        }
-
-        public void setRatingAverage(double ratingAverage) {
-                this.ratingAverage = ratingAverage;
         }
 
         public String getAddress() { return address; }

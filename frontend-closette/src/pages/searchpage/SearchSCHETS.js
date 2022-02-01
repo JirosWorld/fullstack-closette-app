@@ -241,7 +241,7 @@ function SearchSCHETS() {
                                         &#127988; "{post.country}"
                                     </span><br/>
                                     <span
-                                        className="mapped__post__votes">Rating: {post.ratingAverage} &#9733; &#x2605; &#9733;</span>
+                                        className="mapped__post__votes">Rating:  &#9733; &#x2605; &#9733;</span>
                                     <div className="mapped__post__details">
                                         <p>{post.genderneutral
                                             ? <span><img src={GenderneutralIcon}
@@ -338,7 +338,7 @@ function SearchSCHETS() {
                                         &#127988; "{post.country}"
                                     </span><br/>
                                     <span
-                                        className="mapped__post__votes">Rating: {post.ratingAverage} &#9733; &#x2605; &#9733;</span>
+                                        className="mapped__post__votes">Rating:  &#9733; &#x2605; &#9733;</span>
                                     <div className="mapped__post__details">
                                         <p>{post.genderneutral
                                             ? <span><img src={GenderneutralIcon}

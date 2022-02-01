@@ -1,6 +1,5 @@
 package com.jirosworld.closette.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -19,6 +18,9 @@ public class Toilet {
     private int id;
 
     private String title;
+    private String city;
+    private String country;
+    private String address;
     private String latitude;
     private String longitude;
     //    latitude (north or south) always precedes longitude (east or west).
@@ -32,34 +34,25 @@ public class Toilet {
 
     @Column(columnDefinition = "text")
     private String infoText;
-    // cast primitive double to Double?
-    private double ratingAverage;
-    private String city;
-    private String country;
-    private String address;
-//    private boolean public; <= is the toilet publicly accessible
-
-
-    @JsonIgnoreProperties("toilets")
-    @ManyToOne
-    @JoinColumn(name = "rating_id", referencedColumnName = "id")
-    private Rating reviewer;
 
     @JsonIgnoreProperties("toilets")
     @ManyToOne
     @JoinColumn(name = "photo_id", referencedColumnName = "id")
     private Photo photo;
 
-//        @JsonIgnoreProperties("users")
+//        @JsonIgnoreProperties("toilets")
     @OneToMany
 //        @JoinColumn(name = "rating_id", referencedColumnName = "user_username")
     private List<Rating> ratings = new ArrayList<>();
 
     // default constructor
 
-    public Toilet(int id, String title, String latitude, String longitude, String postTime, boolean genderneutral, boolean free, boolean accessible, String cleanliness, boolean hasPhoto, String openingHours, String infoText, double ratingAverage, String city, String country, String address, Rating reviewer, Photo photo, List<Rating> ratings) {
+    public Toilet(int id, String title, String city, String country, String address, String latitude, String longitude, String postTime, boolean genderneutral, boolean free, boolean accessible, String cleanliness, boolean hasPhoto, String openingHours, String infoText, Photo photo, List<Rating> ratings) {
         this.id = id;
         this.title = title;
+        this.city = city;
+        this.country = country;
+        this.address = address;
         this.latitude = latitude;
         this.longitude = longitude;
         this.postTime = postTime;
@@ -70,24 +63,18 @@ public class Toilet {
         this.hasPhoto = hasPhoto;
         this.openingHours = openingHours;
         this.infoText = infoText;
-        this.ratingAverage = ratingAverage;
-        this.city = city;
-        this.country = country;
-        this.address = address;
-        this.reviewer = reviewer;
         this.photo = photo;
         this.ratings = ratings;
     }
 
-
-    // lege constructor
+    // empty constructor
 
     public Toilet() {
     }
 
     // shorter constructor for tests
 
-    public Toilet(int id, String title, String latitude, String longitude, String postTime, boolean genderneutral, boolean free, boolean accessible, String cleanliness, boolean hasPhoto, String openingHours, String infoText, double ratingAverage, String city, String country, String address) {
+    public Toilet(int id, String title, String latitude, String longitude, String postTime, boolean genderneutral, boolean free, boolean accessible, String cleanliness, boolean hasPhoto, String openingHours, String infoText, String city, String country, String address) {
         this.id = id;
         this.title = title;
         this.latitude = latitude;
@@ -100,7 +87,6 @@ public class Toilet {
         this.hasPhoto = hasPhoto;
         this.openingHours = openingHours;
         this.infoText = infoText;
-        this.ratingAverage = ratingAverage;
         this.city = city;
         this.country = country;
         this.address = address;
@@ -204,14 +190,6 @@ public class Toilet {
         this.infoText = infoText;
     }
 
-    public double getRatingAverage() {
-        return ratingAverage;
-    }
-
-    public void setRatingAverage(double ratingAverage) {
-        this.ratingAverage = ratingAverage;
-    }
-
     public String getCity() {
         return city;
     }
@@ -239,14 +217,6 @@ public class Toilet {
     }
 
     // getters and setters of relation tables
-
-    public Rating getReviewer() {
-        return reviewer;
-    }
-
-    public void setReviewer(Rating reviewer) {
-        this.reviewer = reviewer;
-    }
 
     public Photo getPhoto() {
         return photo;

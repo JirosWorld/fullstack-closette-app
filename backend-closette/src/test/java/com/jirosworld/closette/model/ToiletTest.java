@@ -19,7 +19,7 @@ class ToiletTest {
     void setupEach() {
 //        Object Rating = null;
 //        Object Photo = null;
-        toilet = new Toilet(20,"Naam van toilet","44.111","6.2222","1-1-2022",true,false,true,"Zeer schoon",true,"van 9 - 18h","Hebban olla vogala nestas hagunnan, hinase hic enda tu",7.3,"Lutjebroek","Nederland","Marktplein 1-a, ");
+        toilet = new Toilet(20,"Naam van toilet","44.111","6.2222","1-1-2022",true,false,true,"Zeer schoon",true,"van 9 - 18h","Hebban olla vogala nestas hagunnan, hinase hic enda tu","Lutjebroek","Nederland","Marktplein 1-a.");
     }
 
     @Test
@@ -71,9 +71,25 @@ class ToiletTest {
     }
 
     @Test
-    void getRatingAverage() {
-        double actual = toilet.getRatingAverage();
-        double expected = 7.3;
+    void getCity() {
+        String actual = toilet.getCity();
+        String expected = "Lutjebroek";
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void getCountry() {
+        String actual = toilet.getCountry();
+        String expected = "Nederland";
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void getAddress() {
+        String actual = toilet.getAddress();
+        String expected = "Marktplein 1-a.";
 
         assertEquals(expected, actual);
     }

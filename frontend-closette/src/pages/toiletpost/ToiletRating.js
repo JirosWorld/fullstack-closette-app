@@ -13,15 +13,13 @@ import GenderneutralIcon from "../../assets/icons/icon-transgenderneutral.svg";
 import FreeIcon from "../../assets/icons/icon-money-free-gratis.png";
 import PaidIcon from "../../assets/icons/icon-money-pay-euro.png";
 import InputField from "../../components/form-elements/inputfield/InputField";
-import Slider from "../../components/form-elements/slider/Slider";
-import InputTextarea from "../../components/form-elements/inputfield/InputTextarea";
 import {useForm} from "react-hook-form";
 import CameraIcon from "../../assets/icons/icon-camera.png";
 import PhotoDownload from "../../components/photoupload/PhotoDownload";
 import PhotoUpload from "../../components/photoupload/PhotoUpload";
 import ThumbnailStrip from "../../components/sections/ThumbnailStrip/ThumbnailStrip";
 
-function ToiletPost() {
+function ToiletRating() {
     const {user} = useContext(AuthContext);
     console.log(user);
     const {id} = useParams();
@@ -43,13 +41,8 @@ function ToiletPost() {
 
     //mounting fase
     useEffect(() => {
-        document.title = "Toilet details :: Closette"
-        setTimeout(() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' })
-        }, 0);
-        console.log("De pagina begint met de window naar boven gescrolld");
 
-        async function fetchToilets() {
+        async function fetchToilet() {
 
             setError('');
             toggleLoading(true);
@@ -80,39 +73,30 @@ function ToiletPost() {
                 setAverageRating(averagePopularity);
                 console.log("Average popularity/setAverageRating:", averagePopularity);
 
-
             } catch (error) {
                 setError(`Er is iets misgegaan bij het ophalen van de data, of... je hebt dit toilet succesvol verwijderd! - (${error.message})`);
                 console.error(error);
             }
             toggleLoading(false);
         }
+        // console.log("respons:");
+        // fetchToilet().then((response) => console.log(response));
+        fetchToilet();
 
-        fetchToilets();
+
 
     }, []);
 
     // start aanpassen-functie
-    async function onFormSubmitPatchToilet(data) {
+    async function onFormSubmitPatchRating(data) {
         setError('');
         setTimeout(() => {
             window.scrollTo({ top: 0, behavior: 'smooth' })
         }, 0);
         try {
-            const result = await axios.patch(`http://localhost:8080/toilets/${id}`, {
-                title: data.title,
-                address: data.address,
-                city: data.city,
-                country: data.country,
-                free: data.free,
-                accessible: data.accessible,
-                genderneutral: data.genderneutral,
-                infoText: data.infoText,
-                cleanliness: data.cleanliness,
-                latitude: data.latitude,
-                longitude: data.longitude,
-                hasPhoto: data.hasPhoto,
-                openingHours: data.openingHours
+            const result = await axios.patch(`http://localhost:8080/ratings/${id}`,
+                {
+                toiletRating: data.toiletRating
             });
             setPatchInfo(result);
             console.log("Resultaat submitdata useState:");
@@ -126,39 +110,13 @@ function ToiletPost() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 window.location.reload(true);
             }, 0);
+
         } catch (e) {
             setError(`(${e.message}) - Wanneer je een 400 error ziet, dan heb je een naam ingevoerd die al bestaat of je hebt een GPS coordinaat gebruikt dat al is ingevoerd - zorg dat titel en locatie UNIEK zijn!`)
             console.error(e);
         }
     }
     // einde aanpassen-functie
-
-    // start delete functie
-    async function deleteFunction() {
-        if (window.confirm("Weet je zeker dat je dit toilet helemaal wilt verwijderen?")) {
-            try {
-                setPatchInfo(await axios.delete(`http://localhost:8080/toilets/${id}`));
-                setToiletEntry(await axios.delete(`http://localhost:8080/toilets/${id}`));
-                await axios.delete(`http://localhost:8080/toilets/${id}`);
-                console.log("Deleten volbracht.");
-                setVisibility(true);
-                // window.location.reload(true);
-                setTimeout(() => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' })
-                }, 0);
-            } catch (error) {
-                setError(`Dit toilet bestaat niet meer ... je hebt dit 
-                toilet succesvol verwijderd! - (${error.message})`);
-                console.error(error.message);
-            }
-        } else {
-            console.log("Deleten gecanceled.");
-            setTimeout(() => {
-                window.scrollTo({ top: 0, behavior: 'smooth' })
-            }, 0);
-        }
-    }
-    // einde delete functie
 
     return (
         <>
@@ -188,8 +146,23 @@ function ToiletPost() {
                                     <p><strong>Stad: {toiletEntry && toiletEntry.city}</strong></p>
                                     <p>Land: {toiletEntry && toiletEntry.country}</p>
                                     <p>Gemiddelde beoordeling: {averageRating} &#9733; &#x2605; &#9733;
-                                        <br/>
-                                        (gebaseerd op <em>{numberOfRatings}</em> ratings)</p>
+                                    <br/>
+                                        (gebaseerd op {numberOfRatings} ratings)</p>
+
+                                    <div>
+
+                                        <p>Alle beoordelingen door gebruikers:</p>
+
+                                    {/* alle beoordelingen van 1 toilet */}
+                                        {toiletEntry.ratings && toiletEntry.ratings.map((post) => {
+
+                                                return <p key={post.id}>
+                                                    Cijfer: {post.ratingToilet}
+                                                </p>
+                                            })
+                                        }
+
+                                    </div>
 
                                 </div>
                             </div>
@@ -199,10 +172,6 @@ function ToiletPost() {
 
                             <div className="template-main-content toilet">
                                 <div className="template-main-content--wrapper">
-                                    <p>Beschrijving: {toiletEntry && toiletEntry.infoText}</p>
-                                    <p>Adres: {toiletEntry && toiletEntry.address}</p>
-                                    <p>Stad: {toiletEntry && toiletEntry.city}</p>
-                                    <p>Land: {toiletEntry && toiletEntry.country}</p>
                                     <p>genderneutraal: {toiletEntry.genderneutral
                                         ? <span><img src={GenderneutralIcon}
                                                      alt="map"
@@ -218,7 +187,6 @@ function ToiletPost() {
                                                          alt="map"
                                                          width="25"
                                                          className="free-icon"/></span>}</p>
-                                    <p>openingstijden: {toiletEntry && toiletEntry.openingHours}</p>
                                     <p>rolstoeltoegankelijk: {toiletEntry && toiletEntry.accessible ?
                                         <span>Ja <img src={AccessibleIcon}
                                                       alt="map"
@@ -241,8 +209,6 @@ function ToiletPost() {
                                         target="_blank">{toiletEntry.latitude && toiletEntry.photo
                                     && `⇪ /${toiletEntry.latitude && toiletEntry.photo.fileName}`}
                                     </a></p>
-                                    <p>breedtegraad: {toiletEntry.latitude && toiletEntry.latitude}</p>
-                                    <p>lengtegraad: {toiletEntry.longitude && toiletEntry.longitude}</p>
                                     <p>Locatie op kaart: <a
                                         href={toiletEntry.latitude &&
                                         `https://www.openstreetmap.org/?mlat=${toiletEntry && toiletEntry.latitude}&mlon=${toiletEntry && toiletEntry.longitude}&zoom=15}`}
@@ -251,22 +217,6 @@ function ToiletPost() {
                                              alt="map"
                                              width="25" className="map-icon"/> (externe
                                         link)</a></p>
-                                    <div className="ratings-list">
-
-                                        <h4>Alle beoordelingen door gebruikers:</h4>
-
-                                        {/* alle beoordelingen van 1 toilet */}
-                                        <ul>
-                                        {toiletEntry.ratings && toiletEntry.ratings.map((post) => {
-
-                                            return <li key={post.id}>
-                                                Cijfer: {post.ratingToilet}
-                                            </li>
-                                        })
-                                        }
-                                        </ul>
-
-                                    </div>
                                 </div>
                             </div>
                         </article>
@@ -281,12 +231,7 @@ function ToiletPost() {
                                             onClick={() => setVisibility(false)}>Pas details aan
                                     </button>
                                 </p>
-                                <p>
-                                    <button type="button"
-                                            onClick={deleteFunction}
-                                            className="delete">Verwijder dit toilet &#10060;
-                                    </button>
-                                </p>
+
                             </div>
                         </>}
                         <div>
@@ -302,12 +247,10 @@ function ToiletPost() {
             <div className={visibility ? "hidden" : "show"}>
                 <div className="content-wrapper">
                     <h2>Pas toilet details aan</h2>
-                    <p>Hier kun je elke detail aanpassen dat je maar wilt. De informatie over dit
-                        toilet die reeds is ingevuld, blijft staan. Alleen de velden die je hier
-                        aanpast, zullen worden veranderd.</p>
+                    <p>Hier kun je dde naam en de beoordeling aanpassen.</p>
                 </div>
                 <form className="form-container"
-                      onSubmit={handleSubmit(onFormSubmitPatchToilet)}
+                      onSubmit={handleSubmit(onFormSubmitPatchRating)}
                 >
                     <fieldset className="checkbox-filters">
                         <InputField
@@ -327,194 +270,16 @@ function ToiletPost() {
                         />
 
                         <InputField
-                            inputType="text"
-                            placeholderText="Bijvoorbeeld: Barcelona..."
+                            inputType="number"
                             errors={errors}
                             register={register}
-                            labelText="Stad/Plaats"
-                            labelId="city-field"
-                            inputName="city"
-                            validationRules={{
-                                minLength: {
-                                    value: 1,
-                                    message: "Te korte naam, gebruik minstens 2 tekens.",
-                                },
-                                maxLength: {
-                                    value: 85,
-                                    message: "Te lange plaatsnaam, gebruik maximaal 85 tekens.",
-
-                                },
-                            }}
-                        />
-
-                        <InputField
-                            inputType="text"
-                            placeholderText="Bijvoorbeeld: Kalverstraat 92, 1012 PH Amsterdam..."
-                            errors={errors}
-                            register={register}
-                            labelText="Adres"
-                            labelId="address-field"
-                            inputName="address"
-                        />
-
-                        <InputField
-                            inputType="text"
-                            placeholderText="Bijvoorbeeld: Kenia..."
-                            errors={errors}
-                            register={register}
-                            labelText="Land"
-                            labelId="country-field"
-                            inputName="country"
-                            validationRules={{
-                                minLength: {
-                                    value: 1,
-                                    message: "Te korte naam, gebruik minstens 2 tekens.",
-                                },
-                                maxLength: {
-                                    value: 85,
-                                    message: "Te lange regionaam, gebruik maximaal 85 tekens.",
-
-                                },
-                            }}
-                        />
-
-                        <InputField
-                            inputType="text"
-                            placeholderText="Bijvoorbeeld: 52.3700"
-                            errors={errors}
-                            register={register}
-                            labelText="Breedtegraad (latitude)"
-                            labelId="latitude-field"
-                            inputName="latitude"
-                            validationRules={{
-                                minLength: {
-                                    value: 5,
-                                    message: "Te kort coördinaat, gebruik minstens 5 tekens.",
-                                },
-                                maxLength: {
-                                    value: 12,
-                                    message: "Te lang coördinaat, gebruik maximaal 12 tekens.",
-
-                                },
-                            }}
-                        />
-
-                        <InputField
-                            inputType="text"
-                            placeholderText="Bijvoorbeeld: 4.8900"
-                            errors={errors}
-                            register={register}
-                            labelText="Lengtegraad (longitude)"
-                            labelId="longitude-field"
-                            inputName="longitude"
-                            validationRules={{
-                                minLength: {
-                                    value: 4,
-                                    message: "Te kort coördinaat, gebruik minstens 5 tekens.",
-                                },
-                                maxLength: {
-                                    value: 12,
-                                    message: "Te lang coördinaat, gebruik maximaal 12 tekens.",
-
-                                },
-                            }}
-                        />
-
-                        <Slider
-                            errors={errors}
-                            register={register}
-                            labelId="genderneutral-check"
-                            inputName="genderneutral"
-                            filterAttribute="Genderneutraal"
-                            yes="wel"
-                            no="niet"
-                        >
-
-                        </Slider>
-
-                        <Slider
-                            errors={errors}
-                            register={register}
-                            labelId="free-check"
-                            inputName="free"
-                            filterAttribute="Gratis"
-                            yes="wel"
-                            no="niet"
-                        >
-
-                        </Slider>
-
-                        <Slider
-                            errors={errors}
-                            register={register}
-                            labelId="accessible-check"
-                            inputName="accessible"
-                            filterAttribute="Invalidentoilet"
-                            yes="wel"
-                            no="niet"
-                        >
-
-                        </Slider>
-
-                        <Slider
-                            errors={errors}
-                            register={register}
-                            labelId="has_photo-check"
-                            inputName="hasPhoto"
-                            filterAttribute="Met foto"
-                            yes="met"
-                            no="zonder"
-                        >
-                            (upload <em>n&aacute;</em> invullen!)
-                        </Slider>
-
-                        <InputField
-                            inputType="text"
-                            placeholderText="Bijvoorbeeld: zeer schoon op doordeweekse dagen..."
-                            errors={errors}
-                            register={register}
-                            labelText="Schoon/Vies"
-                            labelId="cleanliness-field"
-                            inputName="cleanliness"
+                            labelText="Beoordeling (geef cijfer van 1 - 10)"
+                            labelId="toiletRating-field"
+                            inputName="toiletRating"
                             validationRules={{
                                 maxLength: {
-                                    value: 80,
-                                    message: "Te lang, gebruik maximaal 80 tekens.",
-
-                                },
-                            }}
-                        />
-
-                        <InputTextarea
-                            rowNr={6}
-                            columnNr={30}
-                            placeholderText="Typ hier een beschrijving van o.a. hoe het toilet te bereiken is (is het openbaar?) e.a. bijzonderheden, wees zo gedetailleerd als je wilt..."
-                            errors={errors}
-                            register={register}
-                            labelText="Info beschrijving:"
-                            labelId="infoText-field"
-                            inputName="infoText"
-                            validationRules={{
-                                maxLength: {
-                                    value: 500,
-                                    message: "Te lang, gebruik maximaal 500 tekens.",
-
-                                },
-                            }}
-                        />
-
-                        <InputField
-                            inputType="text"
-                            placeholderText="Bijvoorbeeld: 9h - 17h..."
-                            errors={errors}
-                            register={register}
-                            labelText="Openingstijden"
-                            labelId="openingHours-field"
-                            inputName="openingHours"
-                            validationRules={{
-                                maxLength: {
-                                    value: 80,
-                                    message: "Te lang, gebruik maximaal 80 tekens.",
+                                    value: 3,
+                                    message: "Te lang, gebruik maximaal 2 tekens (een geheel getal van 1 - 10.",
 
                                 },
                             }}
@@ -539,7 +304,7 @@ function ToiletPost() {
                     {submitSuccess === true &&
                     <div className="confirmation__container">
                         <Loader/>
-                        <h3>Aanpassen gelukt!</h3>
+                        <h3>Toevoegen rating gelukt!</h3>
                         <h2>Deze pagina herlaadt nu opnieuw.</h2>
                     </div>}
 
@@ -551,4 +316,4 @@ function ToiletPost() {
     );
 }
 
-export default ToiletPost;
+export default ToiletRating;

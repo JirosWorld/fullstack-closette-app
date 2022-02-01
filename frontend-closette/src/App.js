@@ -18,6 +18,7 @@ import NewsPost from "./pages/newspost-infopost/NewsPost";
 import ToiletPost from "./pages/toiletpost/ToiletPost";
 import FaqPage from "./pages/newspost-infopost/FaqPage";
 import SearchSCHETS from "./pages/searchpage/SearchSCHETS";
+import ToiletRating from "./pages/toiletpost/ToiletRating";
 
 
 // function PrivateRoute({children, isAuth, ...rest}) {
@@ -81,6 +82,9 @@ function App() {
                     {/*    URL's for development testing only, not for testers */}
                         <Route path="/searchschets">
                             <SearchSCHETS/>
+                        </Route>
+                        <Route exact path="/toiletrating/:id">
+                            <ToiletRating/>
                         </Route>
                     </Switch>
                 </div>

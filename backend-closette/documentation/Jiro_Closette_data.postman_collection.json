@@ -70,7 +70,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/users/admin",
+							"raw": "http://localhost:8080/users/tester",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -78,7 +78,7 @@
 							"port": "8080",
 							"path": [
 								"users",
-								"admin"
+								"tester"
 							]
 						},
 						"description": "Haal de data op over 1 entry, met id = 2."
@@ -581,7 +581,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\":\"Titeltje\"\n    }",
+							"raw": "{\n    \"genderneutral\": false\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -605,13 +605,13 @@
 					"response": []
 				},
 				{
-					"name": "PATCH 1 deeltje toilet via DTO",
+					"name": "PATCH 1 deeltje titel toilet",
 					"request": {
 						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\":\"Titeltje\"\n    }",
+							"raw": "{\n    \"title\": \"Patch Put verander Patch\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -619,7 +619,37 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/toiletsdto/2",
+							"raw": "http://localhost:8080/toilets/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"toilets",
+								"1"
+							]
+						},
+						"description": "Vervang/bewerk een klein deel van een entry via tussenkomst van de DTO."
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH 1 deeltje toilet via DTO",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"longitude\": \"2.222222\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/toiletsdto/7",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -627,7 +657,7 @@
 							"port": "8080",
 							"path": [
 								"toiletsdto",
-								"2"
+								"7"
 							]
 						},
 						"description": "Vervang/bewerk een klein deel van een entry via tussenkomst van de DTO."
@@ -641,7 +671,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"title\": \"Patch Put verander Patch\",\n        \"address\": \"Patch patch 123\",\n        \"latitude\": \"48.8500\",\n        \"longitude\": \"2.3511\",\n        \"cleanliness\": \"schoon en gepatched\",\n        \"openingHours\": \"8:00 - 20:00\",\n        \"infoText\": \"Patch tekst. Put. Patch. Hebban olla vogala nestas hagunnan, hinase hic enda tu. Patch tekst. Put. Patch. Hebban olla vogala nestas hagunnan, hinase hic enda tu. Patch tekst. Put. Patch.\",\n        \"city\": \"Patch city\",\n        \"country\": \"Patched Countryside\",\n        \"ratingAverage\": 8.2,\n        \"genderneutral\": true,\n        \"free\": true,\n        \"hasPhoto\": true,\n        \"accessible\": false\n    }",
+							"raw": "{\n        \"title\": \"Patch Put verander Patch\",\n        \"address\": \"Patch patch 123\",\n        \"latitude\": \"48.8500\",\n        \"longitude\": \"2.3511\",\n        \"cleanliness\": \"schoon en gepatched\",\n        \"openingHours\": \"8:00 - 20:00\",\n        \"infoText\": \"Patch tekst. Put. Patch. Hebban olla vogala nestas hagunnan, hinase hic enda tu. Patch tekst. Put. Patch. Hebban olla vogala nestas hagunnan, hinase hic enda tu. Patch tekst. Put. Patch.\",\n        \"city\": \"Patch city\",\n        \"country\": \"Patched Countryside\",\n        \"genderneutral\": true,\n        \"free\": true,\n        \"hasPhoto\": true,\n        \"accessible\": false\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -671,7 +701,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"title\": \"Patch Put verander Patch\",\n        \"address\": \"Patch patch 123\",\n        \"latitude\": \"48.8500\",\n        \"longitude\": \"2.3511\",\n        \"cleanliness\": \"schoon en gepatched\",\n        \"openingHours\": \"8:00 - 20:00\",\n        \"infoText\": \"Patch tekst. Put. Patch. Hebban olla vogala nestas hagunnan, hinase hic enda tu. Patch tekst. Put. Patch. Hebban olla vogala nestas hagunnan, hinase hic enda tu. Patch tekst. Put. Patch.\",\n        \"city\": \"Patch city\",\n        \"country\": \"Patched Countryside\",\n        \"ratingAverage\": 8.2,\n        \"genderneutral\": true,\n        \"free\": true,\n        \"hasPhoto\": true,\n        \"accessible\": false\n    }",
+							"raw": "{\n        \"title\": \"Patch Put verander Patch\",\n        \"address\": \"Patch patch 123\",\n        \"latitude\": \"48.8500\",\n        \"longitude\": \"2.3511\",\n        \"cleanliness\": \"schoon en gepatched\",\n        \"openingHours\": \"8:00 - 20:00\",\n        \"infoText\": \"Patch tekst. Put. Patch. Hebban olla vogala nestas hagunnan, hinase hic enda tu. Patch tekst. Put. Patch. Hebban olla vogala nestas hagunnan, hinase hic enda tu. Patch tekst. Put. Patch.\",\n        \"city\": \"Patch city\",\n        \"country\": \"Patched Countryside\",\n        \"genderneutral\": true,\n        \"free\": true,\n        \"hasPhoto\": true,\n        \"accessible\": false\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -751,7 +781,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"ratingToilet\": 6,\n        \"toiletId\": 3,\n        \"userId\": 1,\n        \"name\": \"Standaard gebruiker\"\n        }",
+							"raw": "{\n        \"ratingToilet\": 10\n        }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -759,7 +789,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/ratings/3/toilets",
+							"raw": "http://localhost:8080/ratings/11",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -767,8 +797,7 @@
 							"port": "8080",
 							"path": [
 								"ratings",
-								"3",
-								"toilets"
+								"11"
 							]
 						},
 						"description": "Vervang welke rating is er door wie ze geplaatst zijn."
@@ -798,13 +827,88 @@
 					"response": []
 				},
 				{
+					"name": "GET /toilets/{id}/ratings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/toilets/1/ratings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"toilets",
+								"1",
+								"ratings"
+							]
+						},
+						"description": "Vervang welke rating is er door wie ze geplaatst zijn."
+					},
+					"response": []
+				},
+				{
+					"name": "GET /ratings/{id}/toilets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ratings/2/toilets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ratings",
+								"2",
+								"toilets"
+							]
+						},
+						"description": "Vervang welke rating is er door wie ze geplaatst zijn."
+					},
+					"response": []
+				},
+				{
+					"name": "POST /ratings/{id}/toilets Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"title\": \"Veranderde titel bij 1 rating\",\n        \"free\": true,\n        \"cleanliness\": \"Schone beoordeling\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ratings/1/toilets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ratings",
+								"1",
+								"toilets"
+							]
+						},
+						"description": "Vervang welke rating is er door wie ze geplaatst zijn."
+					},
+					"response": []
+				},
+				{
 					"name": "POST 1 Rating for relation toilet",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"title\": \"Koppeltabel Relatie Toilet met Rating\",\n        \"address\": \"Relatiepad 10\",\n        \"latitude\": \"0.0002\",\n        \"longitude\": \"0.0001\",\n        \"cleanliness\": \"relatief schoon\",\n        \"openingHours\": \"relatieve tijden\",\n        \"infoText\": \"Relatie Toilet met Rating. Koppeltabel Relatie Toilet met Rating. Relatie Toilet met Rating. Koppeltabel Relatie Toilet met Rating. Relatie Toilet met Rating. Koppeltabel Relatie Toilet met Rating.\",\n        \"city\": \"Relation city\",\n        \"country\": \"Koppel Countryside\",\n        \"ratingAverage\": 1.1,\n        \"genderneutral\": true,\n        \"free\": true,\n        \"hasPhoto\": true,\n        \"accessible\": false\n    }",
+							"raw": "{\n    \"ratingToilet\": 3.3\n        }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -835,7 +939,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n                    \"ratingToilet\": 3.3,\n                    \"name\": \"Test reviewer\"\n                }",
+							"raw": "{\n    \"ratingToilet\": 3.3\n        }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -908,7 +1012,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": 4,\n    \"ratingToilet\": 6.30,\n    \"name\": \"Tester\"\n}",
+							"raw": "{\n    \"ratingToilet\": 10.30\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -958,6 +1062,59 @@
 							]
 						},
 						"description": "Vervang welke rating is en door wie ze geplaatst is."
+					},
+					"response": []
+				},
+				{
+					"name": "GET all ratings from 1 toilet",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/toilets/1/ratings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"toilets",
+								"1",
+								"ratings"
+							]
+						},
+						"description": "Haal alle ratings op die door user met id=1 zijn gegeven."
+					},
+					"response": []
+				},
+				{
+					"name": "POST new rating for 1 toilet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    rating: 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/toilets/1/ratings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"toilets",
+								"1",
+								"ratings"
+							]
+						},
+						"description": "Haal alle ratings op die door user met id=1 zijn gegeven."
 					},
 					"response": []
 				},

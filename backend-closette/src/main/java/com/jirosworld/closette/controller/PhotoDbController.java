@@ -2,6 +2,7 @@ package com.jirosworld.closette.controller;
 
 import com.jirosworld.closette.model.FileUploadResponse;
 import com.jirosworld.closette.model.Photo;
+import com.jirosworld.closette.model.Toilet;
 import com.jirosworld.closette.repository.PhotoRepository;
 import com.jirosworld.closette.service.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -171,6 +172,18 @@ public class PhotoDbController {
         return response;
 //        return ResponseEntity.noContent().build();
     }
+
+    //    relation tables
+//    @GetMapping(value = "/photos/{id}/toilets")
+//    public ResponseEntity<Object> getPhotoToilet(@PathVariable int id) {
+//        return ResponseEntity.ok(photoService.getPhotoToilet(id));
+//    }
+//
+//    @PostMapping(value = "/photos/{id}/toilets")
+//    public ResponseEntity<Object> addPhotoToilet(@PathVariable int id, @RequestBody Toilet toilet) {
+//        photoService.addPhotoToilet(id, toilet);
+//        return ResponseEntity.created(null).build();
+//    }
 
 
 }

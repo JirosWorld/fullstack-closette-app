@@ -112,9 +112,7 @@ function SearchCountryFunction() {
                                     <span className="mapped__post__author">{post.city}</span>
                                     <span className="mapped__post__detail">
                                         &#127988; "{post.country}"
-                                    </span><br/>
-                                    <span
-                                        className="mapped__post__votes">Rating: {post.ratingAverage} &#9733; &#x2605; &#9733;</span>
+                                    </span>
                                     <div className="mapped__post__details">
                                         <p>Beschrijving: {post.infoText}</p>
                                         <p>{post.genderneutral

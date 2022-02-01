@@ -7,6 +7,7 @@ import com.jirosworld.closette.model.Photo;
 import com.jirosworld.closette.model.Rating;
 import com.jirosworld.closette.model.Toilet;
 import com.jirosworld.closette.repository.PhotoRepository;
+import com.jirosworld.closette.repository.RatingRepository;
 import com.jirosworld.closette.repository.ToiletRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,9 @@ public class ToiletService {
 
     @Autowired
     private PhotoRepository photoRepository;
+
+    @Autowired
+    private RatingRepository ratingRepository;
 
     //    find all
     public List<Toilet> getToilets() {
@@ -95,7 +99,7 @@ public class ToiletService {
         String title = toiletRequestDto.getTitle();
         List<Toilet> toilets = toiletRepository.findAllByTitle(title);
         if (toilets.size() > 0) {
-            throw new BadRequestException("This exact title already exists! Please add detailed name");
+            throw new BadRequestException("This exact title already exists! Please add a unique detailed name");
         }
         String latitudeDuplicate = toiletRequestDto.getLatitude();
         List<Toilet> latitudes = toiletRepository.findAllByLatitude(latitudeDuplicate);
@@ -119,7 +123,6 @@ public class ToiletService {
         toilet.setHasPhoto(toiletRequestDto.isHasPhoto());
         toilet.setOpeningHours(toiletRequestDto.getOpeningHours());
         toilet.setInfoText(toiletRequestDto.getInfoText());
-        toilet.setRatingAverage(toiletRequestDto.getRatingAverage());
 
         Toilet newToilet = toiletRepository.save(toilet);
         return newToilet.getId();
@@ -134,7 +137,7 @@ public class ToiletService {
             toilet.setId(storedToilet.getId());
             toiletRepository.save(toilet);
         } else {
-            throw new RecordNotFoundException("ID does not exist!!!");
+            throw new RecordNotFoundException("ID does not exist!");
         }
     }
 
@@ -171,10 +174,6 @@ public class ToiletService {
             if (toilet.getOpeningHours() != null && !toilet.getOpeningHours().isEmpty()) {
                 storedToilet.setOpeningHours(toilet.getOpeningHours());
             }
-            // cast primitive double to Double
-            if (toilet.getRatingAverage() != 0) {
-                storedToilet.setRatingAverage(toilet.getRatingAverage());
-            }
             if (toilet.isGenderneutral()) {
                 storedToilet.setGenderneutral(toilet.isGenderneutral());
             }
@@ -190,7 +189,7 @@ public class ToiletService {
             toiletRepository.save(storedToilet);
 
         } else {
-            throw new RecordNotFoundException("ID does not exist!!!");
+            throw new RecordNotFoundException("ID does not exist!");
         }
     }
 
@@ -228,9 +227,6 @@ public class ToiletService {
             }
             if (toiletRequestDto.getOpeningHours() != null && !toiletRequestDto.getOpeningHours().isEmpty()) {
                 storedToilet.setOpeningHours(toiletRequestDto.getOpeningHours());
-            }
-            if (toiletRequestDto.getRatingAverage() != 0) {
-                storedToilet.setRatingAverage(toiletRequestDto.getRatingAverage());
             }
             if (toiletRequestDto.isGenderneutral()) {
                 storedToilet.setGenderneutral(toiletRequestDto.isGenderneutral());
@@ -277,7 +273,36 @@ public class ToiletService {
             toiletRepository.save(toilet);
         }
         else {
-            throw new RecordNotFoundException("ID does not exist!!!");
+            throw new RecordNotFoundException("ID does not exist!");
+        }
+    }
+
+    public Rating getToiletRatings(int id) {
+        Optional<Toilet> optionalToilet = toiletRepository.findById(id);
+
+        if (optionalToilet.isPresent()) {
+            Toilet toilet = optionalToilet.get();
+            return (Rating) toilet.getRatings();
+        }
+        else {
+            throw new RecordNotFoundException("ID does not exist!");
+        }
+    }
+
+    public void addToiletRating(int id, Rating rating) {
+        Optional<Toilet> optionalToilet = toiletRepository.findById(id);
+
+        if (optionalToilet.isPresent()) {
+            Toilet toilet = optionalToilet.get();
+            Rating newrating = (Rating) toilet.getRatings();
+
+            ratingRepository.save(rating);
+
+            newrating.setRatingToilet(newrating.getRatingToilet());
+            toiletRepository.save(toilet);
+        }
+        else {
+            throw new RecordNotFoundException("ID does not exist!");
         }
     }
 

@@ -12,6 +12,9 @@ function FeaturedToilet() {
     const [toiletEntry, setToiletEntry] = useState([]);
     const [loading, toggleLoading] = useState(false);
     const [error, setError] = useState('');
+    // beoordeling berekenen
+    const [numberOfRatings, setNumberOfRatings] = useState(0);
+    const [averageRating, setAverageRating] = useState(0);
 
     useEffect(() => {
 
@@ -22,6 +25,19 @@ function FeaturedToilet() {
             try {
                 const result = await axios.get('http://localhost:8080/toilets');
                 setToiletEntry(result);
+
+                let sum = 0;
+                const itemsFound = result.data[6].ratings.length;
+                for(let i = 0; i < itemsFound; i++){
+                    sum += parseInt(result.data[6].ratings[i].ratingToilet);
+                }
+
+                const averagePopularity = (Math.round((sum / itemsFound))/100)*100;
+                console.log("nr popularitySum:", sum);
+                setNumberOfRatings(itemsFound);
+                console.log("nr itemsFound/setNumberOfRatings:", itemsFound);
+                setAverageRating(averagePopularity);
+                console.log("Average popularity/setAverageRating:", averagePopularity);
 
             } catch (error) {
                 setError(`Er is iets misgegaan bij het ophalen van de data - (${error.message})`);
@@ -63,8 +79,8 @@ function FeaturedToilet() {
                             && toiletEntry.data[6].city}</li>
                             <li className="mapped__post__nation">land: {toiletEntry.data
                             && toiletEntry.data[6].country}</li>
-                            <li>beoordeling: {toiletEntry.data && toiletEntry.data[6].ratingAverage}
-                                &#9733; &#x2605; &#9733;</li>
+                            <li>Gemiddelde beoordeling: {averageRating}.0 &#9733; &#x2605; &#9733;
+                                </li>
                             <li>genderneutraal?: {toiletEntry.data
                             && toiletEntry.data[6].genderneutral
                                 ? <span>Ja <img src={GenderneutralIcon}

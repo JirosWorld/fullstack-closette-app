@@ -57,10 +57,10 @@ function ThumbnailStrip() {
                 <>
 
                     {photoDownloadEntry.map((thumbpost) => {
-                        console.log("post.data:");
-                        console.log(thumbpost);
+                        // console.log("post.data:");
+                        // console.log(thumbpost);
 
-                        return <span className="true-image__visible" key={thumbpost.id && thumbpost.title}>
+                        return <span className="true-image__visible" key={thumbpost.id && thumbpost.fileName}>
 
                             {thumbpost.id < 200
                             &&

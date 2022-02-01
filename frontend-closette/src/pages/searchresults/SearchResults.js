@@ -105,7 +105,7 @@ function SearchResults() {
                                         <br/>
                                         <span
                                             className="mapped__post__votes">Rating:
-                                            {post.ratingAverage} &#9733; &#x2605; &#9733;</span>
+                                            &#9733; &#x2605; &#9733;</span>
                                         <div className="mapped__post__details">
                                             <p className="mapped__post__detail">
                                                 <em>Genderneutraal/gratis/toegankelijk/foto:</em>
@@ -162,11 +162,6 @@ function SearchResults() {
                                                         link)</a>
                                                     </>
                                                     : <><em>(geen GPS locatie)</em></>}
-                                                <p>heeft rating: {post.ratingAverage
-                                                    ? <span>
-                                                        <strong>{post.ratingAverage}</strong></span>
-                                                    : <span className="tiny-info">Nee</span>}
-                                                </p>
                                                 <p>Foto: <a
                                                     href={post.photo
                                                     && `http://localhost:8080/download/${post.photo.fileName}`}

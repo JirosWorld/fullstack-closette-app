@@ -41,8 +41,7 @@ function SubmitPage() {
                 latitude: data.latitude,
                 longitude: data.longitude,
                 hasPhoto: data.hasPhoto,
-                openingHours: data.openingHours,
-                ratingAverage: data.ratingAverage,
+                openingHours: data.openingHours
             });
             setSubmitInfo(result);
             toggleSubmitSuccess(true);
@@ -272,23 +271,6 @@ function SubmitPage() {
                                         maxLength: {
                                             value: 80,
                                             message: "Te lang, gebruik maximaal 80 tekens.",
-
-                                        },
-                                    }}
-                                />
-
-                                <InputField
-                                    inputType="number"
-                                    placeholderText="Geef cijfer van 1 - 10"
-                                    errors={errors}
-                                    register={register}
-                                    labelText="Beoordeling (geef cijfer van 1 - 10)"
-                                    labelId="averageRating-field"
-                                    inputName="averageRating"
-                                    validationRules={{
-                                        maxLength: {
-                                            value: 3,
-                                            message: "Te lang, gebruik maximaal 2 tekens (een geheel cijfer van 1 - 10).",
 
                                         },
                                     }}

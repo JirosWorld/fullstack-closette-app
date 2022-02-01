@@ -205,7 +205,7 @@ function SearchPage() {
                                         &#127988; "{post.country}"
                                     </span><br/>
                                     <span
-                                        className="mapped__post__votes">Rating: {post.ratingAverage} &#9733; &#x2605; &#9733;</span>
+                                        className="mapped__post__votes"> &#9733; &#x2605; &#9733;</span>
                                     <div className="mapped__post__details">
                                         <p>Beschrijving: {post.infoText}</p>
                                         <p>{post.genderneutral

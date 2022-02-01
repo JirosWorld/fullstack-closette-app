@@ -2,7 +2,9 @@ package com.jirosworld.closette.controller;
 
 import com.jirosworld.closette.dto.ToiletRequestDto;
 import com.jirosworld.closette.model.Photo;
+import com.jirosworld.closette.model.Rating;
 import com.jirosworld.closette.model.Toilet;
+import com.jirosworld.closette.service.RatingService;
 import com.jirosworld.closette.service.ToiletService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class ToiletController {
 
     @Autowired
     private ToiletService toiletService;
+
+    @Autowired
+    private RatingService ratingService;
 
     @GetMapping(value = "/toilets")
     public ResponseEntity<Object> getToilets(@RequestParam(value = "title", required = false) String title, @RequestParam(value = "city", required = false) String city, @RequestParam(value = "country", required = false) String country) {
@@ -93,6 +98,19 @@ public class ToiletController {
     @PostMapping(value = "/toilets/{id}/photos")
     public ResponseEntity<Object> addToiletPhoto(@PathVariable int id, @RequestBody Photo photo) {
         toiletService.addToiletPhoto(id, photo);
+        return ResponseEntity.created(null).build();
+    }
+
+    // search all ratings for this toilet
+    @GetMapping(value = "/toilets/{id}/ratings")
+    public ResponseEntity<Object> getToiletRatings(@PathVariable int id) {
+        return ResponseEntity.ok(toiletService.getToiletRatings(id));
+    }
+
+    // this Toilet's ID gets a new Rating
+    @PostMapping(value = "/toilets/{id}/ratings")
+    public ResponseEntity<Object> addToiletRating(@PathVariable int id, @RequestBody Rating ratingToilet) {
+        toiletService.addToiletRating(id, ratingToilet);
         return ResponseEntity.created(null).build();
     }
 

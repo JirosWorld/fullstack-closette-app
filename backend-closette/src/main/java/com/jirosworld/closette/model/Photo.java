@@ -20,7 +20,7 @@ public class Photo {
     private byte[] docFile;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "photo", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = false)
+    @OneToMany(mappedBy = "photo", fetch = FetchType.EAGER)
     private List<Toilet> toilets = new ArrayList<>();
 
 
@@ -53,7 +53,6 @@ public class Photo {
     }
 
     // getters and setters of relation tables
-
 
     public List<Toilet> getToilets() {
         return toilets;
