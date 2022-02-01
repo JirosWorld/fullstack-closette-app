@@ -8,7 +8,7 @@ Hier een antwoord op de vragen:
 * Welke technische ontwerpbeslissingen heb ik gemaakt en waarom?
 * Is aan alle voorwaarden uit de opdracht voldaan?
 
-Conclusie: Zelfs al is niet álle funtionaliteit, die ik in de back-end heb gebouwd, zichtbaar te gebruiken in de front-end: aan alle voorwaarden gesteld in de opdracht, `Integrale eindopdracht Bootcamp v3.0.pdf` is voldaan.
+Conclusie: Zelfs al is niet álle functionaliteit, die ik in de back-end heb gebouwd, zichtbaar te gebruiken in de front-end: aan alle voorwaarden gesteld in de opdracht, `Integrale eindopdracht Bootcamp v3.0.pdf` is voldaan.
 
 ## Functioneel Ontwerp
 
@@ -34,7 +34,7 @@ De back-end server draait op http://localhost:8080
 
 De database is PostgreSQL.
 
-Door de het gebruik van Spring Boot met haar database produkten, kunnen de backend en de database waarschijnlijk niet zomaar op verschillende systemen draaien.
+Door de het gebruik van Spring Boot met haar database produkten, kunnen de backend en de database waarschijnlijk niet zomaar op alle systemen draaien.
 Daarom zijn er in de directory/folder `src/main/resources` verschillende `application.properties` meegeleverd:
 
 * JPA
@@ -98,11 +98,12 @@ Zie de directories/folders onder `src/test/java`.
 
 ## Technische functionaliteits beslissingen
 
-* In de eindexamenopdracht wordt als eis gesteld dat er een "bestands-up- en download" functionaliteit in de app zit. De upload- en download werkt volledig op de back-end, maar op de front-end is alleen de upload functie expliciet te zien: dit omdat een 'download' niet nodig is als functionaliteit binnen het concept van mijn toiletten-app idee. Natuurlijk vindt er _eigenlijk_ wél een soort 'download' plaats op de front-end omdat de geüploade afbeeldingen op de front-end in HTML worden afgebeeld/gerendered.
-* Dit is een 'stateless webserver' - daardoor kon ik geen 'prefilled' foto's afleveren in een nette database, die ook nog gekoppeld zouden zijn aan een statische uploads map. Dus heb ik verschillende functies en endpoints gebruikt en deze verschillend getoond op de frontend. Kort samengevat: alle foto's die op de backend in de 'uploads' map staan, zijn de 'prefilled' data die op de frontend alleen getoond worden bij alle toiletten die reeds meegegeven worden bij het opstarten van de backend. Dus zodra je een NIEUWE foto uploadt voor NIEUWE toilet entries, dan komt die foto-download URL ergens anders vandaan: de stateless server. Na opnieuw opstarten van de backen, verdwijnen alle nieuw geplaatste toiletten en ook alle nieuw geuploade foto's.
+* Java is een geheel nieuwe taal voor mij. Tot nu toe had ik alleen ervaring met HTML, CSS, basis PHP, basis SQL en zeer basale Javascript; ik heb grote vorderingen gemaakt, maar toch was ik beperkt in wat ik aankon om binnen een realistisch tijdsbestek te kunnen bouwen. Hierondeer volgen de zaken die ik niet of gedeeltelijk heb kunnen bouwen of waar ik andere beslissingen heb gemaakt dan in mijn klassendiagram en/of ontwerpen.
+* In de eindexamenopdracht wordt als eis gesteld dat er een "bestands-up- en download" functionaliteit in de app zit. Op de front-end is alleen de upload functie expliciet te zien: dit omdat een 'download' niet nodig is als functionaliteit binnen het concept van mijn toiletten-app idee. Natuurlijk vindt er _eigenlijk_ wél een soort 'download' plaats op de front-end omdat de geüploade afbeeldingen op de front-end in HTML worden afgebeeld/gerendered.
+* Dit is een 'stateless webserver' - daardoor kon ik geen 'prefilled' foto's afleveren in een nette database, die ook nog gekoppeld zouden zijn aan een statische uploads map. Dus heb ik verschillende functies en endpoints gebruikt en deze verschillend getoond op de frontend. Kort samengevat: alle foto's die op de backend in de 'uploads' map staan, zijn de 'prefilled' data die op de frontend alleen getoond worden bij alle toiletten die reeds meegegeven worden bij het opstarten van de backend. Dus zodra je een NIEUWE foto uploadt voor NIEUWE toilet entries, dan komt die foto-download URL ergens anders vandaan: de stateless server. Na opnieuw opstarten van de backend, verdwijnen alle nieuw geplaatste toiletten en ook alle nieuw geuploade foto's.
 * Ik heb gebruik gemaakt van standaard CSS en bij slechts 1 component heb ik een CSS-module gebruikt; dit omdat ik al bekend ben met CSS en dit tijd scheelde bij ontwikkelen. Wel heb ik hier en daar de BEM notatie gebruikt om ermee te oefenen.
 * Dit project gebruikt de verouderde versie 5 van React Router-Dom, omdat deze in de lessen is behandeld.
-* 
+* In mijn klassendiagram had ik besloten dat de relate van foto-tot-toilet een OneToOne moest zijn, maar in de werkelijkehid wilde ik er eigenlijk een ManyToMany van maken - sommige foto's worden meerdere malen herhaald/gebruikt, én eigenlijk wil je ook meerdere foto's per toilet kunnen plaatsen; dus heb ik er als compromis een ManyToOne relatie van gemaakt; dit ook omdat mijn basis Java kennis me nog parten speelt. In ieder geval zijn in de huidige constructie de foto ID's en toiletten ID's als foreign keys te gebruiken endaardoor ook aanspreekbaar als object voor de front-end.
 
 ## Wat is er niet gedaan + disclaimers
 
@@ -110,7 +111,7 @@ _(limitaties van de applicatie en beargumentatie van mogelijke doorontwikkelinge
 
 • Deze opdracht levert géén deployment-ready product op en zal niet werken op de gemiddelde FTP server, maar dat was ook geen eis.
 
-• Niet-functionele eisen: bij aanvang was niet duidelijk hoeveel ik qua User Experience binnen een kort Bootcamp tijdsbestek daadwerkelik af zou krijgen. Ik heb een flink aantal niet-functionele eisen (_meer eisen dan voor de eindopdracht nodig waren_) opgesteld waarvan een deel niet is uitgevoerd: deze eisen zijn vooral vanwege tijdsgebrek achterwege gelaten en hebben geen effect op de functionele werking en minimale eisen van de app/examenopdracht. In het Functioneel/Technisch ontwerp staat duidelijk aangegeven welke niet-functionele eisen niet zijn uitgevoerd door tijdsgebrek.
+• Niet-functionele eisen: bij aanvang was niet duidelijk hoeveel ik qua User Experience binnen een kort Bootcamp tijdsbestek daadwerkelijk af zou krijgen. Ik heb een flink aantal niet-functionele eisen (_meer eisen dan voor de eindopdracht nodig waren_) opgesteld waarvan een deel niet is uitgevoerd: deze eisen zijn vooral vanwege tijdsgebrek achterwege gelaten en hebben geen effect op de functionele werking en minimale eisen van de app/examenopdracht. In het Functioneel/Technisch ontwerp staat duidelijk aangegeven welke niet-functionele eisen niet zijn uitgevoerd door tijdsgebrek.
 
 • Het filteren van zoekresultaten gebeurt, op het moment van schrijven, vooral aan de front-end. Dat wil zeggen; er wordt zoveel mogelijk uit de database getoond (bijvoorbeeld alle gevonden entries uit 1 stad) en die kunnen dan d.m.v. filterknoppen binnen 1 window verfijnd worden zonder dat er een verzoek naar de database nodig is - voor aantal functies kun je KIEZEN of je die aan de frontend of aan de backend wilt afhandelen. Door tijdgebrek vond ik het makkelijker om de filtering vooral aan de frontend af te handelen.
 
@@ -128,9 +129,9 @@ _(limitaties van de applicatie en beargumentatie van mogelijke doorontwikkelinge
 
 • De gestelde kwaliteitseis van een totale test-coverage van 50% is behaald.
 
-• Aan de front-end zijn geen Dev dependencies gebruikt. 
+• Aan de front-end zijn geen Dev dependencies gebruikt (dit  zou netter zijn bij gebruik van SASS bijvoorbeeld). 
 
-• Het ontwerp in Figma komt niet 100% overeen met wat ik uiteindelijk in React heb gebouwd; in CSS kan ik heus wel 'pixel perfect' bouwen maar Figma doet niet wat ik wil. Een aantal elementen in Figma hadden afgeronde hoeken moeten hebben, maar dat lukt niet overal. Deze manier van werken is niet 'industry standard' weet ik - ik moet het design van een UX designer natuurlijk tot op de pixel nauwkeurig kunnen nabouwen. In deze oplevering lijkt het nu alsof ik me niet aan mijn eigen ontwerp heb gehouden - maar eigenlijk is het omgekeerd: Figma houdt zich niet aan mij.
+• Het ontwerp in Figma komt niet 100% overeen met wat ik uiteindelijk in React heb gebouwd; in CSS kan ik heus wel 'pixel perfect' bouwen maar Figma doet niet wat ik wil. Een aantal elementen in Figma hadden afgeronde hoeken en meer consequente tussenruimtes moeten hebben, maar dat lukt niet overal. Deze manier van werken is niet 'industry standard' weet ik - ik moet het design van een UX designer natuurlijk tot op de pixel nauwkeurig kunnen nabouwen. In deze oplevering lijkt het nu alsof ik me niet aan mijn eigen ontwerp heb gehouden - maar eigenlijk is het omgekeerd: Figma houdt zich niet aan mij.
 
 • Ik had paginering in kunnen bouwen voor de front-end, of een "never-ending scroll" want nu komen alle resultaten op 1 pagina (zowel bij de toiletten als bij Nieuws). De paginering zou kunnen via de back-end met een CRUD repositiry, of aan de front-end met een javascript dat steeds een vast aantal posts toont op basis van scroll positie.
 
@@ -144,7 +145,7 @@ _(limitaties van de applicatie en beargumentatie van mogelijke doorontwikkelinge
 
 ## Leerpunten
 
-• De visuele en functionele eisen zijn echt eeuwig uit te breiden, en waren lastig voor mij om te trechteren naar een werkbare hoeveelheid code. Want: beperken tot iets kleins, blijkt het moeilijkste te zijn van dit proces. Het was ook niet van tevoren in te schatten hoeveel vande belangrijkste functionele eisen ik eigenlijk kon verwezenlijken.
+• De visuele en functionele eisen zijn echt eeuwig uit te breiden, en waren lastig voor mij om te trechteren naar een werkbare hoeveelheid code. Want: beperken tot iets kleins, blijkt het moeilijkste te zijn van dit proces. Het was ook niet van tevoren in te schatten hoeveel van de belangrijkste functionele eisen ik eigenlijk kon verwezenlijken.
 
 • ik ben altijd goed geweest in minieme details; ik ben geen project-manager met helicoptervisie, dus het was niet onverwacht dat ik moeite had met het vastleggen/structureren van de ontwerpfase, maar dat ik minder moeite had met het uitpuzzelen van code details.
 
