@@ -14,6 +14,7 @@ import PaidIcon from "../../assets/icons/icon-money-pay-euro.png";
 import AccessibleIcon from "../../assets/icons/icon-accessible.svg";
 import noImage from "../../assets/icons/icon-lines-toilet-jiro.svg";
 import CameraIcon from "../../assets/icons/icon-camera.png";
+import {ReactComponent as SearchLookIcon} from "../../assets/icons/icon-lines-search-jiro.svg";
 
 function SearchPage() {
     const {register, handleSubmit, formState: {errors}} = useForm();
@@ -104,7 +105,9 @@ function SearchPage() {
             <main className="search__page content-wrapper">
                 <p>Op deze pagina kun je snel-zoeken op basis van &oacute;f stad, &oacute;f
                     land &oacute;f locatie-naam. Scroll naar beneden, nadat je een zoek-knop hebt
-                    ingedrukt, om de zoekresultaten te zien.</p>
+                    ingedrukt, om de zoekresultaten te zien.
+                </p>
+
                 <h3>Zoek op stad</h3>
                 <form className="form-container city" onSubmit={handleSubmit(onFormSubmitCity)}>
                     <InputField
@@ -156,6 +159,13 @@ function SearchPage() {
                     </button>
                 </form>
 
+                <hr/>
+                <p><Link to="/searchresults">
+                    <SearchLookIcon className="svg-lookingglass-inline" alt="search icon"/></Link>
+                    <em>(Of bekijk direct <Link to="/searchresults">ALLE toiletten
+                        data hier</Link> zonder
+                        te zoeken).</em></p>
+
 
                 <hr/>
                 <h4>Zoekresultaten</h4>
@@ -170,6 +180,24 @@ function SearchPage() {
                     {toiletEntry.length === 0 && <p>Geen resultaten – doe een nieuwe zoekopdracht.</p>}
 
                     {toiletEntry.data && toiletEntry.data.map((post) => {
+
+
+                        let sum = 0;
+                        const itemsFound = post.ratings.length;
+                        for(let i = 0; i < itemsFound; i++){
+                            sum += parseInt(post.ratings[i].rating);
+                        }
+                        console.log("nr popularitySum:", sum);
+
+                        function naiveRound(num, decimalPlaces = 0) {
+                            var p = Math.pow(10, decimalPlaces);
+                            return Math.round(num * p) / p;
+                        }
+                        console.log( naiveRound((sum / itemsFound), 2) );
+                        const averagePopularity = naiveRound((sum / itemsFound), 2);
+
+                        // setAverageRating(averagePopularity);
+                        console.log("Average popularity/setAverageRating:", averagePopularity);
 
                         return <li key={post.id && post.title}>
 
@@ -204,8 +232,13 @@ function SearchPage() {
                                     <span className="mapped__post__detail">
                                         &#127988; "{post.country}"
                                     </span><br/>
-                                    <span
-                                        className="mapped__post__votes"> &#9733; &#x2605; &#9733;</span>
+                                    <p className="mapped__post__votes">Beoordeling: {averagePopularity}
+                                        {averagePopularity < 7
+                                        && <span> &#9733; &#x2605; </span>}
+
+                                        {averagePopularity > 7
+                                        && <span> &#9733; &#x2605; &#9733; &#x2605; &#9733;</span>}
+                                    </p>
                                     <div className="mapped__post__details">
                                         <p>Beschrijving: {post.infoText}</p>
                                         <p>{post.genderneutral
@@ -271,10 +304,6 @@ function SearchPage() {
                         }
                     )}
                 </ul>
-
-                <div className="content-wrapper"><p>
-                    Bekijk <Link to="/searchresults">ALLE toiletten data</Link> zonder te zoeken.
-                </p></div>
             </section>
         </>
     );

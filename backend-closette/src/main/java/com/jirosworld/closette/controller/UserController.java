@@ -90,8 +90,8 @@ public class UserController {
 
 //    koppeltabel
     @PostMapping(value = "/{username}/ratings")
-    public ResponseEntity<Object> addUserRating(@PathVariable("username") String username, @RequestBody Rating ratingToilet) {
-        userService.addUserRating(username, ratingToilet);
+    public ResponseEntity<Object> addUserRating(@PathVariable("username") String username, @RequestBody Rating rating) {
+        userService.addUserRating(username, rating);
         return ResponseEntity.created(null).build();
     }
 

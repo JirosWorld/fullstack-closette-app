@@ -45,8 +45,8 @@ public class RatingService {
         }
     }
 
-    public int addRating(Rating ratingToilet) {
-        Rating newRating = ratingRepository.save(ratingToilet);
+    public int addRating(Rating rating) {
+        Rating newRating = ratingRepository.save(rating);
         return newRating.getId();
     }
 

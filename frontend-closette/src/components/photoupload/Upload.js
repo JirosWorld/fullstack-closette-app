@@ -7,7 +7,6 @@ function Upload({setFile, url, setUrl}) {
     const handleImageChange = (e) => {
 
         let reader = new FileReader();
-
         let file = e.target.files[0];
 
         setSelectedFile(e.target.files[0]);
@@ -15,12 +14,14 @@ function Upload({setFile, url, setUrl}) {
         reader.onloadend = () => {
 
             setFile(file);
-
-            setUrl(reader.result)
+            setUrl(reader.result);
 
         }
 
-        reader.readAsDataURL(file)
+        reader.readAsDataURL(file);
+        setTimeout(() => {
+            window.scrollTo({ top: 800, behavior: 'smooth' })
+        }, 0);
 
     }
 
@@ -39,7 +40,7 @@ function Upload({setFile, url, setUrl}) {
                     <>
                         <img src={url}
                              alt="preview__upload"/>
-                        {selectedFile.name
+                        {selectedFile && selectedFile.name
                             ?
                             <div className="photo-upload__data margin-zero">
                                 <p className="margin-zero"><strong>Naam foto:</strong>
@@ -55,6 +56,7 @@ function Upload({setFile, url, setUrl}) {
                                     && selectedFile.lastModifiedDate.toLocaleDateString()}</em>
                                 </p>
                             </div>
+
                             :
                             <p className="margin-zero">Kies een foto!</p>
                         }

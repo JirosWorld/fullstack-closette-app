@@ -298,7 +298,7 @@ public class ToiletService {
 
             ratingRepository.save(rating);
 
-            newrating.setRatingToilet(newrating.getRatingToilet());
+            newrating.setRating(newrating.getRating());
             toiletRepository.save(toilet);
         }
         else {

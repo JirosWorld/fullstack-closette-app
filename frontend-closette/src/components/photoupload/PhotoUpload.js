@@ -84,7 +84,7 @@ function PhotoUpload() {
                     <p className="margin-zero">Heb je een betere foto?</p>
                     <div className="margin-zero">
                         <label htmlFor="photo">Upload hier een
-                            nieuwe:</label>
+                            nieuwe, liefst vierkante, foto (scroll naar beneden):</label>
                         <br/>
 
                         <form onSubmit={handleSubmit(uploadPhoto)}>

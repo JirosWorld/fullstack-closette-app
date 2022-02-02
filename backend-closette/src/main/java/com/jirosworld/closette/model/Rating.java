@@ -10,20 +10,20 @@ public class Rating {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private int ratingToilet;
+    private int rating;
 
     // constructors
 
     public Rating() {
     }
 
-    public Rating(int id, int ratingToilet) {
+    public Rating(int id, int rating) {
         this.id = id;
-        this.ratingToilet = ratingToilet;
+        this.rating = rating;
     }
 
-    public Rating(int ratingToilet) {
-        this.ratingToilet = ratingToilet;
+    public Rating(int rating) {
+        this.rating = rating;
     }
 
     // getters and setters
@@ -36,12 +36,12 @@ public class Rating {
         this.id = id;
     }
 
-    public int getRatingToilet() {
-        return ratingToilet;
+    public int getRating() {
+        return rating;
     }
 
-    public void setRatingToilet(int ratingToilet) {
-        this.ratingToilet = ratingToilet;
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 
 }

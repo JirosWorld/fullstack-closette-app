@@ -29,11 +29,17 @@ function FeaturedToilet() {
                 let sum = 0;
                 const itemsFound = result.data[6].ratings.length;
                 for(let i = 0; i < itemsFound; i++){
-                    sum += parseInt(result.data[6].ratings[i].ratingToilet);
+                    sum += parseInt(result.data[6].ratings[i].rating);
                 }
-
-                const averagePopularity = (Math.round((sum / itemsFound))/100)*100;
                 console.log("nr popularitySum:", sum);
+
+                function naiveRound(num, decimalPlaces = 0) {
+                    var p = Math.pow(10, decimalPlaces);
+                    return Math.round(num * p) / p;
+                }
+                console.log( naiveRound((sum / itemsFound), 2) );
+                const averagePopularity = naiveRound((sum / itemsFound), 2);
+
                 setNumberOfRatings(itemsFound);
                 console.log("nr itemsFound/setNumberOfRatings:", itemsFound);
                 setAverageRating(averagePopularity);
@@ -79,7 +85,12 @@ function FeaturedToilet() {
                             && toiletEntry.data[6].city}</li>
                             <li className="mapped__post__nation">land: {toiletEntry.data
                             && toiletEntry.data[6].country}</li>
-                            <li>Gemiddelde beoordeling: {averageRating}.0 &#9733; &#x2605; &#9733;
+                            <li>Gemiddelde beoordeling: {averageRating}
+                                {averageRating < 7
+                                && <span> &#9733; &#x2605; </span>}
+
+                                {averageRating > 7
+                                && <span> &#9733; &#x2605; &#9733; &#x2605; &#9733;</span>}
                                 </li>
                             <li>genderneutraal?: {toiletEntry.data
                             && toiletEntry.data[6].genderneutral

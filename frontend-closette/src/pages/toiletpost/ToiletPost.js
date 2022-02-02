@@ -64,17 +64,13 @@ function ToiletPost() {
                 let sum = 0;
                 const itemsFound = result.data.ratings.length;
                 for(let i = 0; i < itemsFound; i++){
-                    sum += parseInt(result.data.ratings[i].ratingToilet);
+                    sum += parseInt(result.data.ratings[i].rating);
                 }
-                console.log("nr popularitySum:", sum);
-
                 function naiveRound(num, decimalPlaces = 0) {
                     var p = Math.pow(10, decimalPlaces);
                     return Math.round(num * p) / p;
                 }
-                console.log( naiveRound((sum / itemsFound), 2) );
                 const averagePopularity = naiveRound((sum / itemsFound), 2);
-
                 setNumberOfRatings(itemsFound);
                 console.log("nr itemsFound/setNumberOfRatings:", itemsFound);
                 setAverageRating(averagePopularity);
@@ -187,9 +183,14 @@ function ToiletPost() {
                                         geplaatst: {toiletEntry && toiletEntry.postTime}</em></p>
                                     <p><strong>Stad: {toiletEntry && toiletEntry.city}</strong></p>
                                     <p>Land: {toiletEntry && toiletEntry.country}</p>
-                                    <p>Gemiddelde beoordeling: {averageRating} &#9733; &#x2605; &#9733;
-                                        <br/>
-                                        (gebaseerd op <em>{numberOfRatings}</em> ratings)</p>
+                                    <p>Gemiddelde beoordeling: {averageRating}
+                                        {averageRating < 7
+                                        && <span> &#9733; &#x2605; </span>}
+
+                                        {averageRating > 7
+                                        && <span> &#9733; &#x2605; &#9733; &#x2605; &#9733;</span>}
+                                    </p>
+                                    <p className="tiny-info">(gebaseerd op <em>{numberOfRatings}</em> ratings)</p>
 
                                 </div>
                             </div>
@@ -260,7 +261,7 @@ function ToiletPost() {
                                         {toiletEntry.ratings && toiletEntry.ratings.map((post) => {
 
                                             return <li key={post.id}>
-                                                Cijfer: {post.ratingToilet}
+                                                Cijfer: {post.rating}
                                             </li>
                                         })
                                         }

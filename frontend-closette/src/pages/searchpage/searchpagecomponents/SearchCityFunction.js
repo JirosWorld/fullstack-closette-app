@@ -1,17 +1,17 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import {useForm} from 'react-hook-form';
-import "./SearchPage.css";
-import InputField from "../../components/form-elements/inputfield/InputField";
+import "../SearchPage.css";
+import InputField from "../../../components/form-elements/inputfield/InputField";
 import axios from "axios";
-import Loader from "../../components/loader/Loader";
-import MapIcon from "../../assets/icons/icon-map.png";
-import GenderneutralIcon from "../../assets/icons/icon-transgenderneutral.svg";
-import FreeIcon from "../../assets/icons/icon-money-free-gratis.png";
-import PaidIcon from "../../assets/icons/icon-money-pay-euro.png";
-import AccessibleIcon from "../../assets/icons/icon-accessible.svg";
-import noImage from "../../assets/icons/icon-lines-toilet-jiro.svg";
-import CameraIcon from "../../assets/icons/icon-camera.png";
+import Loader from "../../../components/loader/Loader";
+import MapIcon from "../../../assets/icons/icon-map.png";
+import GenderneutralIcon from "../../../assets/icons/icon-transgenderneutral.svg";
+import FreeIcon from "../../../assets/icons/icon-money-free-gratis.png";
+import PaidIcon from "../../../assets/icons/icon-money-pay-euro.png";
+import AccessibleIcon from "../../../assets/icons/icon-accessible.svg";
+import noImage from "../../../assets/icons/icon-lines-toilet-jiro.svg";
+import CameraIcon from "../../../assets/icons/icon-camera.png";
 
 function SearchCityFunction() {
     const {register, handleSubmit, formState: {errors}} = useForm();

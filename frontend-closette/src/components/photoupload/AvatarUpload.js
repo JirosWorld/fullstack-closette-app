@@ -40,7 +40,7 @@ function AvatarUpload() {
         formData.append("file", file);
 
         try {
-            const result = await axios.post("http://localhost:8080/single/uploadDb",
+            const result = await axios.post("http://localhost:8080/single/upload",
                 formData,
                 {
                     headers: {
@@ -80,7 +80,7 @@ function AvatarUpload() {
                     <p className="margin-zero">Geen mooie avatar?</p>
                     <div className="margin-zero">
                         <label htmlFor="photo">Upload hier een
-                            nieuwe gebruikersafbeelding:</label>
+                            nieuwe, liefst vierkante, gebruikersafbeelding (scroll naar beneden):</label>
                         <br/>
 
                         <form onSubmit={handleSubmit(uploadAvatar)} className="margin-zero">

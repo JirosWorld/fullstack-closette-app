@@ -10,7 +10,7 @@ public class RatingRequestDto {
         private int id;
 
         @Size(min=1, max=10, message="Rating number must be a whole number between 1 and 10.")
-        private int ratingToilet;
+        private int rating;
 
         // setters and getters
 
@@ -22,12 +22,12 @@ public class RatingRequestDto {
                 this.id = id;
         }
 
-        public int getRatingToilet() {
-                return ratingToilet;
+        public int getRating() {
+                return rating;
         }
 
-        public void setRatingToilet(int ratingToilet) {
-                this.ratingToilet = ratingToilet;
+        public void setRating(int rating) {
+                this.rating = rating;
         }
 
 }

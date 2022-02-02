@@ -14,6 +14,7 @@ import PaidIcon from "../../assets/icons/icon-money-pay-euro.png";
 import CameraIcon from "../../assets/icons/icon-camera.png";
 import AccessibleIcon from "../../assets/icons/icon-accessible.svg"
 
+
 function SearchResults() {
 
     const [toiletEntry, setToiletEntry] = useState([]);
@@ -48,7 +49,8 @@ function SearchResults() {
             }
             toggleLoading(false);
         }
-
+        // console.log("respons:");
+        // fetchToilet().then((response) => console.log(response));
         fetchToilets();
 
     }, []);
@@ -68,6 +70,23 @@ function SearchResults() {
                         {toiletEntry.data && toiletEntry.data.map((post) => {
                                 console.log("post.data:");
                                 console.log(post);
+
+                                let sum = 0;
+                                const itemsFound = post.ratings.length;
+                                for(let i = 0; i < itemsFound; i++){
+                                    sum += parseInt(post.ratings[i].rating);
+                                }
+                                console.log("nr popularitySum:", sum);
+
+                                function naiveRound(num, decimalPlaces = 0) {
+                                    var p = Math.pow(10, decimalPlaces);
+                                    return Math.round(num * p) / p;
+                                }
+                                console.log( naiveRound((sum / itemsFound), 2) );
+                                const averagePopularity = naiveRound((sum / itemsFound), 2);
+
+                                // setAverageRating(averagePopularity);
+                                console.log("Average popularity/setAverageRating:", averagePopularity);
 
                     return <li key={post.id && post.title}>
                                     <Link
@@ -103,9 +122,13 @@ function SearchResults() {
                                         <span className="mapped__post__nation">
                                             Land {post.country}</span>
                                         <br/>
-                                        <span
-                                            className="mapped__post__votes">Rating:
-                                            &#9733; &#x2605; &#9733;</span>
+                                        <p className="mapped__post__votes">Beoordeling: {averagePopularity}
+                                            {averagePopularity < 7
+                                            && <span> &#9733; &#x2605; </span>}
+
+                                            {averagePopularity > 7
+                                            && <span> &#9733; &#x2605; &#9733; &#x2605; &#9733;</span>}
+                                        </p>
                                         <div className="mapped__post__details">
                                             <p className="mapped__post__detail">
                                                 <em>Genderneutraal/gratis/toegankelijk/foto:</em>

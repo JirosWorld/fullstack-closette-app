@@ -11,6 +11,7 @@ import AvatarUpload from "../../components/photoupload/AvatarUpload";
 import {useForm} from "react-hook-form";
 import ChangePassword from "./ChangePassword";
 
+
 function DashboardPage() {
 
     useEffect(() => {
@@ -87,12 +88,14 @@ function DashboardPage() {
                             </div>
                             <div className="template-intro dashboard">
                                 <h3>Welkom in jouw gebruikers profiel</h3>
-                                <p>Als je bent ingelogd, kun je hier je gegevens bekijken en je wachtwoord
+                                <p>Als je bent ingelogd, kun je hier je gegevens bekijken en je
+                                    wachtwoord
                                     aanpassen.
                                     <br/> Moderators kunnen hier de gegevens bekijken van alle
                                     bestaande gebruikers.</p>
                             </div>
                         </div>
+
                         <div className="template-main-content">
                             <div>
                                 <h2>Gegevens</h2>

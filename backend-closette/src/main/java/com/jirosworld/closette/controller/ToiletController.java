@@ -109,8 +109,8 @@ public class ToiletController {
 
     // this Toilet's ID gets a new Rating
     @PostMapping(value = "/toilets/{id}/ratings")
-    public ResponseEntity<Object> addToiletRating(@PathVariable int id, @RequestBody Rating ratingToilet) {
-        toiletService.addToiletRating(id, ratingToilet);
+    public ResponseEntity<Object> addToiletRating(@PathVariable int id, @RequestBody Rating rating) {
+        toiletService.addToiletRating(id, rating);
         return ResponseEntity.created(null).build();
     }
 

@@ -57,7 +57,7 @@ function ToiletRating() {
                 let sum = 0;
                 const itemsFound = result.data.ratings.length;
                 for(let i = 0; i < itemsFound; i++){
-                    sum += parseInt(result.data.ratings[i].ratingToilet);
+                    sum += parseInt(result.data.ratings[i].rating);
                 }
                 console.log("nr popularitySum:", sum);
 
@@ -96,7 +96,7 @@ function ToiletRating() {
         try {
             const result = await axios.patch(`http://localhost:8080/ratings/${id}`,
                 {
-                toiletRating: data.toiletRating
+                rating: data.rating
             });
             setPatchInfo(result);
             console.log("Resultaat submitdata useState:");
@@ -157,7 +157,7 @@ function ToiletRating() {
                                         {toiletEntry.ratings && toiletEntry.ratings.map((post) => {
 
                                                 return <p key={post.id}>
-                                                    Cijfer: {post.ratingToilet}
+                                                    Cijfer: {post.rating}
                                                 </p>
                                             })
                                         }
@@ -274,8 +274,8 @@ function ToiletRating() {
                             errors={errors}
                             register={register}
                             labelText="Beoordeling (geef cijfer van 1 - 10)"
-                            labelId="toiletRating-field"
-                            inputName="toiletRating"
+                            labelId="rating-field"
+                            inputName="rating"
                             validationRules={{
                                 maxLength: {
                                     value: 3,
@@ -293,12 +293,6 @@ function ToiletRating() {
                         Updaten
                     </button>
                     {/* on button click: patch/put update toilet and setVisibility(true) */}
-
-                    <button
-                        onClick={() => window.location.reload(true)}
-                    >
-                        Cancel
-                    </button>
 
                     {error && <p className="error-message">{error}</p>}
                     {submitSuccess === true &&
