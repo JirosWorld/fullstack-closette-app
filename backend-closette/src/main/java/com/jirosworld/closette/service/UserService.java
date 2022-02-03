@@ -5,9 +5,7 @@ import com.jirosworld.closette.exception.*;
 import com.jirosworld.closette.model.Authority;
 import com.jirosworld.closette.model.User;
 import com.jirosworld.closette.model.Rating;
-import com.jirosworld.closette.model.User;
 import com.jirosworld.closette.repository.RatingRepository;
-import com.jirosworld.closette.repository.ToiletRepository;
 import com.jirosworld.closette.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -15,7 +13,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -63,8 +60,7 @@ public class UserService {
 
             User newUser = userRepository.save(user);
             return newUser.getUsername();
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             throw new BadRequestException("BadRequest: Cannot create user.");
         }
 
@@ -73,8 +69,7 @@ public class UserService {
     public void deleteUser(String username) {
         if (userRepository.existsById(username)) {
             userRepository.deleteById(username);
-        }
-        else {
+        } else {
             throw new UserNotFoundException(username);
         }
     }
@@ -83,8 +78,7 @@ public class UserService {
         Optional<User> userOptional = userRepository.findById(username);
         if (userOptional.isEmpty()) {
             throw new UserNotFoundException(username);
-        }
-        else {
+        } else {
             User user = userOptional.get();
             user.setPassword(passwordEncoder.encode(newUser.getPassword()));
             user.setEmail(newUser.getEmail());
@@ -97,8 +91,7 @@ public class UserService {
         Optional<User> userOptional = userRepository.findById(username);
         if (userOptional.isEmpty()) {
             throw new UserNotFoundException(username);
-        }
-        else {
+        } else {
             User user = userOptional.get();
             return user.getAuthorities();
         }
@@ -108,8 +101,7 @@ public class UserService {
         Optional<User> userOptional = userRepository.findById(username);
         if (userOptional.isEmpty()) {
             throw new UserNotFoundException(username);
-        }
-        else {
+        } else {
             User user = userOptional.get();
             user.addAuthority(authorityString);
             userRepository.save(user);
@@ -120,8 +112,7 @@ public class UserService {
         Optional<User> userOptional = userRepository.findById(username);
         if (userOptional.isEmpty()) {
             throw new UserNotFoundException(username);
-        }
-        else {
+        } else {
             User user = userOptional.get();
             user.removeAuthority(authorityString);
             userRepository.save(user);
@@ -159,16 +150,13 @@ public class UserService {
                     User user = userOptional.get();
                     user.setPassword(passwordEncoder.encode(password));
                     userRepository.save(user);
-                }
-                else {
+                } else {
                     throw new UserNotFoundException(username);
                 }
-            }
-            else {
+            } else {
                 throw new InvalidPasswordException();
             }
-        }
-        else {
+        } else {
             throw new NotAuthorizedException();
         }
     }
@@ -187,8 +175,7 @@ public class UserService {
 
             ratings.add(rating);
             userRepository.save(user);
-        }
-        else {
+        } else {
             throw new RecordNotFoundException("User does not exist!!!");
         }
     }

@@ -88,7 +88,8 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-//    koppeltabel
+//    relation tables
+
     @PostMapping(value = "/{username}/ratings")
     public ResponseEntity<Object> addUserRating(@PathVariable("username") String username, @RequestBody Rating rating) {
         userService.addUserRating(username, rating);

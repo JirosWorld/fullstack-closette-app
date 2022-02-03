@@ -36,17 +36,13 @@ public class ToiletService {
     public Iterable<Toilet> findAllToiletsQuery(String title, String city, String country) {
         if (!title.isEmpty() && city.isEmpty() && country.isEmpty()) {
             return toiletRepository.findAllByTitleContainingIgnoreCase(title);
-        }
-        else if (title.isEmpty() && !city.isEmpty() && country.isEmpty()) {
+        } else if (title.isEmpty() && !city.isEmpty() && country.isEmpty()) {
             return toiletRepository.findAllByCityContainingIgnoreCase(city);
-        }
-        else if (title.isEmpty() && city.isEmpty() && !country.isEmpty()) {
+        } else if (title.isEmpty() && city.isEmpty() && !country.isEmpty()) {
             return toiletRepository.findAllByCountryContainingIgnoreCase(country);
-        }
-        else if (!title.isEmpty() && !city.isEmpty() && !country.isEmpty()) {
+        } else if (!title.isEmpty() && !city.isEmpty() && !country.isEmpty()) {
             return toiletRepository.findAllByTitleAndCityAndCountry(title, city, country);
-        }
-        else {
+        } else {
             return toiletRepository.findAll();
         }
     }
@@ -60,8 +56,12 @@ public class ToiletService {
         return toiletRepository.findAllByCityContainingIgnoreCase(city);
     }
 
-    public List<Toilet> getToiletsByCountry(String country){
+    public List<Toilet> getToiletsByCountry(String country) {
         return toiletRepository.findAllByCountryContainingIgnoreCase(country);
+    }
+
+    public List<Toilet> getToiletsByGenderneutral(Boolean genderneutral) {
+        return toiletRepository.findAllByGenderneutral(genderneutral);
     }
 
     public Toilet getToiletByTitle(String title) {
@@ -69,15 +69,12 @@ public class ToiletService {
     }
 
 //    schets voor zoek queries in query pad
-//    List<Toilet> findAllByGenderneutral(Boolean genderneutral);
 //    List<Toilet> findAllByFree(Boolean free);
 //    List<Toilet> findAllByAccessible(Boolean accessible);
 //    List<Toilet> findAllByCleanliness(Boolean cleanliness);
 //    List<Toilet> findAllByHasPhoto(Boolean hasPhoto);
 
-    public List<Toilet> getToiletsByGenderneutral(Boolean genderneutral){
-        return toiletRepository.findAllByGenderneutral(genderneutral);
-    }
+
 
     public Toilet getToilet(int id) {
         Optional<Toilet> optionalToilet = toiletRepository.findById(id);
@@ -258,8 +255,7 @@ public class ToiletService {
         if (optionalToilet.isPresent()) {
             Toilet toilet = optionalToilet.get();
             return toilet.getPhoto();
-        }
-        else {
+        } else {
             throw new RecordNotFoundException("ID does not exist!");
         }
     }
@@ -275,8 +271,7 @@ public class ToiletService {
 
             newphoto.setToilets(newphoto.getToilets());
             toiletRepository.save(toilet);
-        }
-        else {
+        } else {
             throw new RecordNotFoundException("ID does not exist!");
         }
     }
@@ -287,8 +282,7 @@ public class ToiletService {
         if (optionalToilet.isPresent()) {
             Toilet toilet = optionalToilet.get();
             return (Rating) toilet.getRatings();
-        }
-        else {
+        } else {
             throw new RecordNotFoundException("ID does not exist!");
         }
     }
@@ -304,8 +298,7 @@ public class ToiletService {
 
             newrating.setRating(newrating.getRating());
             toiletRepository.save(toilet);
-        }
-        else {
+        } else {
             throw new RecordNotFoundException("ID does not exist!");
         }
     }

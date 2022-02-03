@@ -25,8 +25,7 @@ public class NewsPostService {
     public Iterable<NewsPost> getNewsposts(String title) {
         if (title.isEmpty()) {
             return newsPostRepository.findAll();
-        }
-        else {
+        } else {
             return newsPostRepository.findAllByTitleContainingIgnoreCase(title);
         }
     }
@@ -36,8 +35,7 @@ public class NewsPostService {
 
         if (optionalPost.isPresent()) {
             return optionalPost.get();
-        }
-        else {
+        } else {
             throw new RecordNotFoundException("ID does not exist.");
         }
 
@@ -46,11 +44,10 @@ public class NewsPostService {
     public void deletePost(int id) {
         if (newsPostRepository.existsById(id)) {
             newsPostRepository.deleteById(id);
-        }
-        else {
+        } else {
             throw new RecordNotFoundException("ID does not exist!");
         }
-}
+    }
 
     public int addPost(NewsPostRequestDto newsPostRequestDto) {
 
@@ -79,8 +76,7 @@ public class NewsPostService {
 
             post.setId(storedNewsPost.getId());
             newsPostRepository.save(post);
-        }
-        else {
+        } else {
             throw new RecordNotFoundException("ID does not exist.");
         }
     }
@@ -91,19 +87,18 @@ public class NewsPostService {
         if (optionalNewsPost.isPresent()) {
             NewsPost storedPost = newsPostRepository.findById(id).orElse(null);
 
-            if (newspost.getTitle()!=null && !newspost.getTitle().isEmpty()) {
+            if (newspost.getTitle() != null && !newspost.getTitle().isEmpty()) {
                 storedPost.setTitle(newspost.getTitle());
             }
-            if (newspost.getDescription()!=null && !newspost.getDescription().isEmpty()) {
+            if (newspost.getDescription() != null && !newspost.getDescription().isEmpty()) {
                 storedPost.setDescription(newspost.getDescription());
             }
-            if (newspost.getParagraph()!=null && !newspost.getParagraph().isEmpty()) {
+            if (newspost.getParagraph() != null && !newspost.getParagraph().isEmpty()) {
                 storedPost.setParagraph(newspost.getParagraph());
             }
             newsPostRepository.save(storedPost);
 
-        }
-        else {
+        } else {
             throw new RecordNotFoundException("ID does not exist!!!");
         }
     }

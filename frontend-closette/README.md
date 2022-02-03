@@ -15,7 +15,7 @@ Welkom bij de _Closette ~ genderneutrale toiletten zoek-app_. Deze front-end kun
 * Link naar de GIT repository waarnaar het project geüpload
 is: [Jiro's Github Fullstack Closette App](https://github.com/JirosWorld/fullstack-closette-app).
 
-* in de 'LEESMIJ' map staat de Installatiehandleiding:  [link naar installatiehandleiding in markdown](../LEESMIJ/installatiehandleiding.md)
+* Lees eerst goed de [installatiehandleiding (PDF)](../LEESMIJ/installatiehandleiding-closette.pdf) die in [de LEESMIJ map](../LEESMIJ) staat.
 
 * in de 'LEESMIJ' map staat het [Functioneel ontwerp + het Technisch ontwerp **samen** in 1 PDF](../LEESMIJ/functioneel-technisch-ontwerp-app-jiro.pdf) (7 MB)
 

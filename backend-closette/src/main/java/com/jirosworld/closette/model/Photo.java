@@ -37,8 +37,7 @@ public class Photo {
         return fileName;
     }
 
-//    @Column(length = 16000000) // Generates medium blob
-//    @Basic(fetch = FetchType.LAZY)
+//    convert photo to byte array
     @Lob
     public byte[] getDocFile() {
         return docFile;
@@ -61,4 +60,5 @@ public class Photo {
     public void setToilets(List<Toilet> toilets) {
         this.toilets = toilets;
     }
+
 }

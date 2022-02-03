@@ -58,6 +58,7 @@ public class RatingServiceTest {
 
         when(ratingRepository.findAll()).thenReturn(testRatings);
 
+//        int id = 6;
         ratingService.findAllRatings();
 
         verify(ratingRepository, times(1)).findAll();

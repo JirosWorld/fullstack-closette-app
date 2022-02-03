@@ -12,10 +12,8 @@ function Upload({setFile, url, setUrl}) {
         setSelectedFile(e.target.files[0]);
 
         reader.onloadend = () => {
-
             setFile(file);
             setUrl(reader.result);
-
         }
 
         reader.readAsDataURL(file);
@@ -36,7 +34,6 @@ function Upload({setFile, url, setUrl}) {
             <div className="preview__image">
 
                 {url !== null ?
-
                     <>
                         <img src={url}
                              alt="preview__upload"/>

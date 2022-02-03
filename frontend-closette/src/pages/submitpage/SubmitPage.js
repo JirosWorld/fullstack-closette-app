@@ -15,7 +15,6 @@ import FAQbook from "../../assets/icons/icon-book.png";
 
 function SubmitPage() {
     const {user} = useContext(AuthContext);
-    // alleen ingelogde users mogen nieuwe entries toevoegen
     console.log(user);
 
     const [submitInfo, setSubmitInfo] = useState({});

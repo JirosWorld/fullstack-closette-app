@@ -27,21 +27,15 @@ function ToiletPost() {
     const {id} = useParams();
     const [toiletEntry, setToiletEntry] = useState({});
     const [patchInfo, setPatchInfo] = useState({});
-
-    // beoordeling berekenen
     const [numberOfRatings, setNumberOfRatings] = useState(0);
     const [averageRating, setAverageRating] = useState(0);
-
-    // patch formulier moet alleen zichtbaar zijn wanneer daarom gevraagd wordt
     const [visibility, setVisibility] = useState(true);
-
     const [loading, toggleLoading] = useState(false);
     const [submitSuccess, toggleSubmitSuccess] = useState(false);
     const [error, setError] = useState('');
-    // const history = useHistory();
     const {register, handleSubmit, formState: {errors}} = useForm({ mode: 'onBlur' });
 
-    //mounting fase
+    //mounting
     useEffect(() => {
         document.title = "Toilet details :: Closette"
         setTimeout(() => {
@@ -88,7 +82,7 @@ function ToiletPost() {
 
     }, []);
 
-    // start aanpassen-functie
+    // start patch
     async function onFormSubmitPatchToilet(data) {
         setError('');
         setTimeout(() => {
@@ -127,9 +121,9 @@ function ToiletPost() {
             console.error(e);
         }
     }
-    // einde aanpassen-functie
+    // end patch
 
-    // start delete functie
+    // start delete
     async function deleteFunction() {
         if (window.confirm("Weet je zeker dat je dit toilet helemaal wilt verwijderen?")) {
             try {
@@ -154,7 +148,7 @@ function ToiletPost() {
             }, 0);
         }
     }
-    // einde delete functie
+    // end delete
 
     return (
         <>
@@ -169,9 +163,9 @@ function ToiletPost() {
                             {loading && <Loader/>}
                             <div className="template-head">
                                 <div className="template-thumbnail">
-                                    {/* Dynamisch foto deel start */}
+
                                     <PhotoDownload />
-                                    {/* Dynamisch foto deel einde */}
+
                                     {user &&
                                     <>
                                         <PhotoUpload/>
@@ -256,7 +250,6 @@ function ToiletPost() {
 
                                         <h4>Alle beoordelingen door gebruikers:</h4>
 
-                                        {/* alle beoordelingen van 1 toilet */}
                                         <ul>
                                         {toiletEntry.ratings && toiletEntry.ratings.map((post) => {
 
@@ -271,7 +264,7 @@ function ToiletPost() {
                                 </div>
                             </div>
                         </article>
-                        {/* PUT- en PATCH-requests mogen alleen door ingelogde users gedaan worden */}
+
                         {user && <>
                             <div className="patch content-wrapper">
                                 <p><em>Kloppen deze details niet meer? Klik dan hier om de

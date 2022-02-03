@@ -7,22 +7,21 @@ import javax.validation.constraints.Size;
 
 public class NewsPostRequestDto {
 
-        // attributen
-
         @NotBlank
         @Size(min=1, max=100)
-        private String title;
+        public String title;
 
         @NotBlank
         @Size(min=1, max=255, message="Introduction paragraph is too long, 255 characters maximum.")
-        private String description;
+        public String description;
 
         @NotBlank
         @Column(columnDefinition="text")
         @Size(min=10, message="Paragraph is too short, minimum of 10 characters.")
-        private String paragraph;
+        public String paragraph;
 
-        private String postTime;
+        public String postTime;
+
 
         // getters and setters
 

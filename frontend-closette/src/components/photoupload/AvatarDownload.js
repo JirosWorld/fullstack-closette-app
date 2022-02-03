@@ -5,17 +5,12 @@ import Avatar from "../../assets/icons/icon-lines-user-jiro.svg";
 
 function AvatarDownload() {
 
-    // er worden 2 endpoints doorelkaar gebruikt voor de backend:
-    //  http://localhost:8080/downloadFromDB <= om echt te downloaden uit de database
-    // en http://localhost:8080/download/{bestandsnaam} <= 'fake' prefilled data uit de Uploads directory
-
     const [avatarDownloadEntry, setAvatarDownloadEntry] = useState([]);
     const [mostRecentPhoto, setMostRecentPhoto] = useState({});
-
     const [loading, toggleLoading] = useState(false);
     const [error, setError] = useState('');
 
-    //mounting fase foto-deel
+    //mounting
     useEffect(() => {
 
         async function fetchAvatarDownloads() {

@@ -12,6 +12,18 @@ public class Rating {
 
     private int rating;
 
+
+    //    @JsonIgnoreProperties("ratings")
+    //    @ManyToOne
+    //    @JoinColumn(name = "toiletscored_id", referencedColumnName = "id")
+    //    private Toilet toiletscored;
+
+    //    @JsonIgnoreProperties("ratings")
+    //    @ManyToOne
+    //    @JoinColumn(name = "reviewer_username", referencedColumnName = "username")
+    //    private User reviewer;
+
+
     // constructors
 
     public Rating() {
@@ -43,6 +55,9 @@ public class Rating {
     public void setRating(int rating) {
         this.rating = rating;
     }
+
+    // relation tables
+
 
 }
 

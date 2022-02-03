@@ -6,16 +6,11 @@ import "./ThumbnailStrip.css";
 
 function ThumbnailStrip() {
 
-    // er worden 2 endpoints doorelkaar gebruikt voor de backend:
-    //  http://localhost:8080/downloadFromDB <= om echt te downloaden uit de database
-    // en http://localhost:8080/download/{bestandsnaam} <= fake prefilled data uit de Uploads directory
-
-
     const [photoDownloadEntry, setPhotoDownloadEntry] = useState([]);
     const [loading, toggleLoading] = useState(false);
     const [error, setError] = useState('');
 
-    //mounting fase foto-deel
+    //mounting
     useEffect(() => {
 
         async function fetchPhotoDownloads() {
@@ -53,8 +48,6 @@ function ThumbnailStrip() {
                 <>
 
                     {photoDownloadEntry.map((thumbpost) => {
-                        // console.log("post.data:");
-                        // console.log(thumbpost);
 
                         return <span className="true-image__visible" key={thumbpost.id && thumbpost.fileName}>
 

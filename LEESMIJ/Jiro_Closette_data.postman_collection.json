@@ -423,7 +423,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/toilets/6",
+							"raw": "http://localhost:8080/toilets/11",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -431,7 +431,7 @@
 							"port": "8080",
 							"path": [
 								"toilets",
-								"6"
+								"11"
 							]
 						}
 					},
@@ -775,7 +775,7 @@
 					"response": []
 				},
 				{
-					"name": "post 1 Rating for relation toilet",
+					"name": "post 1 new Rating",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -789,7 +789,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/ratings/11",
+							"raw": "http://localhost:8080/ratings/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -797,7 +797,7 @@
 							"port": "8080",
 							"path": [
 								"ratings",
-								"11"
+								""
 							]
 						},
 						"description": "Vervang welke rating is er door wie ze geplaatst zijn."
@@ -871,13 +871,13 @@
 					"response": []
 				},
 				{
-					"name": "POST /ratings/{id}/toilets Copy",
+					"name": "POST /ratings/{id}/toilets",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \"title\": \"Veranderde titel bij 1 rating\",\n        \"free\": true,\n        \"cleanliness\": \"Schone beoordeling\"\n}",
+							"raw": "{ \n    \"title\": \"Veranderde titel bij 1 rating\",\n    \"free\": true,\n    \"cleanliness\": \"Schone beoordeling\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"

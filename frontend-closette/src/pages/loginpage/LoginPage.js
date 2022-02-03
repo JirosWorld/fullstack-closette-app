@@ -30,7 +30,6 @@ function LoginPage() {
         console.log(data);
         try {
             const result = await axios.post('http://localhost:8080/authenticate', data);
-            // geen array/JSON uittypen wanneer het inputveld dezelfde namen heeft als in de database
 
             console.log("Result data:");
             console.log(result);

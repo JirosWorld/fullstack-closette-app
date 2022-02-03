@@ -86,6 +86,9 @@ function NewsFeedPage() {
                                             <p>
                                                 Samenvatting: {post.description}
                                             </p>
+                                            <p><Link
+                                                to={`news/${post.id}`}> Lees meer &rang;&rang;
+                                            </Link></p>
                                         </div>
                                     </div>
                                     {/* <!-- end content wrapper --> */}

@@ -5,12 +5,10 @@ import javax.validation.constraints.Size;
 
 public class RatingRequestDto {
 
-        // attributen
-
         private int id;
 
         @Size(min=1, max=10, message="Rating number must be a whole number between 1 and 10.")
-        private int rating;
+        public int rating;
 
         // setters and getters
 

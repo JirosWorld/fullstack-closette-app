@@ -33,8 +33,7 @@ public class UserAuthenticateService {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(username, password)
             );
-        }
-        catch (BadCredentialsException ex) {
+        } catch (BadCredentialsException ex) {
             throw new UsernameNotFoundException("Incorrect username or password");
         }
 

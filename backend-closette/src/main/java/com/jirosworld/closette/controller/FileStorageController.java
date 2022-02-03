@@ -12,10 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
-// Upload/download with filesystem Controllers
 
 @RestController
 public class FileStorageController {
@@ -32,10 +29,10 @@ public class FileStorageController {
 
     @GetMapping(value = "/alluploads")
     public ResponseEntity<Object> getUploads(@RequestParam(name="title", defaultValue="") String fileName) {
-        return ResponseEntity.ok(simplefileStorageService.getUploads(fileName));   // Jackson  object => json
+        return ResponseEntity.ok(simplefileStorageService.getUploads(fileName));
     }
 
-//    post for single upload
+
     @PostMapping("/single/upload")
     FileUploadResponse singleFileUpload(@RequestParam("file") MultipartFile file){
 
@@ -51,15 +48,12 @@ public class FileStorageController {
         return response;
     }
 
-//    get for single download
+
     @GetMapping("/download/{fileName}")
     ResponseEntity<Resource> downLoadSingleFile(@PathVariable String fileName, HttpServletRequest request) {
 
         Resource resource = fileStorageService.downLoadFile(fileName);
 
-//        this mediaType decides witch type you accept if you only accept 1 type
-//        MediaType contentType = MediaType.IMAGE_JPEG;
-//        this is going to accept multiple types
         String mimeType;
 
         try{
@@ -68,9 +62,6 @@ public class FileStorageController {
             mimeType = MediaType.APPLICATION_OCTET_STREAM_VALUE;
         }
 
-//        for download attachment use next line
-//        return ResponseEntity.ok().contentType(contentType).header(HttpHeaders.CONTENT_DISPOSITION, "attachment;fileName=" + resource.getFilename()).body(resource);
-//        for showing image in browser
         return ResponseEntity.ok().contentType(MediaType.parseMediaType(mimeType)).header(HttpHeaders.CONTENT_DISPOSITION, "inline;fileName=" + resource.getFilename()).body(resource);
     }
 

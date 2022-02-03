@@ -26,8 +26,12 @@ public class ToiletController {
     private RatingService ratingService;
 
     @GetMapping(value = "/toilets")
-    public ResponseEntity<Object> getToilets(@RequestParam(value = "title", required = false) String title, @RequestParam(value = "city", required = false) String city, @RequestParam(value = "country", required = false) String country) {
-
+    public ResponseEntity<Object> getToilets(@RequestParam(value = "title", required = false)
+                             String title,
+                 @RequestParam(value = "city", required = false)
+                         String city,
+                 @RequestParam(value = "country", required = false)
+                             String country) {
 
         List<Toilet> toilets;
         if (title == null && city != null && country == null) {
@@ -37,6 +41,9 @@ public class ToiletController {
         } else if (title == null && city == null && country != null) {
             toilets = toiletService.getToiletsByCountry(country);
         }
+//        else if (title == null && city == null && country != null) {
+//            toilets = toiletService.getToiletsByGenderneutral(genderneutral);
+//        }
 //        else if (title != null && city != null && country != null) {
 //            toilets = (List<Toilet>) toiletService.findAllToiletsQuery(title, city, country);
 //        }
@@ -89,6 +96,12 @@ public class ToiletController {
         return ResponseEntity.noContent().build();
     }
 
+    //    @PostMapping("/toilets")
+//    public ToiletRequestDto addToiletDto(@RequestBody ToiletRequestDto dto) {
+//        var toilet = toiletService.addToilet(dto.toToilet());
+//        return ToiletRequestDto.fromToilet(toilet);
+//    }
+
     //    relation tables
     @GetMapping(value = "/toilets/{id}/photos")
     public ResponseEntity<Object> getToiletPhoto(@PathVariable int id) {
@@ -107,9 +120,22 @@ public class ToiletController {
         return ResponseEntity.ok(toiletService.getToiletRatings(id));
     }
 
+//    @GetMapping(value = "/toilets/{id}/ratings")
+//    public ResponseEntity getToiletRatings(@PathVariable int id) {
+//        Iterable<Rating> toiletsRatings = toiletService.getToiletRatings(id);
+//        return ResponseEntity.ok(toiletsRatings);
+//    }
+
     // this Toilet's ID gets a new Rating
     @PostMapping(value = "/toilets/{id}/ratings")
     public ResponseEntity<Object> addToiletRating(@PathVariable int id, @RequestBody Rating rating) {
+        toiletService.addToiletRating(id, rating);
+        return ResponseEntity.created(null).build();
+    }
+
+    // this Toilet's ID's Rating is replaced
+    @PatchMapping(value = "/toilets/{id}/ratings")
+    public ResponseEntity<Object> updateToiletRating(@PathVariable int id, @RequestBody Rating rating) {
         toiletService.addToiletRating(id, rating);
         return ResponseEntity.created(null).build();
     }

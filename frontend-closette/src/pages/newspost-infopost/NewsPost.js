@@ -55,8 +55,6 @@ function NewsPost() {
                         <div className="template-head">
                             <div className="template-thumbnail">
                                 <span className="thumbnail-container">
-                                    {/* bestaat-foto-check */}
-                                    {/*{newsEntry && newsEntry.id}*/}
 
                                         <span className="true-image">
                                         <img
@@ -69,7 +67,7 @@ function NewsPost() {
                             <div className="template-intro news">
                                 <h1>{newsEntry && newsEntry.title}</h1>
                                 <h3>{newsEntry && newsEntry.postTime}</h3>
-                                {/*<p>{newsEntry && newsEntry.newsauthor.username}</p>*/}
+                                <p><em>Door: {newsEntry.newsauthor && newsEntry.newsauthor.username}</em></p>
                                 <p>{newsEntry && newsEntry.description}</p>
                             </div>
                         </div>

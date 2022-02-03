@@ -12,7 +12,6 @@ function FeaturedToilet() {
     const [toiletEntry, setToiletEntry] = useState([]);
     const [loading, toggleLoading] = useState(false);
     const [error, setError] = useState('');
-    // beoordeling berekenen
     const [averageRating, setAverageRating] = useState(0);
 
     useEffect(() => {

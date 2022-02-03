@@ -22,7 +22,7 @@ function LandingSection() {
                     <p><Link to="/search">Zoek hier</Link> naar genderneutrale toiletten bij jou in
                         de buurt!</p>
                 </article>
-                {/* toon andere kolommen bij wel/nit ingelogd */}
+                {/* content different for logged in users */}
                 {user &&
                 <article className="landing__page__column">
                     <Link to="/submit">

@@ -9,6 +9,7 @@ public class InvalidPasswordException extends RuntimeException {
     public InvalidPasswordException(String message) {
         super(message);
     }
+
     public InvalidPasswordException() {
         super("Invalid password, use at least 1 lower case symbol and 1 number.");
     }

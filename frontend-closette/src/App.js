@@ -21,14 +21,6 @@ import SearchSCHETS from "./pages/searchpage/SearchSCHETS";
 import ToiletRating from "./pages/toiletpost/ToiletRating";
 
 
-// function PrivateRoute({children, isAuth, ...rest}) {
-//     return (
-//         <Route {...rest}>
-//             {isAuth ? children : <Redirect to="/login" />}
-//         </Route>
-//     )
-// }
-
 function App() {
 
     return (
@@ -72,20 +64,18 @@ function App() {
                         <Route path="/dashboard">
                             <DashboardPage/>
                         </Route>
-                        {/*<PrivateRoute path="/dashboard" isAuth={AuthContext}>*/}
-                        {/*    <DashboardPage />*/}
-                        {/*</PrivateRoute>*/}
                         <Route path="/login">
                             <LoginPage/>
                         </Route>
 
-                    {/*    URL's for development testing only, not for testers */}
+                    {/*    URL's for development testing only, not for exam */}
                         <Route path="/searchschets">
                             <SearchSCHETS/>
                         </Route>
                         <Route exact path="/toiletrating/:id">
                             <ToiletRating/>
                         </Route>
+
                     </Switch>
                 </div>
                 <Footer/></div>

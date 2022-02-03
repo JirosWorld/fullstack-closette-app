@@ -10,14 +10,7 @@ function AvatarUpload() {
 
     const {user} = useContext(AuthContext);
     const token = localStorage.getItem('closetteToken');
-    // alleen ingelogde users mogen bewerken
     console.log(user);
-
-    // mijn API endpoints
-    // POST	http://localhost:8080/single/uploadDb = upload naar DB
-    // POST	http://localhost:8080/single/upload = upload zónder database
-    // GET	http://localhost:8080/photos = get List
-    // GET	http://localhost:8080/photos/[filename] = download 1 File
 
     useEffect(() => {
         setFile();

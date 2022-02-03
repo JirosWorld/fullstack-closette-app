@@ -40,9 +40,8 @@ public class Toilet {
     @JoinColumn(name = "photo_id", referencedColumnName = "id")
     private Photo photo;
 
-//        @JsonIgnoreProperties("toilets")
+    //    @OneToMany(mappedBy = "toiletscore", fetch = FetchType.LAZY)
     @OneToMany
-//        @JoinColumn(name = "rating_id", referencedColumnName = "user_username")
     private List<Rating> ratings = new ArrayList<>();
 
     // default constructor
@@ -66,6 +65,7 @@ public class Toilet {
         this.photo = photo;
         this.ratings = ratings;
     }
+
 
     // empty constructor
 

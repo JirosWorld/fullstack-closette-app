@@ -31,8 +31,8 @@ function DashboardPage() {
     useEffect(() => {
         const token = localStorage.getItem('closetteToken');
 
+        // private content for Admins
         if (user && user.username === "admin") {
-            // checken of admin is ingelogd, laat dan pas de Userlijst in Dashboard zien
             async function getPrivateContent() {
                 setError('');
                 toggleLoading(true);
@@ -76,13 +76,13 @@ function DashboardPage() {
                         {loading && <Loader/>}
                         <div className="template-head">
                             <div className="template-thumbnail">
-                                {/* Dynamisch foto deel start */}
+
                                 <AvatarDownload/>
                                 {user &&
                                 <>
                                     <AvatarUpload/>
                                 </>}
-                                {/* Dynamisch foto deel einde */}
+
                             </div>
                             <div className="template-intro dashboard">
                                 <h3>Welkom in jouw gebruikers profiel</h3>
@@ -134,7 +134,7 @@ function DashboardPage() {
                                 <hr/>
 
                                 <section className="dashboard__user-data">
-                                    {/* admin users zien hier andere content dan gewone users */}
+
                                     {user && user.username === "admin" ?
                                         <>
                                             <h2>Moderator Dashboard</h2>

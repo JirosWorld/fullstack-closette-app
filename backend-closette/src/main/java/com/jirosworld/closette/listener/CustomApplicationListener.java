@@ -11,6 +11,8 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 import java.util.Map;
 
+// listener to gather all my endpoints
+
 @Configuration
 public class CustomApplicationListener implements ApplicationListener<ContextRefreshedEvent> {
     private final Logger LOGGER = LoggerFactory.getLogger("CustomApplicationListener.class");

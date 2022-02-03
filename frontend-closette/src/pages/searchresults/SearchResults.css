@@ -19,17 +19,21 @@
     height: 25px;
 }
 
+.thumbnail__mockup {
+    padding: 0;
+    /*    mock styles to show most recent photo only: */
+    max-height: 300px;
+    overflow: hidden;
+}
+
 .thumbnail-container {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     align-items: center;
     justify-content: flex-end;
     margin: 0 0 15px 0;
     background-color: var(--lightgrey);
     border-radius: 15px;
-/*    mock styles to show most recent photo only: */
-    max-height: 300px;
-    overflow: hidden;
 }
 
 .dashboard__page .thumbnail-container {
@@ -109,7 +113,7 @@
 }
 
 .mapped__post__author {
-    font-size: 1em;
+    font-size: 0.9;
     font-style: italic;
 }
 
@@ -118,7 +122,7 @@
 .mapped__post__nation,
 .mapped__post__nation a {
     color: var(--AccessibleGreen);
-    font-size: 1.1em;
+    font-size: 0.9em;
     font-weight: bold;
 }
 

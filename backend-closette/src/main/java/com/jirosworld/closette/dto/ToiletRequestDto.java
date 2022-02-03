@@ -1,5 +1,7 @@
 package com.jirosworld.closette.dto;
 
+import com.jirosworld.closette.model.Toilet;
+
 import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -10,38 +12,47 @@ import java.time.format.FormatStyle;
 
 public class ToiletRequestDto {
 
-        // attributen
+        private int id;
 
         @NotBlank
         @Size(min=1, max=100)
-        private String title;
+        public String title;
 
         @NotBlank
-        private String city;
+        public String city;
 
         @NotBlank
-        private String country;
+        public String country;
 
         @Size(min=0, max=20, message="latitude is too long, please use a dot.")
-        private String latitude;
+        public String latitude;
 
         @Size(min=0, max=20, message="longitude is too long, please use a dot.")
-        private String longitude;
+        public String longitude;
 
-        private String postTime;
-        private boolean genderneutral;
-        private boolean free;
-        private boolean accessible;
-        private String cleanliness;
-        private boolean hasPhoto;
-        private String openingHours;
-        private String address;
+        public String postTime;
+        public boolean genderneutral;
+        public boolean free;
+        public boolean accessible;
+        public String cleanliness;
+        public boolean hasPhoto;
+        public String openingHours;
+        public String address;
 
         @Column(columnDefinition="text")
-        private String infoText;
+        public String infoText;
 
 
         // getters and setters
+
+
+        public int getId() {
+                return id;
+        }
+
+        public void setId(int id) {
+                this.id = id;
+        }
 
         public String getTitle() {
                 return title;
@@ -152,5 +163,53 @@ public class ToiletRequestDto {
         public void setCountry(String country) {
                 this.country = country;
         }
+
+        // methods
+
+//        public static ToiletRequestDto fromToilet(Toilet toilet) {
+//
+//                var dto = new ToiletRequestDto();
+//
+//                dto.id = toilet.getId();
+//                dto.title = toilet.getTitle();
+//                dto.city = toilet.getCity();
+//                dto.country = toilet.getCountry();
+//                dto.latitude = toilet.getLatitude();
+//                dto.longitude = toilet.getLongitude();
+//                dto.postTime = toilet.getPostTime();
+//                dto.genderneutral = toilet.isGenderneutral();
+//                dto.free = toilet.isFree();
+//                dto.accessible = toilet.isAccessible();
+//                dto.cleanliness = toilet.getCleanliness();
+//                dto.hasPhoto = toilet.isHasPhoto();
+//                dto.openingHours = toilet.getOpeningHours();
+//                dto.address = toilet.getAddress();
+//                dto.infoText = toilet.getInfoText();
+//
+//                return dto;
+//        }
+//
+//        public ToiletRequestDto toToilet() {
+//
+//                var toilet = new Toilet();
+//
+//                toilet.setId(id);
+//                toilet.setTitle(title);
+//                toilet.setCity(city);
+//                toilet.setCountry(country);
+//                toilet.setLatitude(latitude);
+//                toilet.setLongitude(longitude);
+//                toilet.setPostTime(postTime);
+//                toilet.setGenderneutral(genderneutral);
+//                toilet.setFree(free);
+//                toilet.setAccessible(accessible);
+//                toilet.setCleanliness(cleanliness);
+//                toilet.setHasPhoto(hasPhoto);
+//                toilet.setOpeningHours(openingHours);
+//                toilet.setAddress(address);
+//                toilet.setInfoText(infoText);
+//
+//                return toilet;
+//        }
 
 }

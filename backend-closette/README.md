@@ -15,7 +15,9 @@ Maak dus eerst een user aan met naam/wachtwoord springboot. En daarna een lege d
 
 Zodra de upload-functie wekt: pas het upload-pad aan naar joiw eigen lokale pad.
 
-Accepteer installatie van de JPA Buddy plug-in. Verdere installatiehandleidingen staan [in de LEESMIJ map](../LEESMIJ).
+Accepteer installatie van de JPA Buddy plug-in. 
+
+Lees eerst goed de [installatiehandleiding (PDF)](../LEESMIJ/installatiehandleiding-closette.pdf) die in [de LEESMIJ map](../LEESMIJ) staat.
 
 #### Standaard users
 
@@ -31,67 +33,48 @@ https://documenter.getpostman.com/view/17991980/UVeCR95T
 * link naar de Figma ontwerpen:
   https://www.figma.com/file/yv5hJQVzTMvwTT31oyQBRE/Jiro-Closette-design?node-id=0%3A1
 
-#### toilets
-* {GET [/toilets]}
-* {GET [/toilets/{id}]}
-* {PATCH [/toilets/{id}]}
-* {PATCH [/toiletsdto/{id}]}
-* {POST [/toilets]}
+* {PUT [/users/{username}]}
 * {PUT [/toilets/{id}]}
-* {POST [/users/{username}/authorities]}
-* {DELETE [/toilets/{id}]}
-
-
-#### users
-* {POST [/authenticate]}
+* {PUT [/news/{id}]}
 * {POST [/users/register]}
-* {DELETE [/users/{username}/authorities/{authority}]}
+* {POST [/users/{username}/ratings]}
+* {POST [/users/{username}/authorities]}
+* {POST [/toilets/{id}/ratings]}
+* {POST [/toilets/{id}/photos]}
+* {POST [/toilets]}
+* {POST [/single/uploadDb]}
+* {POST [/single/upload]}
+* {POST [/ratings]}
+* {POST [/news]}
+* {POST [/authenticate]}
+* {PATCH [/users/{username}/password]}
+* {PATCH [/toiletsdto/{id}]}
+* {PATCH [/toilets/{id}]}
+* {PATCH [/toilets/{id}/ratings]
+* {PATCH [/single/uploadDb/{id}]}
+* {PATCH [/news/{id}]}
 * {GET [/users/{username}/authorities]}
 * {GET [/users/{username}]}
-* {GET [/users/id/{id}]}
-* {PATCH [/users/{username}/password]}
 * {GET [/users]}
-* {PUT [/users/{username}]}
-* {DELETE [/users/{username}]}
-
-
-#### ratings (sterrenwaarderingen)
-
-* {GET [/ratings]}
-* {POST [/ratings]}
-* {POST [/ratings/{id}/toilets]}
-* {GET [/ratings/{id}/toilets]}
-* {DELETE [/ratings/{id}]} 
+* {GET [/toilets/{id}/ratings]}
+* {GET [/toilets/{id}/photos]}
+* {GET [/toilets/{id}]}
+* {GET [/toilets]}
 * {GET [/ratings/{id}]}
-
-
-#### newsposts (blog)
-
-* {POST [/news]}
-* {PATCH [/news/{id}]}
-* {GET [/news]}
-* {GET [/news/{id}]}
-* {PUT [/news/{id}]}
-* {DELETE [/news/{id}]}
-
-#### photo
-
-* {GET [/photos]}
+* {GET [/ratings]}
 * {GET [/photos/{id}]}
-* {POST [/multiple/upload]}
-* {POST [/single/uploadDb]}
-* {PATCH [/single/uploadDb/{id}]}
-* {GET [/zipDownload/db]}
-* {GET [/zipDownload]}
-* {GET [/download/{fileName}]}
+* {GET [/photos]}
+* {GET [/news/{id}]}
+* {GET [/news]}
 * {GET [/downloadFromDB/{fileName}]}
-* {POST [/multiple/upload/db]}
-
-#### overige
-
-{ [/error]}
-
-{ [/error], produces [text/html]}
+* {GET [/download/{fileName}]}
+* {GET [/alluploads]}
+* {DELETE [/users/{username}/authorities/{authority}]}
+* {DELETE [/users/{username}]}
+* {DELETE [/toilets/{id}]}
+* {DELETE [/news/{id}]}
+* { [/error]}
+* { [/error], produces [text/html]}
 
 
 #### Een Postman export staat in deze back-end directory ook in de 'documentation' map: deze kun je importeren in Postman en daarin uitvoeren.

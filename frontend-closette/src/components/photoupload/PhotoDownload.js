@@ -5,17 +5,12 @@ import Loader from "../loader/Loader";
 
 function PhotoDownload() {
 
-    // er worden 2 endpoints doorelkaar gebruikt voor de backend:
-    //  http://localhost:8080/downloadFromDB <= om echt te downloaden uit de database
-    // en http://localhost:8080/download/{bestandsnaam} <= fake prefilled data uit de Uploads directory
-
     const [photoDownloadEntry, setPhotoDownloadEntry] = useState([]);
     const [mostRecentPhoto, setMostRecentPhoto] = useState({});
-
     const [loading, toggleLoading] = useState(false);
     const [error, setError] = useState('');
 
-    //mounting fase foto-deel
+    //mounting
     useEffect(() => {
 
         async function fetchPhotoDownloads() {
@@ -43,12 +38,13 @@ function PhotoDownload() {
     }, []);
 
     return (
-        <span className="thumbnail-container">
+        <span className="thumbnail__mockup">
+            <span className="thumbnail-container">
             {error && <p className="error-message">{error}</p>}
-            {loading && <Loader/>}
+                {loading && <Loader/>}
 
-            {photoDownloadEntry ?
-                <>
+                {photoDownloadEntry ?
+                    <>
                     <span className="true-image__visible">
                         <img
                             src={`http://localhost:8080/downloadFromDB/${mostRecentPhoto.fileName}`}
@@ -56,23 +52,23 @@ function PhotoDownload() {
                             className="thumbnail-wide"
                             width="300"/>
                     </span>
-                        {/* default image when there is no uploaded data yet: */}
                         <span className="no-image">
                         <img src={noImage} alt="thumbnail"
                              className="thumbnail-wide transparent" height="300"
                              width="300"/>
-                    </span>
-                </>
-                :
-                <>
+                        </span>
+                    </>
+                    :
+                    <>
                     <span className="no-image">
                         <img src={noImage} alt="thumbnail"
                              className="thumbnail-wide transparent" height="300"
                              width="300"/>
                     </span>
-                </>
-            }
+                    </>
+                }
 
+        </span>
         </span>
     );
 }

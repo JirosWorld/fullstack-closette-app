@@ -18,7 +18,7 @@ function AuthContextProvider({ children }) {
         const expirationUnix = decodedToken.exp; // UNIX timestamp
 
         const now = new Date().getTime(); // javascript timestamp
-        const currentUnix = Math.round(now / 1000); // nu ook een UNIX timestamp
+        const currentUnix = Math.round(now / 1000); // new UNIX timestamp
 
         const isTokenStillValid = expirationUnix - currentUnix > 0;
 
@@ -108,10 +108,6 @@ function AuthContextProvider({ children }) {
                 ? <Loader />
                 : children
             }
-            {/*{authState.status === 'done'*/}
-            {/*    ? children*/}
-            {/*    : <Loader />*/}
-            {/*}*/}
         </AuthContext.Provider>
     );
 }

@@ -21,7 +21,7 @@ function SearchResults() {
     const [loading, toggleLoading] = useState(false);
     const [error, setError] = useState('');
 
-    //mounting fase
+    //mounting
     useEffect(() => {
         document.title = "Alle data :: Closette"
 
@@ -84,16 +84,13 @@ function SearchResults() {
                                 }
                                 console.log( naiveRound((sum / itemsFound), 2) );
                                 const averagePopularity = naiveRound((sum / itemsFound), 2);
-
-                                // setAverageRating(averagePopularity);
                                 console.log("Average popularity/setAverageRating:", averagePopularity);
 
                     return <li key={post.id && post.title}>
                                     <Link
                                         to={`toilets/${post.id}`}>
                             <span className="thumbnail-container">
-                                {/*check om te kijken of de thumbnail bestaat
-                                anders default image + link */}
+
                                 {post.photo ?
                                     <img
                                         src={`http://localhost:8080/download/${post.photo.fileName}`}

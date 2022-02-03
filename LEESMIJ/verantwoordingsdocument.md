@@ -8,7 +8,7 @@ Hier een antwoord op de vragen:
 * Welke technische ontwerpbeslissingen heb ik gemaakt en waarom?
 * Is aan alle voorwaarden uit de opdracht voldaan?
 
-Conclusie: Zelfs al is niet álle functionaliteit, die ik in de back-end heb gebouwd, zichtbaar te gebruiken in de front-end: aan alle voorwaarden gesteld in de opdracht, `Integrale eindopdracht Bootcamp v3.0.pdf` is voldaan.
+Conclusie: Zelfs al is niet álle functionaliteit, die ik in de back-end heb gebouwd, zichtbaar te gebruiken in de front-end: aan bijna alle voorwaarden gesteld in de opdracht, `Integrale eindopdracht Bootcamp v3.0.pdf` is voldaan.
 
 ## Functioneel Ontwerp
 
@@ -17,6 +17,10 @@ Zie het gecombineerde [Functioneel-Technisch ontwerp](functioneel-technisch-ontw
 ## Technisch Ontwerp
 
 Zie wederom het gecombineerde [Functioneel-Technisch ontwerp](functioneel-technisch-ontwerp-app-jiro.pdf) in de PDF in dezelfde directory.
+
+## Installatiehandleiding
+
+Zie de [Installatiehandleiding](installatiehandleiding-closette.pdf) als PDF in dezelfde directory.
 
 ## Technische ontwerpbeslissingen
 
@@ -100,10 +104,16 @@ Zie de directories/folders onder `src/test/java`.
 
 * Java is een geheel nieuwe taal voor mij. Tot nu toe had ik alleen ervaring met HTML, CSS, basis PHP, basis SQL en zeer basale Javascript; ik heb grote vorderingen gemaakt, maar toch was ik beperkt in wat ik aankon om binnen een realistisch tijdsbestek te kunnen bouwen. Hierondeer volgen de zaken die ik niet of gedeeltelijk heb kunnen bouwen of waar ik andere beslissingen heb gemaakt dan in mijn klassendiagram en/of ontwerpen.
 * In de eindexamenopdracht wordt als eis gesteld dat er een "bestands-up- en download" functionaliteit in de app zit. Op de front-end is alleen de upload functie expliciet te zien: dit omdat een 'download' niet nodig is als functionaliteit binnen het concept van mijn toiletten-app idee. Natuurlijk vindt er _eigenlijk_ wél een soort 'download' plaats op de front-end omdat de geüploade afbeeldingen op de front-end in HTML worden afgebeeld/gerendered.
+* In het Technisch/Functioneel ontwerrp staat zeer gedetaill in rood en groen aangegegeven wat ik wle ne niet heb kunnen bouwen; ik heb alles kunnen bouwen dat ik strict noodzakelijk achtte voor de zoek-app; alle niet-functionele eisen die ik neit heb kunnen bouwen maar die wel wenselijk zijn en voor een vel betere app zouden zorgen  zijn deze: een rating systeem, foto's die daadwerkelijk bij 1 toilet horen en niet bij allemaal.
 * Dit is een 'stateless webserver' - daardoor kon ik geen 'prefilled' foto's afleveren in een nette database, die ook nog gekoppeld zouden zijn aan een statische uploads map. Dus heb ik verschillende functies en endpoints gebruikt en deze verschillend getoond op de frontend. Kort samengevat: alle foto's die op de backend in de 'uploads' map staan, zijn de 'prefilled' data die op de frontend alleen getoond worden bij alle toiletten die reeds meegegeven worden bij het opstarten van de backend. Dus zodra je een NIEUWE foto uploadt voor NIEUWE toilet entries, dan komt die foto-download URL ergens anders vandaan: de stateless server. Na opnieuw opstarten van de backend, verdwijnen alle nieuw geplaatste toiletten en ook alle nieuw geuploade foto's.
 * Ik heb gebruik gemaakt van standaard CSS en bij slechts 1 component heb ik een CSS-module gebruikt; dit omdat ik al bekend ben met CSS en dit tijd scheelde bij ontwikkelen. Wel heb ik hier en daar de BEM notatie gebruikt om ermee te oefenen.
 * Dit project gebruikt de verouderde versie 5 van React Router-Dom, omdat deze in de lessen is behandeld.
 * In mijn klassendiagram had ik besloten dat de relate van foto-tot-toilet een OneToOne moest zijn, maar in de werkelijkehid wilde ik er eigenlijk een ManyToMany van maken - sommige foto's worden meerdere malen herhaald/gebruikt, én eigenlijk wil je ook meerdere foto's per toilet kunnen plaatsen; dus heb ik er als compromis een ManyToOne relatie van gemaakt; dit ook omdat mijn basis Java kennis me nog parten speelt. In ieder geval zijn in de huidige constructie de foto ID's en toiletten ID's als foreign keys te gebruiken endaardoor ook aanspreekbaar als object voor de front-end.
+* FOTO's: ik heb 2 endpoints doorelkaar gebruikt voor de backend: 
+  * http://localhost:8080/downloadFromDB <= om echt te downloaden uit de database 
+  * en http://localhost:8080/download/{bestandsnaam} <= fake prefilled data uit de Uploads directory
+* Mijn 2 foto endpoints heb ik verschillend gebruikt in de hoop dat in ieder geval 1 van de 2 zou werken voor een examinator; bij mij werken ze allebei, maar toen i kde app liet testen door een andre leerling, kreeg hij de database upload versie niet aan de praat, dit komt waarschijnlijk door het large object byte array (@Lob)
+* in React heb ik niet gebruik gemaakt van het Privateroute component omdat ik zelf een eenvoudiger manier heb bedacht om navigatie afhankelijk te maken van een wel/niet ingelogde user.
 
 ## Wat is er niet gedaan + disclaimers
 
@@ -112,6 +122,8 @@ _(limitaties van de applicatie en beargumentatie van mogelijke doorontwikkelinge
 • Deze opdracht levert géén deployment-ready product op en zal niet werken op de gemiddelde FTP server, maar dat was ook geen eis.
 
 • Niet-functionele eisen: bij aanvang was niet duidelijk hoeveel ik qua User Experience binnen een kort Bootcamp tijdsbestek daadwerkelijk af zou krijgen. Ik heb een flink aantal niet-functionele eisen (_meer eisen dan voor de eindopdracht nodig waren_) opgesteld waarvan een deel niet is uitgevoerd: deze eisen zijn vooral vanwege tijdsgebrek achterwege gelaten en hebben geen effect op de functionele werking en minimale eisen van de app/examenopdracht. In het Functioneel/Technisch ontwerp staat duidelijk aangegeven welke niet-functionele eisen niet zijn uitgevoerd door tijdsgebrek.
+
+• Ik heb slechts gedeeltelijk de DTO laag gebruikt; dus deze app is niet beschermd tegen SQL injecties.
 
 • Het filteren van zoekresultaten gebeurt, op het moment van schrijven, vooral aan de front-end. Dat wil zeggen; er wordt zoveel mogelijk uit de database getoond (bijvoorbeeld alle gevonden entries uit 1 stad) en die kunnen dan d.m.v. filterknoppen binnen 1 window verfijnd worden zonder dat er een verzoek naar de database nodig is - voor aantal functies kun je KIEZEN of je die aan de frontend of aan de backend wilt afhandelen. Door tijdgebrek vond ik het makkelijker om de filtering vooral aan de frontend af te handelen.
 

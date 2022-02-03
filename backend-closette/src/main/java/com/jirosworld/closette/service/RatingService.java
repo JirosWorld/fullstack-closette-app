@@ -1,15 +1,12 @@
 package com.jirosworld.closette.service;
 
 import com.jirosworld.closette.exception.RecordNotFoundException;
-import com.jirosworld.closette.model.NewsPost;
-import com.jirosworld.closette.model.Toilet;
 import com.jirosworld.closette.model.Rating;
 import com.jirosworld.closette.repository.ToiletRepository;
 import com.jirosworld.closette.repository.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service

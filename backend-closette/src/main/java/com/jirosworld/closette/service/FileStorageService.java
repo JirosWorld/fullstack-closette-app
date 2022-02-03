@@ -53,8 +53,10 @@ public class FileStorageService {
         String currentcontentType = StringUtils.cleanPath(file.getContentType());
 
 //
-// Windows users moeten hieronder mogelijk een BACKSLASH invoeren in plaats van de SLASH die hier staat
-// voor sommige Windows gebruikers is hier zelfs een path nodig met TWEE Backslashes naastelkaar: "\\"
+// Windows users moeten hieronder mogelijk een BACKSLASH invoeren in plaats van de SLASH die hier staat, resultaat:
+// Path filePath = Paths.get(fileStoragePath + "\\" + fileName);
+// soms is hier zelfs een path nodig met TWEE Backslashes naastelkaar: "\\"
+// Path filePath = Paths.get(fileStoragePath + "\\" + fileName);
 //
         Path filePath = Paths.get(fileStoragePath + "/" + fileName);
 //

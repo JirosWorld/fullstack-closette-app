@@ -10,9 +10,7 @@ public interface NewsPostRepository extends CrudRepository<NewsPost, Integer> {
     Iterable<NewsPost> findAllByTitle(String title);
     Iterable<NewsPost> findAllByTitleContainingIgnoreCase(String title);
 
-//    @Query("SELECT b FROM NewsPost b WHERE b.title LIKE %:s%")    // using JPQL
-//    or
-    @Query(value = "SELECT * FROM newsposts b WHERE b.title LIKE %:s%", nativeQuery = true) // using SQL
+    @Query(value = "SELECT * FROM newsposts b WHERE b.title LIKE %:s%", nativeQuery = true)
     Iterable<NewsPost> searchByTitleLike(@Param("s") String s);
 
 }

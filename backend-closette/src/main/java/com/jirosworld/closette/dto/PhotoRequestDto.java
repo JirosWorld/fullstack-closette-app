@@ -5,10 +5,10 @@ import javax.persistence.*;
 
 public class PhotoRequestDto {
 
-    private String fileName;
+    public String fileName;
 
     @Lob
-    private byte[] docFile;
+    public byte[] docFile;
 
 
     // getters and setters

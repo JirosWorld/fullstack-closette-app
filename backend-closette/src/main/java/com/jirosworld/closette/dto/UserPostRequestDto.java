@@ -4,9 +4,9 @@ import java.util.Set;
 
 public class UserPostRequestDto {
 
-    private String username;
+    public String username;
     private String password;
-    private String email;
+    public String email;
 
     private Set<String> authorities;
 

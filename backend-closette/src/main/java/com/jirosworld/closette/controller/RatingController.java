@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 public class RatingController {
@@ -17,8 +18,8 @@ public class RatingController {
     private RatingService ratingService;
 
     @GetMapping(value = "/ratings")
-    public ResponseEntity<Object> getRatings(@RequestParam(name="title", defaultValue="") String title) {
-        return ResponseEntity.ok(ratingService.getRatings(title));   // Jackson  object => json
+    public ResponseEntity<Object> getRatings(@RequestParam(name="rating", defaultValue="") String rating) {
+        return ResponseEntity.ok(ratingService.getRatings(rating));
     }
 
     @GetMapping(value = "/ratings/{id}")

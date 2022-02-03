@@ -1,7 +1,5 @@
 package com.jirosworld.closette.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -32,14 +30,14 @@ public class User {
                 fetch = FetchType.EAGER)
         private Set<Authority> authorities = new HashSet<>();
 
+
         @OneToMany(mappedBy = "newsauthor", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
         private List<NewsPost> newsposts = new ArrayList<>();
 
-//        @JsonIgnoreProperties("users")
-        @OneToMany
-//        @JoinColumn(name = "rating_id", referencedColumnName = "user_username")
-        private List<Rating> ratings = new ArrayList<>();
 
+//        @OneToMany(mappedBy = "reviewer", fetch = FetchType.LAZY)
+        @OneToMany
+        private List<Rating> ratings = new ArrayList<>();
 
 
         // getters and setters
@@ -102,6 +100,7 @@ public class User {
 
         // relation tables
 
+
         public List<Rating> getRatings() {
                 return ratings;
         }
@@ -109,5 +108,4 @@ public class User {
         public void setRatings(List<Rating> ratings) {
                 this.ratings = ratings;
         }
-
 }
