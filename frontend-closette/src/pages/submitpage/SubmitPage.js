@@ -47,6 +47,7 @@ function SubmitPage() {
             toggleSubmitSuccess(true);
             console.log("Data na submit success:");
             console.log(data);
+            console.log(submitInfo);
 
             setTimeout(() => {
                 history.push("/search");

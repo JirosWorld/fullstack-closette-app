@@ -13,8 +13,16 @@ import BackButton from "../../components/buttons/BackButton";
 function LoginPage() {
     const {login} = useContext(AuthContext);
     const [error, setError] = useState('');
-    const {register, handleSubmit, formState: {errors}} = useForm({ mode: 'onBlur' });
+    const {register, handleSubmit, formState: {errors}} = useForm({ mode: 'onChange' });
     const [loginSuccess, toggleLoginSuccess] = useState(false);
+
+    useEffect(() => {
+        document.title = "Inloggen :: Closette"
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+        }, 0);
+        console.log("De pagina begint met de window naar boven gescrolld");
+    }, []);
 
     async function onFormSubmit(data) {
         setError('');
@@ -40,14 +48,6 @@ function LoginPage() {
     }
 
     console.log(errors);
-
-    useEffect(() => {
-        document.title = "Inloggen :: Closette"
-        setTimeout(() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' })
-        }, 0);
-        console.log("De pagina begint met de window naar boven gescrolld");
-    }, []);
 
     return (
         <>

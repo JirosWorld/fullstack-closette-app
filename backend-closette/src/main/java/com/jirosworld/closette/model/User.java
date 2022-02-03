@@ -40,6 +40,8 @@ public class User {
 //        @JoinColumn(name = "rating_id", referencedColumnName = "user_username")
         private List<Rating> ratings = new ArrayList<>();
 
+
+
         // getters and setters
 
         public String getUsername() {

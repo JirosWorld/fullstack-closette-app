@@ -64,6 +64,10 @@ public class ToiletService {
         return toiletRepository.findAllByCountryContainingIgnoreCase(country);
     }
 
+    public Toilet getToiletByTitle(String title) {
+        return toiletRepository.findByTitle(title);
+    }
+
 //    schets voor zoek queries in query pad
 //    List<Toilet> findAllByGenderneutral(Boolean genderneutral);
 //    List<Toilet> findAllByFree(Boolean free);

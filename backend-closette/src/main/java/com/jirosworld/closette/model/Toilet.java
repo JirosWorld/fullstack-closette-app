@@ -233,4 +233,15 @@ public class Toilet {
     public void setRatings(List<Rating> ratings) {
         this.ratings = ratings;
     }
+
+    // methods
+
+    public boolean latitudeIsEmpty() {
+        return latitude == null;
+    }
+
+    public boolean longitudeIsEmpty() {
+        return longitude == null;
+    }
+
 }

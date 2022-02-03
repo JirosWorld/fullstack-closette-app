@@ -9,7 +9,6 @@ function PhotoDownload() {
     //  http://localhost:8080/downloadFromDB <= om echt te downloaden uit de database
     // en http://localhost:8080/download/{bestandsnaam} <= fake prefilled data uit de Uploads directory
 
-    const [avatarDownloadEntry, setAvatarDownloadEntry] = useState([]);
     const [photoDownloadEntry, setPhotoDownloadEntry] = useState([]);
     const [mostRecentPhoto, setMostRecentPhoto] = useState({});
 

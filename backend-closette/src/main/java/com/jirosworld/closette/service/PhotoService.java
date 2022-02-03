@@ -1,6 +1,7 @@
 package com.jirosworld.closette.service;
 
 import com.jirosworld.closette.exception.RecordNotFoundException;
+import com.jirosworld.closette.model.NewsPost;
 import com.jirosworld.closette.model.Photo;
 import com.jirosworld.closette.repository.PhotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,11 @@ public class PhotoService {
 
     @Autowired
     private PhotoRepository photoRepository;
+
+    //    find all
+    public Iterable<Photo> findAllPhotos() {
+        return photoRepository.findAll();
+    }
 
     public Iterable<Photo> getPhotoposts(String fileName) {
         if (fileName.isEmpty()) {

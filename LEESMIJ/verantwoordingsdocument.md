@@ -45,7 +45,7 @@ Daarom zijn er in de directory/folder `src/main/resources` verschillende `applic
 
 ## Java en Spring Boot
 
-Alle back-end code is Java 11 of hoger t/m 17. Op dit moment lijkt JDK 17 de nieuwste long-term support (LTS) versie, maar die was op het moment dat ik begon, nog niet in release fase.
+Alle back-end code is Java 16 (JDK 16/SDK). Op dit moment lijkt JDK 17 de nieuwste long-term support (LTS) versie, maar die was op het moment dat ik begon, nog niet in release fase.
 
 ### Spring Boot
 

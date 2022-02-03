@@ -8,7 +8,6 @@ import axios from "axios";
 import Loader from "../../components/loader/Loader";
 import AvatarDownload from "../../components/photoupload/AvatarDownload";
 import AvatarUpload from "../../components/photoupload/AvatarUpload";
-import {useForm} from "react-hook-form";
 import ChangePassword from "./ChangePassword";
 
 
@@ -27,7 +26,6 @@ function DashboardPage() {
     const [error, setError] = useState('');
     const {user} = useContext(AuthContext);
     console.log("ingelogde user heet:", user);
-    const {register, handleSubmit, formState: {errors}} = useForm({mode: 'onBlur'});
     const [modal, toggleModal] = useState(false);
 
     useEffect(() => {

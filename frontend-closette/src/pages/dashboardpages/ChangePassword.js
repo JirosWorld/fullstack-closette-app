@@ -1,7 +1,6 @@
 import React, {useContext, useState} from 'react';
 import {AuthContext} from "../../context/AuthContext";
 import {useForm} from 'react-hook-form';
-import {useParams} from "react-router-dom";
 import axios from "axios";
 import InputField from "../../components/form-elements/inputfield/InputField";
 import Loader from "../../components/loader/Loader";

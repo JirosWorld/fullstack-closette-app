@@ -3,7 +3,6 @@ import noImage from "../../../assets/img/no-image.png";
 import axios from "axios";
 import Loader from "../../loader/Loader";
 import "./ThumbnailStrip.css";
-import {Link} from "react-router-dom";
 
 function ThumbnailStrip() {
 
@@ -11,10 +10,8 @@ function ThumbnailStrip() {
     //  http://localhost:8080/downloadFromDB <= om echt te downloaden uit de database
     // en http://localhost:8080/download/{bestandsnaam} <= fake prefilled data uit de Uploads directory
 
-    const [avatarDownloadEntry, setAvatarDownloadEntry] = useState([]);
-    const [photoDownloadEntry, setPhotoDownloadEntry] = useState([]);
-    const [mostRecentPhoto, setMostRecentPhoto] = useState({});
 
+    const [photoDownloadEntry, setPhotoDownloadEntry] = useState([]);
     const [loading, toggleLoading] = useState(false);
     const [error, setError] = useState('');
 
@@ -29,7 +26,6 @@ function ThumbnailStrip() {
             try {
                 const result = await axios.get(`http://localhost:8080/photos`);
                 setPhotoDownloadEntry(result.data);
-                setMostRecentPhoto(result.data[result.data.length - 1]);
                 console.log("alle foto downloadEntry data:");
                 console.log(result.data);
                 console.log("de meest recent geuploade foto:");

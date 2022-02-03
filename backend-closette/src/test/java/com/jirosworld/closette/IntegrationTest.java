@@ -50,10 +50,4 @@ public class IntegrationTest {
                 .andExpect(status().isOk());
     }
 
-//    @Test
-//    void shouldReturn200ForEndpointToiletRatings() throws Exception {
-//        mockMvc.perform(get("/ratings/{id}/toilets").with(user("user").roles("USER")))
-//                .andExpect(status().isOk());
-//    }
-
 }

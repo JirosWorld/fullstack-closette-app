@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "3c5fa254-0347-48c1-b753-98f969fbf174",
 		"name": "Jiro_Closette_data",
-		"description": "Welkom bij de Closette back-end requests. Deze app maakt een database aan van toilet-locaties. Een admin kan nieuwe users toevoegen en locaties en ratings verwijderen. Niet-ingelogde bezoekers kunnen dded toiletten-database doorzoeken. Ingelogde gebruikers kunnen foto's uploaden en nieuwe toiletten toevoegen en hun eigen wacht woord veranderen.",
+		"description": "Welkom bij de Closette back-end requests. Deze app maakt een database aan van toilet-locaties. Een admin kan nieuwe users toevoegen en locaties en ratings verwijderen. Niet-ingelogde bezoekers kunnen dded toiletten-database doorzoeken. Ingelogde gebruikers kunnen foto's uploaden en nieuwe toiletten toevoegen en hun eigen wachtwoord veranderen.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -611,7 +611,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"title\": \"Patch Put verander Patch\"\n    }",
+							"raw": "{\n    \"title\": \"Deel Patch Put verander Patch\"\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -725,13 +725,13 @@
 					"response": []
 				},
 				{
-					"name": "PATCH 1 foreignkey toilet",
+					"name": "test PATCH 1 foreignkey toilet",
 					"request": {
 						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"owner\": {\n            \"id\": 2\n        }\n    }",
+							"raw": "{\"ratings\": [\n        {\n            \"id\": 7,\n            \"ratingToilet\": 1\n        },\n        {\n            \"id\": 22,\n            \"ratingToilet\": 1\n        },\n        {\n            \"id\": 30,\n            \"ratingToilet\": 1\n        }\n    ]}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -781,7 +781,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"ratingToilet\": 10\n        }",
+							"raw": "{\n        \"rating\": 10\n        }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -908,7 +908,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"ratingToilet\": 3.3\n        }",
+							"raw": "{\n    \"rating\": 3.3\n        }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -939,7 +939,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"ratingToilet\": 3.3\n        }",
+							"raw": "{\n    \"rating\": 3.3\n        }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1012,7 +1012,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"ratingToilet\": 10.30\n}",
+							"raw": "{\n    \"rating\": 10\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1042,7 +1042,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"ratingToilet\": 8.0,\n    \"name\": \"Vrijwilliger\"\n}",
+							"raw": "{\n    \"rating\": 8.0\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1172,7 +1172,6 @@
 							"formdata": [
 								{
 									"key": "file",
-									"description": "hsshvsdhv",
 									"type": "file",
 									"src": []
 								}
@@ -1236,7 +1235,6 @@
 							"formdata": [
 								{
 									"key": "file",
-									"description": "hsshvsdhv",
 									"type": "file",
 									"src": []
 								}
@@ -1278,6 +1276,26 @@
 									"key": "filename",
 									"value": "img-post-French_Squatter_Toilet.jpg"
 								}
+							]
+						},
+						"description": "Zoek foto op bestandsnaam."
+					},
+					"response": []
+				},
+				{
+					"name": "GET all uploads in directory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/alluploads",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"alluploads"
 							]
 						},
 						"description": "Zoek foto op bestandsnaam."
@@ -1504,13 +1522,13 @@
 					"response": []
 				}
 			],
-			"description": "Welkom bij de Closette back-end requests. Deze app maakt een database aan van toilet-locaties. Een admin kan nieuwe users toevoegen en locaties en rating verwijderen.",
+			"description": "Welkom bij de Closette back-end requests. Deze app maakt een database aan van toilet-locaties. Een admin kan nieuwe users toevoegen en locaties en ratings verwijderen. Een gewone user kan nieuw geplaatste locaties verwijderen en nieuwe toevoegen.",
 			"auth": {
 				"type": "bearer",
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0NDkzNzM1MywiaWF0IjoxNjQzMjA5MzUzfQ.CCBxyulN6Xs-zIAbd94Ee9BZ4PgGiGOrifZ15wz1rHg",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0NTQ4NDA1NiwiaWF0IjoxNjQzNzU2MDU2fQ.GwApq2XnM-QxNLs2_6Pg4jBVIu_zZT0_H8sPxq5Fmps",
 						"type": "string"
 					}
 				]
@@ -1535,6 +1553,36 @@
 					}
 				}
 			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY0NTQ4NDA1NiwiaWF0IjoxNjQzNzU2MDU2fQ.GwApq2XnM-QxNLs2_6Pg4jBVIu_zZT0_H8sPxq5Fmps",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }

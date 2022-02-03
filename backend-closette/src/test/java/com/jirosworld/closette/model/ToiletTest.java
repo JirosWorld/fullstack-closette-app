@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ToiletTest {
 
@@ -92,6 +92,30 @@ class ToiletTest {
         String expected = "Marktplein 1-a.";
 
         assertEquals(expected, actual);
+    }
+
+    @Test
+    void latitudeIsEmpty() {
+//        arrange
+//        toilet is reeds geinitieerd met @Beforeall
+//        act / assert
+
+//        assertTrue(toilet.latitudeIsEmpty());
+//        de breedtegraad is ingevuld
+
+        assertFalse(toilet.latitudeIsEmpty());
+    }
+
+    @Test
+    void longitudeIsEmpty() {
+//        arrange
+//        toilet is reeds geinitieerd met @Beforeall
+//        act / assert
+
+//        assertTrue(toilet.longitudeIsEmpty());
+//        de lengtegraad is ingevuld
+
+        assertFalse(toilet.longitudeIsEmpty());
     }
 
     @AfterEach

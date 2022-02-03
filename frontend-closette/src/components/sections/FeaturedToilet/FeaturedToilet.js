@@ -13,7 +13,6 @@ function FeaturedToilet() {
     const [loading, toggleLoading] = useState(false);
     const [error, setError] = useState('');
     // beoordeling berekenen
-    const [numberOfRatings, setNumberOfRatings] = useState(0);
     const [averageRating, setAverageRating] = useState(0);
 
     useEffect(() => {
@@ -40,10 +39,9 @@ function FeaturedToilet() {
                 console.log( naiveRound((sum / itemsFound), 2) );
                 const averagePopularity = naiveRound((sum / itemsFound), 2);
 
-                setNumberOfRatings(itemsFound);
-                console.log("nr itemsFound/setNumberOfRatings:", itemsFound);
+                console.log("nr itemsFound:", itemsFound);
                 setAverageRating(averagePopularity);
-                console.log("Average popularity/setAverageRating:", averagePopularity);
+                console.log("Average popularity:", averagePopularity);
 
             } catch (error) {
                 setError(`Er is iets misgegaan bij het ophalen van de data - (${error.message})`);

@@ -17,6 +17,11 @@ public class NewsPostService {
     @Autowired
     private NewsPostRepository newsPostRepository;
 
+    //    find all
+    public Iterable<NewsPost> findAllNewsposts() {
+        return newsPostRepository.findAll();
+    }
+
     public Iterable<NewsPost> getNewsposts(String title) {
         if (title.isEmpty()) {
             return newsPostRepository.findAll();

@@ -13,7 +13,7 @@ function RegisterPage() {
     const [registerSuccess, toggleRegisterSuccess] = useState(false);
     const [error, setError] = useState('');
     const history = useHistory();
-    const {register, handleSubmit, formState: {errors}} = useForm({ mode: 'onBlur' });
+    const {register, handleSubmit, formState: {errors}} = useForm({ mode: 'onChange' });
 
     async function onFormSubmit(data) {
         setError('');
@@ -60,6 +60,7 @@ function RegisterPage() {
                 <form className="form-container" onSubmit={handleSubmit(onFormSubmit)}>
                     <InputField
                         inputType="email"
+                        placeholderText="... typ een geldig mailadres"
                         errors={errors}
                         register={register}
                         labelText="E-mail"

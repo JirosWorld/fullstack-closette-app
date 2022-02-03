@@ -18,7 +18,7 @@ init("user_QXd8UjBeN4IPK6AdPaueU");
 
 export const ContactUs = () => {
     const form = useRef();
-    const {register, handleSubmit, formState: {errors}} = useForm({ mode: 'onBlur' });
+    const {register, handleSubmit, formState: {errors}} = useForm({ mode: 'onChange' });
     const [submitSuccess, toggleSubmitSuccess] = useState(false);
 
 
