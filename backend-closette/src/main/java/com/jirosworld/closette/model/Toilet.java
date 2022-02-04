@@ -35,14 +35,16 @@ public class Toilet {
     @Column(columnDefinition = "text")
     private String infoText;
 
+
     @JsonIgnoreProperties("toilets")
     @ManyToOne
     @JoinColumn(name = "photo_id", referencedColumnName = "id")
     private Photo photo;
 
-    //    @OneToMany(mappedBy = "toiletscore", fetch = FetchType.LAZY)
-    @OneToMany
+
+    @OneToMany(mappedBy = "toilet")
     private List<Rating> ratings = new ArrayList<>();
+
 
     // default constructor
 

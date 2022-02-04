@@ -516,6 +516,32 @@
 					"response": []
 				},
 				{
+					"name": "Querie zoeker op Genderneutral",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/toilets?genderneutral=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"toilets"
+							],
+							"query": [
+								{
+									"key": "genderneutral",
+									"value": "true"
+								}
+							]
+						},
+						"description": "Zoek op land."
+					},
+					"response": []
+				},
+				{
 					"name": "Querie (defunct) op Titel&City?",
 					"request": {
 						"method": "GET",
@@ -805,7 +831,7 @@
 					"response": []
 				},
 				{
-					"name": "GET 1 Rating for relation toilet",
+					"name": "GET 1 Rating with index 4",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -827,7 +853,7 @@
 					"response": []
 				},
 				{
-					"name": "GET /toilets/{id}/ratings",
+					"name": "GET /toilets/{id}/ratings nr.1",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -849,21 +875,43 @@
 					"response": []
 				},
 				{
-					"name": "GET /ratings/{id}/toilets",
+					"name": "GET /toilets/{id}/ratings 11",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/ratings/2/toilets",
+							"raw": "http://localhost:8080/toilets/11/ratings",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"ratings",
-								"2",
-								"toilets"
+								"toilets",
+								"11",
+								"ratings"
+							]
+						},
+						"description": "Vervang welke rating is er door wie ze geplaatst zijn."
+					},
+					"response": []
+				},
+				{
+					"name": "GET /users/{username}/ratings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/user/ratings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"user",
+								"ratings"
 							]
 						},
 						"description": "Vervang welke rating is er door wie ze geplaatst zijn."
@@ -877,7 +925,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{ \n    \"title\": \"Veranderde titel bij 1 rating\",\n    \"free\": true,\n    \"cleanliness\": \"Schone beoordeling\"\n}",
+							"raw": "{ \n    \"rating\": 5,\n    \"toilet\": {\n        \"id\": 1\n    },\n    \"user\": {\n        \"username\": \"tester\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -885,16 +933,16 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/ratings/1/toilets",
+							"raw": "http://localhost:8080/toilets/1/ratings",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"ratings",
+								"toilets",
 								"1",
-								"toilets"
+								"ratings"
 							]
 						},
 						"description": "Vervang welke rating is er door wie ze geplaatst zijn."
@@ -902,7 +950,69 @@
 					"response": []
 				},
 				{
-					"name": "POST 1 Rating for relation toilet",
+					"name": "POST /ratings/{id}/toilets again",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n    \"rating\": 5,\n    \"toilet\": {\n        \"id\": 1\n    },\n    \"user\": {\n        \"username\": \"admin\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/toilets/1/ratings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"toilets",
+								"1",
+								"ratings"
+							]
+						},
+						"description": "Vervang welke rating is er door wie ze geplaatst zijn."
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /ratings/{id}/toilets added",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n    \"rating\": 10,\n    \"toilet\": {\n        \"id\": 1\n    },\n    \"user\": {\n        \"username\": \"admin\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/toilets/1/ratings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"toilets",
+								"1",
+								"ratings"
+							]
+						},
+						"description": "Vervang welke rating is er door wie ze geplaatst zijn."
+					},
+					"response": []
+				},
+				{
+					"name": "(defunct) POST 1 Rating for relation toilet",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -933,7 +1043,7 @@
 					"response": []
 				},
 				{
-					"name": "POST 1 Rating for relation User",
+					"name": "(defunct) POST 1 Rating for relation User",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -1088,6 +1198,27 @@
 					"response": []
 				},
 				{
+					"name": "(defunct) GET all ratings from 1 User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/ratings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"ratings"
+							]
+						},
+						"description": "Haal alle ratings op die door user met id=1 zijn gegeven."
+					},
+					"response": []
+				},
+				{
 					"name": "POST new rating for 1 toilet",
 					"request": {
 						"method": "POST",
@@ -1191,7 +1322,115 @@
 						},
 						"description": "Upload 1 foto naar naar de database, waardoor de foto een ID krijgt."
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Photo upload-single Database",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/single/uploadDb",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"single",
+										"uploadDb"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Photo upload-Multiple photos to Database",
+					"protocolProfileBehavior": {
+						"strictSSL": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/multiple/upload/db",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"multiple",
+								"upload",
+								"db"
+							]
+						},
+						"description": "Upload 1 foto naar naar de database, waardoor de foto een ID krijgt."
+					},
+					"response": [
+						{
+							"name": "Photo upload-single Database",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/single/uploadDb",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"single",
+										"uploadDb"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
 				},
 				{
 					"name": "Photo upload-single PATCH db",

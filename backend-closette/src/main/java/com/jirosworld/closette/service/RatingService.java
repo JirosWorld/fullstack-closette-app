@@ -63,37 +63,4 @@ public class RatingService {
         }
     }
 
-
-    // relation tables
-
-//    public List<Toilet> getRatingToilets(int id) {
-//        Optional<Rating> optionalRating = ratingRepository.findById(id);
-//
-//        if (optionalRating.isPresent()) {
-//            Rating rating = optionalRating.get();
-//            return rating.getToilets();
-//        }
-//        else {
-//            throw new RecordNotFoundException("ID does not exist!");
-//        }
-//    }
-
-//    public void addRatingToilet(int id, Toilet toilet) {
-//        Optional<Rating> optionalRating = ratingRepository.findById(id);
-//
-//        if (optionalRating.isPresent()) {
-//            Rating rating = optionalRating.get();
-//            List<Toilet> toilets = rating.getToilets();
-//
-//            toiletRepository.save(toilet);
-//
-//            toilets.add(toilet);
-//            ratingRepository.save(rating);
-//        }
-//        else {
-//            throw new RecordNotFoundException("ID does not exist!");
-//        }
-//    }
-
-
 }

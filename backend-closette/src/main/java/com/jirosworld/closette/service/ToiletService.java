@@ -12,6 +12,7 @@ import com.jirosworld.closette.repository.ToiletRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +29,7 @@ public class ToiletService {
     private RatingRepository ratingRepository;
 
     //    find all
+    @Transactional
     public List<Toilet> getToilets() {
         return toiletRepository.findAll();
     }
@@ -47,15 +49,17 @@ public class ToiletService {
         }
     }
 
-
+    @Transactional
     public List<Toilet> getToiletsByTitle(String title) {
         return toiletRepository.findAllByTitleContainingIgnoreCase(title);
     }
 
+    @Transactional
     public List<Toilet> getToiletsByCity(String city) {
         return toiletRepository.findAllByCityContainingIgnoreCase(city);
     }
 
+    @Transactional
     public List<Toilet> getToiletsByCountry(String country) {
         return toiletRepository.findAllByCountryContainingIgnoreCase(country);
     }
@@ -96,16 +100,15 @@ public class ToiletService {
 
     public int addToilet(ToiletRequestDto toiletRequestDto) {
 
-        // staat uit tijdens testdoeleinden, wél functioneel in real life:
         String title = toiletRequestDto.getTitle();
         List<Toilet> toilets = toiletRepository.findAllByTitle(title);
         if (toilets.size() > 0) {
-            throw new BadRequestException("This exact title already exists! Please add a unique detailed name");
+            throw new BadRequestException("This exact title already exists! Please add a unique detailed venue name");
         }
         String latitudeDuplicate = toiletRequestDto.getLatitude();
         List<Toilet> latitudes = toiletRepository.findAllByLatitude(latitudeDuplicate);
         if (latitudes.size() > 0) {
-            throw new BadRequestException("This location already exists! Please add exact and detailed GPS coordinates, with a dot.");
+            throw new BadRequestException("This GPS location already exists! Please add exact and detailed GPS coordinates, with a dot.");
         }
 
         Toilet toilet = new Toilet();
@@ -248,7 +251,8 @@ public class ToiletService {
         }
     }
 
-    // relation tables
+    // relation tables photos
+
     public Photo getToiletPhoto(int id) {
         Optional<Toilet> optionalToilet = toiletRepository.findById(id);
 
@@ -276,31 +280,35 @@ public class ToiletService {
         }
     }
 
-    public Rating getToiletRatings(int id) {
-        Optional<Toilet> optionalToilet = toiletRepository.findById(id);
+    // relation tables ratings
 
-        if (optionalToilet.isPresent()) {
-            Toilet toilet = optionalToilet.get();
-            return (Rating) toilet.getRatings();
-        } else {
-            throw new RecordNotFoundException("ID does not exist!");
+    public Iterable<Rating> getToiletRatings(int id) {
+        Optional<Toilet> toilet = toiletRepository.findById(id);
+        if (toilet.isPresent()) {
+            return toilet.get().getRatings();
+        }
+        else {
+            throw new RecordNotFoundException("Toilet with id " + id + " not found.");
         }
     }
+
 
     public void addToiletRating(int id, Rating rating) {
         Optional<Toilet> optionalToilet = toiletRepository.findById(id);
 
         if (optionalToilet.isPresent()) {
             Toilet toilet = optionalToilet.get();
-            Rating newrating = (Rating) toilet.getRatings();
+            List<Rating> ratings = toilet.getRatings();
 
             ratingRepository.save(rating);
 
-            newrating.setRating(newrating.getRating());
+            ratings.add(rating);
             toiletRepository.save(toilet);
-        } else {
-            throw new RecordNotFoundException("ID does not exist!");
+        }
+        else {
+            throw new RecordNotFoundException("ID does not exist!!!");
         }
     }
+
 
 }

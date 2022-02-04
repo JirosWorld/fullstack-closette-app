@@ -2,7 +2,6 @@ package com.jirosworld.closette.controller;
 
 import com.jirosworld.closette.dto.UserPostRequestDto;
 import com.jirosworld.closette.exception.BadRequestException;
-import com.jirosworld.closette.model.Rating;
 import com.jirosworld.closette.model.User;
 import com.jirosworld.closette.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,11 +88,11 @@ public class UserController {
     }
 
 //    relation tables
-
-    @PostMapping(value = "/{username}/ratings")
-    public ResponseEntity<Object> addUserRating(@PathVariable("username") String username, @RequestBody Rating rating) {
-        userService.addUserRating(username, rating);
-        return ResponseEntity.created(null).build();
-    }
+//    which ratings are posted by a user
+//@GetMapping(value = "/users/{username}/ratings")
+//public ResponseEntity getUserRatings(@PathVariable String username) {
+//    Iterable<Rating> usersRatings = userService.getUserRatings(username);
+//    return ResponseEntity.ok(usersRatings);
+//}
 
 }

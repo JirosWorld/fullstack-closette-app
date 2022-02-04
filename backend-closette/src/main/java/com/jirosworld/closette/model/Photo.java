@@ -10,6 +10,8 @@ import java.util.List;
 @Table(name = "photos")
 public class Photo {
 
+//    this 'photos' database is meant for Toilets (not for Avatars)
+
     @Id
     @GeneratedValue
     private Long id;

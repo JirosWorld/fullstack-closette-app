@@ -1,5 +1,7 @@
 package com.jirosworld.closette.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -35,8 +37,8 @@ public class User {
         private List<NewsPost> newsposts = new ArrayList<>();
 
 
-//        @OneToMany(mappedBy = "reviewer", fetch = FetchType.LAZY)
-        @OneToMany
+        @OneToMany(mappedBy = "user")
+        @JsonIgnore
         private List<Rating> ratings = new ArrayList<>();
 
 
@@ -99,7 +101,6 @@ public class User {
         }
 
         // relation tables
-
 
         public List<Rating> getRatings() {
                 return ratings;

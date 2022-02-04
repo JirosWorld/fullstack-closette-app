@@ -9,118 +9,29 @@ VALUES ('user', 'ROLE_USER'),
        ('admin', 'ROLE_USER'),
        ('admin', 'ROLE_ADMIN');
 
-INSERT INTO ratings (rating)
-VALUES (9),
-       (7),
-       (8),
-       (3),
-       (2),
-       (3),
-       (6),
-       (5),
-       (4),
-       (6),
-       (3),
-       (7),
-       (6),
-       (9),
-       (7),
-       (9),
-       (7),
-       (8),
-       (3),
-       (2),
-       (3),
-       (6),
-       (5),
-       (4),
-       (6),
-       (2),
-       (6),
-       (6),
-       (9),
-       (5),
-       (9);
 
--- INSERT INTO ratings (rating, toilet_id, user_username)
--- VALUES (9, 1, 'user'),
---        (7, 2, 'user'),
---        (8, 3, 'user'),
---        (3, 4, 'user'),
---        (2, 5, 'user'),
---        (3, 6, 'user'),
---        (6, 7, 'user'),
---        (5, 8, 'tester'),
---        (4, 9, 'tester'),
---        (6, 10, 'tester'),
---        (3, 11, 'tester'),
---        (7, 1, 'tester'),
---        (6, 2, 'tester'),
---        (9, 3, 'tester'),
---        (7, 4, 'tester'),
---        (9, 5, null),
---        (7, 6, null),
---        (8, 7, null),
---        (3, 8, null),
---        (2, 9, null),
---        (3, 10, null),
---        (6, 11, null),
---        (5, 8, null),
---        (2, 5, null),
---        (6, 6, null),
---        (6, 7, null);
+    -- insert ALL base64 images in prefilled data
+    -- Dit is waar de ByteArray nummers veranderd kunnen worden:
+    -- Upload eerst zelf de foto's uit de Uploads directory
+    -- en geef dan de nieuwe doc_file nummers per bestand mee
+    INSERT INTO photos (id, file_name, doc_file)
+    VALUES ('199', 'no-image1.png', '54101' ),
+           ('200', 'img-post-amsterdammuseum.jpg', '54559' ),
+           ('250', 'img-post-artistic-toilet.jpg', '54560' ),
+           ('300', 'img-post-back-to-wall-toilet.jpg', '54561' ),
+           ('400', 'img-post-black-white-toilet.jpg', '54562' ),
+           ('500', 'img-post-deco-toilet.jpg', '54565' ),
+           ('600', 'img-post-krakers-toilet.jpg', '40649' ),
+           ('700', 'img-post-urinoirs.jpg', '40706' ),
+           ('800', 'img-post-French_Squatter_Toilet.jpg', '40766' ),
+           ('900', 'img-post-Japans-Toilet.jpg', '40767' ),
+           ('1000', 'img-post-victorian-toilet.jpg', '40769' ),
+           ('1100', 'img-news-UNISEX.jpg', '54558' ),
+           ('1200', 'img-post-outhouse-toilet.jpg', '54566' ),
+           ('1300', 'img-news-Unisex-Toilet.png', '54557' ),
+           ('1400', 'img-news-unisex-sign.png', '54556' ),
+           ('1450', 'no-image2.png', '54101' );
 
--- insert ALL base64 images in prefilled data
--- INSERT INTO photos (id, file_name, doc_file)
--- VALUES ('199', 'no-image1.png', '54101' ),
---        ('200', 'img-post-amsterdammuseum.jpg', '54559' ),
---        ('250', 'img-post-artistic-toilet.jpg', '54560' ),
---        ('300', 'img-post-back-to-wall-toilet.jpg', '54561' ),
---        ('400', 'img-post-black-white-toilet.jpg', '54562' ),
---        ('500', 'img-post-deco-toilet.jpg', '54565' ),
---        ('600', 'img-post-krakers-toilet.jpg', '40649' ),
---        ('700', 'img-post-urinoirs.jpg', '40706' ),
---        ('800', 'img-post-French_Squatter_Toilet.jpg', '40766' ),
---        ('900', 'img-post-Japans-Toilet.jpg', '40767' ),
---        ('1000', 'img-post-victorian-toilet.jpg', '40769' ),
---        ('1100', 'img-news-UNISEX.jpg', '54558' ),
---        ('1200', 'img-post-outhouse-toilet.jpg', '54566' ),
---        ('1300', 'img-news-Unisex-Toilet.png', '54557' ),
---        ('1400', 'img-news-unisex-sign.png', '54556' ),
---        ('1450', 'no-image2.png', '54101' );
-
--- insert 1 base64 photo in prefilled data
-INSERT INTO photos (id, file_name, doc_file)
-VALUES ('199', 'no-image1.png', '54101'),
-       ('200', 'img-post-amsterdammuseum.jpg', null),
-       ('250', 'img-post-artistic-toilet.jpg', null),
-       ('300', 'img-post-back-to-wall-toilet.jpg', null),
-       ('400', 'img-post-black-white-toilet.jpg', null),
-       ('500', 'img-post-deco-toilet.jpg', null),
-       ('600', 'img-post-krakers-toilet.jpg', null),
-       ('700', 'img-post-urinoirs.jpg', null),
-       ('800', 'img-post-French_Squatter_Toilet.jpg', null),
-       ('900', 'img-post-Japans-Toilet.jpg', null),
-       ('1000', 'img-post-victorian-toilet.jpg', null),
-       ('1100', 'img-news-UNISEX.jpg', null),
-       ('1200', 'img-post-outhouse-toilet.jpg', null),
-       ('1300', 'img-news-Unisex-Toilet.png', null),
-       ('1400', 'img-news-unisex-sign.png', null),
-       ('1450', 'no-image2.png', '54101');
-
-INSERT INTO newsposts (title, description, paragraph, post_time, newsauthor_id)
-VALUES ('Handleiding en f.a.q.',
-        'Wil je weten hoe deze app werkt? Lees dan meer hier, of op de FAQ pagina of in je dashboard (alleen voor bezoekers met een account)',
-        ' Op deze site kun je naar veilige genderneutrale toiletten zoeken. Niet-ingelogde gebruikers kunnen toiletten zoeken en alle data bekijken. Ook het Nieuws en de onderliggende artikelen zijn openbaar. Bij het plaatsen van een nieuwe toilet-locatie kun je allerlei opties per toilet aangeven. Alles wat je invult, wordt zichtbaar in de toilettenlijst. De enige opties die écht verplicht zijn om in te vullen, zijn: naam, stad en land. Alleen ingelogde gebruikers kunnen nieuwe locaties toevoegen of bestaande inhoud aanpassen/verbeteren. Er is ook maar maximaal 1 foto per locatie te zien; dus als je toevallig een mooiere foto hebt, dan mag je deze toevoegen. Maak wel eerst een account aan. Áls de volledige GPS locatie is ingevuld dan wordt de "Link naar locatie" automatisch aanklikbaar! Wanneer je daarop klikt dan word je naar een externe website gestuurd: die van Open Streetmap - deze optie zorgt ervoor dat je de locaties ook kunt vinden wanneer je de weg niet weet van de stad waar je bent.',
-        '2020-03-04', 'admin'),
-       ('Over deze App',
-        'Voor iedereen, die niet achter een boom kan plassen, is  het vaak erg lastig om een gratis openbaar toilet te vinden. Daarnaast is het voor non-binaire en transgender personen nog veel lastiger om een (veilig) genderneutraal toilet te vinden.',
-        'Een extra bij-effect van deze ‘Closette’ app is dat ook niet-trans personen zo makkelijker een veilig of toegankelijk toilet kunnen vinden. Voor vrouwen zijn er immers ook al jaren veel te weinig gratis toiletten beschikbaar. Er is behoefte aan een systeem dat gendervariabele mensen in staat stelt om makkelijk het adres van een genderneutraal toilet te zoeken, of, als je er zelf 1 hebt gevonden, deze te delen via een openbare site. Een extra bij-effect van deze ‘Closette’ app is dat ook niet-trans personen zo makkelijker een veilig of toegankelijk toilet kunnen vinden. Voor vrouwen zijn er immers ook al jaren veel te weinig gratis toiletten beschikbaar. De 5 belangrijkste functionaliteiten zijn: -1 Alle gebruikers, ook die niet ingelogd zijn, kunnen zoeken naar toiletten.
-    -2 De zoekresultaten kunnen getrechterd worden via de verschillende filtereigenschappen van toiletten (stad, land, gratis/niet-gratis, wel/niet genderneutraal, toegankelijk voor minder validen, vies of schoon, heeft wel/geen foto, beoordelingen).
-    -3 Alle ingelogde gebruikers kunnen een sterrenwaardering per toilet geven.
-    -4 Ingelogde gebruikers kunnen nieuwe toiletten plaatsen met daarbij het adres, een beschrijving en kunnen eventueel een foto uploaden.
-    -5 Speciale gebruikers (community managers) hebben meer rechten: moderators hebben de mogelijkheid om posts te censureren of verwijderen.',
-        '2021-02-06', 'admin');
 
 INSERT INTO toilets (title, latitude, longitude, post_time, accessible, city, country, cleanliness, free,
                      genderneutral, has_photo, info_text, opening_hours, address, photo_id)
@@ -170,51 +81,46 @@ VALUES ('Het Amsterdam Museum', '52.3700', '4.8900', '2019-05-05', TRUE,
         'Hier is een zware klimtocht over de berg voor nodig om het toilet (een bossage) te kunnen bereiken. Een beschrijving van o.a. hoe het toilet te bereiken is e.a. bijzonderheden, met veel gedetailleerde informatie. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium blanditiis, qui popocatepetl.',
         '24h', 'Abra- paso Llactapata S/N- 08000- Peru', 1200);
 
-INSERT INTO toilets_ratings (toilet_id, ratings_id)
-VALUES ('1', '1'),
-       ('2', '2'),
-       ('3', '3'),
-       ('4', '4'),
-       ('5', '5'),
-       ('6', '6'),
-       ('7', '7'),
-       ('8', '8'),
-       ('9', '9'),
-       ('10', '10'),
-       ('11', '11'),
-       ('1', '12'),
-       ('2', '13'),
-       ('3', '14'),
-       ('4', '15'),
-       ('1', '16'),
-       ('2', '17'),
-       ('3', '18'),
-       ('4', '19'),
-       ('5', '20'),
-       ('6', '21'),
-       ('7', '22'),
-       ('8', '23'),
-       ('9', '24'),
-       ('10', '25'),
-       ('11', '26'),
-       ('8', '27'),
-       ('5', '28'),
-       ('6', '29'),
-       ('7', '30');
 
-INSERT INTO users_ratings (user_username, ratings_id)
-VALUES ('user', '1'),
-       ('user', '2'),
-       ('user', '3'),
-       ('user', '4'),
-       ('user', '5'),
-       ('user', '6'),
-       ('user', '7'),
-       ('tester', '8'),
-       ('tester', '9'),
-       ('tester', '10'),
-       ('tester', '11'),
-       ('tester', '12'),
-       ('tester', '13'),
-       ('tester', '14'),
-       ('tester', '15');
+
+INSERT INTO ratings (rating, toilet_id, user_username)
+VALUES (7, 2, 'user'),
+       (8, 3, 'user'),
+       (3, 4, 'user'),
+       (2, 5, 'user'),
+       (3, 6, 'user'),
+       (6, 7, 'user'),
+       (5, 8, 'tester'),
+       (4, 9, 'tester'),
+       (6, 10, 'tester'),
+       (3, 11, 'tester'),
+       (6, 2, 'tester'),
+       (9, 3, 'tester'),
+       (7, 4, 'tester'),
+       (9, 5, 'admin'),
+       (7, 6, 'admin'),
+       (8, 7, 'admin'),
+       (3, 8, 'admin'),
+       (2, 9, 'admin'),
+       (3, 10, 'admin'),
+       (6, 11, 'admin'),
+       (5, 8, null),
+       (2, 5, null),
+       (6, 6, null),
+       (6, 7, null);
+
+
+
+INSERT INTO newsposts (title, description, paragraph, post_time, newsauthor_id)
+VALUES ('Handleiding en f.a.q.',
+        'Wil je weten hoe deze app werkt? Lees dan meer hier, of op de FAQ pagina of in je dashboard (alleen voor bezoekers met een account)',
+        ' Op deze site kun je naar veilige genderneutrale toiletten zoeken. Niet-ingelogde gebruikers kunnen toiletten zoeken en alle data bekijken. Ook het Nieuws en de onderliggende artikelen zijn openbaar. Bij het plaatsen van een nieuwe toilet-locatie kun je allerlei opties per toilet aangeven. Alles wat je invult, wordt zichtbaar in de toilettenlijst. De enige opties die écht verplicht zijn om in te vullen, zijn: naam, stad en land. Alleen ingelogde gebruikers kunnen nieuwe locaties toevoegen of bestaande inhoud aanpassen/verbeteren. Er is ook maar maximaal 1 foto per locatie te zien; dus als je toevallig een mooiere foto hebt, dan mag je deze toevoegen. Maak wel eerst een account aan. Áls de volledige GPS locatie is ingevuld dan wordt de "Link naar locatie" automatisch aanklikbaar! Wanneer je daarop klikt dan word je naar een externe website gestuurd: die van Open Streetmap - deze optie zorgt ervoor dat je de locaties ook kunt vinden wanneer je de weg niet weet van de stad waar je bent.',
+        '2020-03-04', 'admin'),
+       ('Over deze App',
+        'Voor iedereen, die niet achter een boom kan plassen, is  het vaak erg lastig om een gratis openbaar toilet te vinden. Daarnaast is het voor non-binaire en transgender personen nog veel lastiger om een (veilig) genderneutraal toilet te vinden.',
+        'Een extra bij-effect van deze ‘Closette’ app is dat ook niet-trans personen zo makkelijker een veilig of toegankelijk toilet kunnen vinden. Voor vrouwen zijn er immers ook al jaren veel te weinig gratis toiletten beschikbaar. Er is behoefte aan een systeem dat gendervariabele mensen in staat stelt om makkelijk het adres van een genderneutraal toilet te zoeken, of, als je er zelf 1 hebt gevonden, deze te delen via een openbare site. Een extra bij-effect van deze ‘Closette’ app is dat ook niet-trans personen zo makkelijker een veilig of toegankelijk toilet kunnen vinden. Voor vrouwen zijn er immers ook al jaren veel te weinig gratis toiletten beschikbaar. De 5 belangrijkste functionaliteiten zijn: -1 Alle gebruikers, ook die niet ingelogd zijn, kunnen zoeken naar toiletten.
+    -2 De zoekresultaten kunnen getrechterd worden via de verschillende filtereigenschappen van toiletten (stad, land, gratis/niet-gratis, wel/niet genderneutraal, toegankelijk voor minder validen, vies of schoon, heeft wel/geen foto, beoordelingen).
+    -3 Alle ingelogde gebruikers kunnen een sterrenwaardering per toilet geven.
+    -4 Ingelogde gebruikers kunnen nieuwe toiletten plaatsen met daarbij het adres, een beschrijving en kunnen eventueel een foto uploaden.
+    -5 Speciale gebruikers (community managers) hebben meer rechten: moderators hebben de mogelijkheid om posts te censureren of verwijderen.',
+        '2021-02-06', 'admin');

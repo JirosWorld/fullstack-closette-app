@@ -93,7 +93,7 @@ function SearchResults() {
 
                                 {post.photo ?
                                     <img
-                                        src={`http://localhost:8080/download/${post.photo.fileName}`}
+                                        src={`http://localhost:8080/downloadFromDB/${post.photo.fileName}`}
                                         alt="thumbnail"
                                         className="thumbnail"
                                         width="150" height="150"/>

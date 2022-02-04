@@ -39,10 +39,11 @@ function AvatarDownload() {
 
     return (
         <>
+            <span className="thumbnail__mockup">
             {error && <p className="error-message">{error}</p>}
-            {loading && <Loader/>}
+                {loading && <Loader/>}
 
-            <span className="thumbnail-container">
+                <span className="thumbnail-container">
 
             {avatarDownloadEntry !== null ?
                 <>
@@ -50,12 +51,12 @@ function AvatarDownload() {
 
                         {mostRecentPhoto &&
                         <>
-                        <img
-                            src={`http://localhost:8080/download/${mostRecentPhoto.fileName}`}
-                            alt="thumbnail"
-                            className="thumbnail-wide"
-                            width="300"/>
-                        <p className="tiny-info margin-zero">Foto ID: {mostRecentPhoto.id} |
+                            <img
+                                src={`http://localhost:8080/download/${mostRecentPhoto.fileName}`}
+                                alt="thumbnail"
+                                className="thumbnail-wide"
+                                width="300"/>
+                            <p className="tiny-info margin-zero">Foto ID: {mostRecentPhoto.id} |
                                 Naam van gebruikersfoto:<br/>{mostRecentPhoto.fileName}</p>
                         </>
                         }
@@ -79,8 +80,9 @@ function AvatarDownload() {
             }
 
         </span>
-            </>
-        );
+                </span>
+        </>
+    );
 }
 
 export default AvatarDownload;

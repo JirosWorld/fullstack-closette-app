@@ -5,16 +5,22 @@ import com.jirosworld.closette.model.Photo;
 import com.jirosworld.closette.repository.PhotoRepository;
 import com.jirosworld.closette.service.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 @RestController
@@ -77,6 +83,42 @@ public class PhotoDbController {
     }
 
 
+    //    post for multiple uploads to database - not working
+//    @PostMapping("/multiple/upload/db")
+//    List<FileUploadResponse> multipleUpload(@RequestParam("files") MultipartFile[] files) {
+//
+//        if (files.length > 7) {
+//            throw new RuntimeException("to many files selected");
+//        }
+//
+//        List<FileUploadResponse> uploadResponseList = new ArrayList<>();
+//        Arrays.asList(files).stream().forEach(file -> {
+//
+//            String name = StringUtils.cleanPath(file.getOriginalFilename());
+//            Photo photo = new Photo();
+//            photo.setFileName(name);
+//            try {
+//                photo.setDocFile(file.getBytes());
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//            photoRepository.save(photo);
+//
+////          make url
+//            String url = ServletUriComponentsBuilder.fromCurrentContextPath().path("/downloadFromDB/").path(name).toUriString();
+//
+//            String contentType = file.getContentType();
+//
+//            FileUploadResponse response = new FileUploadResponse(name, contentType, url);
+//
+//            uploadResponseList.add(response);
+//        });
+//
+//        return uploadResponseList;
+//
+//    }
+
 
     // function to make patching possible
     @PatchMapping(value = "single/uploadDb/{id}")
@@ -100,22 +142,6 @@ public class PhotoDbController {
 //        return ResponseEntity.noContent().build();
     }
 
-
-
-//    relation tables
-
-//    @GetMapping(value = "/photos/{id}/toilets")
-//    public ResponseEntity<Object> getPhotoToilet(@PathVariable int id) {
-//        return ResponseEntity.ok(photoService.getPhotoToilet(id));
-//    }
-
-
-
-//    @PostMapping(value = "/photos/{id}/toilets")
-//    public ResponseEntity<Object> addPhotoToilet(@PathVariable int id, @RequestBody Toilet toilet) {
-//        photoService.addPhotoToilet(id, toilet);
-//        return ResponseEntity.created(null).build();
-//    }
 
 
 }

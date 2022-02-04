@@ -18,7 +18,7 @@ function Upload({setFile, url, setUrl}) {
 
         reader.readAsDataURL(file);
         setTimeout(() => {
-            window.scrollTo({ top: 800, behavior: 'smooth' })
+            window.scrollTo({ top: 900, behavior: 'smooth' })
         }, 0);
 
     }

@@ -43,16 +43,4 @@ public class RatingController {
         return ResponseEntity.created(location).build();
     }
 
-//    relation tables
-//    @GetMapping(value = "/ratings/{id}/toilets")
-//    public ResponseEntity<Object> getRatingToilets(@PathVariable int id) {
-//        return ResponseEntity.ok(ratingService.getRatingToilets(id));
-//    }
-//
-//    @PostMapping(value = "/ratings/{id}/toilets")
-//    public ResponseEntity<Object> addRatingToilet(@PathVariable int id, @RequestBody Toilet toilet) {
-//        ratingService.addRatingToilet(id, toilet);
-//        return ResponseEntity.created(null).build();
-//    }
-
 }

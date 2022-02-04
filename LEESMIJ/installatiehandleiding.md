@@ -1,7 +1,16 @@
-# Closette App installatiehandleiding
+# Closette App installatiehandleiding Markdown versie
 
 door Jiro Ghianni
 
+### tekst-only versie
+
+# Deze installatiehandleiding staat hier ook als mooiere PDF
+
+Zie de PDF in deze zelfde LEESMIJ directory:
+
+[installatiehandleiding-closette.pdf](installatiehandleiding-closette.pdf)
+
+Dit tekstdocument is als basis gebruikt voor de PDF.
 
 ## Inhoud
 
@@ -24,7 +33,7 @@ Houd deze repository bijelkaar binnen 1 directory. Dat wil zeggen: sleep de fron
 1. download de gehele ZIP van Github (dus: _niet_ uitchecken als versioncontrolled project) en pak deze uit op je lokale machine.
 2. open de backend-closette map in een Java-ready IDE of console.
 3. verander de database gegevens zoals hieronder aangegeven.
-4. verander het upload pad naar de `Public/uploads` map in de front-end directory.
+4. verander het upload pad naar de `Public/uploads` map in de front-end directory én vul de database met uploads via Postman of front-end.
 5. run eventueel Maven vanuit de backend map, en start de Java applicatie `ClosetteApp` in de SRC/main map.
 5. open de frontend-closette map in een React-ready IDE of console.
 6. run `$ npm install` en `$ npm start` **_vanuit_** de front-end folder zelf.
@@ -44,13 +53,14 @@ Zie voor verdere uitleg hieronder.
 
 Voor de installatie is een werkende internet verbinding vereist.
 
-Verder: voor de back-end is een IDE nodig die Java code kan uitvoeren en om kan gaan met Spring Boot en Maven en een Tomcat server op kan starten, bij voorkeur IntelliJ Idea. Er moet tevens een PostgreSQL database omgeving zijn, die eventueel beheerd kan worden via een programma zoals PgAdmin.
+Verder: voor de back-end is een IDE nodig die Java code kan uitvoeren en om kan gaan met Spring Boot en Maven en een Tomcat server op kan starten, bij voorkeur IntelliJ Idea. Er moet tevens een PostgreSQL database omgeving zijn, die eventueel beheerd kan worden via een programma zoals PgAdmin. Tevens is er voor het uploaden van de vooraf-in-te-laden foto’s het programma Postman nodig.
 
 **Download links**
 
 * PostgreSQL https://www.postgresql.org
 * pgAdmin https://www.pgadmin.org
 * IntelliJ https://www.jetbrains.com/idea/
+* Postman https://www.postman.com/downloads/
 
 
 ## 2. Stappenplan back-end
@@ -78,7 +88,7 @@ Maak dus eerst een user aan met naam/wachtwoord `springboot`. En daarna een lege
 
 Belangrijk: Pas in de `main/resources/application.properties` het Upload-pad voor afbeeldingen aan: voor Mac gebruikers zal dit vlekkeloos verlopen omdat daar nooit Backslashes gebruikt worden, maar Windowsgebruikers moeten opletten dat er soms een Backslash in hun code nodig is daar waar een Slash moet staan. Het lokale pad hier dienen alle gebruikers in ieder geval aan te passen vanaf het 'Users' path naar de locatie van de front-end public/uploads directory op jouw eigen machine:
 
-`my.upload_location= /Users/jolarti/webdevelopment/closette/frontend-closette/public/uploads`
+`app.uploads= /Users/jolarti/webdevelopment/closette/frontend-closette/public/uploads`
 
 Let op: dit lokale pad MOET verwijzen naar de uploads directory die in de Public Directory staat van de Frontend-closette map:
 
@@ -91,6 +101,30 @@ Deze app is gebouwd op een Mac, dus het is mogelijk dat Windows/Linux gebruikers
 Windows users moeten hier mogelijk een BACKSLASH invoeren in plaats van de SLASH die daar staat, resultaat:
 
 `Path filePath = Paths.get(fileStoragePath + "\\" + fileName);`
+
+
+## De vooraf ingeladen foto’s
+
+De database heeft 15 foto’s die vooraf ingeladen moeten worden, omdat deze gekoppeld zijn aan de id’s van de toilet- entries. Helaas is het niet voldoende om alleen de data.sql in te laden, omdat de foto’s zijn omgezet naar een zogenaamde ‘**byte array**’ die voor elke lokale machine een uniek cijfer geeft. Dit unieke lokale gedrag schijnt iets met de data access object (DAO) te maken te hebben.
+
+Gelukkig is er een oplossing: via Postman – of zelfs via de front-end – kunnen de foto’s die reeds in de Uploads map staan, allemaal opnieuw naar jouw lokale database geüpload worden, zodat deze lokaal op jouw eigen machine een nieuw uniek cijfer krijgen. Dit cijfer heet ‘`doc_file`’ en dient veranderd te worden in het data.sql bestand dat in de Resources map staat, op deze manier:
+
+Open in Postman het request dat een POST doet naar het pad
+`http://localhost:8080/single/uploadDb`
+en upload daar 1-voor-1 alle images uit de **Public/Uploads** directory die in de **frontend-closette** map staan:
+
+![upload stap 1](assets/upload-byteimage-1.png)
+
+
+Bekijk daarna welke cijfers er nu zijn meegegeven in jouw eigen  PostGreSQL database:
+
+![upload stap 2](assets/upload-byteimage-2.png)
+
+
+Nu kun je het `data.sql` bestand aanpassen en bewaren, vóórdat je de server start (of herstart):
+
+![upload stap 2](assets/upload-byteimage-3.png)
+
 
 
 ### JAVA versie
@@ -115,7 +149,7 @@ Bij back-end problemen:
 
 Laatste stap voor de back-end:
 
-Start de Main klasse `ClosetteApp` op (run).
+Start de Main klasse `ClosetteApp` op (= run).
 
 
 ## 3. Lijst van alle rest endpoints
@@ -141,7 +175,7 @@ https://documenter.getpostman.com/view/17991980/UVeCR95T  - en in de 'LEESMIJ' m
 * {PATCH [/users/{username}/password]}
 * {PATCH [/toiletsdto/{id}]}
 * {PATCH [/toilets/{id}]}
-* {PATCH [/toilets/{id}/ratings]
+* {PATCH [/toilets/{id}/ratings]}
 * {PATCH [/single/uploadDb/{id}]}
 * {PATCH [/news/{id}]}
 * {GET [/users/{username}/authorities]}

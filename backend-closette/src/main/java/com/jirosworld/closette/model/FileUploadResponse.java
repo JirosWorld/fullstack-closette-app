@@ -6,6 +6,8 @@ import javax.persistence.*;
 @Table(name = "uploaded_files")
 public class FileUploadResponse {
 
+//    this 'uploaded_files' database is meant for Avatars (not for Toilets)
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

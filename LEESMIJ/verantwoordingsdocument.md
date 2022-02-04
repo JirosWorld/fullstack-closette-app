@@ -28,6 +28,8 @@ Als exameneis wordt er gevraagd om minstens 10 technische ontwerpbeslissingen. D
 
 ## Servers
 
+_(Standaard techniek als geleverd door de Bootcamp)_
+
 Op de achtergrond van Spring Boot wordt er gebruik gemaakt van Apache Tomcat.
 
 De front-end server draait op http://localhost:3000
@@ -35,6 +37,8 @@ De front-end server draait op http://localhost:3000
 De back-end server draait op http://localhost:8080
 
 ## Database
+
+_(Standaard techniek als geleverd door de Bootcamp)_
 
 De database is PostgreSQL.
 
@@ -49,9 +53,13 @@ Daarom zijn er in de directory/folder `src/main/resources` verschillende `applic
 
 ## Java en Spring Boot
 
-Alle back-end code is Java 16 (JDK 16/SDK). Op dit moment lijkt JDK 17 de nieuwste long-term support (LTS) versie, maar die was op het moment dat ik begon, nog niet in release fase.
+_(Standaard techniek als geleverd door de Bootcamp)_
+
+Alle back-end code is Java 17 (JDK 177/SDK). Op dit moment lijkt JDK 17 de nieuwste long-term support (LTS) versie, maar die was op het moment dat ik begon, nog niet in release fase.
 
 ### Spring Boot
+
+_(Standaard techniek als geleverd door de Bootcamp)_
 
 Er is van het Spring Boot Framework gebruik gemaakt, en daarvan zijn de volgende plug-ins/produkten gebruikt:
 
@@ -66,6 +74,8 @@ Er is van het Spring Boot Framework gebruik gemaakt, en daarvan zijn de volgende
 Door middel van een listener heb ik alle `Rest endpoints` verzameld in een lijst die in de documentatie van de back-end map staat, daarin staan ook alle Postman request als importeerbaar `JSON file Collection v2.1` bestand (inclusief JSON-voorbeelden). In de IDE heb ik ook de JPA Buddy plug-in gebruikt.
 
 ## Gebruikte hulpmiddelen (software)
+
+_(Mix van standaard technieken + mijn eigen industry-standard DTP wensen)_
 
 Voor het ontwikkelen is gebruik gemaakt van
 
@@ -83,6 +93,8 @@ Voor het ontwikkelen is gebruik gemaakt van
 
 ## Git versiebeheer en Github
 
+_(Standaard techniek als geleverd door de Bootcamp)_
+
 Zie https://github.com/jirosworld en de `.git` directory/folder van het project.
 
 Ik heb tenminste 2X een feature branch gemaakt voor het maken van database relaties en foto testen - die pull requests zijn allemaal gemerged met Main en nu niet meer zichtbaar. Alle commits vanaf de aanvang van de bouw zijn hier zichtbaar: https://github.com/JirosWorld/fullstack-closette-app/commits/main 
@@ -91,33 +103,47 @@ Let op: door de gitignore file zijn onnodige NPM node bestanden voor de front-en
 
 ## Unit-testen
 
+_(Standaard techniek als geleverd door de Bootcamp)_
+
 Zie de directories/folders onder `src/test/java`.
+
+Het testen heb ik getracht te doen met zowel unit-tests en mocks, gebruikmakend van Spring Boot test en WebMvc.
 
 ## Beveiliging
 
+_(Mix van standaard technieken + mijn eigen beslissingen)_
+
+* Het gebruik van een JWT tokens was niet verplicht maar deze heb ik toch graag toegepast omdat het veel inlog/uitlog frustratie wegneemt aan de front-end.
 * De beveiliging is niet production-ready doordat er  natuurlijk te eenvoudige wachtwoorden ('password') en een te simpele secret key is gebruikt ('secret'). In de werkelijkheid kan er beter worden gewerkt met cookies i.p.v. alleen een JWT token. 
-* Via authenticatie met JSON Web Token (JWT) was het mogelijk om de endpoints te beveiligen met authenticate en authorisaties. Het verwijderen van een bestaande gebruiker is beveiligd, zodat alleen gebruikers met de ADMIN rol deze acties kunnen uitvoeren.
+* Via authenticatie met JSON Web Token (JWT) was het mogelijk om de endpoints te beveiligen met authenticate en authorisaties. Het verwijderen van een bestaande gebruiker is beveiligd, zodat alleen gebruikers met de ADMIN rol deze acties kunnen uitvoeren aan de back-end.
 * De CORS beveiligingscode heb ik rechtstreeks gekopiëerd van wat we in de les te zien kregen.
 
 
 ## Technische functionaliteits beslissingen
 
-* Java is een geheel nieuwe taal voor mij. Tot nu toe had ik alleen ervaring met HTML, CSS, basis PHP, basis SQL en zeer basale Javascript; ik heb grote vorderingen gemaakt, maar toch was ik beperkt in wat ik aankon om binnen een realistisch tijdsbestek te kunnen bouwen. Hierondeer volgen de zaken die ik niet of gedeeltelijk heb kunnen bouwen of waar ik andere beslissingen heb gemaakt dan in mijn klassendiagram en/of ontwerpen.
+
+Java is een geheel nieuwe taal voor mij. Tot nu toe had ik alleen ervaring met HTML, CSS, basis PHP, basis mySQL en zeer basale Javascript en JQuery; ik heb grote vorderingen gemaakt, maar toch was ik beperkt in wat ik aankon om binnen een realistisch tijdsbestek te kunnen bouwen. Hieronder volgen de zaken die ik niet of gedeeltelijk heb kunnen bouwen of waar ik andere beslissingen heb gemaakt dan in mijn klassendiagram en/of ontwerpen.
+
+
 * In de eindexamenopdracht wordt als eis gesteld dat er een "bestands-up- en download" functionaliteit in de app zit. Op de front-end is alleen de upload functie expliciet te zien: dit omdat een 'download' niet nodig is als functionaliteit binnen het concept van mijn toiletten-app idee. Natuurlijk vindt er _eigenlijk_ wél een soort 'download' plaats op de front-end omdat de geüploade afbeeldingen op de front-end in HTML worden afgebeeld/gerendered.
-* In het Technisch/Functioneel ontwerrp staat zeer gedetaill in rood en groen aangegegeven wat ik wle ne niet heb kunnen bouwen; ik heb alles kunnen bouwen dat ik strict noodzakelijk achtte voor de zoek-app; alle niet-functionele eisen die ik neit heb kunnen bouwen maar die wel wenselijk zijn en voor een vel betere app zouden zorgen  zijn deze: een rating systeem, foto's die daadwerkelijk bij 1 toilet horen en niet bij allemaal.
-* Dit is een 'stateless webserver' - daardoor kon ik geen 'prefilled' foto's afleveren in een nette database, die ook nog gekoppeld zouden zijn aan een statische uploads map. Dus heb ik verschillende functies en endpoints gebruikt en deze verschillend getoond op de frontend. Kort samengevat: alle foto's die op de backend in de 'uploads' map staan, zijn de 'prefilled' data die op de frontend alleen getoond worden bij alle toiletten die reeds meegegeven worden bij het opstarten van de backend. Dus zodra je een NIEUWE foto uploadt voor NIEUWE toilet entries, dan komt die foto-download URL ergens anders vandaan: de stateless server. Na opnieuw opstarten van de backend, verdwijnen alle nieuw geplaatste toiletten en ook alle nieuw geuploade foto's.
+* Dit is een 'stateless webserver' - daardoor kon ik niet zo makkelijk veel 'prefilled' foto's afleveren die reeds meegegeven worden bij het opstarten van de backend. Hoe het nu werkt: zodra je een NIEUWE foto uploadt voor NIEUWE toilet entries, dan komt die foto-download URLuit de `photos` byte-array database. Maar het uploaden van een avatar gaat via een andere database: de avatars worden NIET opgeslagen in de database maar in de front-en/public/uploads directory en ze krijgen in ID mee in de `uploaded_files` database.
 * Ik heb gebruik gemaakt van standaard CSS en bij slechts 1 component heb ik een CSS-module gebruikt; dit omdat ik al bekend ben met CSS en dit tijd scheelde bij ontwikkelen. Wel heb ik hier en daar de BEM notatie gebruikt om ermee te oefenen.
-* Dit project gebruikt de verouderde versie 5 van React Router-Dom, omdat deze in de lessen is behandeld.
-* In mijn klassendiagram had ik besloten dat de relate van foto-tot-toilet een OneToOne moest zijn, maar in de werkelijkehid wilde ik er eigenlijk een ManyToMany van maken - sommige foto's worden meerdere malen herhaald/gebruikt, én eigenlijk wil je ook meerdere foto's per toilet kunnen plaatsen; dus heb ik er als compromis een ManyToOne relatie van gemaakt; dit ook omdat mijn basis Java kennis me nog parten speelt. In ieder geval zijn in de huidige constructie de foto ID's en toiletten ID's als foreign keys te gebruiken endaardoor ook aanspreekbaar als object voor de front-end.
+* Dit project gebruikt de verouderde versie 5 van `React Router-Dom`, omdat deze in de lessen is behandeld.
+* In mijn klassendiagram had ik besloten dat de relate van foto-tot-toilet een OneToOne moest zijn, maar in de werkelijkheid wilde ik er eigenlijk een ManyToMany van maken - sommige foto's worden meerdere malen herhaald/gebruikt, én eigenlijk wil je ook meerdere foto's per toilet kunnen plaatsen; dus heb ik er als compromis een ManyToOne relatie van gemaakt; dit ook omdat mijn basis Java kennis me nog parten speelt. Ik ben me er bewust van dat dit een rare beslissing is. In ieder geval zijn in de huidige constructie de foto ID's en toiletten ID's als foreign keys te gebruiken en daardoor ook aanspreekbaar als object voor de front-end.
 * FOTO's: ik heb 2 endpoints doorelkaar gebruikt voor de backend: 
   * http://localhost:8080/downloadFromDB <= om echt te downloaden uit de database 
   * en http://localhost:8080/download/{bestandsnaam} <= fake prefilled data uit de Uploads directory
-* Mijn 2 foto endpoints heb ik verschillend gebruikt in de hoop dat in ieder geval 1 van de 2 zou werken voor een examinator; bij mij werken ze allebei, maar toen i kde app liet testen door een andre leerling, kreeg hij de database upload versie niet aan de praat, dit komt waarschijnlijk door het large object byte array (@Lob)
+* Mijn 2 foto endpoints heb ik verschillend gebruikt in de hoop dat in ieder geval 1 van de 2 zou werken voor een examinator; bij mij werken ze allebei, maar toen ik de app liet testen door een medestudent, kreeg hij de database upload versie niet aan de praat, dit komt waarschijnlijk door het large object byte array (@Lob) incombinatie met de unieke getallen die in de DAO gegenereerd moeten worden - in de [istallatiehandleiding](installatiehandleiding.md) heb ik uitgebreid uitgelegd hoe de images, die in de database staan, zichtbaar gemaakt kunnen worden.
 * in React heb ik niet gebruik gemaakt van het Privateroute component omdat ik zelf een eenvoudiger manier heb bedacht om navigatie afhankelijk te maken van een wel/niet ingelogde user.
 
 ## Wat is er niet gedaan + disclaimers
 
-_(limitaties van de applicatie en beargumentatie van mogelijke doorontwikkelingen)_
+_(limitaties van mijn applicatie en beargumentatie van mogelijke doorontwikkelingen)_
+
+* In het Technisch/Functioneel ontwerp staat zeer gedetailleerd in rood en groen aangegegeven wat ik wel en niet heb kunnen bouwen; ik heb alles kunnen bouwen dat ik strict noodzakelijk achtte voor de zoek-app; alle _niet-functionele_ eisen die ik niet heb kunnen maken, maar die wel wenselijk zijn en voor een veel betere, realistische app zouden zorgen zijn o.a. deze:
+  * een rating systeem waarbij 1 user maar 1 rating kan plaatsen per toilet entry,
+  * foto's die daadwerkelijk bij 1 toilet horen en niet bij allemaal,
+  * een veel uitgebreidere filtering op zoekresultaten d.m.v. array-methods aan de front-end OF door middel van nieuwe queries aan de back-end.
 
 • Deze opdracht levert géén deployment-ready product op en zal niet werken op de gemiddelde FTP server, maar dat was ook geen eis.
 
@@ -139,7 +165,7 @@ _(limitaties van de applicatie en beargumentatie van mogelijke doorontwikkelinge
 
 • Geen uitgebreide splitsing van de DTO's naar input en output, wat wel netter zou zijn, maar dit is geen exameneis.
 
-• De gestelde kwaliteitseis van een totale test-coverage van 50% is behaald.
+• De gestelde kwaliteitseis van een totale test-coverage van 50% is niet behaald. Ik heb een bereik van 29%.
 
 • Aan de front-end zijn geen Dev dependencies gebruikt (dit  zou netter zijn bij gebruik van SASS bijvoorbeeld). 
 

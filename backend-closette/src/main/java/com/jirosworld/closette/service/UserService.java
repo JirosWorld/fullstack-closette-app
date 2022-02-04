@@ -3,6 +3,7 @@ package com.jirosworld.closette.service;
 import com.jirosworld.closette.dto.UserPostRequestDto;
 import com.jirosworld.closette.exception.*;
 import com.jirosworld.closette.model.Authority;
+import com.jirosworld.closette.model.Toilet;
 import com.jirosworld.closette.model.User;
 import com.jirosworld.closette.model.Rating;
 import com.jirosworld.closette.repository.RatingRepository;
@@ -161,23 +162,33 @@ public class UserService {
         }
     }
 
-    @Autowired
-    private RatingRepository ratingRepository;
-
-    public void addUserRating(String username, Rating rating) {
-        Optional<User> optionalUser = userRepository.findById(username);
-
-        if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            List<Rating> ratings = user.getRatings();
-
-            ratingRepository.save(rating);
-
-            ratings.add(rating);
-            userRepository.save(user);
-        } else {
-            throw new RecordNotFoundException("User does not exist!!!");
+    public Iterable<Rating> getUserRatings(String username) {
+        Optional<User> user = userRepository.findById(username);
+        if (user.isPresent()) {
+            return user.get().getRatings();
+        }
+        else {
+            throw new RecordNotFoundException("User with id/name " + username + " not found.");
         }
     }
+
+//    @Autowired
+//    private RatingRepository ratingRepository;
+//
+//    public void addUserRating(String username, Rating rating) {
+//        Optional<User> optionalUser = userRepository.findById(username);
+//
+//        if (optionalUser.isPresent()) {
+//            User user = optionalUser.get();
+//            List<Rating> ratings = user.getRatings();
+//
+//            ratingRepository.save(rating);
+//
+//            ratings.add(rating);
+//            userRepository.save(user);
+//        } else {
+//            throw new RecordNotFoundException("User does not exist!!!");
+//        }
+//    }
 
 }

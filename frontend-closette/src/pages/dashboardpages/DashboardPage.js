@@ -9,6 +9,7 @@ import Loader from "../../components/loader/Loader";
 import AvatarDownload from "../../components/photoupload/AvatarDownload";
 import AvatarUpload from "../../components/photoupload/AvatarUpload";
 import ChangePassword from "./ChangePassword";
+import "./DashboardPage.css"
 
 
 function DashboardPage() {

@@ -230,11 +230,11 @@ function ToiletPost() {
                                         : <span className="tiny-info">Geen foto</span>}
                                     </p>
                                     <p>Foto: <a
-                                        href={toiletEntry.latitude && toiletEntry.photo
-                                        && `http://localhost:8080/download/${toiletEntry.latitude && toiletEntry.photo.fileName}`}
+                                        href={toiletEntry.photo && toiletEntry.photo
+                                        && `http://localhost:8080/download/${toiletEntry.photo && toiletEntry.photo.fileName}`}
                                         rel="noreferrer"
-                                        target="_blank">{toiletEntry.latitude && toiletEntry.photo
-                                    && `⇪ /${toiletEntry.latitude && toiletEntry.photo.fileName}`}
+                                        target="_blank">{toiletEntry.photo && toiletEntry.photo
+                                    && `⇪ /${toiletEntry.photo && toiletEntry.photo.fileName}`}
                                     </a></p>
                                     <p>breedtegraad: {toiletEntry.latitude && toiletEntry.latitude}</p>
                                     <p>lengtegraad: {toiletEntry.longitude && toiletEntry.longitude}</p>
