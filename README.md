@@ -25,7 +25,7 @@ is: [Jiro's Github Fullstack Closette App](https://github.com/JirosWorld/fullsta
 
 * in de 'LEESMIJ' map staat ook het Verantwoordingsdocument: [link naar Verantwoordingsdocument in markdown](LEESMIJ/verantwoordingsdocument.md)
 
-* in de 'LEESMIJ' map staat de verzameling van [alle Endpoint + Postman requests](LEESMIJ/Jiro_Closette_data.postman_collection.json) (JSON); De endpoints heb ik tevens gepubliceerd op deze documentatie site (inclusief beschrijvingen):
+* in de 'LEESMIJ' map staat de importeerbare verzameling van [Postman requests](LEESMIJ/Jiro_Closette_data.postman_collection.json) (JSON); De endpoints heb ik tevens gepubliceerd op deze documentatie site (inclusief beschrijvingen):
   https://documenter.getpostman.com/view/17991980/UVeCR95T
 
 * link naar de Figma ontwerpen:
