@@ -35,7 +35,7 @@ Zie de installatiehandleiding in de LEESMIJ folder. Belangrijk voor Github gebru
 1. download de gehele ZIP van Github (dus: _niet_ uitchecken als versioncontrolled project) en pak deze ut op je lokale machine.
 2. open de backend-closette map in een Java IDE of console.
 3. verander de database gegevens zoals hieronder aangegeven.
-4. verander het upload pad naar de `Public/uploads` map in de front-end directory.
+4. verander het upload pad naar de `Public/uploads` map in de front-end directory ÉN uload alle foto's uit die map naar de datase om zo nieuwe Byte arrays te verkrijgen (zie meer in de uitgebreide [installatiehandleiding.md](../LEESMIJ/installatiehandleiding.md) ).
 5. run eventueel Maven vanuit de backend map, en start de Java applicatie `ClosetteApp` in de SRC/main map.
 5. open de frontend-closette map in een React IDE of console.
 6. run `$ npm install` en `$ npm start` **_vanuit_** de front-end folder zelf.

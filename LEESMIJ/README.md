@@ -2,13 +2,15 @@
 
 door Jiro Ghianni
 
+![Closette logo](assets/closette-logo.png)
+
 ## Inhoud van de LEESMIJ Documentatie map
 
-Deze directory bevat:
+Deze LEESMIJ Documentatie directory bevat:
 
 * de Installatiehandleiding voor zowel front-end als back-end:  [link naar de Installatiehandleiding in markdown](installatiehandleiding.md)
 
-* het Functioneel ontwerp + het Technisch ontwerp **samen** in 1 PDF: [link naar Functioneel/Technisch ontwerp in PDF](functioneel-technisch-ontwerp-app-jiro.pdf) (9 MB)
+* het Functioneel ontwerp + het Technisch ontwerp **samen** in 1 PDF: [link naar Functioneel/Technisch ontwerp in PDF](functioneel-technisch-ontwerp-app-jiro.pdf) (7 MB)
 
 * Broncode van beide projecten staat in de ZIP en het [online Github-project](../).
 
@@ -18,13 +20,13 @@ Deze directory bevat:
 
 ### Leuke extra’s
 
-Er is ook een 'text-only' markdown versie van het functioneel- en technisch ontwerp: [link naar ontwerptekst in markdown](functioneel-technisch.md) en een verzameling van alle Postman requests (= dezelfde als in de back-end documentation map).
+Er is ook een 'text-only' markdown versie van het functioneel- en technisch ontwerp: [link naar ontwerptekst in markdown](functioneel-technisch.md) en een verzameling van [alle Postman requests online](https://documenter.getpostman.com/view/17991980/UVeCR95T) (= dezelfde als in de back-end documentation map).
 
 
 
 Veel plezier met nakijken!
 
-Saluut,
+Saluti,
 
 Jiro Ghianni
 2021 / 2022

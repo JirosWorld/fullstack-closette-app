@@ -2,9 +2,9 @@
 
 door Jiro Ghianni
 
-### tekst-only versie
+## ~ Tekst-only versie
 
-# Deze installatiehandleiding staat hier ook als mooiere PDF
+# Deze installatiehandleiding bestaat ook als mooiere PDF
 
 Zie de PDF in deze zelfde LEESMIJ directory:
 
