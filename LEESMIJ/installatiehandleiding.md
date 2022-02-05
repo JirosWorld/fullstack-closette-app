@@ -118,10 +118,13 @@ En daarna een lege database met de naam closette, gekoppeld aan deze user.
 • tester - password
 
 
-Back-end pad voor uploads
+### Back-end pad voor uploads
+
 Belangrijk: Pas in de main/resources/application.properties het Upload-pad voor afbeeldingen aan: voor Mac gebruikers zal dit vlekkeloos verlopen omdat daar nooit Backslashes gebruikt worden, maar Windowsgebruikers moeten opletten dat er wellicht een Backslash in hun code nodig is daar waar nu een Slash staat. Het lokale pad hier dienen alle gebruikers in ieder geval aan te passen vanaf het ‘Users’ path naar de locatie van de front-end public/uploads directory op jouw eigen machine:
 app.uploads= /Users/jolarti/webdevelopment/closette/frontend-closette/public/uploads
 Let op: dit lokale pad MOET verwijzen naar de  uploads  directory die in de public Directory staat van de Frontend-closette map:
+
+![handleiding screenshot](assets/locatie-uploads-dir.png)
 
 ### upload pad directory
 
@@ -140,16 +143,16 @@ Open in Postman het request dat een POST doet naar het pad
 http://localhost:8080/single/uploadDb
 en upload daar 1-voor-1 alle images uit de Public/Uploads directory die in de frontend-closette map staan:
 
-
+![handleiding screenshot](assets/upload-byteimage-1.png)
 
 
 Bekijk daarna welke cijfers er nu zijn meegegeven in jouw eigen  PostGreSQL database:
 
-
+![handleiding screenshot](assets/upload-byteimage-2.png)
 
 Nu kun je het data.sql bestand aanpassen en bewaren, vóórdat je de server start (of herstart):
 
-
+![handleiding screenshot](assets/upload-byteimage-3.png)
 
 
 
@@ -165,7 +168,11 @@ In de terminal kan de back-end app gestopt worden met de toetscombinatie ctrl + 
 Bij back-end problemen: * install pom.xml * of type ./mvnw verify (mac/linux) of mvnw.cmd verify (windows) uit in de terminal van de project directory/folder.
 Laatste stap voor de back-end:
 Start de Main klasse ClosetteApp op (= run).
-3. Lijst van alle rest endpoints
+
+
+## 3. Lijst van alle rest endpoints
+
+
 Onderstaande endpoints heb ik tevens gepubliceerd op deze documentatie site (inclusief beschrijvingen) die het veel geakkelijker maakt om al deze endpoints te kopiëren en zelf te gebruiken: https://documenter.getpostman.com/view/17991980/UVeCR95T - en in de ‘LEESMIJ’ map staat een makkelijk te importeren verzameling van alle Postman requests (met JSON).
 Hieronder volgt de volledige lijst met endpoints vanaf  http://localhost:8080
 – alléén wanneer een endpoint JSON bevat, dan staat dit er bij, als het geen JSON bevat dan staat er niets naast.
