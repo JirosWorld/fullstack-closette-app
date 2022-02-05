@@ -21,37 +21,37 @@ public class ToiletRepositoryTest {
     ToiletRepository toiletRepository;
 
 
-//    @Test
-//    public void findAllByToiletTest(){
-//        Toilet toilet = new Toilet();
-//        toilet.setInfoText("testing");
-//        toilet.setGenderneutral(true);
-//        Toilet toilet1 = new Toilet();
-//        toilet1.setGenderneutral(true);
-//        toilet1.setInfoText("not testing");
-//        Toilet toilet2 = toilet;
-//        entityManager.persist(toilet);
-//        entityManager.persist(toilet1);
-//        entityManager.flush();
-//
-//        List<Toilet> actual = toiletRepository.findAllByGenderneutral(true);
-//
-//        assertEquals("testing", actual.get(0).getInfoText());
-//    }
+    @Test
+    public void findAllByToiletTest(){
+        Toilet toilet = new Toilet();
+        toilet.setInfoText("testing");
+        toilet.setGenderneutral(true);
+        Toilet toilet1 = new Toilet();
+        toilet1.setGenderneutral(true);
+        toilet1.setInfoText("not testing");
+        Toilet toilet2 = toilet;
+        entityManager.persist(toilet);
+        entityManager.persist(toilet1);
+        entityManager.flush();
 
-//    @Test
-//    public void findAllByRating(){
-//        Rating rating = new Rating();
-//        rating.setRating(5);
-//        Toilet toilet = new Toilet();
-////        toilet.setRatings([4,5,6;]);
-//        toilet.setInfoText("testing");
-//        entityManager.persist(rating);
-//        entityManager.persist(toilet);
-//        entityManager.flush();
-//
-//        List<Toilet> actual = toiletRepository.findAllByRating(rating);
-//
-//        assertEquals("testing", actual.get(0).getInfoText());
-//    }
+        List<Toilet> actual = toiletRepository.findAllByGenderneutral(true);
+
+        assertEquals("testing", actual.get(0).getInfoText());
+    }
+
+    @Test
+    public void findAllByRating(){
+        Rating rating = new Rating();
+        rating.setRating(5);
+        Toilet toilet = new Toilet();
+//        toilet.setRatings([4,5,6;]);
+        toilet.setInfoText("testing");
+        entityManager.persist(rating);
+        entityManager.persist(toilet);
+        entityManager.flush();
+
+        List<Toilet> actual = toiletRepository.findAll();
+
+        assertEquals("testing", actual.get(0).getInfoText());
+    }
 }

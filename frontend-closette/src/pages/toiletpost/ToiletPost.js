@@ -20,6 +20,7 @@ import CameraIcon from "../../assets/icons/icon-camera.png";
 import PhotoDownload from "../../components/photoupload/PhotoDownload";
 import PhotoUpload from "../../components/photoupload/PhotoUpload";
 import ThumbnailStrip from "../../components/sections/ThumbnailStrip/ThumbnailStrip";
+import ToiletRating from "./ToiletRating";
 
 function ToiletPost() {
     const {user} = useContext(AuthContext);
@@ -177,14 +178,10 @@ function ToiletPost() {
                                         geplaatst: {toiletEntry && toiletEntry.postTime}</em></p>
                                     <p><strong>Stad: {toiletEntry && toiletEntry.city}</strong></p>
                                     <p>Land: {toiletEntry && toiletEntry.country}</p>
-                                    <p>Gemiddelde beoordeling: {averageRating}
-                                        {averageRating < 7
-                                        && <span> &#9733; &#x2605; </span>}
 
-                                        {averageRating > 7
-                                        && <span> &#9733; &#x2605; &#9733; &#x2605; &#9733;</span>}
-                                    </p>
-                                    <p className="tiny-info">(gebaseerd op <em>{numberOfRatings}</em> ratings)</p>
+
+                                    <ToiletRating />
+
 
                                 </div>
                             </div>
@@ -253,7 +250,7 @@ function ToiletPost() {
                                         <ul>
                                         {toiletEntry.ratings && toiletEntry.ratings.map((post) => {
 
-                                            return <li key={post.id}>
+                                            return <li key={post.id} className="votes">
                                                 Cijfer: {post.rating}
                                             </li>
                                         })

@@ -29,7 +29,6 @@ public class ToiletService {
     private RatingRepository ratingRepository;
 
     //    find all
-    @Transactional
     public List<Toilet> getToilets() {
         return toiletRepository.findAll();
     }
@@ -280,7 +279,7 @@ public class ToiletService {
         }
     }
 
-    // relation tables ratings
+    // relation tables ratings - get
 
     public Iterable<Rating> getToiletRatings(int id) {
         Optional<Toilet> toilet = toiletRepository.findById(id);
@@ -292,6 +291,7 @@ public class ToiletService {
         }
     }
 
+    // relation tables ratings - post
 
     public void addToiletRating(int id, Rating rating) {
         Optional<Toilet> optionalToilet = toiletRepository.findById(id);

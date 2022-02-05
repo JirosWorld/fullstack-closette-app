@@ -12,3 +12,21 @@
     background-color: var(--softbrown);
     border-radius: 15px;
 }
+
+.vote-form{
+    display: block;
+}
+
+#rating-field,
+.vote-form,
+button.vote-button {
+    max-width: 250px;
+}
+
+.votes {
+    margin: 0.3em;
+    padding: 0.3em;
+    background-color: var(--softgreen);
+    max-width: 250px;
+    border-radius: 15px;
+}

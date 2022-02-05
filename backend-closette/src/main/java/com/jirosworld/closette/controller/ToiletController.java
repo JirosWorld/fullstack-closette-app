@@ -118,12 +118,6 @@ public class ToiletController {
         return ResponseEntity.created(null).build();
     }
 
-    // search all ratings for this toilet
-//    @GetMapping(value = "/toilets/{id}/ratings")
-//    public ResponseEntity<Object> getToiletRatings(@PathVariable int id) {
-//        return ResponseEntity.ok(toiletService.getToiletRatings(id));
-//    }
-
     @GetMapping(value = "/toilets/{id}/ratings")
     public ResponseEntity getToiletRatings(@PathVariable int id) {
         Iterable<Rating> toiletsRatings = toiletService.getToiletRatings(id);
@@ -138,10 +132,10 @@ public class ToiletController {
     }
 
     // this Toilet's ID's Rating is replaced
-    @PatchMapping(value = "/toilets/{id}/ratings")
-    public ResponseEntity<Object> updateToiletRating(@PathVariable int id, @RequestBody Rating rating) {
-        toiletService.addToiletRating(id, rating);
-        return ResponseEntity.created(null).build();
-    }
+//    @PatchMapping(value = "/toilets/{id}/ratings")
+//    public ResponseEntity<Object> updateToiletRating(@PathVariable int id, @RequestBody Rating rating) {
+//        toiletService.addToiletRating(id, rating);
+//        return ResponseEntity.created(null).build();
+//    }
 
 }
