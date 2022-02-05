@@ -112,12 +112,6 @@ public class ToiletController {
         return ResponseEntity.ok(toiletService.getToiletPhoto(id));
     }
 
-    @PostMapping(value = "/toilets/{id}/photos")
-    public ResponseEntity<Object> addToiletPhoto(@PathVariable int id, @RequestBody Photo photo) {
-        toiletService.addToiletPhoto(id, photo);
-        return ResponseEntity.created(null).build();
-    }
-
     @GetMapping(value = "/toilets/{id}/ratings")
     public ResponseEntity getToiletRatings(@PathVariable int id) {
         Iterable<Rating> toiletsRatings = toiletService.getToiletRatings(id);
@@ -131,10 +125,17 @@ public class ToiletController {
         return ResponseEntity.created(null).build();
     }
 
-    // this Toilet's ID's Rating is replaced
+    // todo:this Toilet's ID's Rating is replaced
 //    @PatchMapping(value = "/toilets/{id}/ratings")
 //    public ResponseEntity<Object> updateToiletRating(@PathVariable int id, @RequestBody Rating rating) {
 //        toiletService.addToiletRating(id, rating);
+//        return ResponseEntity.created(null).build();
+//    }
+
+    // todo:this Toilet's ID gets a new Photo
+//    @PostMapping(value = "/toilets/{id}/photos")
+//    public ResponseEntity<Object> addToiletPhoto(@PathVariable int id, @RequestBody Photo photo) {
+//        toiletService.addToiletPhoto(id, photo);
 //        return ResponseEntity.created(null).build();
 //    }
 

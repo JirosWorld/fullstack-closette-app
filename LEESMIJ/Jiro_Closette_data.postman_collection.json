@@ -437,68 +437,6 @@
 					"response": []
 				},
 				{
-					"name": "(defunct) POST 1 Rating for relation toilet",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"rating\": 3.3\n        }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/ratings/1/toilets",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"ratings",
-								"1",
-								"toilets"
-							]
-						},
-						"description": "Vervang welke rating is en door wie ze geplaatst is."
-					},
-					"response": []
-				},
-				{
-					"name": "(defunct) POST 1 Rating for relation User",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"rating\": 3.3\n        }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/users/tester/ratings",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"users",
-								"tester",
-								"ratings"
-							]
-						},
-						"description": "Vervang welke rating is en door wie ze geplaatst is."
-					},
-					"response": []
-				},
-				{
 					"name": "Photo upload-single Database",
 					"protocolProfileBehavior": {
 						"strictSSL": false
@@ -1508,28 +1446,6 @@
 					"response": []
 				},
 				{
-					"name": "GET /users/{username}/ratings",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/users/user/ratings",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"users",
-								"user",
-								"ratings"
-							]
-						},
-						"description": "Vervang welke rating is er door wie ze geplaatst zijn."
-					},
-					"response": []
-				},
-				{
 					"name": "GET 1 Rating",
 					"request": {
 						"method": "GET",
@@ -1565,27 +1481,6 @@
 							"path": [
 								"toilets",
 								"1",
-								"ratings"
-							]
-						},
-						"description": "Haal alle ratings op die door user met id=1 zijn gegeven."
-					},
-					"response": []
-				},
-				{
-					"name": "(defunct) GET all ratings from 1 User",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/user/ratings",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"user",
 								"ratings"
 							]
 						},
@@ -1631,32 +1526,6 @@
 							]
 						},
 						"description": "Haal 1 foto op, met id = 200."
-					},
-					"response": []
-				},
-				{
-					"name": "GET 1 photo by name (defunct)",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/photos?filename=img-post-French_Squatter_Toilet.jpg",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"photos"
-							],
-							"query": [
-								{
-									"key": "filename",
-									"value": "img-post-French_Squatter_Toilet.jpg"
-								}
-							]
-						},
-						"description": "Zoek foto op bestandsnaam."
 					},
 					"response": []
 				},

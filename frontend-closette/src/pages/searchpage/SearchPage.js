@@ -232,7 +232,9 @@ function SearchPage() {
                                     <span className="mapped__post__detail">
                                         &#127988; "{post.country}"
                                     </span><br/>
-                                    <p className="mapped__post__votes">Beoordeling: {averagePopularity}
+                                    <p className="mapped__post__votes">Beoordeling:
+                                        {averagePopularity ||
+                                        <span className="tiny-info">  &nbsp; &#10060; 0 stemmen</span>}
                                         {averagePopularity < 7
                                         && <span> &#9733; &#x2605; </span>}
 

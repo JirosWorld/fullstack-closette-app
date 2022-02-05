@@ -114,8 +114,8 @@ function ToiletPost() {
 
             setTimeout(() => {
                 // refresh window, show updated toiletpost
-                window.scrollTo({ top: 0, behavior: 'smooth' });
                 window.location.reload(true);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }, 0);
         } catch (e) {
             setError(`(${e.message}) - Wanneer je een 400 error ziet, dan heb je een naam ingevoerd die al bestaat of je hebt een GPS coordinaat gebruikt dat al is ingevoerd - zorg dat titel en locatie UNIEK zijn!`)
@@ -141,6 +141,9 @@ function ToiletPost() {
                 setError(`Dit toilet bestaat niet meer ... je hebt dit 
                 toilet succesvol verwijderd! - (${error.message})`);
                 console.error(error.message);
+                setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                }, 0);
             }
         } else {
             console.log("Deleten gecanceled.");
@@ -252,6 +255,8 @@ function ToiletPost() {
 
                                             return <li key={post.id} className="votes">
                                                 Cijfer: {post.rating}
+                                                <span className="tiny-info"> ~
+                                                    door {post.user.username}</span>
                                             </li>
                                         })
                                         }

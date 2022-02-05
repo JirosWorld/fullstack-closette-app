@@ -44,7 +44,7 @@
     border-bottom: 5px solid  var(--hardpink);
 }
 .accordion-content {
-    padding: 0.3em 0.5em;
-    background-color: var(--softpink);
+    padding: 0.5em 0.6em;
+    background-color: #fff0f7;
     border-radius: 5px;
 }

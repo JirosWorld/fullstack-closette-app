@@ -19,7 +19,7 @@ function ToiletRating() {
     const [numberOfRatings, setNumberOfRatings] = useState(0);
     const [averageRating, setAverageRating] = useState(0);
 
-    // patch formulier moet alleen zichtbaar zijn wanneer daarom gevraagd wordt
+    // stem formulier moet alleen zichtbaar zijn wanneer daarom gevraagd wordt
     const [visibilityRating, setVisibilityRating] = useState(true);
 
     const [loading, toggleLoading] = useState(false);
@@ -28,6 +28,16 @@ function ToiletRating() {
     const {register, handleSubmit, formState: {errors}} = useForm({
         mode: 'onBlur'
          });
+
+    // TODO: set min/max of numberfield, not working
+    // const [value, setValue] = useState(0);
+    //
+    // function handleNumberChange(event) {
+    //     let { value: numberValue, min, max } = event.target;
+    //     numberValue = Math.max(Number(min), Math.min(Number(max), Number(numberValue)));
+    //
+    //     setValue(numberValue);
+    // }
 
     //mounting fase
     useEffect(() => {
@@ -78,9 +88,7 @@ function ToiletRating() {
 
     async function onFormSubmitPostRating(data) {
         setError('');
-        // setTimeout(() => {
-        //     window.scrollTo({top: 0, behavior: 'smooth'})
-        // }, 0);
+
 
         // pass nested data to OneToMany endpoint
 
@@ -102,8 +110,8 @@ function ToiletRating() {
 
             setTimeout(() => {
                 // refresh window, show updated toiletpost
-                window.scrollTo({top: 0, behavior: 'smooth'});
                 window.location.reload(true);
+                window.scrollTo({top: 0, behavior: 'smooth'});
             }, 0);
 
         } catch (e) {
@@ -124,7 +132,9 @@ function ToiletRating() {
                             {loading && <Loader/>}
                             <div className="template-intro__rating">
 
-                                <p>Gemiddelde beoordeling: {averageRating}
+                                <p>Gemiddelde beoordeling:
+                                    {averageRating ||
+                                    <span className="tiny-info"> &nbsp; &#10060; 0 stemmen</span>}
                                     {averageRating < 7
                                     && <span> &#9733; &#x2605; </span>}
 
@@ -164,8 +174,6 @@ function ToiletRating() {
 
                         <InputField
                             inputType="number"
-                            min="1"
-                            max="10"
                             errors={errors}
                             register={register}
                             labelText="Geef cijfer tussen 1 en 10)"

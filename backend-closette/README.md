@@ -40,7 +40,6 @@ https://documenter.getpostman.com/view/17991980/UVeCR95T
 * {POST [/users/{username}/ratings]}
 * {POST [/users/{username}/authorities]}
 * {POST [/toilets/{id}/ratings]}
-* {POST [/toilets/{id}/photos]}
 * {POST [/toilets]}
 * {POST [/single/uploadDb]}
 * {POST [/single/upload]}

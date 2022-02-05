@@ -1,5 +1,6 @@
 package com.jirosworld.closette.service;
 
+import com.jirosworld.closette.exception.FileStorageException;
 import com.jirosworld.closette.model.FileUploadResponse;
 import com.jirosworld.closette.repository.FileStorageRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -142,6 +142,12 @@ public class PhotoDbController {
 //        return ResponseEntity.noContent().build();
     }
 
+    // todo:this Photo's ID gets a new toilet assigned
+//    @PostMapping(value = "/photos/{id}/toilets")
+//    public ResponseEntity<Object> addPhotoToilet(@PathVariable int id, @RequestBody Toilet toilet) {
+//        photoService.addPhotoToilet(id, toilet);
+//        return ResponseEntity.created(null).build();
+//    }
 
 
 }

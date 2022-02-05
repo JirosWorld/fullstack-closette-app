@@ -9,6 +9,8 @@ function InputField({ errors, register, placeholderText, labelText, labelId, inp
         {labelText}
       </label>
       <input type={inputType}
+             min="1"
+             max="10"
              id={labelId}
              className={errors[inputName] && "error"}
              name={inputName}

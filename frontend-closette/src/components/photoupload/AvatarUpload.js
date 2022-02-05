@@ -59,8 +59,8 @@ function AvatarUpload() {
         console.log(submitInfo);
 
         setTimeout(() => {
-            window.scrollTo({top: 0, behavior: 'smooth'});
             window.location.reload(true);
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }, 2000);
     }
 

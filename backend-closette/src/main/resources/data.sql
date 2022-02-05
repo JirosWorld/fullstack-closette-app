@@ -12,8 +12,8 @@ VALUES ('user', 'ROLE_USER'),
 
     -- insert ALL base64 images in prefilled data
     -- Dit is waar de ByteArray nummers veranderd kunnen worden:
-    -- Upload eerst zelf de foto's uit de Uploads directory
-    -- en geef dan de nieuwe doc_file nummers per bestand mee
+    -- Upload eerst zelf de foto's uit de Uploads directory naar je database
+    -- en typ/vervang hier dan de nieuwe 'doc_file nummers' per regel
     INSERT INTO photos (id, file_name, doc_file)
     VALUES ('199', 'no-image1.png', '54101' ),
            ('200', 'img-post-amsterdammuseum.jpg', '54559' ),
@@ -104,10 +104,10 @@ VALUES (7, 2, 'user'),
        (2, 9, 'admin'),
        (3, 10, 'admin'),
        (6, 11, 'admin'),
-       (5, 8, null),
-       (2, 5, null),
-       (6, 6, null),
-       (6, 7, null);
+       (5, 8, 'tester'),
+       (2, 5, 'tester'),
+       (6, 6, 'tester'),
+       (6, 7, 'tester');
 
 
 

@@ -6,13 +6,17 @@ public class FileStorageException extends RuntimeException {
 
     @Serial
     private static final long serialVersionUID = 1L;
-    private String msg;
 
-    public FileStorageException(String msg) {
-        this.msg = msg;
+//    public FileStorageException() {
+//        super();
+//    }
+
+//    public FileStorageException(String message) {
+//        super(message);
+//    }
+
+    public FileStorageException(String s) {
+        super(s + "Issue in storing the file - there is a 3 MB maximum.");
     }
 
-    public String getMsg() {
-        return msg;
-    }
 }

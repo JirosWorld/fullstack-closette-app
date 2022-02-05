@@ -76,7 +76,7 @@ body {
     background: -ms-linear-gradient(top, #fff 0%, var(--softbrown) 100%);
     background: -o-linear-gradient(top, #fff 0%, var(--softbrown) 100%);
     background: linear-gradient(to bottom, #fff 0%, var(--softbrown) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e5799', endColorstr='#EEE5E3', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='var(--softbrown)', endColorstr='#FFF', GradientType=0);
     background-attachment: fixed;
     padding: 0;
     margin: 1em;
@@ -183,19 +183,35 @@ button[type=button]:hover {
 }
 
 input[type="file" i] {
-    background-color: var(--lightgrey);
+    background-color: #fff9fc;
 }
 
 input::-webkit-file-upload-button, input[type=file]::file-selector-button {
     border: 2px solid var(--blackcontrast);
-    padding: .2em .4em;
+    padding: .5em .4em;
     border-radius: .2em;
     background-color: #f9b8d4;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #f9b8d4));
+    background: -webkit-linear-gradient(top, #fff 0%, #f9b8d4 100%);
+    background: -moz-linear-gradient(top, #fff 0%, #f9b8d4 100%);
+    background: -ms-linear-gradient(top, #fff 0%, #f9b8d4 100%);
+    background: -o-linear-gradient(top, #fff 0%, #f9b8d4 100%);
+    background: linear-gradient(to bottom, #fff 0%, #f9b8d4 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9b8d4', endColorstr='#fff', GradientType=0);
     transition: 0.2s;
+    font-weight: bold;
+    color: var(--blackcontrast);
 }
 
 input[type=file]::file-selector-button:hover {
     background-color: var(--softgreen);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, var(--softgreen)));
+    background: -webkit-linear-gradient(top, #fff 0%, var(--softgreen) 100%);
+    background: -moz-linear-gradient(top, #fff 0%, var(--softgreen) 100%);
+    background: -ms-linear-gradient(top, #fff 0%, var(--softgreen) 100%);
+    background: -o-linear-gradient(top, #fff 0%, var(--softgreen) 100%);
+    background: linear-gradient(to bottom, #fff 0%, var(--softgreen) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='var(--softgreen)', endColorstr='#fff', GradientType=0);
     border: 2px solid var(--hardgreen);
 }
 
