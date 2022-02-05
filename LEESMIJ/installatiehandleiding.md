@@ -37,7 +37,8 @@ door Jiro Ghianni_
 
 Introductie
 
-Houd deze app bijelkaar binnen 1 directory. Dat wil zeggen: sleep de front-end map niet naar een andere plek ten opzichte van de back-end. Dit in verband met de paden van een aantal standaard-afbeeldingen die als voorbeeld zijn gebruikt om de database te vullen.
+Deze app maakt een database aan van genderneutrale toilet-locaties. Een admin kan nieuwe users toevoegen en locaties en ratings verwijderen. Niet-ingelogde bezoekers kunnen de toiletten-database doorzoeken. Ingelogde gebruikers kunnen foto's uploaden en nieuwe toiletten toevoegen, nieuw geplaatste locaties verwijderen, en hun eigen wachtwoord veranderen.
+
 ⚠️ Let op: wanneer je dit project in 1 keer binnen een zogenaamde ‘IDE’ importeert van Github, dan moet je er rekening mee houden dat de start scripts in de sub directories staan, dus 1 map lager dan de ROOT! Dit heeft invloed op het opstarten van de front-end. Het is daarom eenvoudiger om dit project te DOWNLOADEN als ZIP, deze uit te pakken, en daarna de individuele mappen als ‘root’ te openen in een IDE naar keuze.
 De app kan worden gedownload via https://github.com/JirosWorld/fullstack-closette-app
 
@@ -170,76 +171,1126 @@ Hieronder volgt de volledige lijst met endpoints vanaf  http://localhost:8080
 – alléén wanneer een endpoint JSON bevat, dan staat dit er bij, als het geen JSON bevat dan staat er niets naast.
 Ook wanneer het punt openbaar is, staat dit (meestal) niet vermeld.
 
-    • {PUT [/users/{username}]} = beveiligd met JWT token.
-      JSON:
+
+
+
+`AUTHORIZATION
+Bearer Token
+Token
+<token>
+POSTauthorisatie
+http://localhost:8080/authenticate
+Haal nieuwe JWT token op.`
+
+`BODYraw
+{ "username": "admin", "password": "password" }`
+
+
+`Example Request
+authorisatie
+curl --location --request POST 'http://localhost:8080/authenticate' \
+--data-raw '{ "username": "admin", "password": "password" }'
+POSTPOST een nieuwe user
+http://localhost:8080/users/register
+Haal de data op over 1 entry, met id = 2.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
 {
 "username": "gebruikerette",
 "password": "12345",
 "email": "mail@mail.com"
-}
+}`
 
 
-    • {PUT [/toilets/{id}]} = beveiligd met JWT token.
+`Example Request
+POST een nieuwe user
+curl --location --request POST 'http://localhost:8080/users/register' \
+--data-raw '{
+"username": "gebruikerette",
+"password": "12345",
+"email": "mail@mail.com"
+}'
+POSTPOST een authority naar user
+http://localhost:8080/users/authorities
+Haal de data op over 1 entry, met id = 2.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
 {
-"title": "Saaie locatie",
-"latitude": "50.2121211321"
+"authority": "ROLE_ADMIN"
+}`
+
+
+`Example Request
+POST een authority naar user
+curl --location --request POST 'http://localhost:8080/users/authorities' \
+--data-raw '{
+"authority": "ROLE_ADMIN"
+}'
+POSTPOST nóg een nieuwe user
+http://localhost:8080/users/register
+Registreer 1 nieuwe gebruiker.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
+{
+"username": "priscilla",
+"password": "queenofthedesert",
+"email": "emaille@maille.com"
+}`
+
+
+`Example Request
+POST nóg een nieuwe user
+curl --location --request POST 'http://localhost:8080/users/register' \
+--data-raw '{
+"username": "priscilla",
+"password": "queenofthedesert",
+"email": "emaille@maille.com"
+}'
+POSTPOST 1 relation toilet/photo Copy
+http://localhost:8080/toilets/7/photos
+Upload 1 foto behorend bij toilet met id = 7.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
+{
+"id": 333,
+"fileName": "img-RELATION.jpg",
+"docFile": null
+}`
+
+
+`Example Request
+POST 1 relation toilet/photo Copy
+curl --location --request POST 'http://localhost:8080/toilets/7/photos' \
+--data-raw '{
+"id": 333,
+"fileName": "img-RELATION.jpg",
+"docFile": null
+}'
+POSTPOST add 1 toilet
+http://localhost:8080/toilets
+Post/voeg 1 nieuwe entry toe, in de body staat al ingevuld wat er in de database gaat komen.`
+
+AUTHORIZATION
+`Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
+View More
+{
+"title": "Toilet venue locatie naam Addis",
+"address": "Locatie voor testen",
+"latitude": "11.1111",
+"longitude": "11.1111",
+"cleanliness": "best schoon",
+"free": true,
+"genderneutral": true,
+"opening_hours": "8h - 20h",
+"info_text": "random random random random random random random random",
+"city": "Addis",`
+
+
+Example Request
+`POST add 1 toilet
+View More
+curl --location --request POST 'http://localhost:8080/toilets' \
+--data-raw '{
+"title": "Toilet venue locatie naam Addis",
+"address": "Locatie voor testen",
+"latitude": "11.1111",
+"longitude": "11.1111",
+"cleanliness": "best schoon",
+"free": true,
+"genderneutral": true,
+"opening_hours": "8h - 20h",
+"info_text": "random random random random random random random random",
+POSTPOST add nog 1 toilet
+http://localhost:8080/toilets
+Voeg nog een nieuw toilet toe, met andere naam en unieke GPS locatie.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
+View More
+{
+"title": "Toiletje gebouw locatie naam",
+"address": "test adres 1234",
+"latitude": "48.8566",
+"longitude": "2.3522",
+"cleanliness": "schoon",
+"openingHours": "8-20",
+"infoText": "Hebban olla vogala nestas hagunnan, hinase hic enda tu.",
+"city": "Parijs",
+"country": "FR Frankrijk",
+"genderneutral": true,`
+
+
+`Example Request
+POST add nog 1 toilet
+View More
+curl --location --request POST 'http://localhost:8080/toilets' \
+--data-raw '{
+"title": "Toiletje gebouw locatie naam",
+"address": "test adres 1234",
+"latitude": "48.8566",
+"longitude": "2.3522",
+"cleanliness": "schoon",
+"openingHours": "8-20",
+"infoText": "Hebban olla vogala nestas hagunnan, hinase hic enda tu.",
+"city": "Parijs",
+"country": "FR Frankrijk",
+POSTPOST add 1 newspost
+http://localhost:8080/news
+Post/voeg 1 nieuwe entry toe, in de body staat al ingevuld wat er in de database gaat komen.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
+{
+"title": "Nieuwe nieuwe nieuw nieuws nieuws",
+"description": "Beschrijving samenvatting intro beschrjvingstekst Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium blanditiis, dolore, dolores dolodis, quaerat qatem!",
+"username": "admin",
+"paragraph": "Hebban olla vogala nestas hagunnan, hinase hic enda tu. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium blanditiis, dolore, dolores doloribus dolorum, earum esse ex iure molestias necessitatibus obcaecati qui temporibus. Error explicabo harum labore mollitia neque provident quod sapiente sunt temporibus totam! Accusamus accusantium alias aspernatur, cupiditate deleniti deserunt distinctio dolorem est expedita fugit itaque magnam natus nemo nihil nobis non nulla, odio officia officiis, perferendis porro provident quaerat quas ratione recusandae sed tempore temporibus veritatis voluptate voluptatem! Aliquid animi asperiores aspernatur atque autem consequatur corporis cum dolore dolores ducimus earum harum illo incidunt ipsa ipsam magni maxime minus molestiae nemo neque nisi nulla, odit officiis optio perspiciatis possimus provident quam qui recusandae rem repellendus sequi sint soluta temporibus velit veniam vero. Architecto aspernatur doloremque dolorum, eum itaque magni, maxime minus nemo quia quidem reiciendis soluta? Alias aliquid commodi consequatur culpa cum debitis delectus deserunt dicta dolor earum error est eveniet ex fugit in ipsam itaque magnam magni molestias nam natus nihil officiis perferendis, quis quo quos reiciendis sed similique soluta veniam veritatis vitae voluptas voluptatem! Aut ducimus, enim rerum sapiente similique temporibus! Aliquid architecto aspernatur consectetur consequuntur culpa cupiditate deleniti dicta dignissimos earum enim esse eum harum id libero maiores maxime minus molestias mollitia nesciunt nostrum odit porro quae quaerat quam quasi quidem quisquam quos rem repellendus sint suscipit, tempore vel voluptatem. Animi autem consectetur deleniti, distinctio dolores ducimus, error facilis fuga harum id iure laudantium maxime molestiae molestias natus necessitatibus non omnis perferendis, quaerat quisquam quo reiciendis repellat reprehenderit sed tenetur ullam vel. Beatae ipsum iste itaque optio voluptatem!"
+}`
+
+
+`Example Request
+POST add 1 newspost
+curl --location --request POST 'http://localhost:8080/news' \
+--data-raw '{
+"title": "Nieuwe nieuwe nieuw nieuws nieuws",
+"description": "Beschrijving samenvatting intro beschrjvingstekst Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium blanditiis, dolore, dolores dolodis, quaerat qatem!",
+"username": "admin",
+"paragraph": "Hebban olla vogala nestas hagunnan, hinase hic enda tu. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium blanditiis, dolore, dolores doloribus dolorum, earum esse ex iure molestias necessitatibus obcaecati qui temporibus. Error explicabo harum labore mollitia neque provident quod sapiente sunt temporibus totam! Accusamus accusantium alias aspernatur, cupiditate deleniti deserunt distinctio dolorem est expedita fugit itaque magnam natus nemo nihil nobis non nulla, odio officia officiis, perferendis porro provident quaerat quas ratione recusandae sed tempore temporibus veritatis voluptate voluptatem! Aliquid animi asperiores aspernatur atque autem consequatur corporis cum dolore dolores ducimus earum harum illo incidunt ipsa ipsam magni maxime minus molestiae nemo neque nisi nulla, odit officiis optio perspiciatis possimus provident quam qui recusandae rem repellendus sequi sint soluta temporibus velit veniam vero. Architecto aspernatur doloremque dolorum, eum itaque magni, maxime minus nemo quia quidem reiciendis soluta? Alias aliquid commodi consequatur culpa cum debitis delectus deserunt dicta dolor earum error est eveniet ex fugit in ipsam itaque magnam magni molestias nam natus nihil officiis perferendis, quis quo quos reiciendis sed similique soluta veniam veritatis vitae voluptas voluptatem! Aut ducimus, enim rerum sapiente similique temporibus! Aliquid architecto aspernatur consectetur consequuntur culpa cupiditate deleniti dicta dignissimos earum enim esse eum harum id libero maiores maxime minus molestias mollitia nesciunt nostrum odit porro quae quaerat quam quasi quidem quisquam quos rem repellendus sint suscipit, tempore vel voluptatem. Animi autem consectetur deleniti, distinctio dolores ducimus, error facilis fuga harum id iure laudantium maxime molestiae molestias natus necessitatibus non omnis perferendis, quaerat quisquam quo reiciendis repellat reprehenderit sed tenetur ullam vel. Beatae ipsum iste itaque optio voluptatem!"
+}'`
+
+`POSTPOST /ratings/{id}/toilets
+http://localhost:8080/toilets/1/ratings
+Vervang welke rating is er door wie ze geplaatst zijn.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
+{
+"rating": 5,
+"toilet": {
+"id": 1
+},
+"user": {
+"username": "tester"
 }
+}`
 
 
-    • {PUT [/news/{id}]} = beveiligd met JWT token.
+`Example Request
+POST /ratings/{id}/toilets
+View More
+curl --location --request POST 'http://localhost:8080/toilets/1/ratings' \
+--data-raw '{
+"rating": 5,
+"toilet": {
+"id": 1
+},
+"user": {
+"username": "tester"
+}
+}'
+POSTPOST /ratings/{id}/toilets again
+http://localhost:8080/toilets/1/ratings
+Vervang welke rating is er door wie ze geplaatst zijn.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
+{
+"rating": 5,
+"toilet": {
+"id": 1
+},
+"user": {
+"username": "admin"
+}
+}`
+
+
+`Example Request
+POST /ratings/{id}/toilets again
+View More
+curl --location --request POST 'http://localhost:8080/toilets/1/ratings' \
+--data-raw '{
+"rating": 5,
+"toilet": {
+"id": 1
+},
+"user": {
+"username": "admin"
+}
+}'
+POSTPOST /ratings/{id}/toilets without a user
+http://localhost:8080/toilets/1/ratings
+Vervang welke rating is er door wie ze geplaatst zijn.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
+{
+"rating": 10,
+"toilet": {
+"id": 1
+}
+}`
+
+
+`Example Request
+POST /ratings/{id}/toilets without a user
+curl --location --request POST 'http://localhost:8080/toilets/1/ratings' \
+--data-raw '{
+"rating": 10,
+"toilet": {
+"id": 1
+}
+}'
+POSTpost 1 new Rating
+http://localhost:8080/ratings/
+Vervang welke rating is er door wie ze geplaatst zijn.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
+{
+"rating": 10
+}`
+
+
+`Example Request
+post 1 new Rating
+curl --location --request POST 'http://localhost:8080/ratings/' \
+--data-raw '{
+"rating": 10
+}'
+POSTPOST new rating for 1 toilet
+http://localhost:8080/toilets/1/ratings
+Haal alle ratings op die door user met id=1 zijn gegeven.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
+{
+rating: 4
+}`
+
+
+`Example Request
+POST new rating for 1 toilet
+curl --location --request POST 'http://localhost:8080/toilets/1/ratings' \
+--data-raw '{
+rating: 4
+}'
+POSTPost 1 Rating
+http://localhost:8080/ratings/
+Toon welke rating is en door wie ze geplaatst is.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
+{
+"rating": 10
+}`
+
+
+`Example Request
+Post 1 Rating
+curl --location --request POST 'http://localhost:8080/ratings/' \
+--data-raw '{
+"rating": 10
+}'
+POSTPost nóg 1 Rating
+http://localhost:8080/ratings/
+Vervang welke rating is en door wie ze geplaatst is.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
+{
+"rating": 8.0
+}`
+
+
+`Example Request
+Post nóg 1 Rating
+curl --location --request POST 'http://localhost:8080/ratings/' \
+--data-raw '{
+"rating": 8.0
+}'
+POSTPhoto upload-single Database
+http://localhost:8080/single/uploadDb
+Upload 1 foto naar naar de database, waardoor de foto een ID krijgt.`
+
+Foto: 
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYformdata
+file`
+
+
+`Example Request
+Photo upload-single Database
+curl --location --request POST 'http://localhost:8080/single/uploadDb' \
+--form 'file=@"/path/to/file"'
+POSTPhoto upload-Multiple photos to Database
+http://localhost:8080/multiple/upload/db
+Upload 1 foto naar naar de database, waardoor de foto een ID krijgt.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYformdata
+file`
+
+
+`Example Request
+Photo upload-single Database
+curl --location --request POST 'http://localhost:8080/single/uploadDb' \
+--form 'file=@"/path/to/file"'
+POSTPhoto upload1 NO db
+http://localhost:8080/single/upload
+Upload 1 foto naar de Uploads directory, zonder database ID.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYformdata
+file
+`
+
+`Example Request
+Photo upload1 NO db
+curl --location --request POST 'http://localhost:8080/single/upload' \
+--form 'file=@"/path/to/file"'
+PATCHPATCH 1 user's password
+http://localhost:8080/users/admin/password
+Vervang/bewerk een klein deel van een entry.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
+{
+"password":"newpasswordy123"
+}`
+
+
+`Example Request
+PATCH 1 user's password
+curl --location --request PATCH 'http://localhost:8080/users/admin/password' \
+--data-raw '{
+"password":"newpasswordy123"
+}'
+PATCHPATCH a wrong password
+http://localhost:8080/users/admin/password
+Vervang/bewerk een klein deel van een entry.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
+{
+"password":"PASS"
+}`
+
+
+`Example Request
+PATCH a wrong password
+curl --location --request PATCH 'http://localhost:8080/users/admin/password' \
+--data-raw '{
+"password":"PASS"
+}'
+PATCHPATCH 1 deeltje toilet
+http://localhost:8080/toilets/1
+Vervang/bewerk een klein deel van een entry.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
+{
+"genderneutral": false
+}`
+
+
+`Example Request
+PATCH 1 deeltje toilet
+curl --location --request PATCH 'http://localhost:8080/toilets/1' \
+--data-raw '{
+"genderneutral": false
+}'
+PATCHPATCH 1 deeltje toilet via DTO
+http://localhost:8080/toiletsdto/7
+Vervang/bewerk een klein deel van een entry via tussenkomst van de DTO.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
+{
+"longitude": "2.222222"
+}`
+
+
+`Example Request
+PATCH 1 deeltje toilet via DTO
+curl --location --request PATCH 'http://localhost:8080/toiletsdto/7' \
+--data-raw '{
+"longitude": "2.222222"
+}'
+PATCHPATCH 1 deel toilet id=10
+http://localhost:8080/toilets/10
+Vervang/bewerk een klein deel van een entry.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
+View More
+{
+"title": "Patch Put verander Patch",
+"address": "Patch patch 123",
+"latitude": "48.8500",
+"longitude": "2.3511",
+"cleanliness": "schoon en gepatched",
+"openingHours": "8:00 - 20:00",
+"infoText": "Patch tekst. Put. Patch. Hebban olla vogala nestas hagunnan, hinase hic enda tu. Patch tekst. Put. Patch. Hebban olla vogala nestas hagunnan, hinase hic enda tu. Patch tekst. Put. Patch.",
+"city": "Patch city",
+"country": "Patched Countryside",
+"genderneutral": true,`
+
+
+`Example Request
+PATCH 1 deel toilet id=10
+View More
+curl --location --request PATCH 'http://localhost:8080/toilets/10' \
+--data-raw '{
+"title": "Patch Put verander Patch",
+"address": "Patch patch 123",
+"latitude": "48.8500",
+"longitude": "2.3511",
+"cleanliness": "schoon en gepatched",
+"openingHours": "8:00 - 20:00",
+"infoText": "Patch tekst. Put. Patch. Hebban olla vogala nestas hagunnan, hinase hic enda tu. Patch tekst. Put. Patch. Hebban olla vogala nestas hagunnan, hinase hic enda tu. Patch tekst. Put. Patch.",
+"city": "Patch city",
+"country": "Patched Countryside",
+PATCHPATCH 1 deel toilet via DTO id=9 Copy
+http://localhost:8080/toiletsdto/9
+Vervang/bewerk een klein deel van een entry.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
+View More
+{
+"title": "Patch Put verander Patch",
+"address": "Patch patch 123",
+"latitude": "48.8500",
+"longitude": "2.3511",
+"cleanliness": "schoon en gepatched",
+"openingHours": "8:00 - 20:00",
+"infoText": "Patch tekst. Put. Patch. Hebban olla vogala nestas hagunnan, hinase hic enda tu. Patch tekst. Put. Patch. Hebban olla vogala nestas hagunnan, hinase hic enda tu. Patch tekst. Put. Patch.",
+"city": "Patch city",
+"country": "Patched Countryside",
+"genderneutral": true,
+`
+
+`Example Request
+PATCH 1 deel toilet via DTO id=9 Copy
+View More
+curl --location --request PATCH 'http://localhost:8080/toiletsdto/9' \
+--data-raw '{
+"title": "Patch Put verander Patch",
+"address": "Patch patch 123",
+"latitude": "48.8500",
+"longitude": "2.3511",
+"cleanliness": "schoon en gepatched",
+"openingHours": "8:00 - 20:00",
+"infoText": "Patch tekst. Put. Patch. Hebban olla vogala nestas hagunnan, hinase hic enda tu. Patch tekst. Put. Patch. Hebban olla vogala nestas hagunnan, hinase hic enda tu. Patch tekst. Put. Patch.",
+"city": "Patch city",
+"country": "Patched Countryside",
+PATCHPATCH 1 deeltje titel toilet
+http://localhost:8080/toilets/1
+Vervang/bewerk een klein deel van een entry via tussenkomst van de DTO.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
+{
+"title": "Deel Patch Put verander Patch"
+}`
+
+
+`Example Request
+PATCH 1 deeltje titel toilet
+curl --location --request PATCH 'http://localhost:8080/toilets/1' \
+--data-raw '{
+"title": "Deel Patch Put verander Patch"
+}'
+PATCHtest PATCH 1 foreignkey toilet
+http://localhost:8080/toilets/1
+Vervang/bewerk een klein deel van een entry relatie.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
+View More
+{"ratings": [
+{
+"id": 7,
+"ratingToilet": 1
+},
+{
+"id": 22,
+"ratingToilet": 1
+},
+{
+"id": 30,`
+
+
+`Example Request
+test PATCH 1 foreignkey toilet
+View More
+curl --location --request PATCH 'http://localhost:8080/toilets/1' \
+--data-raw '{"ratings": [
+{
+"id": 7,
+"ratingToilet": 1
+},
+{
+"id": 22,
+"ratingToilet": 1
+},
+{
+PATCHPATCH /ratings/{id}/toilets added
+http://localhost:8080/toilets/1/ratings
+Vervang welke rating is er door wie ze geplaatst zijn.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
+{
+"rating": 10,
+"toilet": {
+"id": 1
+},
+"user": {
+"username": "admin"
+}
+}`
+
+
+`Example Request
+PATCH /ratings/{id}/toilets added
+View More
+curl --location --request PATCH 'http://localhost:8080/toilets/1/ratings' \
+--data-raw '{
+"rating": 10,
+"toilet": {
+"id": 1
+},
+"user": {
+"username": "admin"
+}
+}'
+PATCHPhoto upload-single PATCH db
+http://localhost:8080/single/uploadDb/200
+AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYformdata
+file
+beschrijving`
+
+
+
+`Example Request
+Photo upload-single PATCH db
+curl --location --request PATCH 'http://localhost:8080/single/uploadDb/200' \
+--form 'file=@"/Users/jolarti/Pictures/fractile_dk.jpg"'
+PATCHPATCH 1 deel nieuwsartikel
+http://localhost:8080/news/1
+Vervang/bewerk een klein deel van een entry.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
+{
+"title":"Titeltje"
+}`
+
+
+`Example Request
+PATCH 1 deel nieuwsartikel
+curl --location --request PATCH 'http://localhost:8080/news/1' \
+--data-raw '{
+"title":"Titeltje"
+}'
+PATCHPATCH 1 deel nieuwsartikel 2
+http://localhost:8080/news/1
+Vervang/bewerk een klein deel van een entry.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
 {
 "title":"Titeltje",
 "description":"Vervang door deze nieuwe tekst",
 "paragraph":"Bijwerken met deze nieuwe tekst vervang door deze nieuwe tekst vervang door deze nieuwe tekst"
-}
+}`
 
 
+`Example Request
+PATCH 1 deel nieuwsartikel 2
+curl --location --request PATCH 'http://localhost:8080/news/1' \
+--data-raw '{
+"title":"Titeltje",
+"description":"Vervang door deze nieuwe tekst",
+"paragraph":"Bijwerken met deze nieuwe tekst vervang door deze nieuwe tekst vervang door deze nieuwe tekst"
+}'
+PUTPUT bestaande user
+http://localhost:8080/users/tester
+Haal de data op over 1 entry, met id = 2.`
 
-    • {POST [/users/register]} = openbaar te benaderen.
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
 {
 "username": "gebruikerette",
 "password": "12345",
 "email": "mail@mail.com"
+}`
+
+
+`Example Request
+PUT bestaande user
+curl --location --request PUT 'http://localhost:8080/users/tester' \
+--data-raw '{
+"username": "gebruikerette",
+"password": "12345",
+"email": "mail@mail.com"
+}'
+PUTPUT 1 deel nieuwsartikel
+http://localhost:8080/news/1
+Vervang/bewerk een klein deel van een entry.
+
+AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
+{
+"title":"Titeltje"
 }
+`
+
+`Example Request
+PUT 1 deel nieuwsartikel
+curl --location --request PUT 'http://localhost:8080/news/1' \
+--data-raw '{
+"title":"Titeltje"
+}'
+PUTPUT 1 deel nieuwsartikel 2
+http://localhost:8080/news/1
+Vervang de inhoud van het gehele nieuwsbericht.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
+{
+"title":"Titeltje",
+"description":"Vervang door deze nieuwe tekst",
+"paragraph":"Bijwerken met deze nieuwe tekst vervang door deze nieuwe tekst vervang door deze nieuwe tekst"
+}`
 
 
+`Example Request
+PUT 1 deel nieuwsartikel 2
+curl --location --request PUT 'http://localhost:8080/news/1' \
+--data-raw '{
+"title":"Titeltje",
+"description":"Vervang door deze nieuwe tekst",
+"paragraph":"Bijwerken met deze nieuwe tekst vervang door deze nieuwe tekst vervang door deze nieuwe tekst"
+}'
+PUTPUT 1 new toilet
+http://localhost:8080/toilets/2
+Vervang 1 entry in zijn/haar/hun geheel.`
 
-    • {POST [/users/{username}/authorities]} ← BEVEILIGD, alleen toegang voor admins.
-    • {POST [/toilets/{id}/ratings]}= beveiligd met JWT token.
-    • {POST [/toilets/{id}/photos]}= beveiligd met JWT token.
-    • {POST [/toilets]}= beveiligd met JWT token.
-    • {POST [/single/uploadDb]}= beveiligd met JWT token.
-    • {POST [/single/upload]}= beveiligd met JWT token.
-    • {POST [/ratings]}= beveiligd met JWT token.
-    • {POST [/news]}= beveiligd met JWT token.
-    • {POST [/authenticate]} ← Log hiermee in, dit levert de JWT token.
-    • {PATCH [/users/{username}/password]}= beveiligd met JWT token.
-      
-    • {PATCH [/toilets/{id}]}= beveiligd met JWT token.
-    • {PATCH [/toilets/{id}/ratings]}= beveiligd met JWT token.
-    • {PATCH [/single/uploadDb/{id}]}= beveiligd met JWT token.
-    • {PATCH [/news/{id}]}= beveiligd met JWT token.
-    • {GET [/users/{username}/authorities]}
-    • {GET [/users/{username}]}
-    • {GET [/users]} ← BEVEILIGD, alleen toegang voor admins.
-    • {GET [/toilets/{id}/ratings]}
-    • {GET [/toilets/{id}]}
-    • {GET [/toilets]}
-    • {GET [/ratings/{id}]}
-    • {GET [/ratings]}
-    • {GET [/photos/{id}]}
-    • {GET [/photos]}
-    • {GET [/news/{id}]}
-    • {GET [/news]}
-    • {GET [/downloadFromDB/{fileName}]}
-    • {GET [/download/{fileName}]}
-    • {GET [/alluploads]}
-    • {DELETE [/users/{username}/authorities/{authority}]}= beveiligd met JWT token.
-    • {DELETE [/users/{username}]}= beveiligd met JWT token.
-    • {DELETE [/toilets/{id}]}= beveiligd met JWT token.
-    • {DELETE [/news/{id}]}= beveiligd met JWT token.
-    • { [/error]}
-    • { [/error], produces [text/html]}
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+BODYraw
+{
+"title": "Saaie locatie",
+"latitude": "212121211321"
+}`
+
+
+`Example Request
+PUT 1 new toilet
+curl --location --request PUT 'http://localhost:8080/toilets/2' \
+--data-raw ' {
+"title": "Saaie locatie",
+"latitude": "212121211321"
+}'
+GETGET all users
+http://localhost:8080/users
+Haal alle users op.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests`
+
+
+`Example Request
+GET all users
+curl --location --request GET 'http://localhost:8080/users'
+GETGET 1 user
+http://localhost:8080/users/tester
+Haal de data op over 1 entry, met id = 2.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests`
+
+
+`Example Request
+GET 1 user
+curl --location --request GET 'http://localhost:8080/users/tester'
+GETGET 1 user's authority
+http://localhost:8080/users/admin/authorities
+Haal de data op over user met id = admin.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests`
+
+
+`Example Request
+GET 1 user's authority
+curl --location --request GET 'http://localhost:8080/users/admin/authorities'
+GETGET ALL Toilets ** Zoeken **
+http://localhost:8080/toilets
+Haal in een keer de totale Toiletten database binnen.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests`
+
+
+`Example Request
+GET ALL Toilets ** Zoeken **
+curl --location --request GET 'http://localhost:8080/toilets'
+GETGET 1 toilet
+http://localhost:8080/toilets/7
+Haal de data op over 1 toilet entry, met id = 7.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests`
+
+
+`Example Request
+GET 1 toilet
+curl --location --request GET 'http://localhost:8080/toilets/7'
+GETGET 1 relation toilet/photo
+http://localhost:8080/toilets/7/photos
+Haal de data op over 1 entry, met id = 2.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests`
+
+
+`Example Request
+GET 1 relation toilet/photo
+curl --location --request GET 'http://localhost:8080/toilets/7/photos'
+GETQuerie zoeker op Titel/Venue
+http://localhost:8080/toilets?title=palace
+Zoek op naam.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+PARAMS
+title
+palace`
+
+
+`Example Request
+Querie zoeker op Titel/Venue
+curl --location --request GET 'http://localhost:8080/toilets?title=palace'
+GETQuerie zoeker op City
+http://localhost:8080/toilets?city=ber
+Zoek op stad.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+PARAMS
+city
+ber`
+
+
+`Example Request
+Querie zoeker op City met in ded titel "ber..."
+curl --location --request GET 'http://localhost:8080/toilets?city=ber'
+GETQuerie zoeker op Country
+http://localhost:8080/toilets?country=usa
+Zoek op land.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+PARAMS
+country
+usa`
+
+
+`Example Request
+Querie zoeker op Country
+curl --location --request GET 'http://localhost:8080/toilets?country=usa'
+GETQuerie zoeker op Genderneutral
+http://localhost:8080/toilets?genderneutral=true
+Zoek op land.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+PARAMS
+genderneutral
+true`
+
+
+`Example Request
+Querie zoeker op Genderneutral
+curl --location --request GET 'http://localhost:8080/toilets?genderneutral=true'
+GETQuerie (defunct) op Titel&City?
+http://localhost:8080/toilets?title=pal&city=lon
+AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests
+PARAMS
+title
+pal
+city
+lon`
+
+
+`Example Request
+Querie (defunct) op Titel&City?
+curl --location --request GET 'http://localhost:8080/toilets?title=pal&city=lon'
+GETGET all Ratings
+http://localhost:8080/ratings
+Laat zien welke rating is er door wie ze geplaatst zijn.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests`
+
+
+`Example Request
+GET all Ratings
+curl --location --request GET 'http://localhost:8080/ratings'
+GETGET 1 Rating with index 4
+http://localhost:8080/ratings/3/
+Vervang welke rating is er door wie ze geplaatst zijn.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests`
+
+
+`Example Request
+GET 1 Rating with index 4
+curl --location --request GET 'http://localhost:8080/ratings/3/'
+GETGET /toilets/{id}/ratings nr.1
+http://localhost:8080/toilets/1/ratings
+Vervang welke rating is er door wie ze geplaatst zijn.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests`
+
+
+`Example Request
+GET /toilets/{id}/ratings nr.1
+curl --location --request GET 'http://localhost:8080/toilets/1/ratings'
+GETGET /toilets/{id}/ratings 11
+http://localhost:8080/toilets/11/ratings
+Vervang welke rating is er door wie ze geplaatst zijn.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests`
+
+
+`Example Request
+GET /toilets/{id}/ratings 11
+curl --location --request GET 'http://localhost:8080/toilets/11/ratings'
+GETGET 1 Rating
+http://localhost:8080/ratings/2
+Laat zien welke rating is en door wie ze geplaatst zijn.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests`
+
+
+`Example Request
+GET 1 Rating
+curl --location --request GET 'http://localhost:8080/ratings/2'
+GETGET all ratings from 1 toilet
+http://localhost:8080/toilets/1/ratings
+Haal alle ratings op die door user met id=1 zijn gegeven.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests`
+
+
+`Example Request
+GET all ratings from 1 toilet
+curl --location --request GET 'http://localhost:8080/toilets/1/ratings'
+GETGET all photos
+http://localhost:8080/photos
+Haal alle foto's op.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests`
+
+
+`Example Request
+GET all photos
+curl --location --request GET 'http://localhost:8080/photos'
+GETGET 1 photo by ID
+http://localhost:8080/photos/200
+Haal 1 foto op, met id = 200.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests`
+
+
+`Example Request
+GET 1 photo by ID
+curl --location --request GET 'http://localhost:8080/photos/200'
+GETGET all uploads in directory
+http://localhost:8080/alluploads
+Zoek foto op bestandsnaam.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests`
+
+
+`Example Request
+GET all uploads in directory
+curl --location --request GET 'http://localhost:8080/alluploads'
+GETGET all news posts
+http://localhost:8080/news
+Haal in een keer alle nieuwsberichten binnen.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests`
+
+
+`Example Request
+GET all news posts
+curl --location --request GET 'http://localhost:8080/news'
+GETGET 1 newspost
+http://localhost:8080/news/1
+Haal nieuwsbericht op met ID = 1.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests`
+
+
+`Example Request
+GET 1 newspost
+curl --location --request GET 'http://localhost:8080/news/1'
+DELDELete 1 user by name
+http://localhost:8080/users/user
+Verwijder 1 gebruiker met id = user.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests`
+
+
+`Example Request
+DELete 1 user by name
+curl --location --request DELETE 'http://localhost:8080/users/user'
+DELDELete 1 toilet
+http://localhost:8080/toilets/11
+AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests`
+
+
+`Example Request
+DELete 1 toilet
+curl --location --request DELETE 'http://localhost:8080/toilets/11' \
+--data-raw ''
+DELDELete 1 Rating
+http://localhost:8080/ratings/4
+Verwijder een specifieke beoordeling.`
+
+`AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests`
+
+
+`Example Request
+DELete 1 Rating
+curl --location --request DELETE 'http://localhost:8080/ratings/4'
+DELDELete 1 news post
+http://localhost:8080/news/2
+AUTHORIZATION
+Bearer Token
+This request is using Bearer Token from folderClosette requests`
+
+
+`Example Request
+DELete 1 news post
+curl --location --request DELETE 'http://localhost:8080/news/2' \
+--data-raw ''`
 
 
 ### Server requests

@@ -2,6 +2,8 @@
 
 door Jiro Ghianni
 
+4 februari 2022
+
 ## Inleiding
 
 Hier een antwoord op de vragen:
@@ -142,9 +144,9 @@ Als extra complexe functionaliteit bevat de app nog de mogelijkheid tot het plaa
 
 Niet-functionele eisen: bij aanvang was niet duidelijk hoeveel ik qua User Experience binnen een kort Bootcamp tijdsbestek daadwerkelijk af zou krijgen. Ik heb een flink aantal niet-functionele eisen (_meer eisen dan voor de eindopdracht nodig waren_) opgesteld waarvan een deel niet is uitgevoerd: deze eisen zijn vooral vanwege tijdsgebrek achterwege gelaten en hebben geen effect op de functionele werking en minimale eisen van de app/examenopdracht. In het Functioneel/Technisch ontwerp staat duidelijk aangegeven welke niet-functionele eisen niet zijn uitgevoerd door tijdsgebrek. In het Technisch/Functioneel ontwerp staat zeer gedetailleerd in rood en groen aangegegeven wat ik wel en niet heb kunnen bouwen; ik heb alles kunnen bouwen dat ik strict noodzakelijk achtte voor de zoek-app; alle _niet-functionele_ eisen die ik niet heb kunnen maken, maar die wel wenselijk zijn en voor een veel betere, realistische app zouden zorgen zijn o.a. deze:
 
-* Ik heb een zeer groot deel van de tijd erg geworsteld met het relational database concept, en begreep pas in een zeer laat stadium wat dit zou betekenen voor mijn code. Hierdoor heb ik maar 1 echte 'nested' relatie kunnen bouwen die ook in de front-end functioneel is: die van Ratings/beoordelingen. Eindelijk begrijp ik nu hoe dit ongeveer werkt, en ik zie mogelijkheden tot verbetering van de andere relaties in zowel de front-end als back-end; vooral bij de foto's.
-* **wenselijk 1**, en ik verwacht dat ik dit nu wel zou kunnen bouwen met mijn huidige kennis: een rating systeem waarbij 1 user maar 1 rating kan plaatsen per toilet entry.
-* **wenselijk 2**, en ik verwacht dat ik dit nu wel zou kunnen bouwen met mijn huidige kennis: foto's die daadwerkelijk bij 1 toilet horen en niet bij allemaal... Uit tijdgebrek besloot ik om de wonderlijke werking nu te laten voor wat die is, omdat de exameneis alleen om "een upload functionaliteit" vraagt zonder dat er ee nrelatie wordt gespecificeerd.
+* Ik heb een zeer groot deel van de tijd erg geworsteld met het relational database concept, en begreep pas in een zeer laat stadium wat dit zou betekenen voor mijn code. Hierdoor heb ik maar 1 echte 'nested' relatie kunnen bouwen die ook in de front-end functioneel is: die van Ratings/beoordelingen. Eindelijk begrijp ik nu hoe dit ongeveer werkt, en ik zie mogelijkheden tot verbetering van de andere relaties in zowel de front-end als back-end; vooral bij de foto's. Ik had hierdoor nog geen totale beheersing van het bidirectional/unidirectional denken, maar op dit moment functioneren alle relaties in de app zoals ik wil (behalve de relatie van Photo tot Toilet).
+* **wenselijk 1**, ik verwacht dat ik dit nu wel zou kunnen bouwen met mijn huidige kennis: een rating systeem waarbij 1 user maar 1 rating kan plaatsen per toilet entry.
+* **wenselijk 2**, ook verwacht ik dat ik dit nu wel zou kunnen bouwen met meer tijd: foto's die daadwerkelijk bij 1 toilet horen en niet bij allemaal... Uit tijdgebrek besloot ik om de wonderlijke werking nu te laten voor wat die is, omdat de exameneis alleen om "een upload functionaliteit" vraagt zonder dat er een relatie wordt gespecificeerd.
 * **wenselijk 3**, zou ik misschien kunnen bouwen, maar lijkt moeilijk: een veel uitgebreidere filtering op zoekresultaten d.m.v. array-methods aan de front-end OF door middel van nieuwe queries aan de back-end (hier moet ik Spring Boot nog beter voor leren beheersen)
 * **wenselijk 4**, moeilijk: er kan nu niet gefilterd worden op het wel of niet genderneutraal zijn van de zoek-eigenschappen. Dit omdat 'genderneutral' een boolean is en ik het aan de backend niet voorelkaar kreeg om een 'false' op dubbel 'false' te checken - hier moet ik nog flink onderzoek naar doen. Wel is er aan de front-end meteen visueel te zien of 1 entry wel of geen genderneutraal icoontje bevat.
 * In mijn klassendiagram had ik besloten dat de relatie van foto-tot-toilet een unidirectional OneToOne moest zijn, maar in de werkelijkheid wilde ik er eigenlijk een ManyToMany van maken - sommige foto's worden meerdere malen herhaald/gebruikt, én eigenlijk wil je ook meerdere foto's per toilet kunnen plaatsen; dus heb ik er als compromis een ManyToOne relatie van gemaakt; dit ook omdat mijn basis Java beheersing me nog parten speelt. Ik ben me er bewust van dat dit een rare beslissing is. In ieder geval zijn in de huidige constructie de foto ID's en toiletten ID's als foreign keys te gebruiken, en daardoor ook aanspreekbaar als nested JSON object voor de front-end. In het vervolg zou ik de relatie omkeren naar een OneToMany; iets waar ik op het eind geen tijd meer voor had.
@@ -170,20 +172,20 @@ Niet-functionele eisen: bij aanvang was niet duidelijk hoeveel ik qua User Exper
 
 ## Niet-essentiele niet-functionele eisen
 
-Hieronder volgt een lijst van de nice-to-haves die ik niet heb kunnen bouwen, maar die een idee zouden kunnen zijn voor verbetering.
+Hieronder volgt een lijst van de **_nice-to-haves_** die ik niet heb kunnen bouwen, maar die een idee zouden kunnen zijn voor hypothetische verbetering.
 
 * Geen performance tests. Het is dus niet zeker wat er gebeurt als er enorm grote aantallen gebruikers grote hoeveelheden data gaan invoeren. Meer data heeft impact op het schijfruimtegebruik van de database en op de snelheid waarmee die bevraagd kan worden.
 * Ik heb slechts gedeeltelijk de DTO laag gebruikt; dus deze app is niet beschermd tegen SQL injecties.
 * Geen uitgebreide splitsing van de DTO's naar input en output, wat wel netter zou zijn, maar dit is geen exameneis.
-* Aan de front-end zijn geen Dev dependencies gebruikt (dit  zou netter zijn, bij gebruik van SASS bijvoorbeeld). 
-* Ik had paginering in kunnen bouwen voor de front-end, of een "never-ending scroll" want nu komen alle resultaten op 1 pagina (zowel bij de toiletten als bij Nieuws). De paginering zou kunnen via de back-end met een CRUD repositiry, of aan de front-end met een javascript dat steeds een vast aantal posts toont op basis van scroll positie.
+* Aan de front-end zijn geen Dev dependencies gebruikt (dit zou netter zijn, bij gebruik van SASS bijvoorbeeld).
 * Deze opdracht levert géén deployment-ready product op en zal niet werken op de gemiddelde FTP server, maar dat was ook geen eis.
 * Geen CORS URL gekozen dus in plaats van port 3000 heb ik een * operator gekozen zodat **alle** verzoeken naar de back-end door kunnen komen.
 * Geen https SSL certificaat omdat dit bij nakijken problemen kan geven maar in het het echte bedrijfsleven moet dit wel.
 * Voor de end-points heb ik makkelijk leesbare woorden gebruikt, en niet de "api/v1/..." notatie, omdat deze niet behandeld is in de les en ik er geen voordeel in zag om dit te doen voor een App die niet klaar is voor release en waarin ik geen toekomstige versies zie, met een transitie periode naar versie 1.
 * Het systeem checkt nu niet of het ingevoerde mailadres écht bestaat. Op dit moment gebruik ik alleen de standaard browser-afhankelijke check. Chrome en Firefox geven zelf een waarschuwing af of het teksutele format van het mailadres klopt, dus of er ee napestaartje of land-extensie in zit, maar verder niet. Dit was ook geen exameneis.
 * De gebruiker die een nieuw toilet heeft gepost zou automatisch een bevestigingsmelding kunnen ontvangen na het inzenden van zijn entry.
-* Toegankelijkheid (accessibility) zouden kunnen worden verbeterd door adblockerrs toe te staan en de mogelijkheid te geven om tussen darkmode en lightmode te switchen.
+* Toegankelijkheid (accessibility) zou kunnen worden verbeterd door adblockers toe te staan (is nu niet mogelijk omdat deze app geen levende website is).
+* Toegankelijkheid zou ook kunnen worden verbeterd door de mogelijkheid te geven om tussen darkmode en lightmode te switchen (dit kan ik nu wel bouwen maar kost veel tijd om na te denken over de kleuromkering van ALLE CSS stijlen).
 * Extra eigenschappen waarop gefilterd kan worden, zouden kunnen zijn: 'sneaky' gratis (dus: eigenlijk een toilet van een horeca gelegenheid maar niet gecontroleerd en makkelijk gratis te gebruiken), design/artsy toilet, grappige of artistieke bathroom graffiti.
 * De gebruikersnaam van de ingelogde bezoeker zou steeds boven in beeld kunnen verschijnen, onder het avatar icoontje. Dit heb ik nu niet gedaan omdat het denk ik te druk wordt qua design.
 * Idee: Als de vinder een grote foto uploadt dan moet deze automatisch worden omgezet naar een 72ppi foto van maximaal 1000px breed en 1000px hoog. De maximale uploadgrens is 3 MB. Ik weet neit of ik ee ndergelijek functie zelf zou kunnen bouwen - het klinkt als een plug-in.
@@ -194,25 +196,33 @@ Hieronder volgt een lijst van de nice-to-haves die ik niet heb kunnen bouwen, ma
 * De gebruiker die een nieuwe account heeft aangemaakt zou via e-mail automatisch een bevestigingsmelding kunnen ontvangen.
 * De zoekresultaten zouden een hiërarchisch kruimelpad (SEO) kunnen hebben, waarover genavigeerd kan worden. De hiërarchische volgorde zou kunnen zijn, in volgorde van belangrijkheid: Land >> Stad >> straat (is wellicht niet mogelijk met React).
 * Ik heb aan de back-end zijde geen mailserver functie gebouwd (geen vereiste), dus heb ik het contactformulier functioneel gemaakt via de EmailJS cloudfunctie. Dit is vast niet zoals het bij een professioneel bedrijf er aan toe zou gaan, maar het heeft goed bruikbare templates.
+* Ik heb aan de front-end geen nieuws-beheer toegevoegd, omdat dat teveel voelde alsof ik een compleet CMS aan het bouwen was en omdat dit geen eis was voor de functionaliteit van deze zoek-app. Admins kunnen via Postman nieuwe berichten plaatsen. Ik vind het wel leuk dat ik nu de competenties heb om deze functionaliteit ook echt te gaan maken.
+* * Ik had paginering in kunnen bouwen voor de front-end, of een "never-ending scroll" want nu komen alle resultaten op 1 pagina (zowel bij de toiletten als bij Nieuws). De paginering zou kunnen via de back-end met een CRUD repositiry, of aan de front-end met een javascript dat steeds een vast aantal posts toont op basis van scroll positie.
 * De front-end website is niet geoptimaliseerd voor Explorer en heb ik niet kunnen testen op touch-screens (waar bijvoorbeeld Hovers niet werken). Bij meer tijd zou ik echt wel ook zeer verouderde browsers willen supporten, vooral omwille van de toegankelijkheid.
 
 ## Leerpunten
 
 • De visuele en functionele eisen zijn echt eeuwig uit te breiden, en waren lastig voor mij om te trechteren naar een werkbare hoeveelheid code. Want: beperken tot iets kleins, blijkt het moeilijkste te zijn van dit proces. Het was ook niet van tevoren in te schatten hoeveel van de belangrijkste functionele eisen ik daadwerkelijk kon verwezenlijken.
 
-• ik heb meer dan de benodigde tijd besteed aan de Bootcamp stof, maar kwam uiteindelijk toch tijd te kort om álles dat ik in de back-end heb gebouwd ook daadwerkelijk functioneel te construeren in de front-end. In real life zou ik voor een CMS kiezen, met een open-source database die runt op FTP servers. Ik ben wel trots op wat ik gemaakt heb.
+• Ik heb veel meer dan de benodigde tijd besteed aan de Bootcamp stof, maar kwam uiteindelijk toch tijd te kort om álles dat ik in de back-end heb gebouwd ook daadwerkelijk functioneel te construeren in de front-end. In real life zou ik voor een CMS kiezen, met een open-source database die runt op FTP servers. Ik ben wel trots op wat ik gemaakt heb.
 
-• deze Bootcamp is slechts een eerste begin; als ik 4 jaar de tijd had gehad dan zou ik heel blij geworden zijn van meer SASS of LESS aan de front-end en een 'env' folder e.a. intelligente manieren voor centraal management, en veel meer tijd om het relationele end-points deel van de back-end te begrijpen.
+• Deze Bootcamp is slechts een eerste begin; als ik 4 jaar de tijd had gehad dan zou ik heel blij geworden zijn van meer SASS of LESS aan de front-end en een 'env' folder e.a. intelligente manieren voor centraal management, en veel meer tijd om het relationele end-points deel van de back-end te begrijpen.
 
-• ik heb ervaring als front-end developer en dat ga ik blijven doen; ik denk dat ik nu een betere front-ender ben dan voorheen. Mijn volgende leerwensen zijn Vue.js en Angular.
+• Ik heb ervaring als front-end developer en dat ga ik blijven doen; ik denk dat ik nu een betere front-ender ben dan voorheen. Mijn volgende leerwensen zijn Vue.js en Angular.
 
-• het leren van back-end is echt enorm verhelderend, dat zouden alle front-enders eens moeten proberen.
+• Het leren van back-end is echt enorm verhelderend, dat zouden alle front-enders eens moeten proberen.
 
 • Deze app is het begin van een idealistisch idee voor de toekomst. Ik heb nog plannen voor het koppelen van een Map API die toont op welke locatie op de kaart de gebruiker daadwerkelijk staat.
 
 ### Nawoord
 
-Ik hoop dat nieuwe programmeurs gevoeliger gaan zijn voor diversiteit en nooit meer databases ontwerpen waarin gender slechts binair of een boolean is. We leven in 2021 dus het zou mooi zijn als sekse en gender nooit meer verplichte invoervelden zijn, óf heel gemakkelijk gewijzigd kunnen worden door gebruikers zelf. Het zou ook mooi zijn als docenten hierin een voortrekkersrol vervullen (op dezelfde wijze als Github die alle Master branches naar Main laat hernoemen) en minder vaak voorbeelden in de les geven over mensen die alleen hetero-relaties hebben of alleen maar ‘Jan’ of ‘Piet’ heten. 😬  Dat voelt in het begin misschien geforceerd, maar je moet érgens beginnen... Het kan i.e.g. blindheid verminderen bij programmeurs die voor echte mensen programmeren.
+Ik hoop dat nieuwe programmeurs gevoeliger gaan zijn voor diversiteit en nooit meer databases ontwerpen waarin gender slechts binair of een boolean is. We leven in 2021 dus het zou mooi zijn als sekse en gender nooit meer verplichte invoervelden zijn, óf heel gemakkelijk gewijzigd kunnen worden door gebruikers zelf. Het zou ook mooi zijn als docenten hierin een voortrekkersrol vervullen (op dezelfde wijze als Github die alle Master branches naar Main laat hernoemen) en minder vaak voorbeelden in de les geven over mensen die alleen hetero-relaties hebben of alleen maar ‘Jan’ of ‘Piet’ heten. 😬  Dat voelt in het begin misschien geforceerd, maar je moet érgens beginnen... Het kan i.e.g. blindheid verminderen bij programmeurs die voor _echte mensen_ moeten programmeren.
 
 Lees mijn stuk over diversiteit in code hier:
 https://codepen.io/jirosworld/post/how-to-build-diversity-into-your-code
+
+~ Saluti
+
+Jiro Ghianni
+
+2022
