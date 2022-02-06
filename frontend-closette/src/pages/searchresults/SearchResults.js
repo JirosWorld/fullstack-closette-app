@@ -7,12 +7,13 @@ import BackButton from "../../components/buttons/BackButton";
 import Loader from "../../components/loader/Loader";
 import TopNav from "../../components/topnav/TopNav";
 import {Link} from "react-router-dom";
-import noImage from "../../assets/icons/icon-lines-toilet-jiro.svg";
+import noImage, {ReactComponent as ToiletSeat} from "../../assets/icons/icon-lines-toilet-jiro.svg";
 import GenderneutralIcon from "../../assets/icons/icon-transgenderneutral.svg";
 import FreeIcon from "../../assets/icons/icon-money-free-gratis.png";
 import PaidIcon from "../../assets/icons/icon-money-pay-euro.png";
 import CameraIcon from "../../assets/icons/icon-camera.png";
 import AccessibleIcon from "../../assets/icons/icon-accessible.svg"
+import {ReactComponent as ExternalLink} from "../../assets/icons/icon-lines-logout.svg";
 
 
 function SearchResults() {
@@ -176,13 +177,20 @@ function SearchResults() {
                                                     <>
                                                         Locatie op kaart: <a
                                                         href={toiletEntry.data &&
-                                                        `https://www.openstreetmap.org/?mlat=${post.latitude}&mlon=${post.longitude}&zoom=15}`}
-                                                        rel="noreferrer" target="_blank">
+        `https://www.openstreetmap.org/?mlat=${post.latitude}&mlon=${post.longitude}&zoom=15}`}
+                                                        rel="noreferrer"
+                                                        target="_blank">
+
+                                                        <ExternalLink
+                                                            className="svg-external"
+                                                            alt="external link"
+                                                        />
                                                         <img src={MapIcon}
                                                              alt="map"
                                                              width="25"
-                                                             className="map-icon"/> (externe
-                                                        link)</a>
+                                                        className="map-icon"/>
+
+                                                        </a>
                                                     </>
                                                     : <><em>(geen GPS locatie)</em></>}
                                                 <p>Foto: <a

@@ -15,6 +15,7 @@ import AccessibleIcon from "../../assets/icons/icon-accessible.svg";
 import noImage from "../../assets/icons/icon-lines-toilet-jiro.svg";
 import CameraIcon from "../../assets/icons/icon-camera.png";
 import {ReactComponent as SearchLookIcon} from "../../assets/icons/icon-lines-search-jiro.svg";
+import {ReactComponent as ExternalLink} from "../../assets/icons/icon-lines-logout.svg";
 
 function SearchPage() {
     const {register, handleSubmit, formState: {errors}} = useForm();
@@ -293,10 +294,18 @@ function SearchPage() {
                                                 <a
                                                     href={post.latitude &&
                     `https://www.openstreetmap.org/?mlat=${post.latitude}&mlon=${post.longitude}&zoom=15}`}
-                                                    rel="noreferrer" target="_blank">
+                                                    rel="noreferrer"
+                                                    target="_blank">
+
+                                                    <ExternalLink
+                                                        className="svg-external"
+                                                        alt="external link"
+                                                    />
                                                     <img src={MapIcon}
                                                          alt="map"
-                                                         width="25" className="map-icon"/></a>
+                                                         width="25" className="map-icon"/>
+
+                                                    </a>
                                             </>
                                                 :
                                                 <>(geen GPS locatie)</>

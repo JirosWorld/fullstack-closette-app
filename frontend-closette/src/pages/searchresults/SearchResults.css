@@ -68,6 +68,13 @@
     color: cadetblue;
 }
 
+svg.svg-external {
+    width: 20px;
+    height: 20px;
+    fill: #f7a1c6;
+    stroke: #f7a1c6;
+}
+
 .mapped__posts {
     padding: 1em;
     background-color: var(--softgreen);
