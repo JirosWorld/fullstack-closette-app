@@ -42,7 +42,7 @@ function LoginPage() {
 
         } catch (e) {
             console.error(e);
-            setError(`Het inloggen is mislukt. Vul de juste gegevens in - (${e.message})`);
+            setError(`Het inloggen is mislukt. Vul de juiste gegevens in - (${e.message})`);
         }
     }
 

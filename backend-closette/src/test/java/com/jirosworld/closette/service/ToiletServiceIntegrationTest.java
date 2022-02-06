@@ -35,6 +35,7 @@ public class ToiletServiceIntegrationTest {
     public void setUp() {
     }
 
+    // ERROR: Caught exception while invoking 'afterTestMethod' callback on TestExecutionListener [org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@1ae8bcbc] for test method [public void com.jirosworld.closette.service.ToiletServiceIntegrationTest.testGetToiletByName()] and test instance [com.jirosworld.closette.service.ToiletServiceIntegrationTest@5af8ef61]
     @Test
     public void testGetToiletByName() {
         toilet = new Toilet(20,"Naam van toilet","44.111","6.2222","1-1-2022",true,false,true,"Zeer schoon",true,"van 9 - 18h","Hebban olla vogala nestas hagunnan, hinase hic enda tu","Lutjebroek","Nederland","Marktplein 1-a.");
@@ -51,6 +52,9 @@ public class ToiletServiceIntegrationTest {
         assertEquals(expected, found.getTitle());
     }
 
+    // ERROR: org.mockito.exceptions.misusing.WrongTypeOfReturnValue:
+    //Toilet cannot be returned by findAllByCityContainingIgnoreCase()
+    //findAllByCityContainingIgnoreCase() should return List
     @Test
     public void testGetToiletByCityname() {
         toilet = new Toilet(20,"Naam van toilet","44.111","6.2222","1-1-2022",true,false,true,"Zeer schoon",true,"van 9 - 18h","Hebban olla vogala nestas hagunnan, hinase hic enda tu","Lutjebroek","Nederland","Marktplein 1-a.");

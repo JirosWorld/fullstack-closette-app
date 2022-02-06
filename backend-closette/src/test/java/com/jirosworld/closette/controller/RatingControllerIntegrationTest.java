@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @WebMvcTest
-@ContextConfiguration(classes={ClosetteApp.class})
+@ContextConfiguration(classes={RatingController.class})
 @EnableConfigurationProperties
 public class RatingControllerIntegrationTest {
 
@@ -35,6 +35,7 @@ public class RatingControllerIntegrationTest {
     @MockBean
     private RatingService ratingService;
 
+    // ERROR: websecurity error
     @Test
     public void testEndpointRatings() throws Exception {
 

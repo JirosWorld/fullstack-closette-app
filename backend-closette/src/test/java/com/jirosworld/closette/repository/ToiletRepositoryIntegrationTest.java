@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 @DataJpaTest
-@ContextConfiguration(classes={ClosetteApp.class})
+@ContextConfiguration(classes={ToiletRepository.class})
 @EnableConfigurationProperties
 class ToiletRepositoryIntegrationTest {
 
