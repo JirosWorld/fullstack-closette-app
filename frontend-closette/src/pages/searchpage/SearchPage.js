@@ -104,13 +104,30 @@ function SearchPage() {
                 title="Snel-Zoeken"/>
             <main className="search__page content-wrapper">
                 <p>Op deze pagina kun je snel-zoeken op basis van &oacute;f stad, &oacute;f
-                    land &oacute;f locatie-naam. Scroll naar beneden, nadat je een zoek-knop hebt
-                    ingedrukt, om de zoekresultaten te zien.
+                    land &oacute;f bedrijfs-naam. Scroll naar beneden, nadat je een zoek-knop hebt
+                    ingedrukt, om alle zoekresultaten te zien.
                 </p>
+
+                <h3>Zoek op naam</h3>
+                <form className="form-container title" onSubmit={handleSubmit(onFormSubmitTitle)}>
+                    <InputField
+                        inputType="text"
+                        errors={errors}
+                        register={register}
+                        labelText="Naam"
+                        labelId="title-field"
+                        inputName="title"
+                        placeholderText="Bijvoorbeeld: Bar..."
+                    />
+                    <button type="submit">
+                        Zoeken
+                    </button>
+                </form>
 
                 <h3>Zoek op stad</h3>
                 <form className="form-container city" onSubmit={handleSubmit(onFormSubmitCity)}>
                     <InputField
+                        inputType="text"
                         errors={errors}
                         register={register}
                         labelText="Stad"
@@ -124,8 +141,9 @@ function SearchPage() {
                 </form>
 
                 <h3>Zoek op land</h3>
-                <form className="form-container land" onSubmit={handleSubmit(onFormSubmitCountry)}>
+                <form className="form-container country" onSubmit={handleSubmit(onFormSubmitCountry)}>
                     <InputField
+                        inputType="text"
                         errors={errors}
                         register={register}
                         labelText="Land"
@@ -138,21 +156,6 @@ function SearchPage() {
                                 message: "Je moet meer invullen"
                             }
                         }}
-                    />
-                    <button type="submit">
-                        Zoeken
-                    </button>
-                </form>
-
-                <h3>Zoek op naam</h3>
-                <form className="form-container title" onSubmit={handleSubmit(onFormSubmitTitle)}>
-                    <InputField
-                        errors={errors}
-                        register={register}
-                        labelText="Naam"
-                        labelId="title-field"
-                        inputName="title"
-                        placeholderText="Bijvoorbeeld: Bar..."
                     />
                     <button type="submit">
                         Zoeken
@@ -248,7 +251,7 @@ function SearchPage() {
                                                          alt="genderneutral"
                                                          width="25"
                                                          className="genderneutral-icon"/></span> :
-                                            <span>niet genderneutraal</span>}
+                                            <span className="tiny-info">niet genderneutraal</span>}
                                             | 
 
                                             {post.free
@@ -266,7 +269,7 @@ function SearchPage() {
                                                             alt="accessible"
                                                             width="25"
                                                             className="accessible-icon"/> </span> :
-                                                <span>Nee</span>}
+                                                <span className="tiny-info"> Nee</span>}
                                             |
                                             foto?: {post.hasPhoto
                                                 ? <span><img src={CameraIcon}

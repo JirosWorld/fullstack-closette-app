@@ -5,22 +5,24 @@ import com.jirosworld.closette.model.Photo;
 import com.jirosworld.closette.repository.PhotoRepository;
 import com.jirosworld.closette.service.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.util.StringUtils;
+// multi-upload
+//import org.springframework.core.io.Resource;
+//import org.springframework.util.StreamUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+// multi-upload
+//import javax.servlet.http.HttpServletResponse;
+//import java.util.ArrayList;
+//import java.util.Arrays;
+//import java.util.List;
 
 
 @RestController

@@ -69,7 +69,7 @@ function AvatarUpload() {
             {error && <p className="error-message">{error}</p>}
 
             <div className="margin-zero">
-                <Accordeon title="Geen mooie avatar?">
+                <Accordeon title="Upload nieuwe avatar">
                     <p className="margin-zero">Geen mooie avatar?</p>
                     <div className="margin-zero">
                         <label htmlFor="photo">Upload hier een

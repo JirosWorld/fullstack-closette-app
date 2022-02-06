@@ -1,3 +1,32 @@
+.form-container.city,
+.form-container.country,
+.form-container.title {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.form-container.city > button[type=submit],
+.form-container.country > button[type=submit],
+.form-container.title > button[type=submit] {
+    width: 220px;
+    margin-left: 0.7em;
+}
+
+.form-container.city > label,
+.form-container.country > label,
+.form-container.title > label {
+    width: 1px;
+    visibility: hidden;
+/*    labels still present for accessibility */
+}
+
+.form-container.city > input[type="text"],
+.form-container.country > input[type="text"],
+.form-container.title > input[type="text"] {
+    padding: 11px 16px;
+}
+
 .checkbox-filters {
     display: flex;
     flex-direction: column;
@@ -9,4 +38,21 @@ svg.svg-lookingglass-inline {
     fill: var(--hardpink);
     stroke: var(--hardpink);
     vertical-align: middle;
+}
+
+@media only screen and (max-width: 700px) {
+    .form-container.city,
+    .form-container.country,
+    .form-container.title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-container.city > button[type=submit],
+    .form-container.country > button[type=submit],
+    .form-container.title > button[type=submit] {
+        width: 420px;
+        margin-left: 0;
+    }
 }

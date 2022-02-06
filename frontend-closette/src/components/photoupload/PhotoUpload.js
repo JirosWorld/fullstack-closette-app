@@ -74,7 +74,7 @@ function PhotoUpload() {
 
 
             <div className="margin-zero">
-                <Accordeon title="Geen mooie foto?">
+                <Accordeon title="Upload nieuwe foto">
                     <p className="margin-zero">Heb je een betere foto?</p>
                     <div className="margin-zero">
                         <label htmlFor="photo">Upload hier een

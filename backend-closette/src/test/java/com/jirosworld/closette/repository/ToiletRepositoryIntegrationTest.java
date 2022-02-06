@@ -26,7 +26,7 @@ class ToiletRepositoryIntegrationTest {
     @Test
     void testFindByToiletVenueName() {
         // given
-        Toilet toilet = new Toilet(20,"Naam van repotoilet","44.111","6.2222","1-1-2022",true,false,true,"Zeer schoon",true,"van 9 - 18h","Hebban olla vogala nestas hagunnan, hinase hic enda tu","Lutjebroek","Antarctica","Marktplein 1-a.");
+        Toilet toilet = new Toilet(20,"Naam van repotoilet","44.111","6.2222","1-1-2022",true,false,true,"Zeer schoon",true,"van 9 - 18h","Hebban olla vogala nestas hagunnan, hinase hic enda tu","Repocity","Repositoryland","Marktplein 1-a.");
         entityManager.persist(toilet);
         entityManager.flush();
 

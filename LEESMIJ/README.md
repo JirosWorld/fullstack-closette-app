@@ -8,7 +8,8 @@ door Jiro Ghianni
 
 Deze LEESMIJ Documentatie directory bevat:
 
-* de Installatiehandleiding voor zowel front-end als back-end:  [link naar de Installatiehandleiding in PDF](installatiehandleiding-closette.pdf) (1 MB)
+* de Installatiehandleiding voor zowel front-end als back-end:  [link naar de Installatiehandleiding in PDF](installatiehandleiding-closette.pdf) (2 MB)
+* de importeerbare verzameling van [alle endpoint requests](Jiro_Closette_data.postman_collection.json) (JSON)
 
 * het Functioneel ontwerp + het Technisch ontwerp **samen** in één PDF: [link naar Functioneel/Technisch ontwerp in PDF](functioneel-technisch-ontwerp-app-jiro.pdf) (7 MB)
 
@@ -16,7 +17,7 @@ Deze LEESMIJ Documentatie directory bevat:
 
 * het Verantwoordingsdocument: [link naar Verantwoordingsdocument in markdown](verantwoordingsdocument.md)
 
-* de importeerbare verzameling van [alle Postman requests](Jiro_Closette_data.postman_collection.json) (JSON)
+
 
 ### Leuke extra’s
 

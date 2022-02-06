@@ -2,9 +2,13 @@
 
 _Markdown text-only versie_
 
-Deze '**text only**' versie **_zónder_ afbeeldingen** is alleen bedoeld om in een browser op Github e.d. makkelijk snel te kunnen lezen hoe het ontwerp inelkaar steekt. Het échte ontwerp document staat hier: [PDF ontwerp document met afbeeldingen](functioneel-technisch-ontwerp-app-jiro.pdf) (7 MB)
+Deze '**text only**' versie **_zónder_ afbeeldingen** is alleen bedoeld om in een browser op Github e.d. makkelijk snel te kunnen lezen hoe het ontwerp inelkaar steekt. Het échte ontwerp document staat hier: [PDF ontwerp document met afbeeldingen](functioneel-technisch-ontwerp-app-jiro.pdf) (PDF | 7 MB)
 
 ~ door Jiro Ghianni.
+
+~ 3 februari 2022
+
+~ Studentnummer: 900101067
 
 ## Text Only inhoud
 
@@ -43,7 +47,7 @@ De 5 belangrijkste functionaliteiten zijn:
 1 Alle gebruikers, ook die niet ingelogd zijn, kunnen zoeken naar toiletten.
 2 De zoekresultaten kunnen getrechterd worden via de verschillende filtereigenschappen van toiletten (stad, land, gratis/niet-gratis, wel/niet genderneutraal, toegankelijk voor minder validen, vies of schoon, heeft wel/geen foto, beoordelingen).
 3 Als zoekresultaten GPS coördinaten bevatten, dan wordt deze automatisch omgezet naar een link naar een plattegrond.
-4 Ingelogde gebruikers kunnen nieuwe toiletten plaatsen met daarbij het adres, een beschrijving en kunnen eventueel een foto uploaden.
+4 Ingelogde gebruikers kunnen nieuwe toiletten plaatsen met daarbij het adres, een beschrijving, een waardering, en kunnen eventueel een foto uploaden.
 5 Speciale gebruikers (community managers) hebben meer rechten: moderators hebben de mogelijkheid om posts te censureren of verwijderen.
 
 
@@ -58,7 +62,7 @@ Rood = nog niet af
     1 Gebruikers kunnen in- en uitloggen.
     2 Alle niet-ingelogde gebruikers kunnen zoeken naar toiletten.
     3 Er kan in aparte ‘snel zoeken’ zoekvelden worden gezocht op Stad, land, of naam.
-    4 Ingelogde gebruikers kunnen nieuwe toiletten plaatsen met daarbij het adres (straat, stad, land) en een beschrijving + extra beschikbare opties aanvinken (via checkboxes kan ingevoerd worden: gratis/niet-gratis, wel/niet genderneutraal, we/niet toegankelijk voor minder validen, wel/niet vies of schoon, ‘heeft’ foto, ‘heeft’ kaart, etc.). 
+    4 Ingelogde gebruikers kunnen nieuwe toiletten plaatsen met daarbij het adres (straat, stad, land) en een beschrijving + extra beschikbare opties aanvinken (via checkboxes kan ingevoerd worden: gratis/niet-gratis, wel/niet genderneutraal, we/niet toegankelijk voor minder validen, wel/niet vies of schoon, ‘heeft’ foto, etc.). 
     5 Ingelogde gebruikers kunnen meerdere foto’s uploaden (als avatar op de Dashboard pagina en bij Toiletten) d.m.v. een formulier.
     6 Speciale gebruikers/admins (community managers) hebben meer rechten: admins hebben de mogelijkheid om posts te censureren (PUT of PATCH requests) of verwijderen (DELETE request).  De admin kan data (Toiletten, users, nieuwsberichten) aanmaken/ bewerken/ verwijderen. En alleen admins kunnen nieuwsberichten plaatsen.
     7 Alle bezoekers kunnen een gebruikersaccount aanmaken met hun e-mailadres + een gebruikersnaam en een zelfgekozen wachtwoord.
@@ -73,8 +77,10 @@ Rood = nog niet af
     16 In de backend zijn meerdere verschillende GET, PUT, POST en DELETE requests. om toilet locaties te kunnen zoeken/plaatsen/corrigeren.
     17 Toiletten (entries) en gebruikers hebben een losse ‘relatie’: als een gebruiker wordt verwijderd, moeten de door die gebruiker geplaatste toiletlocaties nog blijven bestaan in de database. 
     18 Er vindt zowel aan de backend als aan de frontend validatie plaats op de meest essentiële data die gepost wordt door gebruikers: zo mag een gebruikersnaam niet uit 1 letter bestaan en moet een wachtwoord uit minstens 4 tekens bestaan met daarin minstens 1 cijfer.
-    19 Foto’s kunnen naar de database worden geupload via de frontend.
-    20 Als de back-end server niet runt of crasht, blijft de front-end nog werken en zinvolle foutmeldingen tonen.
+    19 Foto’s kunnen naar de database worden geüpload via de frontend.
+    20 De front-end moet in staat zijn om een placeholder image te tonen wanneer een toilet geen foto heeft en wanneer er geen avatar in het dashboard is geüpload.
+    21 Beoordelingen kunnen worden geplaatst via de front-end.
+    22 Als de back-end server niet runt of crasht, blijft de front-end nog werken en zinvolle foutmeldingen tonen.
 
 
 NIET-FUNCTIONELE EISEN: zonder deze features, werkt de app nog steeds.
@@ -86,7 +92,7 @@ Rood = nog niet af
     3 Bezoekers kunnen zowel zéér gedetailleerd zoeken alsmede lange lijsten met veel zoekresultaten gedetailleerd  filteren.
     4 De zoekresultaten kunnen getrechterd worden d.m.v. checkboxes  via 9 ‘extra’ (=niet-verplichte) filtereigenschappen van toiletten (1. gratis/niet-gratis, 2. toegankelijk voor minder validen, 3. vies of schoon, 4. heeft wel/geen foto, 5.waarderings-score, 6. heeft wel/geen beschrijving, 7. heeft wel/geen locatie op kaart (longitude en latitude). De zoekresultaten kunnen gefilterd worden via de tenminste 4 verplichte filtereigenschappen van toiletten (=entries): Stad, Land, Naam, en wel/niet genderneutraal.
     5 De checkboxes zijn gestyled als toggle switches voor een vriendelijke uitstraling.
-    6 Alle ingelogde gebruikers kunnen een cijfer-beoordeling (1-10) per toilet geven, ook op toiletten die ze niet zelf geplaatst hebben.
+    6 Alle ingelogde gebruikers kunnen een cijfer-beoordeling (1-10) per toilet geven, ook op toiletten die ze niet zelf geplaatst hebben. Na elke nieuwe waardering/rating verandert de gemiddelde rating per toilet.
     7 Elke ingelogde gebruiker (member) mag meerdere toiletten (posts) 1X waarderen, inclusief die van zichzelf.
     8 Als een formulier, waarmee een nieuw toilet kan worden toegevoegd, verkeerd is ingevuld, dan geeft het systeem aan welke velden verkeerd zijn ingevuld.
     9 Wanneer er dingen mis gaan tussen de front-end en de back-end dan toont de app foutmeldingen in begrijpelijke mensentaal.
@@ -109,18 +115,18 @@ https://webaim.org/resources/contrastchecker – daar waar normale tekst niet be
 25 De lijst van zoekresultaten toont meteen 1 foto per toilet als thumbnail, of een placeholder thumbnail: ’no photo’ wanneer er geen foto is.
 26 Alle genderneutrale toiletten hebben een icoontje dat over de foto van de zoekresultaten heen zweeft waardoor deze meteen herkend kunnen worden.
 27 De resultaten laden snel.
-28 Als een toilet nog geen waarderingen heeft, dan verschijnt er een ‘not yet rated’ label.
+28 Als een toilet nog geen waarderingen heeft, dan verschijnt er een ‘not yet rated’ label met de tekst “nul stemmen”.
 29 Bij de sterrenwaardering staat op hoeveel waarderingen het gemiddelde gebaseerd is; een hoge waardering toont 5 sterren..
 30 De gebruikersnaam van de ingelogde bezoeker verschijnt steeds boven in beeld (in ieder geval in het gebruikers dashboard) onder het avatar icoontje.
 31 Er wordt gebruik gemaakt van JSON Web Tokens voor authenticatie (veiligheid)
-32 Als de vinder een grote foto uploadt dan moet deze automatisch worden omgezet naar een 72ppi foto van maximaal 1000px breed en 1000px hoog.
+32 Als de vinder een grote foto uploadt dan moet deze automatisch worden omgezet naar een 72ppi foto van maximaal 1000px breed en 1000px hoog. De maximale uploadgrens is 3 MB.
 33 Gebruikers kunnen reacties plaatsen bij entries, en zo publiek meldingen doen of de locatie veilig is. Wanneer een entry/toilet reacties heeft, dan staat het aantal reacties vermeld als getal in de zoekresultaten.
 34 Ingelogde gebruikers zien een notifications icoontje met een nummer als een reactie is geplaatst op hun post of als een moderator er een verandering in heeft gemaakt.
 35 Ingelogde gebruikers hebben een dashboard waarin ze in 1 oogopslag alle door henzelf toegevoegde toilet-locaties in een lijst zien staan.
 36 Het systeem checkt direct of het ingevoerde mailadres geldig is. Zo niet, dan wordt een foutmelding getoond en kan het account-aanmaak formulier niet worden verstuurd (via standaard browser-afhankelijke check, zonder Regex).
 37 Een gebruiker kan niet meer dan 2 toiletten per minuut plaatsen (anti-robot veiligheids check).
 38 De zoek- en post-formulieren worden gevalideerd terwijl de gebruiker aan het typen is, dus op ieder onBlur- of onChange-event.
-39 Als er naar een andere pagina wordt genavigeerd, en wanneer het browserwindow wordt verversd, dan scrollt de pagina automatisch ‘smooth’ naar boven.
+39 Als er naar een andere pagina wordt genavigeerd, en wanneer het browserwindow wordt ververst, dan scrollt de pagina automatisch ‘smooth’ naar boven.
 40 De gebruiker die een nieuwe account heeft aangemaakt dient automatisch een bevestigingsmelding te ontvangen.
 41 De zoekresultaten hebben (SEO) een hiërarchisch kruimelpad waarover genavigeerd kan worden. De hiërarchische volgorde is, in volgorde van belangrijkheid: Land >> Stad >> straat.
 
@@ -150,7 +156,7 @@ Die wil ik grotendeels ook, maar dan met een beter design en vriendelijkere huis
 
 
 
-Er bestaat ook nog een andere genderneutrale-toiletten zoeker app, maar deze heeft ongeveer dezelfde criteria, en een zeer lelijk design: ook de functionaliteit is niet geweldig. We verdienen een betere app dan dit.
+Er bestaat ook nog een andere genderneutrale-toiletten zoeker app, maar deze heeft ongeveer dezelfde criteria, en een zeer lelijk design: ook de functionaliteit is niet geweldig. We verdienen een betere app dan dit:
 
 
 
@@ -158,7 +164,7 @@ Er bestaat ook nog een andere genderneutrale-toiletten zoeker app, maar deze hee
 
 Een minimalistische stijl is het meest duidelijk, maar visueel erg saai; dus zal ik speelse elementen toevoegen in de thumbnails en icoontjes, door deze handgetekend in doodle-stijl te maken, zoals bij  https://toogoodtogo.org
 
-Voor deze opdracht heb ik zelf de lachende toiletrol als logo getekend en de lachende toiletpot + het zoeken-icoontje en en het plus/toevoegen icoontje etc. + deze allen naar SVG omgezet.
+Voor deze opdracht heb ik zelf de lachende toiletrol als logo getekend en de lachende toiletpot + het zoeken-icoontje etc. en het plus/toevoegen icoontje etc. + deze allen naar SVG omgezet.
 
 
 ToGoodToGo handgetekende icoontjes.
@@ -372,10 +378,12 @@ Bij dit definitieve klassendiagram moet ik de kanttekening maken dat bij gebruik
 Definitieve versie van het klassendiagram
 
     8 Sequentie diagrammen
-Hier enige sequentie diagrammen met algemeen beschrijvende klassen en ‘real life’  methodes/gebeurtenissen.
+Hier drie sequentie diagrammen met algemeen beschrijvende klassen en ‘real life’  methodes/gebeurtenissen.
 
 
 Als eerste het proces dat het posten van een nieuwe toilet entry toont; dit mag alleen gebeuren wanneer een user is ingelogd. Andere gebruikers mogen niets posten, die mogen alleen maar zoeken.
+
+
 
 
 
@@ -387,13 +395,24 @@ Diagram 8.1: Toevoegen nieuw toilet door nieuw geregistreerde gebruiker.
 
 
 
-Hieronder het scenario waarbij wordt gezocht, met als varianten wel/niet gevonden. Het zoeken vindt plaats in de zogenaamde DTO tussenlaag.
+Het volgende diagram beschrijft het plaatsen van een beoordelings-cijfer bij een toilet, waarbij de mogelijkheid is dat een toilet niet bestaat – maar als dit wel bestaat, dan vervolgt het beoordelings-proces.
+In dit diagram staat het proces afgebeeld zoals dat door de verschillende lagen van Spring Boot plaatsvindt met daarbij soms de termen van de acties zoals ze in het ‘echte leven’ plaatsvinden. De Java term ‘query’ is in het echte leven natuurlijk ’zoeken. En de 404 melding is in het dagelijks taalgebruik misschien nu al wel een bekende meme, maar betekent ‘niet gevonden.’
+
+
+
+Diagram 8.2: Toilet waarderen door geregistreerde gebruiker.
+
+
+
+
+
+Hieronder het scenario waarbij wordt gezocht naar een toilet, met als varianten wel/niet gevonden. Het zoeken vindt plaats in de zogenaamde DTO tussenlaag.
 De referentie waarbij er niets is gevonden verwijst naar dit zelfde sequentie diagram waarbij opnieuw gezocht kan worden, maar dan met andere of bredere criteria.
 
 
 
 
-Diagram 8.2: Zoeken naar toilet door ongeregistreerde bezoeker.
+Diagram 8.3: Zoeken naar toilet door ongeregistreerde bezoeker.
 
 
 
@@ -427,7 +446,7 @@ Menu Open + Menu gesloten & Responsive breedte.
 • Dit project is ook op Github te vinden:
 https://github.com/JirosWorld/fullstack-closette-app
 
-• De Postman requests heb ik in de LEESMIJ map toegevoegd en tevens gepubliceerd op deze Postman documentatie site (inclusief beschrijvingen van de endpoints):
+• De importeerbare Postman requests heb ik in de LEESMIJ map toegevoegd en tevens gepubliceerd op deze Postman documentatie site (inclusief beschrijvingen van de endpoints):
 https://documenter.getpostman.com/view/17991980/UVeCR95T
 
 • Figma ontwerpen link:

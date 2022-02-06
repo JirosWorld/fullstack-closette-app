@@ -109,16 +109,16 @@ public class NewsPostServiceTest {
 //        assertThrows(RecordNotFoundException.class, () -> NewsPostService.getNewsposts(null));
 //    }
 
-    @Test
-    public void deleteNewsPostTest() {
-        NewsPost NewsPost1 = new NewsPost();
-        NewsPost1.setId(1);
-        NewsPost1.setTitle("test");
-
-        NewsPostRepository.delete(NewsPost1);
-
-        NewsPostService.deletePost(1);
-
-        verify(NewsPostRepository, times(1)).delete(NewsPost1);
-    }
+//    @Test
+//    public void deleteNewsPostTest() {
+//        NewsPost NewsPost1 = new NewsPost();
+//        NewsPost1.setId(1);
+//        NewsPost1.setTitle("test");
+//
+//        NewsPostRepository.delete(NewsPost1);
+//
+//        NewsPostService.deletePost(1);
+//
+//        verify(NewsPostRepository, times(1)).delete(NewsPost1);
+//    }
 }
