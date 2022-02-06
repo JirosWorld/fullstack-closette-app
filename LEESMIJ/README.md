@@ -21,7 +21,7 @@ Deze LEESMIJ Documentatie directory bevat:
 
 ### Leuke extra’s
 
-Er is ook een 'text-only' markdown versie van het functioneel- en technisch ontwerp: [link naar ontwerptekst in markdown](functioneel-technisch.md), alsmede een 'text-only' [versie van de Installatiehandleiding in markdown](installatiehandleiding.md), ook is hier nog extra de [link naar mijn Figma ontwerpen](https://www.figma.com/file/yv5hJQVzTMvwTT31oyQBRE/Jiro-Closette-design?node-id=0%3A1), en een verzameling van [alle Postman requests online](https://documenter.getpostman.com/view/17991980/UVeCR95T) (= dezelfde als in de back-end documentation map).
+Er is ook een 'text-only' markdown versie van het functioneel- en technisch ontwerp: [link naar ontwerptekst in markdown](functioneel-technisch.md), ook is hier nog extra de [link naar mijn Figma ontwerpen](https://www.figma.com/file/yv5hJQVzTMvwTT31oyQBRE/Jiro-Closette-design?node-id=0%3A1), en een verzameling van [alle Postman requests online](https://documenter.getpostman.com/view/17991980/UVeCR95T) (= dezelfde als in de back-end documentation map).
 
 
 
