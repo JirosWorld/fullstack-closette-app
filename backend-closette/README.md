@@ -50,9 +50,6 @@ https://documenter.getpostman.com/view/17991980/UVeCR95T
 * {PATCH [/users/{username}/password]}
 * {PATCH [/toiletsdto/{id}]}
 * {PATCH [/toilets/{id}]}
-* {PATCH [/toilets/{id}/ratings]
-* {PATCH [/single/uploadDb/{id}]}
-* {PATCH [/news/{id}]}
 * {GET [/users/{username}/authorities]}
 * {GET [/users/{username}]}
 * {GET [/users]}

@@ -50,9 +50,14 @@ function FaqPage() {
                         <h3>Handleiding</h3>
                         <p>In deze app kun je naar veilige genderneutrale toiletten zoeken.
                             Niet-ingelogde
-                            gebruikers kunnen <Link to="/search">toiletten zoeken</Link> en alle
-                            data bekijken. Ook het <Link to="/news">Nieuws</Link> en de
-                            onderliggende artikelen zijn openbaar.</p>
+                            gebruikers kunnen <Link to="/search">toiletten
+                                zoeken</Link>  en/of <Link to="/searchresults">alle
+                                data</Link> bekijken. Ook het <Link to="/news">Nieuws</Link> en de
+                            onderliggende artikelen zijn openbaar. Ingelogde gebruikers kunnen
+                            nieuwe <Link to="/submit">toiletten toevoegen</Link>,
+                            wijzigen en verwijderen, en nieuwe foto's uploaden.
+                            Ook heb je dan een <Link to="/dashboard">dashboard</Link> om
+                            een nieuwe gebruikersafbeelding te uploaden.</p>
 
                         <h3>F.A.Q. ~ veelgestelde vragen</h3>
 
@@ -67,9 +72,9 @@ function FaqPage() {
                             </Accordeon>
                             <Accordeon title="Hoe kan ik de inhoud corrigeren?">
                                 <p>Alleen ingelogde gebruikers kunnen nieuwe locaties toevoegen of
-                                    bestaande inhoud aanpassen/verbeteren. Er is ook maar maximaal 1
-                                    foto per locatie te zien; dus als je toevvallig een mooiere foto
-                                    hebt, dan mag je deze toevoegen. Maak wel <Link to="/signup">eerst
+                                    bestaande inhoud aanpassen/verbeteren.
+                                    En als je een mooiere foto
+                                    hebt, dan kun je deze toevoegen. Maak wel <Link to="/signup">eerst
                                         een account aan</Link>.</p>
                             </Accordeon>
                             <Accordeon title="Hoe kan ik zo'n kaart-symbooltje aanklikbaar maken?">

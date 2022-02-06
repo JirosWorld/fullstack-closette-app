@@ -205,7 +205,6 @@ function DashboardPage() {
                                             gratis/niet-gratis,
                                             wel/niet
                                             genderneutraal, toegankelijk voor minder validen,
-                                            half-openbaar,
                                             heeft wel/geen foto, openingstijden, waardering).
                                         </li>
                                         <li>Alle ingelogde gebruikers kunnen een sterrenwaardering
