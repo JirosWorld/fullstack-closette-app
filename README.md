@@ -32,9 +32,9 @@ is, te weten deze: [Jiro's Github Fullstack Closette App](https://github.com/Jir
 * link naar de `Figma` schermontwerpen:
   https://www.figma.com/file/yv5hJQVzTMvwTT31oyQBRE/Jiro-Closette-design?node-id=0%3A1
 
-### Leuke extra’s
+### Nawoord / extra’s
 
-Ik hoop dat nieuwe programmeurs gevoeliger gaan zijn voor diversiteit en nooit meer databases ontwerpen waarin gender slechts een boolean is. 
+Ik hoop dat nieuwe programmeurs gevoeliger gaan zijn voor diversiteit en nooit meer databases ontwerpen waarin gender slechts binair of een boolean is. Dit project is een eerste oefening in nadenken over toegankelijkheid en genderveiligheid.
 
 Lees mijn stuk over diversiteit in code hier:
 https://codepen.io/jirosworld/post/how-to-build-diversity-into-your-code
