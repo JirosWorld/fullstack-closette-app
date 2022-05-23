@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 const app = express();
-const publicPath = path.join(__dirname, '..', 'public');
+const publicPath = path.join(__dirname, '..', 'build');
 // Start the server by telling it which port to use. I am using port 3000 on my local environment; however, Heroku will assign a port for your app after deploying it, so both cases should be covered.
 const port = process.env.PORT || 3000;
 
@@ -14,7 +14,4 @@ app.get('*', (req, res) => {
 
 app.listen(port, () => {
     console.log(`Server is up on port ${port}!`);
-});
-app.listen(port, () => {
-    console.log('Server is up!');
 });
