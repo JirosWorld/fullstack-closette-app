@@ -43,6 +43,13 @@ Zie de installatiehandleiding in de LEESMIJ folder. Belangrijk voor Github gebru
 
 Zie voor verdere uitleg de [volledige installatiehandleiding als PDF](../LEESMIJ/installatiehandleiding-closette.pdf).
 
+Deze app op Heroku:
+
+https://frontend-closette.herokuapp.com/ 
+
+https://git.heroku.com/frontend-closette.git
+
+
 Saluti,
 
 Jiro Ghianni
