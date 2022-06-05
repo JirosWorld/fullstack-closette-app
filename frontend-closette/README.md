@@ -8,6 +8,10 @@ door Jiro Ghianni
 
 ⚠️ Let op: wanneer je dit project in 1 keer binnen een IDE importeert van Github, dan moet je er rekening mee houden dat de start scripts in de ***sub directories*** staan, dus 1 map lager dan de ROOT! Open dan _alleen_ de `frontend-closette` map als 'root' in een IDE/Webstorm.
 
+⚠️ Let op: de front-end van dit project is geschikt gemaakt voor Heroku. Om de Heroku configuratie te verwijderen en de front-end weer lokaal te kunnen draaien, dien je uit het package-JSON bestand de 2e server regel uit scripts te verwijderen, zodat alleen het juiste lokale Start script overblijft:
+
+![Closette logo](../LEESMIJ/assets/heroku-remove-add.png)
+
 Welkom bij de _Closette ~ genderneutrale toiletten zoek-app_. Deze front-end kun je zelf installeren via de installatie handleiding. Alle toelichtingen en uitleg over hoe deze app inelkaar zit, kun je in de LEESMIJ folder vinden, daarin staan:
 
 * Deze Readme
