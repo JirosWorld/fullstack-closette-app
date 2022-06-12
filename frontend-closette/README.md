@@ -8,7 +8,7 @@ door Jiro Ghianni
 
 ⚠️ Let op: wanneer je dit project in 1 keer binnen een IDE importeert van Github, dan moet je er rekening mee houden dat de start scripts in de ***sub directories*** staan, dus 1 map lager dan de ROOT! Open dan _alleen_ de `frontend-closette` map als 'root' in een IDE/Webstorm.
 
-⚠️ Let op: de front-end van dit project is geschikt gemaakt voor Heroku. Om de Heroku configuratie te verwijderen en de front-end weer lokaal te kunnen draaien, dien je uit het package-JSON bestand de 2e server regel uit scripts te verwijderen, zodat alleen het juiste lokale Start script overblijft:
+⚠️ Let op: de front-end van dit project is geschikt gemaakt voor Heroku. Om de Heroku configuratie te verwijderen en de front-end weer lokaal te kunnen draaien, dien je uit het `package-JSON` bestand de 2e server regel uit scripts te verwijderen, zodat alleen het juiste lokale `start` script overblijft:
 
 ![Closette logo](../LEESMIJ/assets/heroku-remove-add.png)
 

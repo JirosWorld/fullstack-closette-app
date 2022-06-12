@@ -109,7 +109,7 @@ function SearchCountryFunction() {
                                         <span>{Object.keys(post.title).length > 0
                                         && post.title}</span>
                                     </h2></Link>
-                                    <span className="mapped__post__author">{post.city}</span>
+                                    <span className="mapped__post__city">{post.city}</span>
                                     <span className="mapped__post__detail">
                                         &#127988; "{post.country}"
                                     </span>
