@@ -32,9 +32,6 @@ is, te weten deze: [Jiro's Github Fullstack Closette App](https://github.com/Jir
 * link naar de `Figma` schermontwerpen:
   https://www.figma.com/file/yv5hJQVzTMvwTT31oyQBRE/Jiro-Closette-design?node-id=0%3A1
 
-⚠️ Let op: de front-end van dit project is geschikt gemaakt voor Heroku. Om de Heroku configuratie te verwijderen en de front-end weer lokaal te kunnen draaien, dien je uit het package-JSON bestand de 2e server regel uit scripts te verwijderen, zodat alleen het juiste lokale Start script overblijft:
-
-![Closette logo](LEESMIJ/assets/heroku-remove-add.png)
 
 ### Nawoord / extra’s
 
